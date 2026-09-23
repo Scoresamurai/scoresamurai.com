@@ -92,7 +92,9 @@ new MutationObserver(scan).observe(document.documentElement, { childList: true, 
 <!-- ANALYTICS: PostHog snippet goes here once Sensei has the project key (free tier, session replay on). -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Playfair+Display+SC:wght@400;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Playfair+Display+SC:wght@400;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Playfair+Display+SC:wght@400;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Playfair+Display+SC:wght@400;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap"></noscript>
 <link rel="stylesheet" href="/site.css">
 </head>
 <body>
@@ -368,7 +370,7 @@ new MutationObserver(scan).observe(document.documentElement, { childList: true, 
         <p class="body" style="font-size:16px">Where the points go on the test, what each trap looks like from the inside, and the rule that gets you past it. Then a band map for the score you have today and ten questions that say which traps are already firing.</p>
         <div class="tm formwrap"></div>
         <script>
-        (function(){var w=document.querySelector("#trapmap .formwrap");if(!w||w.querySelector("script"))return;var s=document.createElement("script");s.async=true;s.setAttribute("data-uid","02e5ef800a");s.src="https://score-samurai.kit.com/02e5ef800a/index.js";w.appendChild(s);})();
+        (function(){function go(){var w=document.querySelector("#trapmap .formwrap");if(!w||w.querySelector("script"))return;var s=document.createElement("script");s.async=true;s.setAttribute("data-uid","02e5ef800a");s.src="https://score-samurai.kit.com/02e5ef800a/index.js";w.appendChild(s);}if(document.readyState==="complete"){setTimeout(go,0);}else{window.addEventListener("load",function(){setTimeout(go,0);});}})();
         </script>
         <p class="muted" style="font-size:13px">Lands in your inbox within a minute. No spam, unsubscribe any time.</p>
       </div>
