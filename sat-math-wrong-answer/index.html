@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why do I solve SAT math correctly and still get it wrong | Score Samurai</title>
+<meta name="description" content="It shows up as an equation to solve, and a question that asks for something other than x, such as 2x minus 3, or x plus 4.">
+<link rel="canonical" href="https://scoresamurai.com/sat-math-wrong-answer/">
+<link rel="icon" href="/warrior.png">
+<meta property="og:title" content="Why do I solve SAT math correctly and still get it wrong">
+<meta property="og:description" content="It shows up as an equation to solve, and a question that asks for something other than x, such as 2x minus 3, or x plus 4.">
+<meta property="og:image" content="https://scoresamurai.com/og.png">
+<meta property="og:url" content="https://scoresamurai.com/sat-math-wrong-answer/">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LYZRWG13P3"></script>
+<script>
+ window.dataLayer = window.dataLayer || [];
+ function gtag(){dataLayer.push(arguments);}
+ gtag('js', new Date());
+ gtag('config', 'G-LYZRWG13P3');
+</script>
+<!-- Score Samurai GA4 events. Sits in the Carrd head beside the gtag block. -->
+<!-- diagnostic_open = a .js-tb Diagnostic button opening the TutorBird panel -->
+<!-- trapmap_signup = the Kit form's success state, watched with a MutationObserver -->
+<script>
+(function () {
+function ev(name, params) {
+if (typeof window.gtag === 'function') window.gtag('event', name, params || {});
+}
+/* diagnostic_open. Document-level delegation, capture phase, so it covers every Diagnostic button on the page, including any added later. */
+document.addEventListener('click', function (e) {
+var t = e.target && e.target.closest ? e.target.closest('.js-tb') : null;
+if (!t) return;
+ev('diagnostic_open', { link_text: (t.textContent || '').trim().slice(0, 100), page_path: location.pathname });
+}, true);
+/* trapmap_signup. Verified live on Sep 22 2026: on a successful Kit submit the form's contents are replaced and the email input disappears. That is the signal. */
+function watch(form) {
+if (form.__ssWatched) return;
+form.__ssWatched = true;
+if (!form.querySelector('input[name="email_address"]')) return;
+var fired = false;
+var mo = new MutationObserver(function () {
+if (fired) return;
+if (!form.querySelector('input[name="email_address"]')) {
+fired = true;
+mo.disconnect();
+ev('trapmap_signup', { page_path: location.pathname });
+}
+});
+mo.observe(form, { childList: true, subtree: true });
+}
+function scan() {
+var forms = document.querySelectorAll('form.formkit-form');
+for (var i = 0; i < forms.length; i++) watch(forms[i]);
+}
+if (document.readyState === 'loading') {
+document.addEventListener('DOMContentLoaded', scan);
+} else {
+scan();
+}
+/* Kit injects its form after load, so keep scanning for it. */
+new MutationObserver(scan).observe(document.documentElement, { childList: true, subtree: true });
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Playfair+Display+SC:wght@400;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/site.css">
+</head>
+<body>
+<header class="hdr"><div class="wrap"><a class="brand" href="/"><img src="/warrior.png" alt="Score Samurai"><span>Score Samurai</span></a><a class="hdr-cta js-tb" href="/diagnostic/">Free Dojo Diagnostic</a></div></header>
+
+<main>
+<section>
+  <div class="wrap stack" style="gap:16px;max-width:720px">
+    <div class="eyebrow">SAT Math</div>
+    <h1 style="font-size:clamp(30px,3.8vw,44px)">Why do I solve SAT math correctly and still get it wrong</h1>
+    <div class="rule"></div>
+    <p class="body" style="font-size:19px">It shows up as an equation to solve, and a question that asks for something other than x, such as 2x minus 3, or x plus 4.</p>
+  </div>
+</section>
+
+<section class="band-white">
+  <div class="wrap stack" style="gap:34px;max-width:720px">
+      <div class="stack" style="gap:10px">
+        <h2 style="font-size:clamp(22px,2.2vw,28px)">The trap</h2>
+        <div class="rule"></div>
+        <p class="body">The student solves the equation correctly, reaches a value for x, finds that value sitting among the choices, and picks it, because the work was right and the number is there. That choice was built out of that moment. Another choice is there for the student who performs the last step and stops one move early, and another for the one who does the steps out of order. The wrong answers contain no algebra errors. Each one is the correct procedure with its last step missing or out of order, which is why the wrong answer feels earned. It is the student's own work, unfinished.</p>
+      </div>
+      <div class="stack" style="gap:10px">
+        <h2 style="font-size:clamp(22px,2.2vw,28px)">The rule</h2>
+        <div class="rule"></div>
+        <p class="body">The procedure has a defined end, and the question names it. Finish every step, then check that the number you have is the one that was asked for, not the one that appeared first.</p>
+      </div>
+      <div class="stack" style="gap:10px">
+        <h2 style="font-size:clamp(22px,2.2vw,28px)">Desmos</h2>
+        <div class="rule"></div>
+        <p class="body">Technique 1 from the Desmos Strategy Guide. Type each side of the equation as its own line and click where they cross, which puts x on the screen in a few seconds. The trap is then exactly where it was, because that value of x is one of the choices. Desmos executes the solving and the finishing is still the student's: evaluate what the question actually asked for before looking at the choices.</p>
+      </div>
+      <div class="stack" style="gap:10px">
+        <h2 style="font-size:clamp(22px,2.2vw,28px)">If it keeps happening</h2>
+        <div class="rule"></div>
+        <p class="body">If this one fires on three practice tests running, the student is checking whether their number appears in the choices rather than whether the procedure reached its end, and the fix is a habit of rereading the question before choosing. It is the most common Math trap in the easier second module, which makes it the first thing we would fix for a student between 1200 and 1400, and the first trap after the foundations for one in the 1000s.</p>
+      </div>
+  </div>
+</section>
+
+<section class="band-maroon closing">
+  <div class="wrap stack" style="gap:18px;align-items:center;text-align:center">
+    <h2>Start with the free diagnostic.</h2>
+    <p style="font-size:18px;max-width:680px">One form gets you a free diagnostic and a clear plan within one business day. The next test date tends to arrive sooner than families expect, and the diagnostic says how much runway is actually left, so the sooner it is done, the more of that runway is usable.</p>
+    <p style="font-size:16px;max-width:680px">Tell us where the score stands and where it needs to be, and the Dojo Diagnostic will reach you within one business day.</p>
+    <a class="btn btn-gold js-tb" href="/diagnostic/" style="min-height:56px;padding:0 30px;font-size:17px">Get Your Free Dojo Diagnostic</a>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap"><div class="brand"><img src="/warrior.png" alt="" style="width:26px;height:26px"><span style="color:var(--cream);font-size:15px">Score Samurai</span></div><div class="links"><a href="/">Home</a><a class="js-tb" href="/diagnostic/">Diagnostic</a><a href="https://discord.gg/nE7nr7Dyb5">The Dojo</a><a href="/privacy/">Privacy</a></div><div>New York Metropolitan Area &middot; Nationwide over Zoom &middot; Score Samurai LLC</div></div></footer>
+</body>
+</html>
