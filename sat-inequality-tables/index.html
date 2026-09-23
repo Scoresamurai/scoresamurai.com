@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why do I miss SAT inequality questions with tables | Score Samurai</title>
+<meta name="description" content="It shows up as an inequality and four small tables of x and y values, with the question asking which table satisfies it.">
+<link rel="canonical" href="https://scoresamurai.com/sat-inequality-tables/">
+<link rel="icon" href="/warrior.png">
+<meta property="og:title" content="Why do I miss SAT inequality questions with tables">
+<meta property="og:description" content="It shows up as an inequality and four small tables of x and y values, with the question asking which table satisfies it.">
+<meta property="og:image" content="https://scoresamurai.com/og.png">
+<meta property="og:url" content="https://scoresamurai.com/sat-inequality-tables/">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LYZRWG13P3"></script>
+<script>
+ window.dataLayer = window.dataLayer || [];
+ function gtag(){dataLayer.push(arguments);}
+ gtag('js', new Date());
+ gtag('config', 'G-LYZRWG13P3');
+</script>
+<!-- Score Samurai GA4 events. Sits in the Carrd head beside the gtag block. -->
+<!-- diagnostic_open = a .js-tb Diagnostic button opening the TutorBird panel -->
+<!-- trapmap_signup = the Kit form's success state, watched with a MutationObserver -->
+<script>
+(function () {
+function ev(name, params) {
+if (typeof window.gtag === 'function') window.gtag('event', name, params || {});
+}
+/* diagnostic_open. Document-level delegation, capture phase, so it covers every Diagnostic button on the page, including any added later. */
+document.addEventListener('click', function (e) {
+var t = e.target && e.target.closest ? e.target.closest('.js-tb') : null;
+if (!t) return;
+ev('diagnostic_open', { link_text: (t.textContent || '').trim().slice(0, 100), page_path: location.pathname });
+}, true);
+/* trapmap_signup. Verified live on Sep 22 2026: on a successful Kit submit the form's contents are replaced and the email input disappears. That is the signal. */
+function watch(form) {
+if (form.__ssWatched) return;
+form.__ssWatched = true;
+if (!form.querySelector('input[name="email_address"]')) return;
+var fired = false;
+var mo = new MutationObserver(function () {
+if (fired) return;
+if (!form.querySelector('input[name="email_address"]')) {
+fired = true;
+mo.disconnect();
+ev('trapmap_signup', { page_path: location.pathname });
+}
+});
+mo.observe(form, { childList: true, subtree: true });
+}
+function scan() {
+var forms = document.querySelectorAll('form.formkit-form');
+for (var i = 0; i < forms.length; i++) watch(forms[i]);
+}
+if (document.readyState === 'loading') {
+document.addEventListener('DOMContentLoaded', scan);
+} else {
+scan();
+}
+/* Kit injects its form after load, so keep scanning for it. */
+new MutationObserver(scan).observe(document.documentElement, { childList: true, subtree: true });
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Playfair+Display+SC:wght@400;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/site.css">
+</head>
+<body>
+<header class="hdr"><div class="wrap"><a class="brand" href="/"><img src="/warrior.png" alt="Score Samurai"><span>Score Samurai</span></a><a class="hdr-cta js-tb" href="/diagnostic/">Free Dojo Diagnostic</a></div></header>
+
+<main>
+<section>
+  <div class="wrap stack" style="gap:16px;max-width:720px">
+    <div class="eyebrow">SAT Math</div>
+    <h1 style="font-size:clamp(30px,3.8vw,44px)">Why do I miss SAT inequality questions with tables</h1>
+    <div class="rule"></div>
+    <p class="body" style="font-size:19px">It shows up as an inequality and four small tables of x and y values, with the question asking which table satisfies it.</p>
+  </div>
+</section>
+
+<section class="band-white">
+  <div class="wrap stack" style="gap:34px;max-width:720px">
+      <div class="stack" style="gap:10px">
+        <h2 style="font-size:clamp(22px,2.2vw,28px)">The trap</h2>
+        <div class="rule"></div>
+        <p class="body">The first row of several tables is the same point, and it works, so nothing separates them at a glance. Many students check a second row, find that those tables still work, and pick whichever one looks most like the others, because at that point it feels like the work is done. Tables get built to survive two rows and fail on the third. One fails quietly, because its last point lands exactly on the line and a strict inequality does not include the line. Another catches the student who did the arithmetic correctly and then compared in the wrong direction, because every point in it sits just below the line.</p>
+      </div>
+      <div class="stack" style="gap:10px">
+        <h2 style="font-size:clamp(22px,2.2vw,28px)">The rule</h2>
+        <div class="rule"></div>
+        <p class="body">An inequality is settled by substitution, not by inspection. A table qualifies only if every row passes, so check the last row before the first.</p>
+      </div>
+      <div class="stack" style="gap:10px">
+        <h2 style="font-size:clamp(22px,2.2vw,28px)">Desmos</h2>
+        <div class="rule"></div>
+        <p class="body">Technique 5 from the Desmos Strategy Guide. Type the inequality and Desmos shades the region. Then type each table's three points and look at which set sits entirely inside the shading. A point on the boundary is visibly on the line, which is what a strict inequality leaves out. It is faster than nine substitutions and it cannot drop a sign.</p>
+      </div>
+      <div class="stack" style="gap:10px">
+        <h2 style="font-size:clamp(22px,2.2vw,28px)">If it keeps happening</h2>
+        <div class="rule"></div>
+        <p class="body">Three practice tests in a row here means the student stops checking once the answer looks settled, and that habit costs points across the whole Math section rather than on these questions alone. That is why it is worth fixing at any score, and why the thing to fix is the habit rather than the topic.</p>
+      </div>
+  </div>
+</section>
+
+<section class="band-maroon closing">
+  <div class="wrap stack" style="gap:18px;align-items:center;text-align:center">
+    <h2>Start with the free diagnostic.</h2>
+    <p style="font-size:18px;max-width:680px">One form gets you a free diagnostic and a clear plan within one business day. The next test date tends to arrive sooner than families expect, and the diagnostic says how much runway is actually left, so the sooner it is done, the more of that runway is usable.</p>
+    <p style="font-size:16px;max-width:680px">Tell us where the score stands and where it needs to be, and the Dojo Diagnostic will reach you within one business day.</p>
+    <a class="btn btn-gold js-tb" href="/diagnostic/" style="min-height:56px;padding:0 30px;font-size:17px">Get Your Free Dojo Diagnostic</a>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap"><div class="brand"><img src="/warrior.png" alt="" style="width:26px;height:26px"><span style="color:var(--cream);font-size:15px">Score Samurai</span></div><div class="links"><a href="/">Home</a><a class="js-tb" href="/diagnostic/">Diagnostic</a><a href="https://discord.gg/nE7nr7Dyb5">The Dojo</a><a href="/privacy/">Privacy</a></div><div>New York Metropolitan Area &middot; Nationwide over Zoom &middot; Score Samurai LLC</div></div></footer>
+</body>
+</html>
