@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Score Samurai | One-on-one SAT tutoring, nationwide over Zoom</title>
+<meta name="description" content="The SAT reuses the same traps every year. Score Samurai teaches students to see them coming, one on one over Zoom. Start with the free Dojo Diagnostic.">
+<link rel="canonical" href="https://scoresamurai.com/">
+<link rel="icon" href="/warrior.png">
+<meta property="og:title" content="Score Samurai">
+<meta property="og:description" content="The SAT reuses the same traps every year. Learn to see them coming.">
+<meta property="og:image" content="https://scoresamurai.com/og.png">
+<meta property="og:url" content="https://scoresamurai.com/">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LYZRWG13P3"></script>
+<script>
+ window.dataLayer = window.dataLayer || [];
+ function gtag(){dataLayer.push(arguments);}
+ gtag('js', new Date());
+ gtag('config', 'G-LYZRWG13P3');
+</script>
+<!-- Score Samurai GA4 events. Sits in the Carrd head beside the gtag block. -->
+<!-- diagnostic_open = a .js-tb Diagnostic button opening the TutorBird panel -->
+<!-- trapmap_signup = the Kit form's success state, watched with a MutationObserver -->
+<script>
+(function () {
+function ev(name, params) {
+if (typeof window.gtag === 'function') window.gtag('event', name, params || {});
+}
+/* diagnostic_open. Document-level delegation, capture phase, so it covers every Diagnostic button on the page, including any added later. */
+document.addEventListener('click', function (e) {
+var t = e.target && e.target.closest ? e.target.closest('.js-tb') : null;
+if (!t) return;
+ev('diagnostic_open', { link_text: (t.textContent || '').trim().slice(0, 100), page_path: location.pathname });
+}, true);
+/* trapmap_signup. Verified live on Sep 22 2026: on a successful Kit submit the form's contents are replaced and the email input disappears. That is the signal. */
+function watch(form) {
+if (form.__ssWatched) return;
+form.__ssWatched = true;
+if (!form.querySelector('input[name="email_address"]')) return;
+var fired = false;
+var mo = new MutationObserver(function () {
+if (fired) return;
+if (!form.querySelector('input[name="email_address"]')) {
+fired = true;
+mo.disconnect();
+ev('trapmap_signup', { page_path: location.pathname });
+}
+});
+mo.observe(form, { childList: true, subtree: true });
+}
+function scan() {
+var forms = document.querySelectorAll('form.formkit-form');
+for (var i = 0; i < forms.length; i++) watch(forms[i]);
+}
+if (document.readyState === 'loading') {
+document.addEventListener('DOMContentLoaded', scan);
+} else {
+scan();
+}
+/* Kit injects its form after load, so keep scanning for it. */
+new MutationObserver(scan).observe(document.documentElement, { childList: true, subtree: true });
+})();
+</script>
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "EducationalOrganization",
+"name": "Score Samurai LLC",
+"alternateName": "Score Samurai",
+"url": "https://scoresamurai.com",
+"email": "senseijay@scoresamurai.com",
+"description": "1-on-1 SAT tutoring on Zoom. Premium custom curriculum built per student around the specific patterns costing them points.",
+"areaServed": "United States",
+"sameAs": ["https://www.tiktok.com/@scoresamurai", "https://www.instagram.com/scoresamurai/"]
+}
+</script>
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "FAQPage",
+"mainEntity": [
+{"@type":"Question","name":"How long does SAT prep take?","acceptedAnswer":{"@type":"Answer","text":"It depends on the size of the gap and the runway left before the test date, which is what the diagnostic is for. Most students run two 50-minute sessions a week and sit the test once the plan has closed the gap the diagnostic found. Starting late turns the work into a sprint, and starting far too early tends to turn it into drift. The next test date is always closer than it feels, so the honest starting point is where the diagnostic says the student is, rather than where the calendar says they should be."}},
+{"@type":"Question","name":"What is a good SAT score for selective schools?","acceptedAnswer":{"@type":"Answer","text":"At the most selective schools, the middle of the admitted class now sits at 1500 and above, and a 1450 keeps a student in the conversation. One tier down, a score between 1350 and 1450 does the work. The number that matters is where the admitted range starts at the school the student wants, and that is the number the Dojo Roadmap is built to reach."}},
+{"@type":"Question","name":"Do colleges require the SAT in 2026?","acceptedAnswer":{"@type":"Answer","text":"Some do. Harvard, Stanford, Georgetown and the University of Miami all require an SAT or ACT score from first-year applicants right now, and a school that requires the test reads it as part of the academic record rather than as a bonus. Most of the schools families ask about are still test optional, including Duke, Michigan, USC, Boston College, Wisconsin, Penn State, Oregon and Rutgers, which means a student chooses whether the score is considered. Two more have already set a date to bring the requirement back: Princeton and Notre Dame both return to requiring scores for students applying in the 2027 to 2028 cycle, the students who would enter college in fall 2028. At the other end, the University of California campuses including UCLA do not look at scores at all, and a score cannot help or hurt there. Policies have been moving back toward requiring the test more often than away from it, and every school sets its own, so the school's own admissions page is the only source worth trusting on the day you apply. All of this is current as of September 2026. A student aiming high should plan on the score counting."}},
+{"@type":"Question","name":"How is this different from an app?","acceptedAnswer":{"@type":"Answer","text":"An app can grade an answer, but it can't see why a student keeps missing the same kind of question, and it will never notice someone going through the motions on practice. We start from the specific traps costing a student points, build each session around them, and track speed and accuracy from week to week, with Sensei Jay there every week to see that the work gets done. Students have had free access to more SAT material than they could ever use, which is a bit like having the run of a well-equipped gym with nobody to build the program, run the sessions, or check that the work got done. A trainer is what was missing, and that's the role we fill."}},
+{"@type":"Question","name":"What does the free diagnostic include?","acceptedAnswer":{"@type":"Answer","text":"You fill out one short form, and the Dojo Diagnostic arrives in your inbox within one business day. It covers where the score stands, where it needs to be for the target schools, the specific patterns costing the most points, and the plan to close the gap. There's no charge and no obligation, and anyone who'd like to talk it through can have fifteen minutes with Sensei Jay on Zoom, free."}}
+]
+}
+</script>
+<meta name="p:domain_verify" content="ca4fd3cdfc990da572d2f888bb358368"/>
+<!-- ANALYTICS: PostHog snippet goes here once Sensei has the project key (free tier, session replay on). -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Playfair+Display+SC:wght@400;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/site.css">
+</head>
+<body>
+
+<header class="hdr">
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="/warrior.png" alt="Score Samurai"><span>Score Samurai</span></a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#how">How it works</a><a href="#ranks">Dojo Ranks</a><a href="#plans">Plans</a><a href="#parents">For parents</a><a href="#faq">Questions</a>
+    </nav>
+    <a class="hdr-cta js-tb" href="/diagnostic/">Free Dojo Diagnostic</a>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <div class="eyebrow">One-on-one SAT tutoring, nationwide over Zoom</div>
+      <h1>The SAT reuses the same traps every year.</h1>
+      <p class="lead">Learn to see them coming and the questions that used to take your points stop working on you.</p>
+      <p class="muted" style="font-size:17px">One on one, nationwide over Zoom, until the score is where it needs to be and this test is behind you.</p>
+      <div class="hero-cta">
+        <div class="row">
+          <a class="btn js-tb" href="/diagnostic/">Get Your Free Dojo Diagnostic</a>
+          <a class="btn btn-ghost" href="#how">See how it works</a>
+        </div>
+        <p class="caption">The Diagnostic is free, written by Sensei Jay personally, and back within one business day.</p>
+      </div>
+    </div>
+    <div class="crest"><div class="ring"><img src="/warrior.png" alt=""></div></div>
+  </div>
+</section>
+
+<section id="how" class="band-white">
+  <div class="wrap stack" style="gap:32px">
+    <div class="stack" style="gap:12px"><div class="eyebrow">The game plan</div><h2>Three steps. The first one is free.</h2></div>
+    <div class="grid3">
+      <div class="step"><div class="num">01</div><div class="stack" style="gap:8px"><h3>One form</h3><p class="body" style="font-size:16px">It starts with one form. The Dojo Diagnostic arrives by email within one business day.</p></div></div>
+      <div class="step"><div class="num">02</div><div class="stack" style="gap:8px"><h3>The Diagnostic</h3><p class="body" style="font-size:16px">A written read of where the score stands, where it needs to be for the schools on the list, and the plan that closes the gap.</p></div></div>
+      <div class="step"><div class="num">03</div><div class="stack" style="gap:8px"><h3>A call if you want one</h3><p class="body" style="font-size:16px">Anyone who would rather talk it through first can book a free 15-minute call with Sensei Jay. Neither route carries any pressure.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap method">
+    <div class="stack" style="gap:18px">
+      <div class="eyebrow">The method</div>
+      <h2>Why it works.</h2>
+      <div class="rule"></div>
+      <p class="trustline">The method hundreds of students have already put their trust in.</p>
+      <p class="body">Sensei Jay has spent nearly a decade teaching students across the country to beat this test, and those years showed him one thing: most students already know the material. The points go to traps nobody ever taught them to recognize.</p>
+      <p class="body">No tutor can honestly promise a score. What we promise is the work: every session, every week, without exception. Speed and accuracy are tracked weekly and reported to parents, so a family sees the program working without having to ask, and the student always knows what comes next.</p>
+      <details>
+        <summary>Why students get stuck</summary>
+        <p class="body">No two students are stuck for the same reason. One loses points to the clock, another guesses on the reading and calls it a hunch, a third knows the math cold and freezes when a question looks unfamiliar. On the questions that decide a score, the point goes to the clock, to a wrong answer built from half-finished work, or to a choice that is perfectly true and answers a question nobody asked. Every one of those is a failure to recognize what the question is doing. Recognition is what we train.</p>
+        <p class="body" style="padding-top:0">Some students arrive needing 300 points and some arrive chasing the last 100, which are the hardest on the test. The method holds at both ends because the traps are the same at every score. Only the surface changes.</p>
+      </details>
+    </div>
+    <div class="appcard">
+      <div class="eyebrow">Why not an app</div>
+      <h3>An app can answer the question. It cannot tell you why you keep missing it.</h3>
+      <p>Most students who come to us have already tried the apps, the videos and the free AI tools, and the information was never the problem. A tool will never notice someone going through the motions. Sensei Jay teaches every session personally and keeps the roster small enough to know each student's name and their particular traps.</p>
+      <p>That is what a family is paying for: a person who tracks how a student thinks, builds the next session around it, and makes sure the work gets done.</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0" id="trap">
+  <div class="wrap trapgrid">
+    <div id="ss-trap" class="trap" data-ss-trap>
+      <div class="top"><span id="ss-trap-label">Reading and Writing</span><span class="chip">Pick an answer</span></div>
+      <div class="bluebook">
+        <div class="bar"><b id="ss-trap-num">1</b><span>Mark for Review</span></div>
+        <div class="q">
+          <p id="ss-trap-passage"></p>
+          <p><strong id="ss-trap-stem"></strong></p>
+          <div id="ss-trap-choices" role="group" aria-label="Answer choices"></div>
+        </div>
+      </div>
+      <p class="note" id="ss-trap-note">Tap the answer you would pick. There is no clock.</p>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+        <button type="button" class="btn btn-gold" id="ss-trap-next" style="min-height:44px;font-size:14px;padding:0 16px">Try another trap</button>
+        <span class="muted" style="color:#E8D9B5;font-size:13px" id="ss-trap-count"></span>
+      </div>
+    </div>
+    <div class="stack">
+      <div class="eyebrow">What a trap looks like</div>
+      <h2 style="font-size:clamp(26px,2.8vw,34px)">A choice can be true and still wrong.</h2>
+      <div class="rule"></div>
+      <p class="body">Every wrong answer on this test was built from something a real student does when the clock is running: a correct procedure stopped one step early, a first meaning trusted too fast, a true sentence that answers a question nobody asked. Pick an answer on the card and see which one you'd have walked into.</p>
+      <p class="body">Every trap in the Pattern Codex has a shape like these, a name, and a rule that closes it. The Diagnostic tells a student which of them are already costing points.</p>
+      <a class="btn btn-ghost js-tb" href="/diagnostic/" style="align-self:flex-start">See which traps are costing you points</a>
+    </div>
+  </div>
+</section>
+<script src="/trap.js" defer></script>
+
+<section class="band-white">
+  <div class="wrap stack" style="gap:28px">
+    <div class="stack" style="gap:12px"><div class="eyebrow">Where the points were going</div><h2>Three students. Three habits. Same fix.</h2><p class="muted">Drawn from a decade of students. Details changed.</p></div>
+    <div class="grid3">
+      <div class="card case"><div class="num">1210</div><p class="body" style="font-size:16px">The fourth practice test came back within twenty points of the first three. The family had bought more tests and the student had taken them, and the score had not moved because nothing about how the questions were being read had changed. The Diagnostic put the fourteen misses side by side and nine of them were two patterns: answer choices that were true but did not answer the question asked, and punctuation chosen by ear. Both have a name and a rule. The sessions closed those two first, and the reading misses on the midpoint test were four.</p><p class="pay">The gap to 1350 was never fourteen questions. It was two habits.</p></div>
+      <div class="card case"><div class="num">1090</div><p class="body" style="font-size:16px">An A in Algebra 2 and a score that said otherwise, so the student had decided the problem was nerves and the parents had half believed it. The misses said something more useful. On every Math module there was a question that asked for 2x plus 3 and got x, worked correctly and answered wrong, and on every module the last four questions were blank because the first eighteen had taken too long. Two habits, one of them fixable on the spot with Desmos doing the arithmetic.</p><p class="pay">The score moved a full band, and "bad at tests" had never been true.</p></div>
+      <div class="card case"><div class="num">Friday</div><p class="body" style="font-size:16px">The family had already paid for the big brand: a term with a rotating cast of tutors, a workbook, and no way to tell whether any of it was working. Here the update arrives every Friday with the week's speed and accuracy by section and the trap that cost the most points, named.</p><p class="pay">The first week the number moved, she forwarded it to her husband. It was the first time either of them had seen the money do something.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS: hidden until three logged jumps exist with permission on file. Shape per Ranks doc Section 5. -->
+<section id="results" hidden>
+  <div class="wrap stack" style="gap:24px">
+    <div class="stack" style="gap:12px"><div class="eyebrow">Results</div><h2>Where students went.</h2></div>
+    <div class="grid3" id="results-grid"></div>
+    <p class="muted">Where a score above came from a Bluebook practice test rather than an official SAT, it says so.</p>
+  </div>
+</section>
+
+<section id="ranks">
+  <div class="wrap ranksgrid">
+    <div class="stack">
+      <div class="eyebrow">Dojo Ranks</div>
+      <h2>A belt moves for one reason.</h2>
+      <div class="rule"></div>
+      <p class="body">Students here hold a belt, and a belt moves for one reason, which is that a named trap has stopped costing points across two straight practice tests. White, Green, Blue, Brown, Black. It is not a score and it is not a reward for showing up, it is a record of what a student no longer loses points to. Parents get the count of patterns closed every week, and the student gets the belt.</p>
+    </div>
+    <div class="card stack" style="gap:20px">
+      <div class="belts">
+        <div class="belt"><i style="background:#fff;border:1px solid #C9BFA8"></i><span>White</span></div>
+        <div class="belt"><i style="background:#3F7A3E"></i><span>Green</span></div>
+        <div class="belt"><i style="background:#2F4E86"></i><span>Blue</span></div>
+        <div class="belt"><i style="background:#7A4A2B"></i><span>Brown</span></div>
+        <div class="belt"><i style="background:#141110"></i><span>Black</span></div>
+      </div>
+      <div class="grid2" style="gap:12px 24px;font-size:15px;color:var(--ink-soft)">
+        <div><strong>White</strong> is held from the Diagnostic. The one belt given, not earned.</div>
+        <div><strong>Green</strong> means the five Trap Map traps have stopped costing points.</div>
+        <div><strong>Blue</strong> means the timed patterns are closed and Desmos is a habit.</div>
+        <div><strong>Brown and Black</strong> are the hard-module patterns, closed one by one.</div>
+      </div>
+      <p class="muted">A belt is never taken away. A bad practice test cannot cost one.</p>
+      <a class="btn btn-ghost" href="/belt/" style="align-self:flex-start">Which belt are you? Ten questions, no clock</a>
+    </div>
+  </div>
+</section>
+
+<section class="band-white">
+  <div class="wrap targetsgrid">
+    <div class="stack sticky">
+      <div class="eyebrow">Targets</div>
+      <h2>The scores the schools on your list admit at.</h2>
+      <div class="rule"></div>
+      <p class="body">The number that matters is where the admitted range starts at the school the student wants. The Dojo Roadmap is built to the top of the range, not the bottom.</p>
+      <a class="btn btn-ghost js-tb" href="/diagnostic/" style="align-self:flex-start">Find the gap for your list</a>
+    </div>
+    <div>
+      <div class="tier" style="padding-top:0">Tier one</div>
+      <div class="trow"><span>Harvard</span><span class="r">R&amp;W 720 to 770 · Math 730 to 790</span></div>
+      <div class="trow"><span>Princeton</span><span>1490 to 1560</span></div>
+      <div class="trow"><span>Stanford</span><span>1520 to 1570</span></div>
+      <div class="trow"><span>Duke</span><span>1510 to 1570</span></div>
+      <div class="trow"><span>Georgetown</span><span>1405 to 1530</span></div>
+      <div class="trow"><span>Michigan</span><span>1370 to 1530</span></div>
+      <div class="trow"><span>UCLA</span><span class="r">Test-blind: scores are not considered</span></div>
+      <details>
+        <summary>Show all sixteen schools</summary>
+        <div class="tier">Tier two</div>
+        <div class="trow"><span>USC</span><span>1470 to 1540</span></div>
+        <div class="trow"><span>Notre Dame</span><span>1460 to 1540</span></div>
+        <div class="trow"><span>NYU</span><span>1480 to 1550</span></div>
+        <div class="trow"><span>Boston College</span><span>1460 to 1520</span></div>
+        <div class="tier">Tier three</div>
+        <div class="trow"><span>Miami</span><span>1350 to 1480</span></div>
+        <div class="trow"><span>Wisconsin</span><span>1400 to 1490</span></div>
+        <div class="trow"><span>Penn State</span><span>1280 to 1410</span></div>
+        <div class="trow"><span>Oregon</span><span>1050 to 1320</span></div>
+        <div class="trow" style="border-bottom:0;padding-bottom:18px"><span>Rutgers</span><span class="r">R&amp;W 630 to 720 · Math 640 to 760</span></div>
+      </details>
+      <details>
+        <summary>Sources and footnotes</summary>
+        <p class="muted" style="padding-bottom:16px">Ranges from each school's published Common Data Set, 2025 to 2026, for students who submitted scores. Notre Dame and Miami from their admissions pages; Miami is a superscore for admitted students. Boston College from its 2024 to 2025 Common Data Set, Rutgers from 2023 to 2024. Harvard and Rutgers publish section ranges only. UCLA and the other University of California campuses do not consider scores. Score Samurai is not affiliated with or endorsed by any school named.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section id="plans">
+  <div class="wrap stack" style="gap:28px">
+    <div class="stack" style="gap:12px"><div class="eyebrow">The plans</div><h2>Three ways in.</h2></div>
+    <div class="grid3">
+      <div class="card plan"><h3>Sharpen</h3><div class="rule"></div><p class="body" style="font-size:16px">For the student who is already close and has a date in mind. We find the traps still costing points and close them before the test, rather than teaching a course they do not need.</p></div>
+      <div class="card plan build"><span class="tag">Where most families start</span><h3>Build</h3><div class="rule"></div><p class="body" style="font-size:16px">The one most families take. A real gap, a term to work in, and sessions twice a week. The roadmap is rebuilt as the score moves rather than set once and followed to the end.</p></div>
+      <div class="card plan"><h3>Command</h3><div class="rule"></div><p class="body" style="font-size:16px">For a large gap, an early start, or a student who would rather learn the whole map than the fastest route through it. The work goes wider, and the habits hold for the next test as well.</p></div>
+    </div>
+    <p class="muted" style="text-align:center">Every program includes the full diagnostic, the roadmap built from it, and a written update to parents every week. The length is set from what the diagnostic finds. No two students lose points in the same places.</p>
+  </div>
+</section>
+
+<section id="parents" class="band-deep">
+  <div class="wrap aboutgrid">
+    <div class="stack" style="gap:18px">
+      <div class="about-head"><div class="ring"><img src="/warrior.png" alt=""></div><div class="stack" style="gap:4px"><div class="eyebrow">About</div><h2 style="font-size:clamp(28px,3vw,36px)">Sensei Jay</h2></div></div>
+      <div class="rule"></div>
+      <p class="body">The thing students notice first is that he seems to know what they're about to get wrong before they do. That isn't a trick. It's nearly a decade of teaching this test to students across the country and around the world, and a habit of reading a score report the way a coach reads film. Somewhere in the second year he stopped seeing questions and started seeing the same handful of traps wearing new clothes every year, and he has been cataloguing them ever since.</p>
+      <p class="body">The catalogue became the Pattern Codex: every one of the 1,168 questions across the eight official practice tests, read and traced back to the trap it belongs to, until the test stopped having surprises in it. The Codex is why a Score Samurai session never starts with a topic. It starts with the three misses that matter, and it names them.</p>
+      <p class="body">He teaches every session himself, keeps the roster small enough to know each student's particular misses by heart, and writes every Sunday update to parents in his own words. Between sessions he's in the Dojo, the free Discord where any SAT question gets an answer, and in the comments under every post, which is where most students meet him first. The Diagnostic is where the work begins, and he writes every one of those personally too.</p>
+      <details>
+        <summary>How the belts started</summary>
+        <p class="body">A rank in a dojo is not a prize. It is a plain statement of what you can do under pressure, and it only ever moves up. The belts here work the same way: White is held from the first Diagnostic, and every belt above it is earned by closing the patterns of the one below, across two straight practice tests, judged in session. A student who has a bad test does not lose a belt, because a single test cannot undo a habit. Parents see the count of patterns closed every Sunday. Students see the belt.</p>
+      </details>
+    </div>
+    <div class="card stack sticky" style="background:var(--cream);border-color:var(--line-deep);padding:32px">
+      <div class="eyebrow">For parents</div>
+      <h3 style="font-size:24px">You will know every Sunday.</h3>
+      <p class="body" style="font-size:16px">Every Sunday you get a written update: what was drilled, what improved, what is still being sharpened, and how many patterns are now closed. It arrives whether the week went well or not, and nobody has to ask for it.</p>
+      <p class="body" style="font-size:16px">Sessions run live on Zoom, twice a week, with Sensei Jay teaching every one of them personally. Practice tests happen on the student's own schedule rather than inside session time, so the sessions stay work rather than testing. If you would rather talk than read, fifteen minutes on Zoom with Sensei Jay is available any week you want it, and there is nothing to prepare for it.</p>
+      <a class="btn btn-ghost" href="https://calendly.com/senseijay-scoresamurai/dojo-diagnostic" style="align-self:flex-start">Book the fifteen minutes</a>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap faqgrid">
+    <div class="stack" style="gap:12px"><div class="eyebrow">Questions</div><h2>Frequently asked.</h2><p class="muted">Anything not here, ask in the Dojo or on the call.</p></div>
+    <div>
+      <details open>
+        <summary>How long does SAT prep take?</summary>
+        <p class="body">It depends on the size of the gap and the runway left before the test date, which is what the diagnostic is for. Most students run two 50-minute sessions a week and sit the test once the plan has closed the gap the diagnostic found. Starting late turns the work into a sprint, and starting far too early tends to turn it into drift. The next test date is always closer than it feels, so the honest starting point is where the diagnostic says the student is, rather than where the calendar says they should be.</p>
+      </details>
+      <details>
+        <summary>What is a good SAT score for selective schools?</summary>
+        <p class="body">At the most selective schools, the middle of the admitted class now sits at 1500 and above, and a 1450 keeps a student in the conversation. One tier down, a score between 1350 and 1450 does the work. The number that matters is where the admitted range starts at the school the student wants, and that is the number the Dojo Roadmap is built to reach.</p>
+      </details>
+      <details>
+        <summary>Do colleges require the SAT in 2026?</summary>
+        <p class="body">Some do. Harvard, Stanford, Georgetown and the University of Miami all require an SAT or ACT score from first-year applicants right now, and a school that requires the test reads it as part of the academic record rather than as a bonus. Most of the schools families ask about are still test optional, including Duke, Michigan, USC, Boston College, Wisconsin, Penn State, Oregon and Rutgers, which means a student chooses whether the score is considered. Two more have already set a date to bring the requirement back: Princeton and Notre Dame both return to requiring scores for students applying in the 2027 to 2028 cycle, the students who would enter college in fall 2028. At the other end, the University of California campuses including UCLA do not look at scores at all, and a score cannot help or hurt there. Policies have been moving back toward requiring the test more often than away from it, and every school sets its own, so the school&#39;s own admissions page is the only source worth trusting on the day you apply. All of this is current as of September 2026. A student aiming high should plan on the score counting.</p>
+      </details>
+      <details>
+        <summary>How is this different from an app?</summary>
+        <p class="body">An app can grade an answer, but it can't see why a student keeps missing the same kind of question, and it will never notice someone going through the motions on practice. We start from the specific traps costing a student points, build each session around them, and track speed and accuracy from week to week, with Sensei Jay there every week to see that the work gets done. Students have free access to more SAT material than they could ever use, which is a bit like having the run of a well-equipped gym with nobody to build the program, run the sessions, or check that the work got done. A trainer is what was missing, and that's the role we fill.</p>
+      </details>
+      <details>
+        <summary>What does the free diagnostic include?</summary>
+        <p class="body">You fill out one short form, and the Dojo Diagnostic arrives in your inbox within one business day. It covers where the score stands, where it needs to be for the target schools, the specific patterns costing the most points, and the plan to close the gap. There's no charge and no obligation, and anyone who'd like to talk it through can have fifteen minutes with Sensei Jay on Zoom, free.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section id="diagnostic" class="band-maroon closing">
+  <div class="wrap stack" style="gap:18px;align-items:center">
+    <h2>Start with the free diagnostic.</h2>
+    <p style="font-size:18px;max-width:680px">One form gets you a written diagnostic and a clear plan within one business day. The next test date tends to arrive sooner than families expect, and the diagnostic says how much runway is actually left.</p>
+    <a class="btn btn-gold js-tb" href="/diagnostic/" style="min-height:56px;padding:0 30px;font-size:17px">Get Your Free Dojo Diagnostic</a>
+    <p class="fine">Free. No obligation. A parent is copied on the same email.</p>
+    <!-- FALLBACK: if Sensei rules the TutorBird widget stays as the intake, paste the live tutorbird-form embed here and point the buttons back at #diagnostic; otherwise /diagnostic/ is the form. -->
+  </div>
+</section>
+
+<section id="dojo">
+  <div class="wrap stack" style="gap:24px">
+    <div class="stack" style="gap:12px"><div class="eyebrow">Train free first</div><h2 style="font-size:clamp(26px,2.6vw,32px)">Two ways to start before you decide.</h2></div>
+    <div class="grid2">
+      <div class="card stack" style="gap:12px">
+        <h3>The Dojo</h3>
+        <p class="body" style="font-size:16px">Our free Discord. Post an SAT question that beat you, with the answer you picked and a line on why, and Sensei Jay replies with the trap it was built on and the rule that handles it next time. A new trap every morning and a countdown to the next test date.</p>
+        <a class="btn btn-ghost" href="https://discord.gg/nE7nr7Dyb5" style="align-self:flex-start">Enter the Dojo</a>
+      </div>
+      <div class="card stack" style="gap:12px" id="trapmap">
+        <h3>The Trap Map</h3>
+        <p class="body" style="font-size:16px">Where the points go on the test, what each trap looks like from the inside, and the rule that gets you past it. Then a band map for the score you have today and ten questions that say which traps are already firing.</p>
+        <div class="tm formwrap"></div>
+        <script>
+        (function(){var w=document.querySelector("#trapmap .formwrap");if(!w||w.querySelector("script"))return;var s=document.createElement("script");s.async=true;s.setAttribute("data-uid","02e5ef800a");s.src="https://score-samurai.kit.com/02e5ef800a/index.js";w.appendChild(s);})();
+        </script>
+        <p class="muted" style="font-size:13px">Lands in your inbox within a minute. No spam, unsubscribe any time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="brand"><img src="/warrior.png" alt="" style="width:26px;height:26px"><span style="color:var(--cream);font-size:15px">Score Samurai</span></div>
+    <div class="links"><a class="js-tb" href="/diagnostic/">Diagnostic</a><a href="https://discord.gg/nE7nr7Dyb5">The Dojo</a><a href="mailto:senseijay@scoresamurai.com">senseijay@scoresamurai.com</a><a href="/privacy/">Privacy</a></div>
+    <div>New York Metropolitan Area · Nationwide over Zoom · Score Samurai LLC</div>
+  </div>
+</footer>
+
+</body>
+</html>
