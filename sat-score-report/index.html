@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to read an SAT score report | Score Samurai</title>
+<meta name="description" content="The pages beside this one are about the questions. This one is about the report that arrives afterward, which is the document a family actually has to act on and the one that says least about what to do.">
+<link rel="canonical" href="https://scoresamurai.com/sat-score-report/">
+<link rel="icon" href="/warrior.png">
+<meta property="og:title" content="How to read an SAT score report">
+<meta property="og:description" content="The pages beside this one are about the questions. This one is about the report that arrives afterward, which is the document a family actually has to act on and the one that says least about what to do.">
+<meta property="og:image" content="https://scoresamurai.com/og.png">
+<meta property="og:url" content="https://scoresamurai.com/sat-score-report/">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LYZRWG13P3"></script>
+<script>
+ window.dataLayer = window.dataLayer || [];
+ function gtag(){dataLayer.push(arguments);}
+ gtag('js', new Date());
+ gtag('config', 'G-LYZRWG13P3');
+</script>
+<!-- Score Samurai GA4 events. Sits in the Carrd head beside the gtag block. -->
+<!-- diagnostic_open = a .js-tb Diagnostic button opening the TutorBird panel -->
+<!-- trapmap_signup = the Kit form's success state, watched with a MutationObserver -->
+<script>
+(function () {
+function ev(name, params) {
+if (typeof window.gtag === 'function') window.gtag('event', name, params || {});
+}
+/* diagnostic_open. Document-level delegation, capture phase, so it covers every Diagnostic button on the page, including any added later. */
+document.addEventListener('click', function (e) {
+var t = e.target && e.target.closest ? e.target.closest('.js-tb') : null;
+if (!t) return;
+ev('diagnostic_open', { link_text: (t.textContent || '').trim().slice(0, 100), page_path: location.pathname });
+}, true);
+/* trapmap_signup. Verified live on Sep 22 2026: on a successful Kit submit the form's contents are replaced and the email input disappears. That is the signal. */
+function watch(form) {
+if (form.__ssWatched) return;
+form.__ssWatched = true;
+if (!form.querySelector('input[name="email_address"]')) return;
+var fired = false;
+var mo = new MutationObserver(function () {
+if (fired) return;
+if (!form.querySelector('input[name="email_address"]')) {
+fired = true;
+mo.disconnect();
+ev('trapmap_signup', { page_path: location.pathname });
+}
+});
+mo.observe(form, { childList: true, subtree: true });
+}
+function scan() {
+var forms = document.querySelectorAll('form.formkit-form');
+for (var i = 0; i < forms.length; i++) watch(forms[i]);
+}
+if (document.readyState === 'loading') {
+document.addEventListener('DOMContentLoaded', scan);
+} else {
+scan();
+}
+/* Kit injects its form after load, so keep scanning for it. */
+new MutationObserver(scan).observe(document.documentElement, { childList: true, subtree: true });
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Playfair+Display+SC:wght@400;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/site.css">
+</head>
+<body>
+<header class="hdr"><div class="wrap"><a class="brand" href="/"><img src="/warrior.png" alt="Score Samurai"><span>Score Samurai</span></a><a class="hdr-cta js-tb" href="/diagnostic/">Free Dojo Diagnostic</a></div></header>
+
+<main>
+<section>
+  <div class="wrap stack" style="gap:16px;max-width:720px">
+    <div class="eyebrow">A page for parents</div>
+    <h1 style="font-size:clamp(30px,3.8vw,44px)">How to read an SAT score report</h1>
+    <div class="rule"></div>
+    <p class="body" style="font-size:19px">The pages beside this one are about the questions. This one is about the report that arrives afterward, which is the document a family actually has to act on and the one that says least about what to do.</p>
+  </div>
+</section>
+
+<section class="band-white">
+  <div class="wrap stack" style="gap:34px;max-width:720px">
+      <div class="stack" style="gap:10px">
+        <h2 style="font-size:clamp(22px,2.2vw,28px)">The three numbers</h2>
+        <div class="rule"></div>
+        <p class="body">The Digital SAT reports three, and the total is the one everyone quotes. The two section scores underneath it are the ones that tell you what to do next. The total runs from 400 to 1600 and is the sum of Reading and Writing and Math, each of which runs from 200 to 800. Each section is given in two modules, and the second module comes in an easier and a harder version depending on how the first module went. A student who reaches the harder second module in a section has a higher ceiling in that section, and most of the movement between 1200 and 1500 comes from reaching that module and then holding accuracy inside it.</p>
+      </div>
+      <div class="stack" style="gap:10px">
+        <h2 style="font-size:clamp(22px,2.2vw,28px)">The gap between the sections</h2>
+        <div class="rule"></div>
+        <p class="body">A gap between the two section scores is the most useful thing on the page. A student at 680 in Reading and Writing and 560 in Math has a 120-point gap, and the points in the lower section are cheaper to earn, because the misses there sit in the first module and the easier second module, where the traps are the frequent ones and the fixes are habits. The weaker section gets the time, regardless of which section the student would rather work on.</p>
+      </div>
+      <div class="stack" style="gap:10px">
+        <h2 style="font-size:clamp(22px,2.2vw,28px)">The scale is not linear</h2>
+        <div class="rule"></div>
+        <p class="body">In the middle of the range a question is worth roughly ten points, and near the top fewer questions separate the scores, so each miss costs more. That is why a student moving from 1150 to 1300 is usually fixing three or four habits, while a student moving from 1450 to 1520 may be fixing one.</p>
+      </div>
+      <div class="stack" style="gap:10px">
+        <h2 style="font-size:clamp(22px,2.2vw,28px)">What the report does not show</h2>
+        <div class="rule"></div>
+        <p class="body">The official report shows section scores and performance by content area, and it does not show the questions. The practice tests in Bluebook do, question by question, with the student's answer beside the correct one, and that page is where the traps become visible. A practice score report with the misses attached is worth more to us than an official score alone.</p>
+      </div>
+      <div class="stack" style="gap:10px">
+        <h2 style="font-size:clamp(22px,2.2vw,28px)">What a retake changes</h2>
+        <div class="rule"></div>
+        <p class="body">A retake changes the date and nothing else on its own. Scores rise on a retake when the misses from the first sitting have been named and the habits behind them replaced, and they stay flat when the student has simply taken more tests. Treat the next sitting as the measurement of that work rather than as another attempt at the whole test.</p>
+      </div>
+  </div>
+</section>
+
+<section class="band-maroon closing">
+  <div class="wrap stack" style="gap:18px;align-items:center;text-align:center">
+    <h2>Start with the free diagnostic.</h2>
+    <p style="font-size:18px;max-width:680px">One form gets you a free diagnostic and a clear plan within one business day. The next test date tends to arrive sooner than families expect, and the diagnostic says how much runway is actually left, so the sooner it is done, the more of that runway is usable.</p>
+    <p style="font-size:16px;max-width:680px">Tell us where the score stands and where it needs to be, and the Dojo Diagnostic will reach you within one business day.</p>
+    <a class="btn btn-gold js-tb" href="/diagnostic/" style="min-height:56px;padding:0 30px;font-size:17px">Get Your Free Dojo Diagnostic</a>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap"><div class="brand"><img src="/warrior.png" alt="" style="width:26px;height:26px"><span style="color:var(--cream);font-size:15px">Score Samurai</span></div><div class="links"><a href="/">Home</a><a class="js-tb" href="/diagnostic/">Diagnostic</a><a href="https://discord.gg/nE7nr7Dyb5">The Dojo</a><a href="/privacy/">Privacy</a></div><div>New York Metropolitan Area &middot; Nationwide over Zoom &middot; Score Samurai LLC</div></div></footer>
+</body>
+</html>
