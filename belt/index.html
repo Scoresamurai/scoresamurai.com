@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Which belt are you? | Score Samurai</title>
+<meta name="description" content="Ten SAT questions, no clock. Find out which of the five Trap Map traps are already costing you points, and where you stand on the Dojo ladder.">
+<link rel="canonical" href="https://scoresamurai.com/belt/">
+<link rel="icon" href="/warrior.png">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LYZRWG13P3"></script>
+<script>
+ window.dataLayer = window.dataLayer || [];
+ function gtag(){dataLayer.push(arguments);}
+ gtag('js', new Date());
+ gtag('config', 'G-LYZRWG13P3');
+</script>
+<!-- Score Samurai GA4 events. Sits in the Carrd head beside the gtag block. -->
+<!-- diagnostic_open = a .js-tb Diagnostic button opening the TutorBird panel -->
+<!-- trapmap_signup = the Kit form's success state, watched with a MutationObserver -->
+<script>
+(function () {
+function ev(name, params) {
+if (typeof window.gtag === 'function') window.gtag('event', name, params || {});
+}
+/* diagnostic_open. Document-level delegation, capture phase, so it covers every Diagnostic button on the page, including any added later. */
+document.addEventListener('click', function (e) {
+var t = e.target && e.target.closest ? e.target.closest('.js-tb') : null;
+if (!t) return;
+ev('diagnostic_open', { link_text: (t.textContent || '').trim().slice(0, 100), page_path: location.pathname });
+}, true);
+/* trapmap_signup. Verified live on Sep 22 2026: on a successful Kit submit the form's contents are replaced and the email input disappears. That is the signal. */
+function watch(form) {
+if (form.__ssWatched) return;
+form.__ssWatched = true;
+if (!form.querySelector('input[name="email_address"]')) return;
+var fired = false;
+var mo = new MutationObserver(function () {
+if (fired) return;
+if (!form.querySelector('input[name="email_address"]')) {
+fired = true;
+mo.disconnect();
+ev('trapmap_signup', { page_path: location.pathname });
+}
+});
+mo.observe(form, { childList: true, subtree: true });
+}
+function scan() {
+var forms = document.querySelectorAll('form.formkit-form');
+for (var i = 0; i < forms.length; i++) watch(forms[i]);
+}
+if (document.readyState === 'loading') {
+document.addEventListener('DOMContentLoaded', scan);
+} else {
+scan();
+}
+/* Kit injects its form after load, so keep scanning for it. */
+new MutationObserver(scan).observe(document.documentElement, { childList: true, subtree: true });
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Playfair+Display+SC:wght@400;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/site.css">
+<style>
+.quiz{max-width:720px;margin:0 auto}
+.qcard{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:14px}
+.qcard .passage{font-family:Georgia,"Times New Roman",serif;font-size:16px;line-height:1.55;color:#222}
+.qcard .stem{font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:16px;color:#222}
+.choice{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border:1px solid #ddd;border-radius:8px;background:#fff;font:inherit;font-family:Georgia,"Times New Roman",serif;font-size:15px;line-height:1.45;color:#222;text-align:left;cursor:pointer;width:100%}
+.choice:hover{border-color:var(--maroon)}
+.choice[aria-pressed="true"]{border-color:var(--maroon);background:#FBF1F1}
+.progress{height:4px;background:var(--line);border-radius:2px;overflow:hidden}
+.progress i{display:block;height:100%;background:var(--gold);width:0}
+.result .beltline{height:14px;border-radius:4px;border:1px solid #C9BFA8}
+.hidden{display:none}
+</style>
+</head>
+<body>
+<header class="hdr"><div class="wrap"><a class="brand" href="/"><img src="/warrior.png" alt="Score Samurai"><span>Score Samurai</span></a><a class="hdr-cta js-tb" href="/#diagnostic">Free Dojo Diagnostic</a></div></header>
+
+<main>
+<section>
+  <div class="wrap quiz stack" style="gap:20px">
+    <div class="stack" style="gap:12px">
+      <div class="eyebrow">Which belt are you</div>
+      <h1 style="font-size:clamp(32px,4vw,44px)">Ten questions. No clock. One honest answer.</h1>
+      <p class="body">Five Reading and Writing, five Math, each one built to carry one of the five Trap Map traps. Answer the way you would on test day, then see which traps are already firing and what that means for where you stand.</p>
+    </div>
+    <div class="progress" aria-hidden="true"><i id="bar"></i></div>
+
+    <div id="quiz" class="qcard">
+      <div class="muted" id="qmeta"></div>
+      <p class="passage" id="qpassage"></p>
+      <p class="stem" id="qstem"></p>
+      <div id="qchoices" class="stack" style="gap:10px" role="group" aria-label="Answer choices"></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;padding-top:6px">
+        <button type="button" class="btn btn-ghost" id="back" style="min-height:44px">Back</button>
+        <button type="button" class="btn" id="next" style="min-height:44px" disabled>Next</button>
+      </div>
+    </div>
+
+    <div id="result" class="qcard result hidden" style="gap:18px">
+      <div class="eyebrow">Your belt today</div>
+      <h2 id="rbelt" style="font-size:clamp(30px,3.5vw,40px)"></h2>
+      <div class="beltline" id="rline"></div>
+      <p class="body" id="rsummary"></p>
+      <div id="rtraps" class="stack" style="gap:10px"></div>
+      <p class="muted">Ten questions can name a trap. They cannot read a full set of misses. The Diagnostic does that, in writing, within one business day, and it is free.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <a class="btn js-tb" href="/#diagnostic" id="rcta">Get Your Free Dojo Diagnostic</a>
+        <button type="button" class="btn btn-ghost" id="again">Start over</button>
+      </div>
+    </div>
+
+    <p class="muted" style="text-align:center">Every question here is from The Trap Map. Sensei Jay solved every one and confirmed every key.</p>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap"><div class="brand"><img src="/warrior.png" alt="" style="width:26px;height:26px"><span style="color:var(--cream);font-size:15px">Score Samurai</span></div><div class="links"><a href="/">Home</a><a class="js-tb" href="/#diagnostic">Diagnostic</a><a href="https://discord.gg/nE7nr7Dyb5">The Dojo</a><a href="/privacy/">Privacy</a></div><div>New York Metropolitan Area · Nationwide over Zoom · Score Samurai LLC</div></div></footer>
+<script src="/belt.js" defer></script>
+</body>
+</html>
