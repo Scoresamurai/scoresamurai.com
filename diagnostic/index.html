@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Dojo Diagnostic | Score Samurai</title>
+<meta name="description" content="One form. The written Dojo Diagnostic comes back within one business day: the traps costing points, which one moves the score fastest, and what we would do first.">
+<link rel="canonical" href="https://scoresamurai.com/diagnostic/">
+<link rel="icon" href="/warrior.png">
+<meta name="robots" content="noindex">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LYZRWG13P3"></script>
+<script>
+ window.dataLayer = window.dataLayer || [];
+ function gtag(){dataLayer.push(arguments);}
+ gtag('js', new Date());
+ gtag('config', 'G-LYZRWG13P3');
+</script>
+<!-- Score Samurai GA4 events. Sits in the Carrd head beside the gtag block. -->
+<!-- diagnostic_open = a .js-tb Diagnostic button opening the TutorBird panel -->
+<!-- trapmap_signup = the Kit form's success state, watched with a MutationObserver -->
+<script>
+(function () {
+function ev(name, params) {
+if (typeof window.gtag === 'function') window.gtag('event', name, params || {});
+}
+/* diagnostic_open. Document-level delegation, capture phase, so it covers every Diagnostic button on the page, including any added later. */
+document.addEventListener('click', function (e) {
+var t = e.target && e.target.closest ? e.target.closest('.js-tb') : null;
+if (!t) return;
+ev('diagnostic_open', { link_text: (t.textContent || '').trim().slice(0, 100), page_path: location.pathname });
+}, true);
+/* trapmap_signup. Verified live on Sep 22 2026: on a successful Kit submit the form's contents are replaced and the email input disappears. That is the signal. */
+function watch(form) {
+if (form.__ssWatched) return;
+form.__ssWatched = true;
+if (!form.querySelector('input[name="email_address"]')) return;
+var fired = false;
+var mo = new MutationObserver(function () {
+if (fired) return;
+if (!form.querySelector('input[name="email_address"]')) {
+fired = true;
+mo.disconnect();
+ev('trapmap_signup', { page_path: location.pathname });
+}
+});
+mo.observe(form, { childList: true, subtree: true });
+}
+function scan() {
+var forms = document.querySelectorAll('form.formkit-form');
+for (var i = 0; i < forms.length; i++) watch(forms[i]);
+}
+if (document.readyState === 'loading') {
+document.addEventListener('DOMContentLoaded', scan);
+} else {
+scan();
+}
+/* Kit injects its form after load, so keep scanning for it. */
+new MutationObserver(scan).observe(document.documentElement, { childList: true, subtree: true });
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Playfair+Display+SC:wght@400;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/site.css">
+<style>
+.form{max-width:640px;margin:0 auto}
+.screen{background:#fff;border:1px solid var(--line);border-radius:14px;padding:28px;display:flex;flex-direction:column;gap:16px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:14px;font-weight:600;color:var(--ink)}
+.field .hint{font-size:13px;color:var(--muted)}
+.field input,.field select,.field textarea{height:48px;padding:0 14px;border:1px solid #C9BFA8;border-radius:8px;font-size:16px;font-family:inherit;background:#fff;color:var(--ink);width:100%}
+.field textarea{height:auto;min-height:96px;padding:12px 14px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:var(--gold)}
+.field.err input,.field.err select,.field.err textarea{border-color:var(--maroon)}
+.errmsg{font-size:13px;color:var(--maroon);display:none}
+.field.err .errmsg{display:block}
+.row2{display:grid;grid-template-columns:1fr;gap:14px}
+@media(min-width:600px){.row2{grid-template-columns:1fr 1fr}}
+.steps{display:flex;gap:8px;align-items:center;font-size:13px;color:var(--muted)}
+.steps i{display:block;height:4px;flex:1;background:var(--line);border-radius:2px}
+.steps i.on{background:var(--gold)}
+.hidden{display:none}
+</style>
+</head>
+<body>
+<header class="hdr"><div class="wrap"><a class="brand" href="/"><img src="/warrior.png" alt="Score Samurai"><span>Score Samurai</span></a><a href="https://calendly.com/senseijay-scoresamurai/dojo-diagnostic" class="hdr-cta">Prefer to talk? Book 15 minutes</a></div></header>
+
+<main>
+<section>
+  <div class="wrap form stack" style="gap:20px">
+    <div class="stack" style="gap:12px">
+      <div class="eyebrow">The Dojo Diagnostic</div>
+      <h1 style="font-size:clamp(30px,4vw,42px)">One form. Back within one business day.</h1>
+      <p class="body">This is free and there is nothing to buy. The Dojo Diagnostic comes back within one business day: the traps that are costing you points, which one would move your score fastest, and what we would do first. A parent is copied on the same email, so they see exactly what you see.</p>
+    </div>
+
+    <form id="dx" novalidate class="stack" style="gap:16px">
+      <div class="steps" aria-hidden="true"><span id="stepLabel">Step 1 of 3</span><i class="on"></i><i></i><i></i></div>
+
+      <!-- SCREEN 1: the student -->
+      <div class="screen" data-screen="1">
+        <h2 style="font-size:24px">About you</h2>
+        <div class="row2">
+          <div class="field"><label for="first">First name</label><input id="first" name="student_first" autocomplete="given-name" required><span class="errmsg">Needed.</span></div>
+          <div class="field"><label for="last">Last name</label><input id="last" name="student_last" autocomplete="family-name" required><span class="errmsg">Needed.</span></div>
+        </div>
+        <div class="field"><label for="semail">Your email</label><input id="semail" name="student_email" type="email" autocomplete="email" required><span class="errmsg">A working email address.</span></div>
+        <div class="row2">
+          <div class="field"><label for="grade">Current grade</label><select id="grade" name="grade" required><option value="">Choose</option><option>9th</option><option>10th</option><option>11th</option><option>12th</option><option>Other</option></select><span class="errmsg">Needed.</span></div>
+          <div class="field"><label for="school">Your school</label><input id="school" name="school" required><span class="errmsg">Needed.</span></div>
+        </div>
+        <div style="display:flex;justify-content:flex-end"><button type="button" class="btn" data-next>Next</button></div>
+      </div>
+
+      <!-- SCREEN 2: the test -->
+      <div class="screen hidden" data-screen="2">
+        <h2 style="font-size:24px">The test</h2>
+        <div class="field"><label for="testdate">Target test date</label><select id="testdate" name="target_test_date" required><option value="">Choose</option><option value="October 3, 2026">October 3, 2026</option><option value="November 7, 2026">November 7, 2026</option><option value="December 5, 2026">December 5, 2026</option><option value="March 6, 2027">March 6, 2027</option><option value="May 1, 2027">May 1, 2027</option><option value="June 5, 2027">June 5, 2027</option><option value="Fall 2027">Fall 2027</option><option value="Not sure yet">Not sure yet</option></select><span class="errmsg">Pick the date you are aiming at.</span></div>
+        <div class="field"><label for="recent">Most recent SAT or PSAT score</label><input id="recent" name="recent_score" placeholder="Enter N/A if not yet taken" required><span class="errmsg">A score, or N/A.</span></div>
+        <div class="row2">
+          <div class="field"><label for="math">Math section score</label><input id="math" name="math_score" placeholder="or N/A" required><span class="errmsg">A score, or N/A.</span></div>
+          <div class="field"><label for="rw">Reading and Writing section score</label><input id="rw" name="rw_score" placeholder="or N/A" required><span class="errmsg">A score, or N/A.</span></div>
+        </div>
+        <div class="field"><label for="target">Target SAT score</label><input id="target" name="target_score" required><span class="errmsg">The number you are aiming at.</span></div>
+        <div class="field"><label for="colleges">Top target colleges <span class="hint">(up to 3, optional)</span></label><textarea id="colleges" name="target_colleges"></textarea></div>
+        <div class="field"><label for="frustration">Biggest frustration with SAT prep</label><textarea id="frustration" name="frustration" required></textarea><span class="errmsg">One line is enough.</span></div>
+        <div class="field"><label for="heard">How did you hear about us?</label><select id="heard" name="heard" required><option value="">Choose</option><option>TikTok</option><option>Instagram</option><option>Facebook</option><option>Pinterest</option><option>Reddit</option><option>Quora or College Confidential</option><option>Google search</option><option>A counselor or consultant</option><option>A friend or family member</option><option>The Dojo Discord</option><option>Other</option></select><span class="errmsg">Needed.</span></div>
+        <div style="display:flex;justify-content:space-between"><button type="button" class="btn btn-ghost" data-back>Back</button><button type="button" class="btn" data-next>Next</button></div>
+      </div>
+
+      <!-- SCREEN 3: the parent -->
+      <div class="screen hidden" data-screen="3">
+        <h2 style="font-size:24px">A parent to copy</h2>
+        <p class="muted">The Diagnostic goes to both of you. The parent's copy is how the family reads the plan together, and it is the address the weekly updates go to if you enroll.</p>
+        <div class="row2">
+          <div class="field"><label for="pfirst">Parent first name</label><input id="pfirst" name="parent_first" required><span class="errmsg">Needed.</span></div>
+          <div class="field"><label for="plast">Parent last name</label><input id="plast" name="parent_last" required><span class="errmsg">Needed.</span></div>
+        </div>
+        <div class="row2">
+          <div class="field"><label for="pemail">Parent email</label><input id="pemail" name="parent_email" type="email" required><span class="errmsg">A working email address.</span></div>
+          <div class="field"><label for="pphone">Parent phone</label><input id="pphone" name="parent_phone" type="tel" autocomplete="tel" required><span class="errmsg">Needed.</span></div>
+        </div>
+        <input type="text" name="website" tabindex="-1" autocomplete="off" class="sr" aria-hidden="true">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px"><button type="button" class="btn btn-ghost" data-back>Back</button><button type="submit" class="btn" id="submit">Send me my Diagnostic</button></div>
+        <p class="muted" id="status" aria-live="polite"></p>
+      </div>
+    </form>
+
+    <div id="done" class="screen hidden" style="gap:14px">
+      <div class="eyebrow">Sent</div>
+      <h2 style="font-size:28px">The Diagnostic is on its way.</h2>
+      <p class="body">Sensei Jay reads every one personally and writes back within one business day. If you have a recent Bluebook practice test, reply to the confirmation email with a screenshot of the results page, or the questions you missed, and the read gets sharper.</p>
+      <p class="body">If you would rather talk it through, there's a free fifteen-minute call on Zoom. <a href="https://calendly.com/senseijay-scoresamurai/dojo-diagnostic">Book it here.</a></p>
+      <a class="btn btn-ghost" href="/" style="align-self:flex-start">Back to the site</a>
+    </div>
+
+    <p class="muted" style="text-align:center">Your information is used to prepare the Diagnostic and for nothing else. <a href="/privacy/">Privacy</a></p>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap"><div class="brand"><img src="/warrior.png" alt="" style="width:26px;height:26px"><span style="color:var(--cream);font-size:15px">Score Samurai</span></div><div class="links"><a href="/">Home</a><a href="https://discord.gg/nE7nr7Dyb5">The Dojo</a><a href="mailto:senseijay@scoresamurai.com">senseijay@scoresamurai.com</a><a href="/privacy/">Privacy</a></div><div>New York Metropolitan Area · Nationwide over Zoom · Score Samurai LLC</div></div></footer>
+<script src="/diag.js" defer></script>
+</body>
+</html>
