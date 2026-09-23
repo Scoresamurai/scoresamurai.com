@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy | Score Samurai</title>
+<meta name="description" content="What Score Samurai LLC collects, why, and how it is handled.">
+<link rel="canonical" href="https://scoresamurai.com/privacy/">
+<link rel="icon" href="/warrior.png">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LYZRWG13P3"></script>
+<script>
+ window.dataLayer = window.dataLayer || [];
+ function gtag(){dataLayer.push(arguments);}
+ gtag('js', new Date());
+ gtag('config', 'G-LYZRWG13P3');
+</script>
+<!-- Score Samurai GA4 events. Sits in the Carrd head beside the gtag block. -->
+<!-- diagnostic_open = a .js-tb Diagnostic button opening the TutorBird panel -->
+<!-- trapmap_signup = the Kit form's success state, watched with a MutationObserver -->
+<script>
+(function () {
+function ev(name, params) {
+if (typeof window.gtag === 'function') window.gtag('event', name, params || {});
+}
+/* diagnostic_open. Document-level delegation, capture phase, so it covers every Diagnostic button on the page, including any added later. */
+document.addEventListener('click', function (e) {
+var t = e.target && e.target.closest ? e.target.closest('.js-tb') : null;
+if (!t) return;
+ev('diagnostic_open', { link_text: (t.textContent || '').trim().slice(0, 100), page_path: location.pathname });
+}, true);
+/* trapmap_signup. Verified live on Sep 22 2026: on a successful Kit submit the form's contents are replaced and the email input disappears. That is the signal. */
+function watch(form) {
+if (form.__ssWatched) return;
+form.__ssWatched = true;
+if (!form.querySelector('input[name="email_address"]')) return;
+var fired = false;
+var mo = new MutationObserver(function () {
+if (fired) return;
+if (!form.querySelector('input[name="email_address"]')) {
+fired = true;
+mo.disconnect();
+ev('trapmap_signup', { page_path: location.pathname });
+}
+});
+mo.observe(form, { childList: true, subtree: true });
+}
+function scan() {
+var forms = document.querySelectorAll('form.formkit-form');
+for (var i = 0; i < forms.length; i++) watch(forms[i]);
+}
+if (document.readyState === 'loading') {
+document.addEventListener('DOMContentLoaded', scan);
+} else {
+scan();
+}
+/* Kit injects its form after load, so keep scanning for it. */
+new MutationObserver(scan).observe(document.documentElement, { childList: true, subtree: true });
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Playfair+Display+SC:wght@400;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/site.css">
+</head>
+<body>
+<header class="hdr"><div class="wrap"><a class="brand" href="/"><img src="/warrior.png" alt="Score Samurai"><span>Score Samurai</span></a><a class="hdr-cta js-tb" href="/#diagnostic">Free Dojo Diagnostic</a></div></header>
+
+<main>
+<section>
+  <div class="wrap stack" style="gap:14px;max-width:760px">
+    <div class="eyebrow">Legal</div>
+    <h1 style="font-size:clamp(30px,3.6vw,42px)">Privacy Policy</h1>
+    <div class="rule"></div>
+      <p class="body">Last updated: September 2026</p>
+      <p class="body">Score Samurai LLC (&quot;Score Samurai,&quot; &quot;we,&quot; &quot;us&quot;) operates www.scoresamurai.com and provides one-on-one SAT tutoring services. This policy explains what information we collect, why, and how it is handled.</p>
+      <h2 style="font-size:clamp(20px,2vw,24px);margin-top:14px">WHAT WE COLLECT</h2>
+      <p class="body">When you complete our sign-up form, we collect: student and parent names, email addresses, a phone number, the student&#39;s current grade and school, recent and target SAT scores, target test date, target colleges, and information you choose to share about the student&#39;s SAT preparation. When you book a Dojo Diagnostic call, we collect your name, email, and the answers you provide when scheduling. During tutoring, we keep session notes recording topics covered and progress made. Our website collects standard technical information such as IP address and browser type through ordinary web server logs. Our website uses Google Analytics to measure visits and to see which posts bring people to the site. It sets cookies and receives standard technical information such as IP address and pages viewed. We do not send it names, email addresses, or anything entered in our forms.</p>
+      <h2 style="font-size:clamp(20px,2vw,24px);margin-top:14px">INFORMATION ABOUT STUDENTS UNDER 18</h2>
+      <p class="body">Our services are purchased by parents and guardians for students who are typically under 18. Sign-ups are intended to be completed by a parent or guardian. We collect only the information needed to deliver tutoring, and we do not knowingly collect information from a child under 13. If you believe a child under 13 has provided information to us, contact us and we will delete it.</p>
+      <h2 style="font-size:clamp(20px,2vw,24px);margin-top:14px">HOW WE USE IT</h2>
+      <p class="body">We use this information to prepare a diagnostic and personalized plan, schedule and deliver sessions, send weekly progress updates to parents, issue invoices, and communicate about services. We do not use it for any other purpose.</p>
+      <h2 style="font-size:clamp(20px,2vw,24px);margin-top:14px">WHO WE SHARE IT WITH</h2>
+      <p class="body">We do not sell personal information. We do not share it for advertising. We use trusted service providers to run the business, and information is shared with them only as needed to deliver our services: TutorBird for client management, scheduling, and invoicing; Stripe for payment processing; Zoom for sessions; Calendly for booking; Google Workspace for email, documents, and calendars. We also use Anthropic&#39;s Claude, an AI assistant, to help prepare diagnostic briefs, session plans, and progress updates from the information you provide; it is bound by the same service-provider role. Our sign-up form uses Google reCAPTCHA to prevent spam. Each maintains its own privacy practices. Payment card details are handled by Stripe and are never stored by us. We may disclose information if required by law.</p>
+      <h2 style="font-size:clamp(20px,2vw,24px);margin-top:14px">HOW LONG WE KEEP IT</h2>
+      <p class="body">We retain client records for as long as needed to provide services and to meet legal, tax, and accounting obligations. You may request deletion of your information at any time, subject to those obligations.</p>
+      <h2 style="font-size:clamp(20px,2vw,24px);margin-top:14px">SECURITY</h2>
+      <p class="body">Access to client information is limited to Sensei Jay, who delivers all tutoring personally. Accounts are protected by passwords and, where available, two-factor authentication. No system is perfectly secure, but we take reasonable steps to protect what you share with us.</p>
+      <h2 style="font-size:clamp(20px,2vw,24px);margin-top:14px">YOUR CHOICES</h2>
+      <p class="body">You may request a copy of the information we hold about you, ask us to correct it, or ask us to delete it. You may opt out of non-essential emails at any time. To make any request, email [email&#160;protected].</p>
+      <h2 style="font-size:clamp(20px,2vw,24px);margin-top:14px">CHANGES</h2>
+      <p class="body">We will update this policy as our practices change and will revise the date above when we do.</p>
+      <h2 style="font-size:clamp(20px,2vw,24px);margin-top:14px">CONTACT</h2>
+      <p class="body">Questions about this policy: [email&#160;protected]</p>
+    <p class="muted" style="margin-top:22px"><a href="/">Back to Score Samurai</a></p>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap"><div class="brand"><img src="/warrior.png" alt="" style="width:26px;height:26px"><span style="color:var(--cream);font-size:15px">Score Samurai</span></div><div class="links"><a href="/">Home</a><a class="js-tb" href="/#diagnostic">Diagnostic</a><a href="https://discord.gg/nE7nr7Dyb5">The Dojo</a><a href="/privacy/">Privacy</a></div><div>New York Metropolitan Area &middot; Nationwide over Zoom &middot; Score Samurai LLC</div></div></footer>
+</body>
+</html>
