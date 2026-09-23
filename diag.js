@@ -1,7 +1,7 @@
 /* Score Samurai: the three-screen Dojo Diagnostic form. Seventeen fields, same as the TutorBird intake,
    posted to the Apps Script endpoint (apps-script/Code.gs). Set ENDPOINT before deploy. */
 (function () {
-  var ENDPOINT = "https://script.google.com/macros/s/REPLACE_WITH_DEPLOYMENT_ID/exec";
+  var ENDPOINT = "https://script.google.com/macros/s/AKfycbwNXGTg_7VgI6U7ejrx6dM9QeX8ObhIZ7br0v9_R0IL8U0SfCiPjL6Mcpcv-fjUFgpdrg/exec";
   var form = document.getElementById("dx");
   if (!form) return;
   var screens = Array.prototype.slice.call(form.querySelectorAll("[data-screen]"));

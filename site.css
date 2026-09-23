@@ -170,3 +170,7 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
 
 /* Trust line under the Method heading */
 .trustline{font-family:"Playfair Display SC",serif;font-size:14px;letter-spacing:.09em;color:var(--gold-dark)}
+
+/* Visible focus ring on every interactive element */
+a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--gold);outline-offset:2px;border-radius:4px}
+.band-maroon a:focus-visible,.band-maroon button:focus-visible,footer a:focus-visible{outline:3px solid var(--cream);outline-offset:2px}
