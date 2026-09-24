@@ -1,3 +1,9 @@
+/* Self-hosted brand fonts, latin subset, built Sep 24 2026 from the google/fonts sources (OFL).
+   Playfair Display 600 (static), Playfair Display SC 400 (static), DM Sans variable wght 400 to 700 at opsz 14.
+   These three files replace the Google Fonts stylesheet and its preconnects. Total 63 KB. */
+@font-face{font-family:"Playfair Display";font-style:normal;font-weight:600;font-display:swap;src:url("/fonts/playfair-display-600.woff2") format("woff2")}
+@font-face{font-family:"Playfair Display SC";font-style:normal;font-weight:400;font-display:swap;src:url("/fonts/playfair-display-sc-400.woff2") format("woff2")}
+@font-face{font-family:"DM Sans";font-style:normal;font-weight:400 700;font-display:swap;src:url("/fonts/dm-sans-400-700.woff2") format("woff2-variations"),url("/fonts/dm-sans-400-700.woff2") format("woff2")}
 :root{--maroon:#7A0B10;--maroon-dark:#5A070B;--gold:#C9A24A;--gold-dark:#8C6A1F;--cream:#F3ECDD;--cream-deep:#DCCFB4;--line:#E3D8C2;--line-deep:#CFC2A6;--ink:#141110;--ink-soft:#2B2622;--muted:#5C544C;--white:#FFFFFF}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
