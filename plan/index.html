@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SAT test-date planner | Score Samurai</title>
+<meta name="description" content="Pick your SAT date and get the weeks left and a practice-test plan you can add to your calendar.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://scoresamurai.com/plan/">
+<link rel="icon" href="/warrior.png">
+<!-- Google tag (gtag.js) -->
+<script>window.addEventListener("load",function(){var s=document.createElement("script");s.async=true;s.src="https://www.googletagmanager.com/gtag/js?id=G-LYZRWG13P3";document.head.appendChild(s);});</script>
+<script>
+ window.dataLayer = window.dataLayer || [];
+ function gtag(){dataLayer.push(arguments);}
+ gtag('js', new Date());
+ gtag('config', 'G-LYZRWG13P3');
+</script>
+<!-- Score Samurai GA4 events: diagnostic_open on any .js-tb button. Same hook as v6. -->
+<script>
+(function () {
+function ev(name, params) {
+if (typeof window.gtag === 'function') window.gtag('event', name, params || {});
+}
+document.addEventListener('click', function (e) {
+var t = e.target && e.target.closest ? e.target.closest('.js-tb') : null;
+if (!t) return;
+ev('diagnostic_open', { link_text: (t.textContent || '').trim().slice(0, 100), page_path: location.pathname, tool: 'plan' });
+}, true);
+})();
+</script>
+<link rel="preload" href="/fonts/playfair-display-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/dm-sans-400-700.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Playfair Display";font-weight:600;font-display:swap;src:url(/fonts/playfair-display-600.woff2) format("woff2")}
+@font-face{font-family:"DM Sans";font-weight:400 700;font-display:swap;src:url(/fonts/dm-sans-400-700.woff2) format("woff2")}
+/* ---------- the v6 system, verbatim ---------- */
+:root{
+  --maroon:#7A0B10;--maroon-deep:#5E080C;--cream:#F2EBDB;--cream-deep:#E7DEC8;--gold:#C9A24A;--gold-deep:#A8822F;--dark:#1C0406;--ink:#1C0406;--ink-soft:#5A4D46;--line:#D6CBB3;--white:#FFFFFF;--footer-soft:#D9CDB8;
+  --head:"Playfair Display",Georgia,"Times New Roman",serif;
+  --body:"DM Sans",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+  --t-1:clamp(14px,13.52px + 0.1235vw,15px);
+  --t0:clamp(17px,16.04px + 0.247vw,19px);
+  --t1:clamp(21px,19.56px + 0.37vw,24px);
+  --t2:clamp(27px,25.56px + 0.37vw,30px);
+  --t3:clamp(34px,32.07px + 0.494vw,38px);
+  --lh-body:1.55;--lh-head:1.15;
+  --s1:8px;--s2:16px;--s3:24px;--s4:32px;--s5:40px;--s6:48px;--s8:64px;--s10:80px;--s12:96px;--s14:112px;
+  --sec:var(--s8);--gut:var(--s3);--wrap:1040px;--measure:35em;
+}
+@media(min-width:900px){:root{--sec:var(--s14);--gut:var(--s6)}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--body);font-size:var(--t0);line-height:var(--lh-body);overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--maroon)}
+h1,h2,h3{font-family:var(--head);font-weight:600;line-height:var(--lh-head);margin:0;text-wrap:balance}
+h1{font-size:var(--t3);max-width:14ch}
+@media(min-width:900px){h1{max-width:none}}
+h2{font-size:var(--t2);max-width:24em}
+h3{font-size:var(--t1)}
+p,ul,ol{margin:0}
+p{text-wrap:pretty}
+strong{font-weight:400}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--gut)}
+.measure{max-width:var(--measure)}
+.stack{display:flex;flex-direction:column;gap:var(--s2)}
+.stack-lg{display:flex;flex-direction:column;gap:var(--s3)}
+section{padding:var(--sec) 0}
+.band{background:var(--white)}
+.sec-head{display:flex;flex-direction:column;gap:var(--s2);margin-bottom:var(--s5)}
+@media(min-width:900px){.sec-head{margin-bottom:var(--s6)}}
+.eyebrow{font-size:var(--t-1);letter-spacing:.14em;text-transform:uppercase;color:var(--maroon)}
+.rule{height:2px;width:56px;background:var(--maroon);border-radius:1px}
+.lead{font-size:var(--t1)}
+.soft{color:var(--ink-soft)}
+.small{font-size:var(--t-1)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 var(--s3);border-radius:6px;border:2px solid var(--gold);background:var(--gold);color:var(--dark);font-family:var(--body);font-weight:700;font-size:var(--t0);line-height:var(--lh-body);text-decoration:none;cursor:pointer;text-align:center}
+.btn:hover{background:var(--gold-deep);border-color:var(--gold-deep);color:var(--dark)}
+.btn:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.linkbtn{background:none;border:0;padding:0;font:inherit;color:var(--maroon);text-decoration:underline;cursor:pointer;min-height:44px;display:inline-flex;align-items:center}
+.hdr{position:sticky;top:0;z-index:20;background:rgba(242,235,219,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.hdr .wrap{display:flex;align-items:center;justify-content:space-between;gap:var(--s3);min-height:64px}
+.brand{font-family:var(--head);font-weight:600;font-size:var(--t1);line-height:var(--lh-head);color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;min-height:44px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:var(--t-1)}
+.field input,.field select{min-height:48px;padding:0 14px;border:1px solid var(--line);border-radius:6px;font-size:var(--t0);font-family:inherit;line-height:var(--lh-body);background:var(--white);color:var(--ink);width:100%}
+.hidden{display:none}
+.sr{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+footer{background:var(--dark);color:var(--cream);padding:var(--sec) 0}
+footer .wrap{display:flex;flex-direction:column;gap:var(--s2)}
+footer .brand{color:var(--cream)}
+footer a{color:var(--cream);text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
+footer .links{display:flex;flex-wrap:wrap;gap:0 var(--s3)}
+footer .fine{font-size:var(--t-1);color:var(--footer-soft);max-width:var(--measure)}
+/* ---------- the planner, on the same tokens ---------- */
+.tool{padding-top:var(--s6)}
+@media(min-width:900px){.tool{padding-top:var(--s12)}}
+.panel{max-width:var(--measure);display:flex;flex-direction:column;gap:var(--s3)}
+.dates{border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:var(--s1)}
+.dates legend{padding:0;margin-bottom:var(--s2);font-family:var(--head);font-weight:600;font-size:var(--t1);line-height:var(--lh-head)}
+.pick{position:relative;display:flex;flex-direction:column;justify-content:center;min-height:56px;padding:10px 14px;border:1px solid var(--line);border-radius:6px;background:var(--white);cursor:pointer}
+.pick input{position:absolute;opacity:0;width:1px;height:1px}
+.pick .d{font-weight:700}
+.pick .reg{font-size:var(--t-1);color:var(--ink-soft)}
+.pick:has(input:checked){border:2px solid var(--maroon);padding:9px 13px}
+.pick:has(input:focus-visible){outline:3px solid var(--gold);outline-offset:2px}
+.src{font-size:var(--t-1);color:var(--ink-soft)}
+.plan{margin-top:var(--s6);padding-top:var(--s4);border-top:2px solid var(--maroon);max-width:var(--measure);display:flex;flex-direction:column;gap:var(--s3)}
+.left{font-family:var(--head);font-weight:600;font-size:var(--t3);line-height:var(--lh-head);color:var(--maroon);font-variant-numeric:lining-nums tabular-nums}
+.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:var(--s2)}
+.steps li{display:flex;flex-direction:column;gap:2px;padding:var(--s2);background:var(--white);border-left:3px solid var(--maroon)}
+.steps li.off{border-left-color:var(--line);background:transparent}
+.steps .k{font-size:var(--t-1);letter-spacing:.14em;text-transform:uppercase;color:var(--maroon)}
+.steps .w{font-weight:700}
+.act{display:flex;flex-direction:column;gap:var(--s1);align-items:stretch}
+.act .btn{width:100%}
+@media(min-width:600px){.act{align-items:flex-start}.act .btn{width:auto}}
+.hidden{display:none!important}
+</style>
+</head>
+<body>
+<header class="hdr">
+  <div class="wrap">
+    <a class="brand" href="/">Score Samurai</a>
+  </div>
+</header>
+<main id="top">
+  <section class="tool">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Test-date planner</span>
+        <h1>When is your SAT?</h1>
+        <div class="rule" aria-hidden="true"></div>
+        <p class="lead measure">Pick your test date. See the weeks you have left and when to take each practice test.</p>
+      </div>
+
+      <div class="panel">
+        <fieldset class="dates" id="dates">
+          <legend>2026-27 SAT dates</legend>
+        </fieldset>
+        <div class="field hidden" id="customField">
+          <label for="custom">Your test date</label>
+          <input id="custom" type="date">
+        </div>
+        <p class="src">These dates come from College Board. Confirm them on the <a href="https://satsuite.collegeboard.org/sat/dates-deadlines" rel="noopener">College Board site</a> before you register.</p>
+      </div>
+
+      <div id="plan" class="plan hidden" aria-live="polite">
+        <p id="left" class="left"></p>
+        <ol id="steps" class="steps" aria-label="Your practice-test plan"></ol>
+        <div id="calStep" class="act hidden">
+          <button id="calBtn" class="btn" type="button">Add these to my calendar</button>
+          <button id="skipCal" class="linkbtn" type="button">Skip the calendar</button>
+        </div>
+        <div id="diagStep" class="act hidden">
+          <p>Want to know which traps to fix before then?</p>
+          <a id="diagBtn" class="btn js-tb" href="/diagnostic/">Get the free Dojo Diagnostic</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="brand">Score Samurai</div>
+    <div class="links"><a href="https://discord.gg/nE7nr7Dyb5">The Dojo</a><a href="/privacy/">Privacy</a><a href="mailto:senseijay@scoresamurai.com">senseijay@scoresamurai.com</a></div>
+    <p class="fine">Nationwide over Zoom. Score Samurai LLC.</p>
+    <p class="fine">Score Samurai is not affiliated with or endorsed by College Board. SAT, PSAT and Digital SAT are College Board trademarks.</p>
+  </div>
+</footer>
+<script>
+(function(){
+  /* 2026-27 SAT weekend dates, read from satsuite.collegeboard.org/sat/dates-deadlines on Sep 30, 2026.
+     [test date, registration deadline, late registration deadline] */
+  var DATES = [
+    ['2026-10-03','2026-09-18','2026-09-22'],
+    ['2026-11-07','2026-10-23','2026-10-27'],
+    ['2026-12-05','2026-11-20','2026-11-24'],
+    ['2027-03-06','2027-02-19','2027-02-23'],
+    ['2027-05-01','2027-04-16','2027-04-20'],
+    ['2027-06-05','2027-05-21','2027-05-25']
+  ];
+  var DAY = 864e5;
+  var now = new Date();
+  var today = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+  var yearNow = now.getFullYear();
+  var box = document.getElementById('dates'), customField = document.getElementById('customField'), custom = document.getElementById('custom');
+  var plan = document.getElementById('plan'), left = document.getElementById('left'), steps = document.getElementById('steps');
+  var calStep = document.getElementById('calStep'), calBtn = document.getElementById('calBtn'), skipCal = document.getElementById('skipCal'), diagStep = document.getElementById('diagStep');
+  var current = null, pickTimer = null, lastPick = '';
+  function ev(n, p){ if (typeof window.gtag === 'function') window.gtag('event', n, p || {}); }
+  function parse(s){ var p = s.split('-'); return Date.UTC(+p[0], +p[1] - 1, +p[2]); }
+  function iso(t){ return new Date(t).toISOString().slice(0, 10); }
+  function fmt(t, withYear){
+    var d = new Date(t), o = { weekday: 'long', month: 'long', day: 'numeric', timeZone: 'UTC' };
+    if (withYear || d.getUTCFullYear() !== yearNow) o.year = 'numeric';
+    return d.toLocaleDateString('en-US', o);
+  }
+  function short(t){ return new Date(t).toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' }); }
+  function el(tag, cls, text){ var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  function option(value, main, sub){
+    var lab = el('label', 'pick'), inp = el('input');
+    inp.type = 'radio'; inp.name = 'testdate'; inp.value = value;
+    lab.appendChild(inp); lab.appendChild(el('span', 'd', main));
+    if (sub) lab.appendChild(el('span', 'reg', sub));
+    inp.addEventListener('change', function(){ choose(value); });
+    box.appendChild(lab);
+  }
+  DATES.forEach(function(r){
+    var t = parse(r[0]);
+    if (t <= today) return;
+    var sub;
+    if (parse(r[2]) < today) sub = 'Registration has closed.';
+    else if (parse(r[1]) < today) sub = 'Late registration by ' + short(parse(r[2])) + '.';
+    else sub = 'Register by ' + short(parse(r[1])) + '.';
+    option(r[0], fmt(t, true), sub);
+  });
+  option('custom', 'Another date', 'A school-day SAT or a later date.');
+  custom.min = iso(today + DAY);
+  custom.max = iso(today + 730 * DAY);
+  custom.addEventListener('change', function(){ if (custom.value) show(parse(custom.value), true); });
+
+  function choose(v){
+    if (v === 'custom') {
+      customField.classList.remove('hidden');
+      if (custom.value) show(parse(custom.value), true); else { plan.classList.add('hidden'); custom.focus(); }
+      return;
+    }
+    customField.classList.add('hidden');
+    show(parse(v), false);
+  }
+  function satOnOrAfter(t){ var w = new Date(t).getUTCDay(); return t + ((6 - w + 7) % 7) * DAY; }
+  function nearestSat(t){ var w = new Date(t).getUTCDay(), f = (6 - w + 7) % 7; return f <= 3 ? t + f * DAY : t - (7 - f) * DAY; }
+  function build(test){
+    var days = Math.round((test - today) / DAY), tests = [];
+    if (days < 10) return { days: days, tests: tests };
+    var fStart = Math.max(test - 12 * DAY, today), fEnd = test - 10 * DAY;
+    var base = new Date(today).getUTCDay() === 0 ? today : satOnOrAfter(today);
+    var hasBase = base <= fStart - 7 * DAY;
+    if (hasBase) tests.push({ kind: 'Baseline practice test', start: base, end: base, note: 'Take it this week. Timed, in one sitting, in Bluebook.' });
+    if (hasBase) {
+      var mid = nearestSat(today + Math.round(days / 2) * DAY);
+      if (mid - base >= 7 * DAY && fStart - mid >= 7 * DAY) tests.push({ kind: 'Midpoint practice test', start: mid, end: mid, note: 'Halfway there. This shows what is working.' });
+    }
+    tests.push({ kind: hasBase ? 'Final practice test' : 'Your one practice test', start: fStart, end: fEnd, note: fStart === fEnd ? 'That is 10 days before test day.' : '10 to 12 days before test day. Any one of these days works.' });
+    return { days: days, tests: tests };
+  }
+  function range(t){ return t.start === t.end ? fmt(t.start) : fmt(t.start) + ' to ' + fmt(t.end); }
+  function show(test, isCustom){
+    if (!(test > today)) { plan.classList.add('hidden'); return; }
+    var p = build(test);
+    current = { test: test, tests: p.tests };
+    var w = Math.floor(p.days / 7), d = p.days % 7;
+    var txt = w ? w + (w === 1 ? ' week' : ' weeks') + (d ? ' and ' + d + (d === 1 ? ' day' : ' days') : '') : p.days + (p.days === 1 ? ' day' : ' days');
+    left.textContent = txt + ' to go';
+    steps.innerHTML = '';
+    p.tests.forEach(function(t){
+      var li = el('li');
+      li.appendChild(el('span', 'k', t.kind));
+      li.appendChild(el('span', 'w', range(t)));
+      li.appendChild(el('span', null, t.note));
+      steps.appendChild(li);
+    });
+    if (!p.tests.length) {
+      var li0 = el('li', 'off');
+      li0.appendChild(el('span', 'k', 'No practice test left'));
+      li0.appendChild(el('span', null, p.days <= 7 ? 'This is test week. Review your misses, keep it light and sleep.' : 'Too close for a full test. Review your misses instead.'));
+      steps.appendChild(li0);
+    } else {
+      var tw = el('li', 'off');
+      tw.appendChild(el('span', 'k', 'Test week'));
+      tw.appendChild(el('span', 'w', 'From ' + fmt(test - 7 * DAY)));
+      tw.appendChild(el('span', null, 'No practice test. Light review and sleep.'));
+      steps.appendChild(tw);
+    }
+    var td = el('li');
+    td.appendChild(el('span', 'k', 'Test day'));
+    td.appendChild(el('span', 'w', fmt(test, true)));
+    steps.appendChild(td);
+    plan.classList.remove('hidden');
+    if (p.tests.length) { calStep.classList.remove('hidden'); diagStep.classList.add('hidden'); }
+    else { calStep.classList.add('hidden'); diagStep.classList.remove('hidden'); }
+    var key = iso(test);
+    clearTimeout(pickTimer);
+    pickTimer = setTimeout(function(){
+      if (key === lastPick) return;
+      lastPick = key;
+      ev('plan_pick', { test_date: key, weeks_left: w, days_left: p.days, custom: isCustom });
+    }, 800);
+  }
+  function ics(){
+    var stamp = new Date().toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z';
+    var d8 = function(t){ return iso(t).replace(/-/g, ''); };
+    var out = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Score Samurai LLC//Test-Date Planner//EN','CALSCALE:GREGORIAN','METHOD:PUBLISH'];
+    current.tests.forEach(function(t, i){
+      out.push('BEGIN:VEVENT',
+        'UID:' + d8(current.test) + '-' + i + '-' + Math.random().toString(36).slice(2, 10) + '@scoresamurai.com',
+        'DTSTAMP:' + stamp,
+        'DTSTART;VALUE=DATE:' + d8(t.start),
+        'DTEND;VALUE=DATE:' + d8(t.end + DAY),
+        'SUMMARY:SAT practice test' + (t.kind.indexOf('Your') === 0 ? '' : ' (' + t.kind.split(' ')[0].toLowerCase() + ')'),
+        'DESCRIPTION:Full timed practice test in Bluebook. One sitting. SAT on ' + fmt(current.test, true).replace(/,/g, '\\,') + '.',
+        'TRANSP:TRANSPARENT',
+        'END:VEVENT');
+    });
+    out.push('END:VCALENDAR');
+    return out.join('\r\n') + '\r\n';
+  }
+  calBtn.addEventListener('click', function(){
+    var blob = new Blob([ics()], { type: 'text/calendar;charset=utf-8' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob); a.download = 'sat-practice-tests.ics';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 4000);
+    ev('plan_calendar', { test_date: iso(current.test), tests: current.tests.length });
+    next();
+  });
+  skipCal.addEventListener('click', next);
+  function next(){ calStep.classList.add('hidden'); diagStep.classList.remove('hidden'); document.getElementById('diagBtn').focus(); }
+})();
+</script>
+</body>
+</html>
