@@ -111,10 +111,10 @@ new MutationObserver(scan).observe(document.documentElement, { childList: true, 
 "@id": "https://scoresamurai.com/#faq",
 "mainEntity": [
 {"@type":"Question","name":"How long does SAT prep take?","acceptedAnswer":{"@type":"Answer","text":"It depends on the size of the gap and the runway before the test date. That is what the Diagnostic measures. Starting late turns the work into a sprint. Starting far too early turns it into drift. The honest starting point is where the Diagnostic says the student is, not where the calendar says they should be."}},
-{"@type":"Question","name":"What is a good SAT score for selective schools?","acceptedAnswer":{"@type":"Answer","text":"At the most selective schools, the middle of the admitted class now sits at 1500 and above. One tier down, 1350 to 1450 does the work. The number that matters is where the admitted range starts at the school the student wants. That is the number the Roadmap is built to reach. Each school publishes its range in its Common Data Set."}},
-{"@type":"Question","name":"Do colleges require the SAT?","acceptedAnswer":{"@type":"Answer","text":"As of September 2026: Harvard, Stanford, Georgetown and the University of Miami require an SAT or ACT score from first-year applicants. Princeton and Notre Dame bring the requirement back for students applying in the 2027-28 cycle. Duke, Michigan, USC, Boston College, Wisconsin, Penn State, Oregon and Rutgers are test-optional. The University of California campuses do not look at scores. Check each school's page before applying, since policies change every cycle."}},
+{"@type":"Question","name":"What is a good SAT score?","acceptedAnswer":{"@type":"Answer","text":"Good is whatever gets you into the schools on your list. For one student that's a 1200, and for another it's a 1450. The Diagnostic starts with your list and works back to the score each school expects, then to the moves that get you there."}},
+{"@type":"Question","name":"Do colleges require the SAT?","acceptedAnswer":{"@type":"Answer","text":"More of the hardest schools to get into require it every year. Required now (as of September 2026): Brown, Caltech, Cornell, Dartmouth, Harvard, Johns Hopkins, MIT, Penn, Stanford and Yale. Required from the 2027-28 cycle (as of September 2026): Columbia and Princeton. Both stay test-optional for students applying this fall. Many other schools stay test-optional. A strong score still helps there, and policies change, so check each school's own page. Middle 50 percent of SAT scores (25th to 75th percentile), fall 2024 entering class: Brown 740-780 Reading and Writing, 770-800 Math; Columbia 740-780 Reading and Writing, 770-800 Math; Cornell 730-770 Reading and Writing, 770-800 Math; Dartmouth 740-780 Reading and Writing, 760-790 Math; Harvard 740-780 Reading and Writing, 770-800 Math; MIT 740-780 Reading and Writing, 780-800 Math; Penn 740-770 Reading and Writing, 770-800 Math; Princeton 740-780 Reading and Writing, 770-800 Math; Stanford 740-780 Reading and Writing, 770-800 Math; Yale 730-780 Reading and Writing, 740-790 Math. Source: federal IPEDS data for fall 2024, the latest out, via College Navigator. These ranges count only students who sent scores. Use them as a guide, not a guarantee."}},
 {"@type":"Question","name":"What does it cost?","acceptedAnswer":{"@type":"Answer","text":"That depends on the plan, and the plan depends on the gap. The free Diagnostic sets both."}},
-{"@type":"Question","name":"Why fifty minutes?","acceptedAnswer":{"@type":"Answer","text":"Shorter sessions, spaced out, hold more than one long one; that is the spacing effect, and it is settled science. The last ten minutes of every hour go to the written note home and the rule in the student's own words."}},
+{"@type":"Question","name":"Why fifty minutes?","acceptedAnswer":{"@type":"Answer","text":"In Sensei Jay's experience, hard focus fades after about fifty minutes. Each session takes a few moves from the Roadmap, teaches and drills them, and ends on a fresh question the student has to win alone. The practice between sessions is where the moves set."}},
 {"@type":"Question","name":"Why a dojo?","acceptedAnswer":{"@type":"Answer","text":"Sensei Jay saw the SAT for what it is. It is a knowledge test, but also a game of moves. The same patterns come back every year, the way a martial art repeats its forms."}},
 {"@type":"Question","name":"Can an app do this?","acceptedAnswer":{"@type":"Answer","text":"The way Sensei Jay sees it, AI can answer the question. It cannot see why this student keeps missing it. That is the difference between an app and a Sensei."}},
 {"@type":"Question","name":"What does the free Diagnostic include?","acceptedAnswer":{"@type":"Answer","text":"One short form. The written Dojo Diagnostic comes back within one business day. It covers where the score stands, where it needs to be for the target schools, the moves costing the most points, and what we would do first. There is no charge and no obligation. Anyone who would rather talk it through can book fifteen minutes with Sensei Jay on Zoom."}}
@@ -175,6 +175,7 @@ section[id]{scroll-margin-top:64px}
 .eyebrow{font-size:var(--t-1);letter-spacing:.14em;text-transform:uppercase;color:var(--maroon)}
 .rule{height:2px;width:56px;background:var(--maroon);border-radius:1px}
 .lead{font-size:var(--t1)}
+.lead.measure{max-width:30em}
 .soft{color:var(--ink-soft)}
 .small{font-size:var(--t-1)}
 .runin{font-family:var(--head);font-weight:600}
@@ -194,21 +195,19 @@ section[id]{scroll-margin-top:64px}
 .nav a{color:var(--ink);text-decoration:none;font-size:var(--t0);min-height:44px;display:inline-flex;align-items:center}
 .nav a:hover{color:var(--maroon)}
 @media(min-width:900px){.nav{display:flex}}
-/* hero */
+/* hero: one centred column on every width */
 .hero{padding:var(--s6) 0 var(--sec)}
-.hero .wrap{display:grid;gap:var(--s4)}
-.hero-copy{display:flex;flex-direction:column;gap:var(--s3)}
-.hero-art{display:none}
+.hero-copy{display:flex;flex-direction:column;align-items:center;gap:var(--s3);text-align:center}
+.hero-copy h1,.hero-copy .lead{margin-left:auto;margin-right:auto}
+.hero-copy .lead{max-width:28em;text-wrap:balance}
+.hero-cta p{text-wrap:balance}
 .hero-mark{width:112px;height:112px}
-.hero-cta{display:flex;flex-direction:column;gap:var(--s2);align-items:flex-start}
+.hero-cta{display:flex;flex-direction:column;align-items:center;gap:var(--s2);width:100%}
 .hero-cta .btn,.cta .btn{width:100%}
 @media(min-width:600px){.hero-cta .btn,.cta .btn{width:auto}}
 @media(min-width:900px){
   .hero{padding:var(--s12) 0}
-  .hero .wrap{grid-template-columns:minmax(0,1fr) 256px;gap:var(--s8);align-items:center}
-  .hero-mark{display:none}
-  .hero-art{display:flex;justify-content:center}
-  .hero-art img{width:256px;height:256px}
+  .hero-mark{width:160px;height:160px}
 }
 /* evidence */
 .evidence{display:grid;gap:var(--s3);list-style:none;padding:0;margin:0}
@@ -221,8 +220,13 @@ section[id]{scroll-margin-top:64px}
 .sources{font-size:var(--t-1);color:var(--ink-soft);list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:var(--s1);counter-reset:src}
 .sources li{display:grid;grid-template-columns:2em 1fr}
 .sources li::before{counter-increment:src;content:counter(src) ".";font-variant-numeric:tabular-nums}
-.sources a{color:var(--maroon);display:inline-block;padding:11px 0;margin:-11px 0}
-.foot-rule{border:0;border-top:1px solid var(--line);margin:0}
+.sources a{color:var(--maroon);display:inline-block;padding:12px 0;margin:-12px 0}
+.srcs{border-top:1px solid var(--line);font-size:var(--t-1);color:var(--ink-soft)}
+.srcs summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:var(--s1);min-height:44px;color:var(--ink-soft)}
+.srcs summary::-webkit-details-marker{display:none}
+.srcs summary::after{content:"+";color:var(--maroon)}
+.srcs[open] summary::after{content:"\2212"}
+.srcs .sources{padding:var(--s1) 0 0}
 /* grids of like blocks */
 .belts{display:grid;gap:var(--s3);list-style:none;margin:0;padding:0;max-width:var(--measure)}
 .belt{display:grid;grid-template-columns:96px 1fr;gap:var(--s3);align-items:start}
@@ -241,7 +245,6 @@ section[id]{scroll-margin-top:64px}
 .case .k{font-family:var(--head);font-weight:600;font-size:var(--t2);line-height:var(--lh-head);color:var(--maroon)}
 .case .out{color:var(--maroon)}
 .plans-note{margin-top:var(--s4);padding-top:var(--s2);border-top:1px solid var(--line)}
-.plans-pull{margin-top:var(--s5)}
 /* closing statement */
 .closing{margin:var(--s6) 0 0;padding:var(--s5) 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:var(--s2)}
 @media(min-width:900px){.closing{margin-top:var(--s8)}}
@@ -256,6 +259,13 @@ section[id]{scroll-margin-top:64px}
 .faq summary::after{content:"+";font-family:var(--body);font-weight:400;font-size:var(--t1);color:var(--maroon);flex:0 0 auto}
 .faq details[open] summary::after{content:"\2212"}
 .faq .a{padding:0 0 var(--s3);display:flex;flex-direction:column;gap:var(--s2)}
+.faq .a .small{max-width:33em}
+/* score table */
+.scores{width:100%;border-collapse:collapse;font-size:var(--t-1);font-variant-numeric:tabular-nums lining-nums}
+.scores caption{caption-side:top;text-align:left;color:var(--ink-soft);padding-bottom:var(--s1)}
+.scores th,.scores td{font-weight:400;text-align:left;padding:var(--s1) var(--s2) var(--s1) 0;border-bottom:1px solid var(--line);vertical-align:top}
+.scores thead th{color:var(--ink-soft)}
+.scores td:last-child,.scores th:last-child{padding-right:0}
 /* form */
 .form{display:flex;flex-direction:column;gap:var(--s2);max-width:var(--measure)}
 .field{display:flex;flex-direction:column;gap:6px}
@@ -323,7 +333,7 @@ footer .fine{font-size:var(--t-1);color:var(--footer-soft);max-width:var(--measu
 <section class="hero" aria-labelledby="h-hero">
   <div class="wrap">
     <div class="hero-copy">
-      <img class="hero-mark" src="/warrior.png" alt="The Score Samurai Warrior" width="112" height="112" fetchpriority="high">
+      <img class="hero-mark" src="/warrior.png" alt="The Score Samurai Warrior" width="160" height="160" fetchpriority="high">
       <h1 id="h-hero"><span class="l">The SAT is a discipline.</span> <span class="l">Train it like one.</span></h1>
       <p class="lead measure">One-on-one with Sensei Jay, The SAT Sensei. A Roadmap built from your own misses, every session taught by him, and a belt for every set of moves you close.</p>
       <div class="hero-cta">
@@ -331,7 +341,6 @@ footer .fine{font-size:var(--t-1);color:var(--footer-soft);max-width:var(--measu
         <p class="soft">Nationwide over Zoom. No two Roadmaps are the same.</p>
       </div>
     </div>
-    <div class="hero-art"><img src="/warrior.png" alt="" width="320" height="320" fetchpriority="high"></div>
   </div>
 </section>
 
@@ -344,7 +353,10 @@ footer .fine{font-size:var(--t-1);color:var(--footer-soft);max-width:var(--measu
       <div class="rule"></div>
     </div>
     <div class="stack-lg">
-      <p class="measure">Colleges including MIT, Dartmouth, Harvard and Stanford have brought test requirements back, saying scores help predict how students do there. The way Sensei Jay reads it, that is only half the story: AI now sits inside schoolwork, grades have drifted upward, and a grade means something different in every school. The SAT is the one measure every applicant takes under the same conditions.</p>
+      <div class="stack">
+        <p class="measure">MIT, Dartmouth, Harvard and Stanford require test scores again. Each said scores help predict how students do once they arrive.</p>
+        <p class="measure">The way Sensei Jay reads it, that's only half the story. AI now sits inside schoolwork. Grades have crept up for years, and an A means something different at every school. The SAT is the one test every applicant takes under the same rules.</p>
+      </div>
       <ol class="evidence" aria-label="What the colleges announced, and the numbers behind the view">
         <li><span class="who">MIT</span><time datetime="2022-03-28">March 28, 2022</time><p>Reinstated its SAT or ACT requirement, announced by Dean Stu Schmill.<a class="ref" href="#src-1" aria-label="Source 1">1</a></p></li>
         <li><span class="who">Dartmouth</span><time datetime="2024-02-05">February 5, 2024</time><p>Reinstated the requirement, announced by President Sian Leah Beilock, citing a study by Dartmouth faculty.<a class="ref" href="#src-2" aria-label="Source 2">2</a></p></li>
@@ -355,16 +367,18 @@ footer .fine{font-size:var(--t-1);color:var(--footer-soft);max-width:var(--measu
         <li><span class="who">ACT</span><time datetime="2022-05-16">May 16, 2022</time><p>The average high school GPA rose from 3.17 in 2010 to 3.36 in 2021.<a class="ref" href="#src-7" aria-label="Source 7">7</a></p></li>
       </ol>
       <p class="pull">Your transcript says what your school says. The score says what you did on the day.</p>
-      <hr class="foot-rule">
-      <ol class="sources" aria-label="Sources">
-        <li id="src-1"><a href="https://mitadmissions.org/blogs/entry/we-are-reinstating-our-sat-act-requirement-for-future-admissions-cycles/">MIT Admissions, March 28, 2022</a></li>
-        <li id="src-2"><a href="https://president.dartmouth.edu/news/2024/02/reactivating-satact-requirement-dartmouth-undergraduate-admissions">Dartmouth, Office of the President, February 5, 2024</a></li>
-        <li id="src-3"><a href="https://news.harvard.edu/gazette/story/2024/04/harvard-announces-return-to-required-testing">Harvard Gazette, April 11, 2024</a></li>
-        <li id="src-4"><a href="https://news.cornell.edu/stories/2024/04/cornell-reinstate-standardized-test-requirements-fall-2026">Cornell Chronicle, April 22, 2024</a></li>
-        <li id="src-5"><a href="https://news.stanford.edu/stories/2024/06/stanford-to-resume-standardized-test-requirement">Stanford Report, June 7, 2024</a></li>
-        <li id="src-6"><a href="https://www.pewresearch.org/internet/2026/02/24/how-teens-use-and-view-ai/">Pew Research Center, February 24, 2026</a></li>
-        <li id="src-7"><a href="https://industryinsights.act.org/2022/05/grade-inflation-past-decade">ACT, May 16, 2022</a></li>
-      </ol>
+      <details class="srcs" id="sources">
+        <summary>Sources</summary>
+        <ol class="sources">
+          <li id="src-1"><a href="https://mitadmissions.org/blogs/entry/we-are-reinstating-our-sat-act-requirement-for-future-admissions-cycles/">MIT Admissions, March 28, 2022</a></li>
+          <li id="src-2"><a href="https://president.dartmouth.edu/news/2024/02/reactivating-satact-requirement-dartmouth-undergraduate-admissions">Dartmouth, Office of the President, February 5, 2024</a></li>
+          <li id="src-3"><a href="https://news.harvard.edu/gazette/story/2024/04/harvard-announces-return-to-required-testing">Harvard Gazette, April 11, 2024</a></li>
+          <li id="src-4"><a href="https://news.cornell.edu/stories/2024/04/cornell-reinstate-standardized-test-requirements-fall-2026">Cornell Chronicle, April 22, 2024</a></li>
+          <li id="src-5"><a href="https://news.stanford.edu/stories/2024/06/stanford-to-resume-standardized-test-requirement">Stanford Report, June 7, 2024</a></li>
+          <li id="src-6"><a href="https://www.pewresearch.org/internet/2026/02/24/how-teens-use-and-view-ai/">Pew Research Center, February 24, 2026</a></li>
+          <li id="src-7"><a href="https://industryinsights.act.org/2022/05/grade-inflation-past-decade">ACT, May 16, 2022</a></li>
+        </ol>
+      </details>
     </div>
   </div>
 </section>
@@ -387,7 +401,6 @@ footer .fine{font-size:var(--t-1);color:var(--footer-soft);max-width:var(--measu
         <li class="belt"><svg viewBox="0 0 120 42" aria-hidden="true"><rect x="2" y="12" width="116" height="18" rx="3" fill="#7A4A2B"/><path d="M52 12 L68 30 M68 12 L52 30" stroke="#54321C" stroke-width="3" stroke-linecap="round"/><rect x="54" y="8" width="12" height="26" rx="2" fill="#7A4A2B" stroke="#54321C" stroke-width="2"/></svg><div><h3>Brown</h3><p>Closes when the hard-module moves in one section stop costing points.</p></div></li>
         <li class="belt"><svg viewBox="0 0 120 42" aria-hidden="true"><rect x="2" y="12" width="116" height="18" rx="3" fill="#141110"/><path d="M52 12 L68 30 M68 12 L52 30" stroke="#5A544E" stroke-width="3" stroke-linecap="round"/><rect x="54" y="8" width="12" height="26" rx="2" fill="#141110" stroke="#5A544E" stroke-width="2"/></svg><div><h3>Black</h3><p>Closes when the hard-module moves in both sections stop costing points.</p></div></li>
       </ul>
-      <p class="measure">A belt is never taken away. A bad practice test cannot cost one.</p>
       <p class="pull">Nobody hands you Green. You take it.</p>
     </div>
   </div>
@@ -487,8 +500,10 @@ footer .fine{font-size:var(--t-1);color:var(--footer-soft);max-width:var(--measu
       <div class="plan"><h3>Build</h3><p>The one most families take. There is a real gap and a term to work in, and the Roadmap is rebuilt as the score moves.</p></div>
       <div class="plan"><h3>Command</h3><p>For a large gap, an early start, or a student who wants the whole map. The work goes wider, and the habits hold for the next test too.</p></div>
     </div>
-    <p class="plans-note">Plans are priced after the Diagnostic. The length depends on the gap, and the Diagnostic is free.</p>
-    <p class="pull plans-pull">Pick the door. The Roadmap is the same kind of thing behind all three.</p>
+    <div class="plans-note stack">
+      <p class="measure">Plans are priced after the Diagnostic. The length depends on the gap, and the Diagnostic is free.</p>
+      <p class="measure">Every plan runs on the same Roadmap and the same Sensei. The only difference is how much ground there is to cover.</p>
+    </div>
   </div>
 </section>
 
@@ -503,10 +518,32 @@ footer .fine{font-size:var(--t-1);color:var(--footer-soft);max-width:var(--measu
     </div>
     <div class="faq">
       <details><summary>How long does SAT prep take?</summary><div class="a"><p>It depends on the size of the gap and the runway before the test date. That is what the Diagnostic measures. Starting late turns the work into a sprint. Starting far too early turns it into drift.</p><p>The honest starting point is where the Diagnostic says the student is, not where the calendar says they should be.</p></div></details>
-      <details><summary>What is a good SAT score for selective schools?</summary><div class="a"><p>At the most selective schools, the middle of the admitted class now sits at 1500 and above. One tier down, 1350 to 1450 does the work.</p><p>The number that matters is where the admitted range starts at the school the student wants. That is the number the Roadmap is built to reach. Each school publishes its range in its Common Data Set, and the Diagnostic reads the list against it.</p></div></details>
-      <details><summary>Do colleges require the SAT?</summary><div class="a"><p>As of September 2026: Harvard, Stanford, Georgetown and the University of Miami require an SAT or ACT score from first-year applicants. Princeton and Notre Dame bring the requirement back for students applying in the 2027 to 2028 cycle.</p><p>Duke, Michigan, USC, Boston College, Wisconsin, Penn State, Oregon and Rutgers are test-optional. The University of California campuses do not look at scores. Check each school's page before applying, since policies change every cycle.</p></div></details>
+      <details><summary>What is a good SAT score?</summary><div class="a"><p>Good is whatever gets you into the schools on your list. For one student that's a 1200, and for another it's a 1450. The Diagnostic starts with your list and works back to the score each school expects, then to the moves that get you there.</p></div></details>
+      <details><summary>Do colleges require the SAT?</summary><div class="a">
+        <p>More of the hardest schools to get into require it every year.</p>
+        <p><span class="runin">Required now</span> (as of September 2026): Brown, Caltech, Cornell, Dartmouth, Harvard, Johns Hopkins, MIT, Penn, Stanford and Yale.</p>
+        <p><span class="runin">Required from the 2027-28 cycle</span> (as of September 2026): Columbia and Princeton. Both stay test-optional for students applying this fall.</p>
+        <p>Many other schools stay test-optional. A strong score still helps there, and policies change, so check each school's own page.</p>
+        <table class="scores">
+          <caption>Middle 50 percent of SAT scores (25th to 75th percentile), fall 2024 entering class</caption>
+          <thead><tr><th scope="col">School</th><th scope="col">Reading and Writing</th><th scope="col">Math</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Brown</th><td>740–780</td><td>770–800</td></tr>
+            <tr><th scope="row">Columbia</th><td>740–780</td><td>770–800</td></tr>
+            <tr><th scope="row">Cornell</th><td>730–770</td><td>770–800</td></tr>
+            <tr><th scope="row">Dartmouth</th><td>740–780</td><td>760–790</td></tr>
+            <tr><th scope="row">Harvard</th><td>740–780</td><td>770–800</td></tr>
+            <tr><th scope="row">MIT</th><td>740–780</td><td>780–800</td></tr>
+            <tr><th scope="row">Penn</th><td>740–770</td><td>770–800</td></tr>
+            <tr><th scope="row">Princeton</th><td>740–780</td><td>770–800</td></tr>
+            <tr><th scope="row">Stanford</th><td>740–780</td><td>770–800</td></tr>
+            <tr><th scope="row">Yale</th><td>730–780</td><td>740–790</td></tr>
+          </tbody>
+        </table>
+        <p class="small soft">Source: federal IPEDS data for fall 2024, the latest out, via <a href="https://nces.ed.gov/collegenavigator/">College Navigator</a>. These ranges count only students who sent scores. Use them as a guide, not a guarantee.</p>
+      </div></details>
       <details><summary>What does it cost?</summary><div class="a"><p>That depends on the plan, and the plan depends on the gap. The free Diagnostic sets both.</p></div></details>
-      <details><summary>Why fifty minutes?</summary><div class="a"><p>Shorter sessions, spaced out, hold more than one long one; that is the spacing effect, and it is settled science. The last ten minutes of every hour go to the written note home and the rule in the student's own words.</p></div></details>
+      <details><summary>Why fifty minutes?</summary><div class="a"><p>In Sensei Jay's experience, hard focus fades after about fifty minutes. Each session takes a few moves from the Roadmap, teaches and drills them, and ends on a fresh question the student has to win alone. The practice between sessions is where the moves set.</p></div></details>
       <details><summary>Why a dojo?</summary><div class="a"><p>Sensei Jay saw the SAT for what it is. It is a knowledge test, but also a game of moves. The same patterns come back every year, the way a martial art repeats its forms.</p></div></details>
       <details><summary>Can an app do this?</summary><div class="a"><p>The way Sensei Jay sees it, AI can answer the question. It cannot see why this student keeps missing it. That is the difference between an app and a Sensei.</p></div></details>
       <details><summary>What does the free Diagnostic include?</summary><div class="a"><p>One short form. The written Dojo Diagnostic comes back within one business day. It covers where the score stands, where it needs to be for the target schools, the moves costing the most points, and what we would do first.</p><p>There is no charge and no obligation. Anyone who would rather talk it through can book fifteen minutes with Sensei Jay on Zoom.</p></div></details>
@@ -698,6 +735,7 @@ footer .fine{font-size:var(--t-1);color:var(--footer-soft);max-width:var(--measu
 })();
 </script>
 <script>
+document.querySelectorAll('.evidence .ref').forEach(function(a){a.addEventListener('click',function(){var d=document.getElementById('sources');if(d)d.open=true;});});
 (function(){
   var bar=document.getElementById('stickyCta'), hero=document.getElementById('heroCta'), how=document.getElementById('howCta'), diag=document.getElementById('diagnostic');
   if(!bar||!hero||!how||!diag||!('IntersectionObserver' in window)) return;
