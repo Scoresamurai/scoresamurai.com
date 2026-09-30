@@ -202,10 +202,10 @@ section{padding:var(--sec) 0}
 @media(min-width:600px){.hero-cta .btn{width:auto}}
 @media(min-width:900px){
   .hero{padding:var(--s12) 0}
-  .hero .wrap{grid-template-columns:7fr 5fr;gap:var(--s8);align-items:center}
+  .hero .wrap{grid-template-columns:minmax(0,1fr) 256px;gap:var(--s8);align-items:center}
   .hero-mark{display:none}
   .hero-art{display:flex;justify-content:center}
-  .hero-art img{width:320px;height:320px}
+  .hero-art img{width:256px;height:256px}
 }
 /* evidence */
 .evidence{display:grid;gap:var(--s3);list-style:none;padding:0;margin:0}
@@ -276,6 +276,9 @@ section{padding:var(--sec) 0}
 .tm .formkit-form .formkit-input{min-height:52px!important;border:1px solid var(--line)!important;border-radius:6px!important;font-size:var(--t0)!important;font-family:var(--body)!important;color:var(--ink)!important;background:var(--white)!important}
 .tm .formkit-form .formkit-submit{min-height:52px!important;border-radius:6px!important;background:var(--gold)!important;color:var(--dark)!important;font-weight:700!important;font-size:var(--t0)!important;font-family:var(--body)!important;border:2px solid var(--gold)!important}
 .tm .formkit-form .formkit-submit:hover{background:var(--gold-deep)!important;border-color:var(--gold-deep)!important;color:var(--dark)!important}
+.tm .formkit-form>div{padding:0!important}
+.tm .formkit-form .formkit-fields{margin-top:0!important;margin-bottom:0!important}
+.tm .formkit-form .formkit-field{margin-bottom:0!important}
 .tm .formkit-powered-by-convertkit-container,.tm .formkit-powered-by-convertkit,.tm .formkit-guarantee,.tm .formkit-header,.tm .formkit-subheader,.tm .formkit-image{display:none!important} .tm .formkit-form .formkit-container,.tm .formkit-form .formkit-column{padding:0!important}
 .tm{max-width:var(--measure)}
 /* footer */
