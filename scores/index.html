@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What SAT score do you need? | Score Samurai</title>
+<meta name="description" content="Add the colleges on your list and see the SAT range their students sent, from federal IPEDS data, plus the number to aim for.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://scoresamurai.com/scores/">
+<link rel="icon" href="/warrior.png">
+<!-- Google tag (gtag.js) -->
+<script>window.addEventListener("load",function(){var s=document.createElement("script");s.async=true;s.src="https://www.googletagmanager.com/gtag/js?id=G-LYZRWG13P3";document.head.appendChild(s);});</script>
+<script>
+ window.dataLayer = window.dataLayer || [];
+ function gtag(){dataLayer.push(arguments);}
+ gtag('js', new Date());
+ gtag('config', 'G-LYZRWG13P3');
+</script>
+<!-- Score Samurai GA4 events: diagnostic_open on any .js-tb button. Same hook as v6. -->
+<script>
+(function () {
+function ev(name, params) {
+if (typeof window.gtag === 'function') window.gtag('event', name, params || {});
+}
+document.addEventListener('click', function (e) {
+var t = e.target && e.target.closest ? e.target.closest('.js-tb') : null;
+if (!t) return;
+ev('diagnostic_open', { link_text: (t.textContent || '').trim().slice(0, 100), page_path: location.pathname, tool: 'scores' });
+}, true);
+})();
+</script>
+<link rel="preload" href="/fonts/playfair-display-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/dm-sans-400-700.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Playfair Display";font-weight:600;font-display:swap;src:url(/fonts/playfair-display-600.woff2) format("woff2")}
+@font-face{font-family:"DM Sans";font-weight:400 700;font-display:swap;src:url(/fonts/dm-sans-400-700.woff2) format("woff2")}
+/* ---------- the v6 system, verbatim ---------- */
+:root{
+  --maroon:#7A0B10;--maroon-deep:#5E080C;--cream:#F2EBDB;--cream-deep:#E7DEC8;--gold:#C9A24A;--gold-deep:#A8822F;--dark:#1C0406;--ink:#1C0406;--ink-soft:#5A4D46;--line:#D6CBB3;--white:#FFFFFF;--footer-soft:#D9CDB8;
+  --head:"Playfair Display",Georgia,"Times New Roman",serif;
+  --body:"DM Sans",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+  --t-1:clamp(14px,13.52px + 0.1235vw,15px);
+  --t0:clamp(17px,16.04px + 0.247vw,19px);
+  --t1:clamp(21px,19.56px + 0.37vw,24px);
+  --t2:clamp(27px,25.56px + 0.37vw,30px);
+  --t3:clamp(34px,32.07px + 0.494vw,38px);
+  --lh-body:1.55;--lh-head:1.15;
+  --s1:8px;--s2:16px;--s3:24px;--s4:32px;--s5:40px;--s6:48px;--s8:64px;--s10:80px;--s12:96px;--s14:112px;
+  --sec:var(--s8);--gut:var(--s3);--wrap:1040px;--measure:35em;
+}
+@media(min-width:900px){:root{--sec:var(--s14);--gut:var(--s6)}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--body);font-size:var(--t0);line-height:var(--lh-body);overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--maroon)}
+h1,h2,h3{font-family:var(--head);font-weight:600;line-height:var(--lh-head);margin:0;text-wrap:balance}
+h1{font-size:var(--t3);max-width:14ch}
+@media(min-width:900px){h1{max-width:none}}
+h2{font-size:var(--t2);max-width:24em}
+h3{font-size:var(--t1)}
+p,ul,ol{margin:0}
+p{text-wrap:pretty}
+strong{font-weight:400}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--gut)}
+.measure{max-width:var(--measure)}
+.stack{display:flex;flex-direction:column;gap:var(--s2)}
+.stack-lg{display:flex;flex-direction:column;gap:var(--s3)}
+section{padding:var(--sec) 0}
+.band{background:var(--white)}
+.sec-head{display:flex;flex-direction:column;gap:var(--s2);margin-bottom:var(--s5)}
+@media(min-width:900px){.sec-head{margin-bottom:var(--s6)}}
+.eyebrow{font-size:var(--t-1);letter-spacing:.14em;text-transform:uppercase;color:var(--maroon)}
+.rule{height:2px;width:56px;background:var(--maroon);border-radius:1px}
+.lead{font-size:var(--t1)}
+.soft{color:var(--ink-soft)}
+.small{font-size:var(--t-1)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 var(--s3);border-radius:6px;border:2px solid var(--gold);background:var(--gold);color:var(--dark);font-family:var(--body);font-weight:700;font-size:var(--t0);line-height:var(--lh-body);text-decoration:none;cursor:pointer;text-align:center}
+.btn:hover{background:var(--gold-deep);border-color:var(--gold-deep);color:var(--dark)}
+.btn:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.linkbtn{background:none;border:0;padding:0;font:inherit;color:var(--maroon);text-decoration:underline;cursor:pointer;min-height:44px;display:inline-flex;align-items:center}
+.hdr{position:sticky;top:0;z-index:20;background:rgba(242,235,219,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.hdr .wrap{display:flex;align-items:center;justify-content:space-between;gap:var(--s3);min-height:64px}
+.brand{font-family:var(--head);font-weight:600;font-size:var(--t1);line-height:var(--lh-head);color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;min-height:44px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:var(--t-1)}
+.field input,.field select{min-height:48px;padding:0 14px;border:1px solid var(--line);border-radius:6px;font-size:var(--t0);font-family:inherit;line-height:var(--lh-body);background:var(--white);color:var(--ink);width:100%}
+.hidden{display:none}
+.sr{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+footer{background:var(--dark);color:var(--cream);padding:var(--sec) 0}
+footer .wrap{display:flex;flex-direction:column;gap:var(--s2)}
+footer .brand{color:var(--cream)}
+footer a{color:var(--cream);text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
+footer .links{display:flex;flex-wrap:wrap;gap:0 var(--s3)}
+footer .fine{font-size:var(--t-1);color:var(--footer-soft);max-width:var(--measure)}
+/* ---------- the score tool, on the same tokens ---------- */
+.tool{padding-top:var(--s6)}
+@media(min-width:900px){.tool{padding-top:var(--s12)}}
+.panel{max-width:var(--measure);display:flex;flex-direction:column;gap:var(--s3)}
+.results{list-style:none;margin:0;padding:0;border:1px solid var(--line);border-radius:6px;background:var(--white)}
+.results li+li{border-top:1px solid var(--line)}
+.results button{display:flex;flex-direction:column;align-items:flex-start;width:100%;min-height:52px;padding:10px 14px;background:none;border:0;font:inherit;color:var(--ink);text-align:left;cursor:pointer}
+.results button:hover,.results button:focus-visible{background:var(--cream-deep)}
+.results .where{font-size:var(--t-1);color:var(--ink-soft)}
+.none{padding:12px 14px;color:var(--ink-soft)}
+.count{font-size:var(--t-1);color:var(--ink-soft)}
+.list{list-style:none;margin:var(--s4) 0 0;padding:0;display:grid;gap:var(--s4)}
+@media(min-width:900px){.list{grid-template-columns:1fr 1fr;gap:var(--s4) var(--s6)}}
+.school{display:flex;flex-direction:column;gap:var(--s2);padding-top:var(--s2);border-top:2px solid var(--maroon)}
+.school .top{display:flex;justify-content:space-between;align-items:flex-start;gap:var(--s2)}
+.school .where{font-size:var(--t-1);color:var(--ink-soft)}
+.range{font-family:var(--head);font-weight:600;font-size:var(--t2);line-height:var(--lh-head);color:var(--maroon);font-variant-numeric:lining-nums tabular-nums}
+.facts{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px}
+.you{padding:var(--s1) var(--s2);background:var(--white);border-left:3px solid var(--maroon)}
+.gpa{border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:var(--s1)}
+.gpa legend{padding:0;margin-bottom:var(--s1)}
+.gpa .tag{display:block;font-size:var(--t-1);letter-spacing:.14em;text-transform:uppercase;color:var(--maroon)}
+.opts{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s1)}
+.opts label{position:relative;display:flex;align-items:center;justify-content:center;min-height:48px;padding:0 var(--s1);border:1px solid var(--line);border-radius:6px;background:var(--white);cursor:pointer;text-align:center}
+.opts input{position:absolute;opacity:0;width:1px;height:1px}
+.opts input:checked+span{font-weight:700}
+.opts label:has(input:checked){border:2px solid var(--maroon)}
+.opts label:has(input:focus-visible){outline:3px solid var(--gold);outline-offset:2px}
+.aim{font-weight:700}
+.summary{margin-top:var(--s6);padding:var(--s4) 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:var(--s3);max-width:var(--measure)}
+.summary .big{font-family:var(--head);font-weight:600;font-size:var(--t2);line-height:var(--lh-head)}
+.summary .btn{width:100%}
+@media(min-width:600px){.summary .btn{width:auto;align-self:flex-start}}
+.notes{margin-top:var(--s6);max-width:var(--measure);display:flex;flex-direction:column;gap:var(--s1)}
+.notes h2{font-size:var(--t1)}
+.notes ul{padding-left:1.1em;display:flex;flex-direction:column;gap:var(--s1);color:var(--ink-soft);font-size:var(--t-1)}
+.hidden{display:none!important}
+</style>
+</head>
+<body>
+<header class="hdr">
+  <div class="wrap">
+    <a class="brand" href="/">Score Samurai</a>
+  </div>
+</header>
+<main id="top">
+  <section class="tool">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Score tool</span>
+        <h1>What SAT score do you need?</h1>
+        <div class="rule" aria-hidden="true"></div>
+        <p class="lead measure">Add the colleges on your list. See the scores their students sent, and the number to aim for.</p>
+      </div>
+
+      <div class="panel">
+        <div class="field">
+          <label for="q">Search for a school</label>
+          <input id="q" type="search" autocomplete="off" placeholder="Type a school name" aria-describedby="qhint" aria-controls="results">
+          <span id="qhint" class="count">Add up to 10 schools.</span>
+        </div>
+        <ul id="results" class="results hidden" aria-label="Matching schools"></ul>
+        <div class="field">
+          <label for="cur">Your current SAT score (optional)</label>
+          <input id="cur" type="number" inputmode="numeric" min="400" max="1600" step="10" placeholder="For example, 1250" aria-describedby="curhint">
+          <span id="curhint" class="count">Leave it blank if you have not taken a test yet.</span>
+        </div>
+        <p id="live" class="sr" aria-live="polite"></p>
+      </div>
+
+      <ul id="list" class="list" aria-label="Your list"></ul>
+
+      <div id="summary" class="summary hidden" aria-live="polite">
+        <p id="sumline" class="big"></p>
+        <p id="sumsub" class="soft"></p>
+        <a id="diagBtn" class="btn js-tb hidden" href="/diagnostic/">Get the free Dojo Diagnostic</a>
+      </div>
+
+      <div class="notes">
+        <h2>About these numbers</h2>
+        <ul>
+          <li id="srcline">Source: IPEDS, National Center for Education Statistics. Admissions data for fall 2023, the newest year published.</li>
+          <li>These ranges come only from students who sent SAT scores.</li>
+          <li>Each range adds the two section scores at the same percentile. That makes the total approximate.</li>
+          <li>These are estimates, not a prediction of admission.</li>
+          <li>Check each school's own admissions page before you apply.</li>
+          <li>Score Samurai is not affiliated with College Board or any college.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="brand">Score Samurai</div>
+    <div class="links"><a href="https://discord.gg/nE7nr7Dyb5">The Dojo</a><a href="/privacy/">Privacy</a><a href="mailto:senseijay@scoresamurai.com">senseijay@scoresamurai.com</a></div>
+    <p class="fine">Nationwide over Zoom. Score Samurai LLC.</p>
+    <p class="fine">Score Samurai is not affiliated with or endorsed by College Board. SAT, PSAT and Digital SAT are College Board trademarks.</p>
+  </div>
+</footer>
+<script>
+(function(){
+  var MAX = 10;
+  var POLICY = { R: 'Scores required', O: 'Test optional', B: 'Test blind: scores are not considered' };
+  var schools = [], picked = [], answers = {}, lastSum = '';
+  var q = document.getElementById('q'), res = document.getElementById('results'), list = document.getElementById('list');
+  var cur = document.getElementById('cur'), live = document.getElementById('live');
+  var summary = document.getElementById('summary'), sumline = document.getElementById('sumline'), sumsub = document.getElementById('sumsub'), diagBtn = document.getElementById('diagBtn');
+  function ev(n, p){ if (typeof window.gtag === 'function') window.gtag('event', n, p || {}); }
+  function norm(s){ return (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9 ]+/g, ' ').replace(/\s+/g, ' ').trim(); }
+  function el(tag, cls, text){ var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  function band(s){
+    var lo = s.erw25 + s.math25, hi = s.erw75 + s.math75;
+    var mid = (s.erw50 != null && s.math50 != null) ? s.erw50 + s.math50 : Math.round((lo + hi) / 20) * 10;
+    return { lo: lo, mid: mid, hi: hi };
+  }
+  fetch('ipeds-sat-2023.json').then(function(r){ return r.json(); }).then(function(d){
+    var f = d.fields;
+    schools = d.schools.map(function(r){
+      var o = {}; f.forEach(function(k, i){ o[k] = r[i]; });
+      o.key = norm(o.name + ' ' + (o.alias || '') + ' ' + o.city + ' ' + o.state);
+      o.nkey = norm(o.name);
+      return o;
+    });
+  });
+  function search(){
+    var t = norm(q.value);
+    res.innerHTML = '';
+    if (t.length < 2) { res.classList.add('hidden'); return; }
+    if (picked.length >= MAX) { res.appendChild(el('li', 'none', 'Your list is full. Remove a school to add another.')); res.classList.remove('hidden'); return; }
+    var words = t.split(' ');
+    var hits = schools.filter(function(s){ return words.every(function(w){ return s.key.indexOf(w) !== -1; }); });
+    function rank(s){ return s.nkey === t ? 0 : s.nkey.indexOf(t) === 0 ? 1 : (' ' + s.nkey).indexOf(' ' + t) !== -1 ? 2 : 3; }
+    hits.sort(function(a, b){ return rank(a) - rank(b) || a.name.length - b.name.length || a.name.localeCompare(b.name); });
+    hits = hits.slice(0, 8);
+    if (!hits.length) { res.appendChild(el('li', 'none', 'No match. This list only has schools that report SAT scores.')); }
+    hits.forEach(function(s){
+      var li = el('li'), b = el('button');
+      b.type = 'button';
+      b.appendChild(el('span', null, s.name));
+      b.appendChild(el('span', 'where', s.city + ', ' + s.state));
+      var already = picked.some(function(p){ return p.unitid === s.unitid; });
+      if (already) { b.disabled = true; b.setAttribute('aria-label', s.name + ', already on your list'); }
+      b.addEventListener('click', function(){ add(s); });
+      li.appendChild(b); res.appendChild(li);
+    });
+    res.classList.remove('hidden');
+  }
+  function add(s){
+    if (picked.length >= MAX) { live.textContent = 'Your list is full. Remove a school to add another.'; return; }
+    if (picked.some(function(p){ return p.unitid === s.unitid; })) return;
+    picked.push(s);
+    ev('scores_add', { school: s.name, unitid: s.unitid, count: picked.length });
+    q.value = ''; res.classList.add('hidden'); res.innerHTML = '';
+    render();
+    live.textContent = s.name + ' added. ' + picked.length + ' of ' + MAX + ' on your list.';
+    q.focus();
+  }
+  function remove(id){
+    picked = picked.filter(function(p){ return p.unitid !== id; });
+    delete answers[id];
+    render();
+    live.textContent = 'Removed. ' + picked.length + ' of ' + MAX + ' on your list.';
+    q.focus();
+  }
+  function aimFor(s, a){
+    var b = band(s);
+    if (a === 'below') return { n: b.hi, text: 'Aim for ' + b.hi + ', its 75th percentile.' };
+    if (a === 'around') return { n: b.mid, text: 'Aim for ' + b.mid + ' or above, its 50th percentile.' };
+    if (a === 'above') return { n: b.lo, text: 'A score from ' + b.lo + ' to ' + b.mid + ' does the job here.' };
+    return null;
+  }
+  function render(){
+    list.innerHTML = '';
+    var score = parseInt(cur.value, 10);
+    var hasScore = score >= 400 && score <= 1600;
+    picked.forEach(function(s){
+      var b = band(s), li = el('li', 'school');
+      var top = el('div', 'top'), head = el('div');
+      head.appendChild(el('h3', null, s.name));
+      head.appendChild(el('span', 'where', s.city + ', ' + s.state));
+      var rm = el('button', 'linkbtn', 'Remove');
+      rm.type = 'button'; rm.setAttribute('aria-label', 'Remove ' + s.name);
+      rm.addEventListener('click', function(){ remove(s.unitid); });
+      top.appendChild(head); top.appendChild(rm); li.appendChild(top);
+      li.appendChild(el('p', 'range', b.lo + ' to ' + b.hi));
+      var facts = el('ul', 'facts');
+      facts.appendChild(el('li', null, 'Middle 50 percent, approximate. Middle score about ' + b.mid + '.'));
+      facts.appendChild(el('li', null, POLICY[s.policy] || 'Test policy not reported'));
+      facts.appendChild(el('li', null, s.sat_submit_pct != null ? s.sat_submit_pct + '% of new students sent SAT scores.' : 'Share who sent SAT scores: not reported.'));
+      li.appendChild(facts);
+      if (hasScore) {
+        var where = score < b.lo ? 'below' : (score > b.hi ? 'above' : 'inside');
+        li.appendChild(el('p', 'you', 'Your ' + score + ' is ' + where + ' this range.'));
+      }
+      if (s.policy === 'B') {
+        li.appendChild(el('p', 'soft', 'This school does not look at scores, so it is left out of your number.'));
+      } else {
+        var fs = el('fieldset', 'gpa'), lg = el('legend');
+        lg.appendChild(el('span', 'tag', "Sensei Jay's rule of thumb"));
+        lg.appendChild(el('span', null, 'Is your GPA below, around or above what this school usually admits?'));
+        fs.appendChild(lg);
+        var opts = el('div', 'opts');
+        ['below', 'around', 'above'].forEach(function(v){
+          var lab = el('label'), inp = el('input'), sp = el('span', null, v.charAt(0).toUpperCase() + v.slice(1));
+          inp.type = 'radio'; inp.name = 'gpa-' + s.unitid; inp.value = v; inp.checked = answers[s.unitid] === v;
+          inp.addEventListener('change', function(){ answers[s.unitid] = v; render(); var r = document.querySelector('input[name="gpa-' + s.unitid + '"]:checked'); if (r) r.focus(); });
+          lab.appendChild(inp); lab.appendChild(sp); opts.appendChild(lab);
+        });
+        fs.appendChild(opts);
+        var a = aimFor(s, answers[s.unitid]);
+        if (a) fs.appendChild(el('p', 'aim', a.text));
+        li.appendChild(fs);
+      }
+      list.appendChild(li);
+    });
+    document.getElementById('qhint').textContent = picked.length >= MAX ? 'Your list is full. Remove a school to add another.' : picked.length ? picked.length + ' of ' + MAX + ' added.' : 'Add up to 10 schools.';
+    updateSummary();
+  }
+  function updateSummary(){
+    var counted = picked.filter(function(s){ return s.policy !== 'B'; });
+    var done = counted.filter(function(s){ return answers[s.unitid]; });
+    if (!counted.length) { summary.classList.add('hidden'); return; }
+    summary.classList.remove('hidden');
+    if (done.length < counted.length) {
+      sumline.textContent = 'Answer the GPA question for each school to see your number.';
+      sumsub.textContent = (counted.length - done.length) + ' still to answer.';
+      diagBtn.classList.add('hidden');
+      return;
+    }
+    var top = 0;
+    done.forEach(function(s){ var a = aimFor(s, answers[s.unitid]); if (a.n > top) top = a.n; });
+    sumline.textContent = 'Aim for about ' + top + ' to cover your list.';
+    sumsub.textContent = 'That is the highest target on your list. The free Diagnostic shows which moves get you there.';
+    diagBtn.classList.remove('hidden');
+    var key = top + '|' + done.length;
+    if (key !== lastSum) { lastSum = key; ev('scores_summary', { target: top, schools: done.length }); }
+  }
+  q.addEventListener('input', search);
+  q.addEventListener('keydown', function(e){
+    var first = res.querySelector('button:not([disabled])');
+    if (e.key === 'ArrowDown' && first) { e.preventDefault(); first.focus(); }
+    if (e.key === 'Enter' && first) { e.preventDefault(); first.click(); }
+    if (e.key === 'Escape') { res.classList.add('hidden'); }
+  });
+  res.addEventListener('keydown', function(e){
+    var bs = Array.prototype.slice.call(res.querySelectorAll('button:not([disabled])')), i = bs.indexOf(document.activeElement);
+    if (e.key === 'ArrowDown' && i < bs.length - 1) { e.preventDefault(); bs[i + 1].focus(); }
+    if (e.key === 'ArrowUp') { e.preventDefault(); if (i > 0) bs[i - 1].focus(); else q.focus(); }
+    if (e.key === 'Escape') { res.classList.add('hidden'); q.focus(); }
+  });
+  cur.addEventListener('input', render);
+})();
+</script>
+</body>
+</html>
