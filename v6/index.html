@@ -127,158 +127,170 @@ new MutationObserver(scan).observe(document.documentElement, { childList: true, 
 <link rel="preload" href="/fonts/dm-sans-400-700.woff2" as="font" type="font/woff2" crossorigin>
 <style>
 @font-face{font-family:"Playfair Display";font-weight:600;font-display:swap;src:url(/fonts/playfair-display-600.woff2) format("woff2")}
-@font-face{font-family:"Playfair Display SC";font-weight:400;font-display:swap;src:url(/fonts/playfair-display-sc-400.woff2) format("woff2")}
 @font-face{font-family:"DM Sans";font-weight:400 700;font-display:swap;src:url(/fonts/dm-sans-400-700.woff2) format("woff2")}
+/* ---------- the system ---------- */
 :root{
-  --maroon:#7A0B10;--accent:#A20808;--cream:#F3ECDD;--cream-deep:#E9DFC9;--gold:#C9A24A;--gold-deep:#A8822F;--ink:#141110;--ink-soft:#4A423C;--line:#D9CDB3;--white:#FFFFFF;
-  --s1:8px;--s2:16px;--s3:24px;--s4:32px;--s5:40px;--s6:48px;--s8:64px;--s10:80px;--s12:96px;
-  --t0:16px;--t1:17px;--t2:19px;--t3:23px;--t4:28px;--t5:36px;--t6:44px;
-  --serif:"Playfair Display",Georgia,serif;--sc:"Playfair Display SC","Playfair Display",Georgia,serif;--sans:"DM Sans",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
-  --wrap:1120px;--col:640px;
+  --maroon:#7A0B10;--maroon-deep:#5E080C;--cream:#F2EBDB;--cream-deep:#E7DEC8;--gold:#C9A24A;--gold-deep:#A8822F;--dark:#1C0406;--ink:#1C0406;--ink-soft:#5A4D46;--line:#D6CBB3;--white:#FFFFFF;--footer-soft:#D9CDB8;
+  --head:"Playfair Display",Georgia,"Times New Roman",serif;
+  --body:"DM Sans",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+  /* five sizes, ratio 1.25, mobile first, easing up on wide screens */
+  --t-1:clamp(14px,0.82rem + 0.2vw,15px);
+  --t0:clamp(17px,1rem + 0.25vw,18px);
+  --t1:clamp(21px,1.2rem + 0.4vw,23px);
+  --t2:clamp(27px,1.45rem + 0.9vw,30px);
+  --t3:clamp(34px,1.6rem + 2vw,46px);
+  --lh-body:1.55;--lh-head:1.15;
+  --s1:8px;--s2:16px;--s3:24px;--s4:32px;--s5:40px;--s6:48px;--s8:64px;--s10:80px;--s12:96px;--s14:112px;
+  --sec:var(--s8);--gut:var(--s3);--wrap:1040px;--measure:36em;
 }
-@media(min-width:900px){:root{--t1:18px;--t2:20px;--t3:24px;--t4:32px;--t5:44px;--t6:60px}}
+@media(min-width:900px){:root{--sec:var(--s14);--gut:var(--s6)}}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--sans);font-size:var(--t1);line-height:1.55;overflow-x:hidden}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--body);font-size:var(--t0);line-height:var(--lh-body);overflow-x:hidden}
 img{max-width:100%;height:auto;display:block}
 a{color:var(--maroon)}
-h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.12;margin:0;letter-spacing:-0.005em}
-h1{font-size:var(--t6)}
-h2{font-size:var(--t5)}
-h3{font-size:var(--t3)}
-p{margin:0}
-.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--s3)}
-@media(min-width:900px){.wrap{padding:0 var(--s5)}}
-.col{max-width:var(--col)}
+h1,h2,h3{font-family:var(--head);font-weight:600;line-height:var(--lh-head);margin:0;text-wrap:balance}
+h1{font-size:var(--t3);max-width:14ch}
+h2{font-size:var(--t2);max-width:28ch}
+h3{font-size:var(--t1)}
+p,ul,ol{margin:0}
+strong{font-weight:400}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--gut)}
+.measure{max-width:var(--measure)}
 .stack{display:flex;flex-direction:column;gap:var(--s2)}
 .stack-lg{display:flex;flex-direction:column;gap:var(--s3)}
-section{padding:var(--s8) 0}
-@media(min-width:900px){section{padding:var(--s12) 0}}
+section{padding:var(--sec) 0}
 .band{background:var(--white)}
-.band-deep{background:var(--cream-deep)}
 .band-maroon{background:var(--maroon);color:var(--cream)}
 .band-maroon h2,.band-maroon h3{color:var(--white)}
 .band-maroon a{color:var(--cream)}
-.eyebrow{font-family:var(--sc);font-size:var(--t0);letter-spacing:.14em;text-transform:uppercase;color:var(--maroon)}
-.band-maroon .eyebrow{color:var(--cream)}
-.lead{font-size:var(--t2);line-height:1.5}
-.soft{color:var(--ink-soft)}
-.band-maroon .soft{color:var(--cream)}
-.student{font-family:var(--serif);font-size:var(--t2);color:var(--maroon);border-left:3px solid var(--maroon);padding-left:var(--s2);line-height:1.35}
-.band-maroon .student{color:var(--cream);border-color:var(--cream)}
-.rule{height:2px;width:56px;background:var(--maroon);border-radius:1px}
+.band-maroon .eyebrow,.band-maroon .rule,.band-maroon .soft{color:var(--cream)}
 .band-maroon .rule{background:var(--cream)}
-.cite{font-size:var(--t0);color:var(--ink-soft);line-height:1.5}
-.band-maroon .cite{color:var(--cream)}
-/* one button style */
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 var(--s3);border-radius:8px;border:2px solid var(--gold);background:var(--gold);color:var(--ink);font-family:var(--sans);font-weight:700;font-size:var(--t1);text-decoration:none;cursor:pointer;line-height:1.2;text-align:center}
-.btn:hover{background:var(--gold-deep);border-color:var(--gold-deep);color:var(--white)}
-.btn:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
-.btn-quiet{background:transparent;border-color:var(--maroon);color:var(--maroon)}
-.btn-quiet:hover{background:var(--maroon);border-color:var(--maroon);color:var(--white)}
-.band-maroon .btn-quiet{border-color:var(--cream);color:var(--cream)}
-.band-maroon .btn-quiet:hover{background:var(--cream);color:var(--maroon)}
+.band-maroon .pull{color:var(--cream);border-color:var(--cream)}
+.sec-head{display:flex;flex-direction:column;gap:var(--s2);margin-bottom:var(--s5)}
+@media(min-width:900px){.sec-head{margin-bottom:var(--s6)}}
+.eyebrow{font-size:var(--t-1);letter-spacing:.14em;text-transform:uppercase;color:var(--maroon)}
+.rule{height:2px;width:56px;background:var(--maroon);border-radius:1px}
+.lead{font-size:var(--t1)}
+.soft{color:var(--ink-soft)}
+.small{font-size:var(--t-1)}
+.runin{font-family:var(--head);font-weight:600}
+.pull{text-wrap:balance;font-family:var(--head);font-weight:600;font-size:var(--t1);line-height:var(--lh-head);color:var(--maroon);border-left:3px solid var(--maroon);padding-left:var(--s2);max-width:var(--measure)}
+/* one button */
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 var(--s3);border-radius:6px;border:2px solid var(--gold);background:var(--gold);color:var(--dark);font-family:var(--body);font-weight:700;font-size:var(--t0);line-height:var(--lh-body);text-decoration:none;cursor:pointer;text-align:center}
+.btn:hover{background:var(--gold-deep);border-color:var(--gold-deep);color:var(--dark)}
+.btn:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.linkbtn{background:none;border:0;padding:0;font:inherit;color:var(--maroon);text-decoration:underline;cursor:pointer;min-height:44px;display:inline-flex;align-items:center}
+.band-maroon .linkbtn{color:var(--cream)}
+.textlink{display:inline-flex;align-items:center;min-height:44px}
 /* header */
-.hdr{position:sticky;top:0;z-index:20;background:rgba(243,236,221,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
-.hdr .wrap{display:flex;align-items:center;justify-content:space-between;gap:var(--s2);min-height:64px}
-.brand{font-family:var(--sc);font-size:20px;letter-spacing:.06em;color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;min-height:44px}
+.hdr{position:sticky;top:0;z-index:20;background:rgba(242,235,219,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.hdr .wrap{display:flex;align-items:center;justify-content:space-between;gap:var(--s3);min-height:64px}
+.brand{font-family:var(--head);font-weight:600;font-size:var(--t1);line-height:var(--lh-head);color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;min-height:44px}
 .nav{display:none;gap:var(--s3)}
-.nav a{color:var(--ink);text-decoration:none;font-size:var(--t0);font-weight:600;min-height:44px;display:inline-flex;align-items:center}
+.nav a{color:var(--ink);text-decoration:none;font-size:var(--t0);min-height:44px;display:inline-flex;align-items:center}
 .nav a:hover{color:var(--maroon)}
 @media(min-width:900px){.nav{display:flex}}
-.hdr .btn{min-height:44px;padding:0 var(--s2);font-size:15px;white-space:nowrap}
-@media(max-width:420px){.brand{font-size:17px}.hdr .btn{padding:0 12px}}
 /* hero */
-.hero{padding:var(--s6) 0 var(--s8)}
-.hero .wrap{display:grid;gap:var(--s4);align-items:center}
-@media(min-width:900px){.hero{padding:var(--s10) 0}.hero .wrap{grid-template-columns:7fr 5fr;gap:var(--s8)}}
-.hero-art{display:flex;justify-content:center;order:-1}
-.hero-art img{width:180px;height:180px}
-@media(min-width:900px){.hero-art{order:0}.hero-art img{width:320px;height:320px}}
-.hero-cta{display:flex;flex-direction:column;gap:var(--s1);align-items:flex-start}
+.hero{padding:var(--s6) 0 var(--sec)}
+.hero .wrap{display:grid;gap:var(--s4)}
+.hero-copy{display:flex;flex-direction:column;gap:var(--s3)}
+.hero-art{display:none}
+.hero-mark{width:112px;height:112px}
+.hero-cta{display:flex;flex-direction:column;gap:var(--s2);align-items:flex-start}
 .hero-cta .btn{width:100%}
 @media(min-width:600px){.hero-cta .btn{width:auto}}
-/* two column where it earns it */
-.two{display:grid;gap:var(--s4)}
-@media(min-width:900px){.two{grid-template-columns:5fr 7fr;gap:var(--s8);align-items:start}.two.even{grid-template-columns:1fr 1fr}}
-/* proof lines */
-.proof{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:var(--s2) 0;display:flex;flex-direction:column;gap:var(--s1)}
-/* belts */
-.belts{display:flex;flex-direction:column;gap:var(--s2);margin:0;padding:0;list-style:none}
-.belt{display:grid;grid-template-columns:96px 1fr;gap:var(--s2);align-items:center}
-.belt svg{width:96px;height:34px;display:block}
-.belt b{font-family:var(--serif);font-weight:600;font-size:var(--t2)}
-.belt p{font-size:var(--t1)}
-@media(min-width:900px){.belt{grid-template-columns:120px 1fr;gap:var(--s3)}.belt svg{width:120px;height:42px}}
-/* steps */
+@media(min-width:900px){
+  .hero{padding:var(--s12) 0}
+  .hero .wrap{grid-template-columns:7fr 5fr;gap:var(--s8);align-items:center}
+  .hero-mark{display:none}
+  .hero-art{display:flex;justify-content:center}
+  .hero-art img{width:320px;height:320px}
+}
+/* evidence */
+.evidence{display:grid;gap:var(--s3);list-style:none;padding:0;margin:0}
+@media(min-width:900px){.evidence{grid-template-columns:1fr 1fr;gap:var(--s3) var(--s6)}}
+.evidence li{display:flex;flex-direction:column;gap:var(--s1);padding-top:var(--s2);border-top:1px solid var(--line)}
+.evidence .who{display:flex;gap:var(--s2);align-items:baseline;flex-wrap:wrap}
+.evidence time{font-size:var(--t-1);color:var(--ink-soft);font-variant-numeric:tabular-nums}
+.evidence .ref{font-size:var(--t-1);color:var(--ink-soft);text-decoration:none;margin-left:6px}
+.sources{font-size:var(--t-1);color:var(--ink-soft);padding-left:1.4em;display:flex;flex-direction:column;gap:var(--s1)}
+.sources a{color:var(--maroon)}
+.foot-rule{border:0;border-top:1px solid var(--line);margin:0}
+/* grids of like blocks */
+.belts{display:grid;gap:var(--s3);list-style:none;margin:0;padding:0}
+@media(min-width:900px){.belts{grid-template-columns:1fr 1fr;gap:var(--s3) var(--s6)}}
+.belt{display:grid;grid-template-columns:96px 1fr;gap:var(--s2);align-items:start}
+.belt svg{width:96px;height:34px;display:block;margin-top:4px}
+.belt p{margin:0}
 .steps{list-style:none;margin:0;padding:0;display:grid;gap:var(--s3);counter-reset:step}
-@media(min-width:900px){.steps{grid-template-columns:repeat(4,1fr);gap:var(--s4)}}
-.steps li{display:grid;grid-template-columns:44px 1fr;gap:var(--s2);align-items:start}
-@media(min-width:900px){.steps li{grid-template-columns:1fr;gap:var(--s1)}}
-.steps li::before{counter-increment:step;content:"0" counter(step);font-family:var(--serif);font-size:var(--t4);color:var(--maroon);line-height:1;height:40px;display:block}
-.steps b{font-family:var(--serif);font-weight:600;font-size:var(--t2);display:block;margin-bottom:4px}
-/* cases */
-.cases{display:grid;gap:var(--s4)}
-@media(min-width:900px){.cases{grid-template-columns:repeat(3,1fr);gap:var(--s5)}}
-.case{display:flex;flex-direction:column;gap:var(--s2);padding-top:var(--s2);border-top:2px solid var(--maroon)}
-.case .k{font-family:var(--serif);font-size:var(--t4);color:var(--maroon);line-height:1}
-.case .out{color:var(--maroon);font-weight:700}
-/* plans */
-.plans{display:grid;gap:var(--s4)}
-@media(min-width:900px){.plans{grid-template-columns:repeat(3,1fr);gap:var(--s5)}}
-.plan{display:flex;flex-direction:column;gap:var(--s1);padding-top:var(--s2);border-top:2px solid var(--maroon)}
+@media(min-width:900px){.steps{grid-template-columns:repeat(4,1fr);gap:var(--s6)}}
+.steps li{display:grid;grid-template-columns:40px 1fr;gap:var(--s2);align-items:start}
+@media(min-width:900px){.steps li{grid-template-columns:1fr;gap:var(--s2)}}
+.steps li::before{counter-increment:step;content:"0" counter(step);font-family:var(--head);font-weight:600;font-size:var(--t1);line-height:var(--lh-head);color:var(--maroon)}
+.points{display:grid;gap:var(--s3)}
+@media(min-width:900px){.points{grid-template-columns:1fr 1fr;gap:var(--s4) var(--s6)}}
+.cases,.plans{display:grid;gap:var(--s4)}
+@media(min-width:900px){.cases,.plans{grid-template-columns:repeat(3,1fr);gap:var(--s6)}}
+.case,.plan{display:flex;flex-direction:column;gap:var(--s2);padding-top:var(--s2);border-top:2px solid var(--maroon)}
+.case .k{font-family:var(--head);font-weight:600;font-size:var(--t2);line-height:var(--lh-head);color:var(--maroon)}
+.case .out{color:var(--maroon)}
+.plans-note{margin-top:var(--s4)}
+/* closing statement */
+.closing{margin:var(--s6) 0 0;padding:var(--s5) 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:var(--s2)}
+@media(min-width:900px){.closing{margin-top:var(--s8)}}
+.closing p{font-family:var(--head);font-weight:600;font-size:var(--t1);line-height:var(--lh-head);max-width:var(--measure)}
+@media(min-width:900px){.closing p{font-size:var(--t2)}}
+.closing cite{font-style:normal;font-size:var(--t-1);color:var(--ink-soft)}
 /* faq */
-.faq{border-top:1px solid var(--line)}
+.faq{border-top:1px solid var(--line);max-width:var(--measure)}
 .faq details{border-bottom:1px solid var(--line)}
-.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:var(--s2);min-height:56px;padding:var(--s2) 0;font-family:var(--serif);font-size:var(--t2);font-weight:600}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:var(--s2);min-height:56px;padding:var(--s2) 0;font-family:var(--head);font-weight:600;font-size:var(--t1);line-height:var(--lh-head)}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";font-family:var(--sans);font-size:var(--t3);color:var(--maroon);flex:0 0 auto}
+.faq summary::after{content:"+";font-family:var(--body);font-weight:400;font-size:var(--t1);color:var(--maroon);flex:0 0 auto}
 .faq details[open] summary::after{content:"\2212"}
-.faq .a{padding:0 0 var(--s3);display:flex;flex-direction:column;gap:var(--s2);max-width:var(--col)}
+.faq .a{padding:0 0 var(--s3);display:flex;flex-direction:column;gap:var(--s2)}
 /* form */
-.form{display:flex;flex-direction:column;gap:var(--s2)}
+.form{display:flex;flex-direction:column;gap:var(--s2);max-width:var(--measure)}
 .field{display:flex;flex-direction:column;gap:6px}
-.field label{font-size:var(--t0);font-weight:700}
-.cite a,.soft a{display:inline-block;padding:10px 0;margin:-10px 0}
-.field .hint{font-weight:400;color:var(--ink-soft)}
-.field input,.field select,.field textarea{min-height:48px;padding:0 14px;border:1px solid var(--line);border-radius:8px;font-size:17px;font-family:inherit;background:var(--white);color:var(--ink);width:100%}
+.field label{font-size:var(--t-1)}
+.field .hint{color:var(--cream)}
+.field input,.field select,.field textarea{min-height:48px;padding:0 14px;border:1px solid var(--line);border-radius:6px;font-size:var(--t0);font-family:inherit;line-height:var(--lh-body);background:var(--white);color:var(--ink);width:100%}
 .field textarea{min-height:96px;padding:12px 14px;resize:vertical}
-.field.err input,.field.err select,.field.err textarea{border-color:var(--accent)}
-.errmsg{font-size:var(--t0);color:var(--accent);display:none}
+.field.err input,.field.err select,.field.err textarea{border-color:var(--gold)}
+.errmsg{font-size:var(--t-1);display:none}
 .field.err .errmsg{display:block}
 .row2{display:grid;grid-template-columns:1fr;gap:var(--s2)}
 @media(min-width:600px){.row2{grid-template-columns:1fr 1fr}}
 .screen{display:flex;flex-direction:column;gap:var(--s2)}
-.stepbar{display:flex;gap:var(--s1);align-items:center;font-size:var(--t0);color:var(--ink-soft)}
-.band-maroon .stepbar{color:var(--cream)}
-.band-maroon .stepbar i{background:rgba(243,236,221,.35)}
-.band-maroon .stepbar i.on{background:var(--gold)}
-.stepbar i{display:block;height:4px;flex:1;background:var(--line);border-radius:2px}
+.stepbar{display:flex;gap:var(--s1);align-items:center;font-size:var(--t-1)}
+.stepbar i{display:block;height:4px;flex:1;background:rgba(242,235,219,.35);border-radius:2px}
 .stepbar i.on{background:var(--gold)}
 .hidden{display:none}
 .sr{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
-.actions{display:flex;justify-content:space-between;gap:var(--s2);flex-wrap:wrap}
+.actions{display:flex;justify-content:space-between;align-items:center;gap:var(--s2);flex-wrap:wrap}
+.diag-intro{margin-bottom:var(--s5)}
 /* kit */
-.tm .formkit-form{background:transparent!important;border:0!important;box-shadow:none!important;border-radius:0!important;max-width:none!important;font-family:var(--sans)!important}
-.tm .formkit-form .formkit-fields{gap:var(--s1)}
-.tm .formkit-form .formkit-input{min-height:52px!important;border:1px solid var(--line)!important;border-radius:8px!important;font-size:17px!important;font-family:var(--sans)!important;color:var(--ink)!important;background:var(--white)!important}
-.tm .formkit-form .formkit-submit{min-height:52px!important;border-radius:8px!important;background:var(--gold)!important;color:var(--ink)!important;font-weight:700!important;font-size:17px!important;font-family:var(--sans)!important;border:2px solid var(--gold)!important}
-.tm .formkit-form .formkit-submit:hover{background:var(--gold-deep)!important;color:var(--white)!important}
+.tm .formkit-form{background:transparent!important;border:0!important;box-shadow:none!important;border-radius:0!important;max-width:none!important;font-family:var(--body)!important}
+.tm .formkit-form .formkit-fields{gap:var(--s2)}
+.tm .formkit-form .formkit-input{min-height:52px!important;border:1px solid var(--line)!important;border-radius:6px!important;font-size:var(--t0)!important;font-family:var(--body)!important;color:var(--ink)!important;background:var(--white)!important}
+.tm .formkit-form .formkit-submit{min-height:52px!important;border-radius:6px!important;background:var(--gold)!important;color:var(--dark)!important;font-weight:700!important;font-size:var(--t0)!important;font-family:var(--body)!important;border:2px solid var(--gold)!important}
+.tm .formkit-form .formkit-submit:hover{background:var(--gold-deep)!important;border-color:var(--gold-deep)!important;color:var(--dark)!important}
 .tm .formkit-powered-by-convertkit-container,.tm .formkit-powered-by-convertkit,.tm .formkit-guarantee,.tm .formkit-header,.tm .formkit-subheader,.tm .formkit-image{display:none!important} .tm .formkit-form .formkit-container,.tm .formkit-form .formkit-column{padding:0!important}
+.tm{max-width:var(--measure)}
 /* footer */
-footer{background:var(--ink);color:var(--cream);padding:var(--s6) 0}
+footer{background:var(--dark);color:var(--cream);padding:var(--sec) 0}
 footer .wrap{display:flex;flex-direction:column;gap:var(--s2)}
+footer .brand{color:var(--cream)}
 footer a{color:var(--cream);text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
 footer .links{display:flex;flex-wrap:wrap;gap:0 var(--s3)}
-footer .fine{font-size:var(--t0);color:#C9BFAE;line-height:1.5}
-/* sticky mobile button */
-.sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:30;padding:var(--s1) var(--s2) calc(var(--s1) + env(safe-area-inset-bottom));background:rgba(243,236,221,.97);border-top:1px solid var(--line);transform:translateY(0);transition:transform .25s}
-.sticky-cta .btn{width:100%;min-height:52px}
-.sticky-cta.away{transform:translateY(110%)}
+footer .fine{font-size:var(--t-1);color:var(--footer-soft);max-width:var(--measure)}
+/* sticky mobile button: shown only when no other Diagnostic button is on screen */
+.sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:30;padding:var(--s1) var(--s2) calc(var(--s1) + env(safe-area-inset-bottom));background:rgba(242,235,219,.97);border-top:1px solid var(--line);transform:translateY(110%);transition:transform .25s}
+.sticky-cta .btn{width:100%}
+.sticky-cta.show{transform:translateY(0)}
 @media(min-width:900px){.sticky-cta{display:none}}
-body{padding-bottom:84px}
-@media(min-width:900px){body{padding-bottom:0}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.sticky-cta{transition:none}}
+@media(prefers-reduced-motion:reduce){.sticky-cta{transition:none}}
 </style>
 </head>
 <body>
@@ -289,7 +301,6 @@ body{padding-bottom:84px}
     <nav class="nav" aria-label="Sections">
       <a href="#why">Why the SAT</a><a href="#dojo">The Dojo</a><a href="#how">How it works</a><a href="#method">The method</a><a href="#plans">Plans</a><a href="#faq">Questions</a>
     </nav>
-    <a class="btn js-tb" href="#diagnostic">Free Dojo Diagnostic</a>
   </div>
 </header>
 
@@ -298,110 +309,134 @@ body{padding-bottom:84px}
 <!-- 1. HERO -->
 <section class="hero" aria-labelledby="h-hero">
   <div class="wrap">
-    <div class="stack-lg">
+    <div class="hero-copy">
+      <img class="hero-mark" src="/warrior.png" alt="The Score Samurai Warrior" width="112" height="112" fetchpriority="high">
       <h1 id="h-hero">The SAT is a discipline. Train it like one.</h1>
-      <p class="lead">One-on-one with Sensei Jay, The SAT Sensei. A Roadmap built from your own misses, every session taught by him, and a belt for every set of moves you close.</p>
+      <p class="lead measure">One-on-one with Sensei Jay, The SAT Sensei. A Roadmap built from your own misses, every session taught by him, and a belt for every set of moves you close.</p>
       <div class="hero-cta">
-        <a class="btn js-tb" href="#diagnostic">Get Your Free Dojo Diagnostic</a>
+        <a class="btn js-tb" id="heroCta" href="#diagnostic">Get Your Free Dojo Diagnostic</a>
         <p class="soft">Nationwide over Zoom. No two Roadmaps are the same.</p>
       </div>
     </div>
-    <div class="hero-art"><img src="/warrior.png" alt="The Score Samurai Warrior" width="320" height="320" fetchpriority="high"></div>
+    <div class="hero-art"><img src="/warrior.png" alt="" width="320" height="320" fetchpriority="high"></div>
   </div>
 </section>
 
 <!-- 2. WHY THE SAT MATTERS MORE NOW -->
 <section id="why" class="band" aria-labelledby="h-why">
-  <div class="wrap two">
-    <div class="stack sticky">
+  <div class="wrap">
+    <div class="sec-head">
       <div class="eyebrow">The un-school test</div>
       <h2 id="h-why">Why the SAT matters more now.</h2>
       <div class="rule"></div>
     </div>
-    <div class="stack-lg col">
-      <p class="lead">Colleges including MIT, Dartmouth, Harvard and Stanford have brought test requirements back, saying scores help predict how students do there.</p>
-      <div class="proof">
-        <p class="cite">MIT, March 28 2022, Dean Stu Schmill. Dartmouth, February 5 2024, President Sian Leah Beilock, citing a study by Dartmouth faculty. Harvard, April 11 2024, Dean Hopi Hoekstra. Stanford, June 7 2024, its faculty admissions committee.</p>
-      </div>
-      <p>The way Sensei Jay reads it, that is only half the story: AI now sits inside schoolwork, grades have drifted upward, and a grade means something different in every school. The SAT is the one measure every applicant takes under the same conditions.</p>
-      <div class="proof">
-        <p class="cite">Pew Research Center, February 24 2026: 54 percent of US teens have used AI chatbots for schoolwork (survey September 25 to October 9 2025). ACT, May 16 2022: the average high school GPA rose from 3.17 in 2010 to 3.36 in 2021.</p>
-      </div>
-      <p class="student">Your transcript says what your school says. The score says what you did on the day.</p>
+    <div class="stack-lg">
+      <p class="lead measure">Colleges including MIT, Dartmouth, Harvard and Stanford have brought test requirements back, saying scores help predict how students do there.</p>
+      <ol class="evidence" aria-label="What the colleges announced">
+        <li><div class="who"><span class="runin">MIT</span><time datetime="2022-03-28">March 28, 2022</time></div><p>Reinstated its SAT or ACT requirement, announced by Dean Stu Schmill.<a class="ref" href="#src-1" aria-label="Source 1">1</a></p></li>
+        <li><div class="who"><span class="runin">Dartmouth</span><time datetime="2024-02-05">February 5, 2024</time></div><p>Reinstated the requirement, announced by President Sian Leah Beilock, citing a study by Dartmouth faculty.<a class="ref" href="#src-2" aria-label="Source 2">2</a></p></li>
+        <li><div class="who"><span class="runin">Harvard</span><time datetime="2024-04-11">April 11, 2024</time></div><p>Reinstated required testing, announced by Dean Hopi Hoekstra.<a class="ref" href="#src-3" aria-label="Source 3">3</a></p></li>
+        <li><div class="who"><span class="runin">Cornell</span><time datetime="2024-04-22">April 22, 2024</time></div><p>Reinstated required testing from fall 2026 entry, after a multiyear study by its task force.<a class="ref" href="#src-4" aria-label="Source 4">4</a></p></li>
+        <li><div class="who"><span class="runin">Stanford</span><time datetime="2024-06-07">June 7, 2024</time></div><p>Reinstated required testing on the advice of its faculty admissions committee.<a class="ref" href="#src-5" aria-label="Source 5">5</a></p></li>
+      </ol>
+      <p class="measure">The way Sensei Jay reads it, that is only half the story: AI now sits inside schoolwork, grades have drifted upward, and a grade means something different in every school. The SAT is the one measure every applicant takes under the same conditions.</p>
+      <ol class="evidence" aria-label="The numbers behind that view" start="6">
+        <li><div class="who"><span class="runin">Pew Research Center</span><time datetime="2026-02-24">February 24, 2026</time></div><p>54 percent of US teens have used AI chatbots for schoolwork, in a survey taken September 25 to October 9, 2025.<a class="ref" href="#src-6" aria-label="Source 6">6</a></p></li>
+        <li><div class="who"><span class="runin">ACT</span><time datetime="2022-05-16">May 16, 2022</time></div><p>The average high school GPA rose from 3.17 in 2010 to 3.36 in 2021.<a class="ref" href="#src-7" aria-label="Source 7">7</a></p></li>
+      </ol>
+      <p class="pull">Your transcript says what your school says. The score says what you did on the day.</p>
+      <hr class="foot-rule">
+      <ol class="sources" aria-label="Sources">
+        <li id="src-1"><a href="https://mitadmissions.org/blogs/entry/we-are-reinstating-our-sat-act-requirement-for-future-admissions-cycles/">MIT Admissions, March 28, 2022</a></li>
+        <li id="src-2"><a href="https://president.dartmouth.edu/news/2024/02/reactivating-satact-requirement-dartmouth-undergraduate-admissions">Dartmouth, Office of the President, February 5, 2024</a></li>
+        <li id="src-3"><a href="https://news.harvard.edu/gazette/story/2024/04/harvard-announces-return-to-required-testing">Harvard Gazette, April 11, 2024</a></li>
+        <li id="src-4"><a href="https://news.cornell.edu/stories/2024/04/cornell-reinstate-standardized-test-requirements-fall-2026">Cornell Chronicle, April 22, 2024</a></li>
+        <li id="src-5"><a href="https://news.stanford.edu/stories/2024/06/stanford-to-resume-standardized-test-requirement">Stanford Report, June 7, 2024</a></li>
+        <li id="src-6"><a href="https://www.pewresearch.org/internet/2026/02/24/how-teens-use-and-view-ai/">Pew Research Center, February 24, 2026</a></li>
+        <li id="src-7"><a href="https://industryinsights.act.org/2022/05/grade-inflation-past-decade">ACT, May 16, 2022</a></li>
+      </ol>
     </div>
   </div>
 </section>
 
 <!-- 3. THE DOJO -->
 <section id="dojo" aria-labelledby="h-dojo">
-  <div class="wrap two">
-    <div class="stack sticky">
+  <div class="wrap">
+    <div class="sec-head">
       <div class="eyebrow">The Dojo</div>
       <h2 id="h-dojo">A Sensei, a Roadmap, and a belt for every set of moves you close.</h2>
       <div class="rule"></div>
-      <img src="/warrior.png" alt="The Score Samurai Warrior" width="160" height="160" loading="lazy" style="width:160px;height:160px;margin-top:8px">
     </div>
-    <div class="stack-lg col">
-      <p class="lead">Sensei Jay saw the SAT for what it is. It is a knowledge test, but also a game of moves. The same patterns come back every year, the way a martial art repeats its forms.</p>
-      <p class="lead">So he built Score Samurai to turn students into SAT Samurai Warriors. He became the Sensei and opened the Dojo. He hands out belts as each student closes the moves that used to cost them points. A belt is never taken away.</p>
+    <div class="stack-lg">
+      <p class="lead measure">Sensei Jay saw the SAT for what it is. It is a knowledge test, but also a game of moves. The same patterns come back every year, the way a martial art repeats its forms.</p>
+      <p class="measure">So he built Score Samurai to turn students into SAT Samurai Warriors. He became the Sensei and opened the Dojo. He hands out belts as each student closes the moves that used to cost them points. A belt is never taken away.</p>
       <ul class="belts" aria-label="The belts">
-        <li class="belt"><svg viewBox="0 0 120 42" aria-hidden="true"><rect x="2" y="12" width="116" height="18" rx="3" fill="#F7F2E6" stroke="#B9AE96" stroke-width="2"/><path d="M52 12 L68 30 M68 12 L52 30" stroke="#B9AE96" stroke-width="3" stroke-linecap="round"/><rect x="54" y="8" width="12" height="26" rx="2" fill="#F7F2E6" stroke="#B9AE96" stroke-width="2"/></svg><div><b>White</b><p>Held from the Diagnostic. Every student starts here, and it is never taken back.</p></div></li>
-        <li class="belt"><svg viewBox="0 0 120 42" aria-hidden="true"><rect x="2" y="12" width="116" height="18" rx="3" fill="#2E6B3A"/><path d="M52 12 L68 30 M68 12 L52 30" stroke="#1F4A28" stroke-width="3" stroke-linecap="round"/><rect x="54" y="8" width="12" height="26" rx="2" fill="#2E6B3A" stroke="#1F4A28" stroke-width="2"/></svg><div><b>Green</b><p>Closes when the first set of moves on the Roadmap stops costing points across two practice tests.</p></div></li>
-        <li class="belt"><svg viewBox="0 0 120 42" aria-hidden="true"><rect x="2" y="12" width="116" height="18" rx="3" fill="#25457A"/><path d="M52 12 L68 30 M68 12 L52 30" stroke="#172E55" stroke-width="3" stroke-linecap="round"/><rect x="54" y="8" width="12" height="26" rx="2" fill="#25457A" stroke="#172E55" stroke-width="2"/></svg><div><b>Blue</b><p>Closes when the timed moves are closed and Desmos is a habit.</p></div></li>
-        <li class="belt"><svg viewBox="0 0 120 42" aria-hidden="true"><rect x="2" y="12" width="116" height="18" rx="3" fill="#7A4A2B"/><path d="M52 12 L68 30 M68 12 L52 30" stroke="#54321C" stroke-width="3" stroke-linecap="round"/><rect x="54" y="8" width="12" height="26" rx="2" fill="#7A4A2B" stroke="#54321C" stroke-width="2"/></svg><div><b>Brown</b><p>Closes when the hard-module moves in one section stop costing points.</p></div></li>
-        <li class="belt"><svg viewBox="0 0 120 42" aria-hidden="true"><rect x="2" y="12" width="116" height="18" rx="3" fill="#141110"/><path d="M52 12 L68 30 M68 12 L52 30" stroke="#5A544E" stroke-width="3" stroke-linecap="round"/><rect x="54" y="8" width="12" height="26" rx="2" fill="#141110" stroke="#5A544E" stroke-width="2"/></svg><div><b>Black</b><p>Closes when the hard-module moves in both sections stop costing points.</p></div></li>
+        <li class="belt"><svg viewBox="0 0 120 42" aria-hidden="true"><rect x="2" y="12" width="116" height="18" rx="3" fill="#F7F2E6" stroke="#B9AE96" stroke-width="2"/><path d="M52 12 L68 30 M68 12 L52 30" stroke="#B9AE96" stroke-width="3" stroke-linecap="round"/><rect x="54" y="8" width="12" height="26" rx="2" fill="#F7F2E6" stroke="#B9AE96" stroke-width="2"/></svg><div><h3>White</h3><p>Held from the Diagnostic. Every student starts here, and it is never taken back.</p></div></li>
+        <li class="belt"><svg viewBox="0 0 120 42" aria-hidden="true"><rect x="2" y="12" width="116" height="18" rx="3" fill="#2E6B3A"/><path d="M52 12 L68 30 M68 12 L52 30" stroke="#1F4A28" stroke-width="3" stroke-linecap="round"/><rect x="54" y="8" width="12" height="26" rx="2" fill="#2E6B3A" stroke="#1F4A28" stroke-width="2"/></svg><div><h3>Green</h3><p>Closes when the first set of moves on the Roadmap stops costing points across two practice tests.</p></div></li>
+        <li class="belt"><svg viewBox="0 0 120 42" aria-hidden="true"><rect x="2" y="12" width="116" height="18" rx="3" fill="#25457A"/><path d="M52 12 L68 30 M68 12 L52 30" stroke="#172E55" stroke-width="3" stroke-linecap="round"/><rect x="54" y="8" width="12" height="26" rx="2" fill="#25457A" stroke="#172E55" stroke-width="2"/></svg><div><h3>Blue</h3><p>Closes when the timed moves are closed and Desmos is a habit.</p></div></li>
+        <li class="belt"><svg viewBox="0 0 120 42" aria-hidden="true"><rect x="2" y="12" width="116" height="18" rx="3" fill="#7A4A2B"/><path d="M52 12 L68 30 M68 12 L52 30" stroke="#54321C" stroke-width="3" stroke-linecap="round"/><rect x="54" y="8" width="12" height="26" rx="2" fill="#7A4A2B" stroke="#54321C" stroke-width="2"/></svg><div><h3>Brown</h3><p>Closes when the hard-module moves in one section stop costing points.</p></div></li>
+        <li class="belt"><svg viewBox="0 0 120 42" aria-hidden="true"><rect x="2" y="12" width="116" height="18" rx="3" fill="#141110"/><path d="M52 12 L68 30 M68 12 L52 30" stroke="#5A544E" stroke-width="3" stroke-linecap="round"/><rect x="54" y="8" width="12" height="26" rx="2" fill="#141110" stroke="#5A544E" stroke-width="2"/></svg><div><h3>Black</h3><p>Closes when the hard-module moves in both sections stop costing points.</p></div></li>
       </ul>
-      <p><strong>A belt is never taken away.</strong> A bad practice test cannot cost one.</p>
-      <p class="student">Nobody hands you Green. You take it.</p>
+      <p class="measure">A belt is never taken away. A bad practice test cannot cost one.</p>
+      <p class="pull">Nobody hands you Green. You take it.</p>
     </div>
   </div>
 </section>
 
 <!-- 4. HOW IT WORKS -->
 <section id="how" class="band" aria-labelledby="h-how">
-  <div class="wrap stack-lg">
-    <div class="stack">
+  <div class="wrap">
+    <div class="sec-head">
       <div class="eyebrow">How it works</div>
       <h2 id="h-how">Four steps. The first one is free.</h2>
       <div class="rule"></div>
     </div>
-    <ol class="steps">
-      <li><div><b>The Diagnostic</b><p>Send a practice score and the missed questions; the written diagnostic comes back within one business day.</p></div></li>
-      <li><div><b>The Roadmap</b><p>The moves to close, in the order they cost points, built for this student alone.</p></div></li>
-      <li><div><b>The sessions</b><p>50 minutes, one-on-one over Zoom, every one taught by Sensei Jay himself.</p></div></li>
-      <li><div><b>The update</b><p>A written note to the parent every week, with the belt line.</p></div></li>
-    </ol>
-    <p class="student">You bring the misses. Sensei brings the map.</p>
+    <div class="stack-lg">
+      <ol class="steps">
+        <li><p><span class="runin">The Diagnostic:</span> send a practice score and the missed questions; the written diagnostic comes back within one business day.</p></li>
+        <li><p><span class="runin">The Roadmap:</span> the moves to close, in the order they cost points, built for this student alone.</p></li>
+        <li><p><span class="runin">The sessions:</span> 50 minutes, one-on-one over Zoom, every one taught by Sensei Jay himself.</p></li>
+        <li><p><span class="runin">The update:</span> a written note to the parent every week on what the student closed and what comes next.</p></li>
+      </ol>
+      <p class="pull">You bring the misses. Sensei brings the map.</p>
+      <div><a class="btn js-tb" id="howCta" href="#diagnostic">Get Your Free Dojo Diagnostic</a></div>
+    </div>
   </div>
 </section>
 
 <!-- 5. THE METHOD -->
 <section id="method" aria-labelledby="h-method">
-  <div class="wrap two">
-    <div class="stack sticky">
+  <div class="wrap">
+    <div class="sec-head">
       <div class="eyebrow">The method</div>
       <h2 id="h-method">The Digital SAT is a pattern recognition game, not purely an intelligence test.</h2>
       <div class="rule"></div>
-      <p class="cite">Built from 1,168 real SAT questions, catalogued one at a time.</p>
+      <p class="soft measure">Built from 1,168 real SAT questions, catalogued one at a time.</p>
     </div>
-    <div class="stack-lg col">
-      <p>The Dojo Roadmap is the plan. It is built from the student's own misses, not from a syllabus. It lists the moves to close in the order they cost points at that score, and it is rewritten as belts are earned. No two Roadmaps are the same.</p>
-      <p><strong>The same moves, every test.</strong> The wrong answers are built from the same handful of habits, year after year. A procedure stopped one step early. A first meaning trusted too fast. A true sentence that answers a question nobody asked. Once a student can name the move, it stops working.</p>
-      <p><strong>The Desmos work.</strong> Desmos is built into the Math section. Half of the timing problem is knowing which questions to send to it. The rest is knowing which to work by hand. We decide that question by question, until the choice is a reflex.</p>
-      <p><strong>Weekly tracking.</strong> Speed and accuracy are tracked every week, by section, and reported to the parent in the written note. Nobody has to ask how it is going.</p>
-      <p><strong>Why students get stuck.</strong> No two students are stuck for the same reason. One loses points to the clock. Another picks the answer that is true and still wrong. A third knows the math cold and freezes when a question looks unfamiliar.</p>
-      <p class="student">You already know the material. You are losing points to habits that have names.</p>
-      <p class="lead">The way Sensei Jay sees it, AI can answer the question. It cannot see why this student keeps missing it. That is the difference between an app and a Sensei.</p>
+    <div class="stack-lg">
+      <p class="lead measure">The Dojo Roadmap is the plan. It is built from the student's own misses, not from a syllabus. It lists the moves to close in the order they cost points at that score, and it is rewritten as belts are earned. No two Roadmaps are the same.</p>
+      <div class="points">
+        <p><span class="runin">The same moves, every test.</span> The wrong answers are built from the same handful of habits, year after year. A procedure stopped one step early. A first meaning trusted too fast. A true sentence that answers a question nobody asked. Once a student can name the move, it stops working.</p>
+        <p><span class="runin">The Desmos work.</span> Desmos is built into the Math section. Half of the timing problem is knowing which questions to send to it. The rest is knowing which to work by hand. We decide that question by question, until the choice is a reflex.</p>
+        <p><span class="runin">Weekly tracking.</span> Speed and accuracy are tracked every week, by section, and reported to the parent in the written note. Nobody has to ask how it is going.</p>
+        <p><span class="runin">Why students get stuck.</span> No two students are stuck for the same reason. One loses points to the clock. Another picks the answer that is true and still wrong. A third knows the math cold and freezes when a question looks unfamiliar.</p>
+      </div>
+      <p class="pull">You already know the material. You are losing points to habits that have names.</p>
     </div>
+    <blockquote class="closing">
+      <p>AI can answer the question. It cannot see why this student keeps missing it. That is the difference between an app and a Sensei.</p>
+      <cite>Sensei Jay, The SAT Sensei, founder of Score Samurai</cite>
+    </blockquote>
   </div>
 </section>
 
 <!-- 6. WHERE THE POINTS WERE GOING -->
 <section id="cases" class="band" aria-labelledby="h-cases">
-  <div class="wrap stack-lg">
-    <div class="stack">
+  <div class="wrap">
+    <div class="sec-head">
       <div class="eyebrow">Where the points were going</div>
       <h2 id="h-cases">Three students. Three habits. Same fix.</h2>
+      <div class="rule"></div>
       <p class="soft">Details changed.</p>
     </div>
     <div class="cases">
@@ -431,8 +466,8 @@ body{padding-bottom:84px}
 
 <!-- 7. PLANS -->
 <section id="plans" aria-labelledby="h-plans">
-  <div class="wrap stack-lg">
-    <div class="stack">
+  <div class="wrap">
+    <div class="sec-head">
       <div class="eyebrow">Plans</div>
       <h2 id="h-plans">Three ways in.</h2>
       <div class="rule"></div>
@@ -442,19 +477,19 @@ body{padding-bottom:84px}
       <div class="plan"><h3>Build</h3><p>The one most families take. There is a real gap and a term to work in, and the Roadmap is rebuilt as the score moves.</p></div>
       <div class="plan"><h3>Command</h3><p>For a large gap, an early start, or a student who wants the whole map. The work goes wider, and the habits hold for the next test too.</p></div>
     </div>
-    <p class="lead col">Plans are priced after the Diagnostic. The length depends on the gap, and the Diagnostic is free.</p>
-    <p class="student">Pick the door. The Roadmap is the same kind of thing behind all three.</p>
+    <p class="plans-note">Plans are priced after the Diagnostic. The length depends on the gap, and the Diagnostic is free.</p>
+    <p class="pull" style="margin-top:var(--s4)">Pick the door. The Roadmap is the same kind of thing behind all three.</p>
   </div>
 </section>
 
 <!-- 8. FREQUENTLY ASKED -->
 <section id="faq" class="band" aria-labelledby="h-faq">
-  <div class="wrap two">
-    <div class="stack sticky">
+  <div class="wrap">
+    <div class="sec-head">
       <div class="eyebrow">Questions</div>
       <h2 id="h-faq">Frequently asked.</h2>
       <div class="rule"></div>
-      <p class="soft">Anything not here, ask on the Diagnostic form. We answer every one.</p>
+      <p class="soft measure">Anything not here, ask on the Diagnostic form. We answer every one.</p>
     </div>
     <div class="faq">
       <details><summary>How long does SAT prep take?</summary><div class="a"><p>It depends on the size of the gap and the runway before the test date. That is what the Diagnostic measures. Starting late turns the work into a sprint. Starting far too early turns it into drift.</p><p>The honest starting point is where the Diagnostic says the student is, not where the calendar says they should be.</p></div></details>
@@ -471,17 +506,18 @@ body{padding-bottom:84px}
 
 <!-- 9. THE DIAGNOSTIC -->
 <section id="diagnostic" class="band-maroon" aria-labelledby="h-diag">
-  <div class="wrap two">
-    <div class="stack sticky">
+  <div class="wrap">
+    <div class="sec-head">
       <div class="eyebrow">The Dojo Diagnostic</div>
       <h2 id="h-diag">Start with the free Diagnostic.</h2>
       <div class="rule"></div>
-      <p>One form. The written Diagnostic comes back within one business day, to the student and to the parent. It says where the score stands, where it needs to be, and what we would do first.</p>
-      <p class="soft">If you would rather talk it through first, there is a free fifteen-minute call on Zoom. <a href="https://calendly.com/senseijay-scoresamurai/dojo-diagnostic">Book it here.</a> The form comes first either way.</p>
-      <p class="student">One form. One business day. Then you know.</p>
     </div>
-    <div class="col">
-      <form id="dx" novalidate class="form">
+    <div class="stack-lg diag-intro">
+      <p class="lead measure">One form. The written Diagnostic comes back within one business day, to the student and to the parent. It says where the score stands, where it needs to be, and what we would do first.</p>
+      <p class="measure">If you would rather talk it through first, there is a free fifteen-minute call on Zoom. <a href="https://calendly.com/senseijay-scoresamurai/dojo-diagnostic">Book it here.</a> The form comes first either way.</p>
+      <p class="pull">One form. One business day. Then you know.</p>
+    </div>
+    <form id="dx" novalidate class="form">
         <div class="stepbar" aria-hidden="true"><span id="stepLabel">Step 1 of 3</span><i class="on"></i><i></i><i></i></div>
         <div class="screen" data-screen="1">
           <h3>About you</h3>
@@ -508,7 +544,7 @@ body{padding-bottom:84px}
           <div class="field"><label for="colleges">Top target colleges <span class="hint">(up to 3, optional)</span></label><textarea id="colleges" name="target_colleges"></textarea></div>
           <div class="field"><label for="frustration">Biggest frustration with SAT prep</label><textarea id="frustration" name="frustration" required></textarea><span class="errmsg">One line is enough.</span></div>
           <div class="field"><label for="heard">How did you hear about us?</label><select id="heard" name="heard" required><option value="">Choose</option><option>TikTok</option><option>Instagram</option><option>Facebook</option><option>Pinterest</option><option>Reddit</option><option>Quora or College Confidential</option><option>Google search</option><option>A counselor or consultant</option><option>A friend or family member</option><option>The Dojo Discord</option><option>Other</option></select><span class="errmsg">Needed.</span></div>
-          <div class="actions"><button type="button" class="btn btn-quiet" data-back>Back</button><button type="button" class="btn" data-next>Next</button></div>
+          <div class="actions"><button type="button" class="linkbtn" data-back>Back</button><button type="button" class="btn" data-next>Next</button></div>
         </div>
         <div class="screen hidden" data-screen="3">
           <h3>A parent to copy</h3>
@@ -522,51 +558,50 @@ body{padding-bottom:84px}
             <div class="field"><label for="pphone">Parent phone</label><input id="pphone" name="parent_phone" type="tel" autocomplete="tel" required><span class="errmsg">Needed.</span></div>
           </div>
           <input type="text" name="website" tabindex="-1" autocomplete="off" class="sr" aria-hidden="true">
-          <div class="actions"><button type="button" class="btn btn-quiet" data-back>Back</button><button type="submit" class="btn" id="submit">Send me my Diagnostic</button></div>
+          <div class="actions"><button type="button" class="linkbtn" data-back>Back</button><button type="submit" class="btn" id="submit">Send me my Diagnostic</button></div>
           <p class="soft" id="status" aria-live="polite"></p>
           <p class="cite">Your information is used to prepare the Diagnostic and for nothing else. <a href="/privacy/">Privacy</a></p>
         </div>
       </form>
-      <div id="done" class="screen hidden">
+    <div id="done" class="screen hidden">
         <div class="eyebrow">Sent</div>
         <h3>The Diagnostic is on its way.</h3>
         <p>Sensei Jay reads every one personally and writes back within one business day. If you have a recent Bluebook practice test, reply to the confirmation email with a screenshot of the results page.</p>
         <p>If you would rather talk it through, there is a free fifteen-minute call on Zoom. <a href="https://calendly.com/senseijay-scoresamurai/dojo-diagnostic">Book it here.</a></p>
       </div>
-    </div>
   </div>
 </section>
 
 <!-- 10. THE TRAP MAP -->
 <section id="trapmap" aria-labelledby="h-tm">
-  <div class="wrap two">
-    <div class="stack sticky">
+  <div class="wrap">
+    <div class="sec-head">
       <div class="eyebrow">Free</div>
       <h2 id="h-tm">The Trap Map.</h2>
       <div class="rule"></div>
     </div>
-    <div class="stack-lg col">
-      <p class="lead">Five traps that cost 100 points, a ten-question diagnostic and a page for parents on reading a score report. Free, in your inbox within a minute.</p>
+    <div class="stack-lg">
+      <p class="lead measure">Five traps that cost 100 points, a ten-question diagnostic and a page for parents on reading a score report. Free, in your inbox within a minute.</p>
       <div class="tm formwrap"></div>
       <script>
       (function(){function go(){var w=document.querySelector("#trapmap .formwrap");if(!w||w.querySelector("script"))return;var s=document.createElement("script");s.async=true;s.setAttribute("data-uid","02e5ef800a");s.src="https://score-samurai.kit.com/02e5ef800a/index.js";w.appendChild(s);}if(document.readyState==="complete"){setTimeout(go,0);}else{window.addEventListener("load",function(){setTimeout(go,0);});}})();
       </script>
-      <p class="cite">No spam. Unsubscribe any time.</p>
+      <p class="small soft">No spam. Unsubscribe any time.</p>
     </div>
   </div>
 </section>
 
 <!-- 11. THE DOJO ON DISCORD -->
-<section id="discord" class="band-deep" aria-labelledby="h-discord">
-  <div class="wrap two">
-    <div class="stack sticky">
+<section id="discord" class="band" aria-labelledby="h-discord">
+  <div class="wrap">
+    <div class="sec-head">
       <div class="eyebrow">Between sessions</div>
       <h2 id="h-discord">The Dojo on Discord.</h2>
       <div class="rule"></div>
     </div>
-    <div class="stack-lg col">
-      <p>Ask Sensei is the channel where Sensei Jay answers in text, names the move, and points at the Diagnostic. A new question every morning and a countdown to the next test date. Enrolled students wear their belt there.</p>
-      <div><a class="btn btn-quiet" href="https://discord.gg/nE7nr7Dyb5">Enter the Dojo</a></div>
+    <div class="stack-lg">
+      <p class="measure">Ask Sensei is the channel where Sensei Jay answers in text, names the move, and points at the Diagnostic. A new question every morning and a countdown to the next test date. Enrolled students wear their belt there.</p>
+      <p><a class="textlink" href="https://discord.gg/nE7nr7Dyb5">Enter the Dojo</a></p>
     </div>
   </div>
 </section>
@@ -576,8 +611,8 @@ body{padding-bottom:84px}
 <!-- 12. FOOTER -->
 <footer>
   <div class="wrap">
-    <div class="brand" style="color:#F3ECDD">Score Samurai</div>
-    <div class="links"><a href="#diagnostic">The Diagnostic</a><a href="https://discord.gg/nE7nr7Dyb5">The Dojo</a><a href="/privacy/">Privacy</a><a href="mailto:senseijay@scoresamurai.com">senseijay@scoresamurai.com</a></div>
+    <div class="brand">Score Samurai</div>
+    <div class="links"><a href="https://discord.gg/nE7nr7Dyb5">The Dojo</a><a href="/privacy/">Privacy</a><a href="mailto:senseijay@scoresamurai.com">senseijay@scoresamurai.com</a></div>
     <p class="fine">Nationwide over Zoom. Score Samurai LLC.</p>
     <p class="fine">Score Samurai is not affiliated with or endorsed by College Board. SAT, PSAT and Digital SAT are College Board trademarks.</p>
   </div>
@@ -585,12 +620,87 @@ body{padding-bottom:84px}
 
 <div class="sticky-cta" id="stickyCta"><a class="btn js-tb" href="#diagnostic">Get Your Free Dojo Diagnostic</a></div>
 
-<script src="/diag.js" defer></script>
+<script>
+/* The three-screen Dojo Diagnostic form (v6 copy of diag.js: no scroll on load, the step bar is .stepbar, nothing outside the form is hidden). */
+(function () {
+  var ENDPOINT = "https://script.google.com/macros/s/AKfycbwNXGTg_7VgI6U7ejrx6dM9QeX8ObhIZ7br0v9_R0IL8U0SfCiPjL6Mcpcv-fjUFgpdrg/exec";
+  var form = document.getElementById("dx");
+  if (!form) return;
+  var screens = Array.prototype.slice.call(form.querySelectorAll("[data-screen]"));
+  var bars = form.querySelectorAll(".stepbar i");
+  var section = document.getElementById("diagnostic");
+  var cur = 0;
+  function show(n, moved) {
+    cur = n;
+    screens.forEach(function (s, i) { s.classList.toggle("hidden", i !== n); });
+    bars.forEach(function (b, i) { b.classList.toggle("on", i <= n); });
+    document.getElementById("stepLabel").textContent = "Step " + (n + 1) + " of 3";
+    if (moved) {
+      var first = screens[n].querySelector("input,select,textarea");
+      if (first) first.focus({ preventScroll: true });
+      window.scrollTo({ top: form.offsetTop - 80, behavior: "smooth" });
+      if (window.gtag) { try { gtag("event", "diagnostic_step", { step: n + 1 }); } catch (e) {} }
+    }
+  }
+  function valid(n) {
+    var ok = true;
+    screens[n].querySelectorAll("[required]").forEach(function (f) {
+      var field = f.closest(".field");
+      var good = f.value.trim() !== "" && (f.type !== "email" || /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(f.value.trim()));
+      field.classList.toggle("err", !good);
+      if (!good && ok) { ok = false; f.focus(); }
+    });
+    return ok;
+  }
+  form.addEventListener("click", function (e) {
+    if (e.target.matches("[data-next]")) { if (valid(cur)) show(cur + 1, true); }
+    if (e.target.matches("[data-back]")) { show(cur - 1, true); }
+  });
+  form.querySelectorAll("input,select,textarea").forEach(function (f) {
+    f.addEventListener("input", function () { f.closest(".field") && f.closest(".field").classList.remove("err"); });
+  });
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (!valid(2)) return;
+    if (form.website.value) return;
+    var btn = document.getElementById("submit");
+    var status = document.getElementById("status");
+    btn.disabled = true; btn.textContent = "Sending";
+    status.textContent = "";
+    var data = {};
+    new FormData(form).forEach(function (v, k) { data[k] = String(v).trim(); });
+    data.page = location.href; data.submitted_at = new Date().toISOString();
+    var params = new URLSearchParams(location.search);
+    ["utm_source", "utm_medium", "utm_campaign"].forEach(function (k) { if (params.get(k)) data[k] = params.get(k); });
+    fetch(ENDPOINT, { method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(data) })
+      .then(function () {
+        form.classList.add("hidden");
+        document.getElementById("done").classList.remove("hidden");
+        window.scrollTo({ top: section.offsetTop, behavior: "smooth" });
+        if (window.gtag) { try { gtag("event", "diagnostic_submit", { source: data.heard || "" }); } catch (e) {} }
+      })
+      .catch(function () {
+        btn.disabled = false; btn.textContent = "Send me my Diagnostic";
+        status.textContent = "That didn't go through. Try again, or email senseijay@scoresamurai.com and we'll take it from there.";
+      });
+  });
+  show(0, false);
+})();
+</script>
 <script>
 (function(){
-  var cta=document.getElementById('stickyCta'), form=document.getElementById('diagnostic');
-  if(!cta||!form||!('IntersectionObserver' in window)) return;
-  new IntersectionObserver(function(es){ es.forEach(function(e){ cta.classList.toggle('away', e.isIntersecting); }); },{threshold:0.05}).observe(form);
+  var bar=document.getElementById('stickyCta'), hero=document.getElementById('heroCta'), how=document.getElementById('howCta'), diag=document.getElementById('diagnostic');
+  if(!bar||!hero||!how||!diag||!('IntersectionObserver' in window)) return;
+  var seen={};
+  function update(){
+    var passedHero=hero.getBoundingClientRect().bottom<0;
+    var show=passedHero&&!seen.hero&&!seen.how&&!seen.diag;
+    bar.classList.toggle('show',show);
+  }
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){seen[e.target.getAttribute('data-k')]=e.isIntersecting;});update();},{threshold:0});
+  hero.setAttribute('data-k','hero');how.setAttribute('data-k','how');diag.setAttribute('data-k','diag');
+  io.observe(hero);io.observe(how);io.observe(diag);
+  window.addEventListener('scroll',update,{passive:true});
 })();
 </script>
 </body>
