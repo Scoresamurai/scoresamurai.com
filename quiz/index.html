@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Score Samurai Quiz</title>
+<meta name="description" content="Eight SAT questions and your results right away.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/warrior.png">
+<link rel="preload" href="/fonts/dm-sans-400-700.woff2" as="font" type="font/woff2" crossorigin>
+<script>window.addEventListener("load",function(){var s=document.createElement("script");s.async=true;s.src="https://www.googletagmanager.com/gtag/js?id=G-LYZRWG13P3";document.head.appendChild(s);});</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-LYZRWG13P3');</script>
+<style>
+@font-face{font-family:"Playfair Display";font-weight:600;font-display:swap;src:url(/fonts/playfair-display-600.woff2) format("woff2")}
+@font-face{font-family:"DM Sans";font-weight:400 700;font-display:swap;src:url(/fonts/dm-sans-400-700.woff2) format("woff2")}
+/* v6 system, unchanged */
+:root{
+  --maroon:#7A0B10;--maroon-deep:#5E080C;--cream:#F2EBDB;--cream-deep:#E7DEC8;--gold:#C9A24A;--gold-deep:#A8822F;--dark:#1C0406;--ink:#1C0406;--ink-soft:#5A4D46;--line:#D6CBB3;--white:#FFFFFF;--footer-soft:#D9CDB8;
+  --head:"Playfair Display",Georgia,"Times New Roman",serif;
+  --body:"DM Sans",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+  --t-1:clamp(14px,13.52px + 0.1235vw,15px);
+  --t0:clamp(17px,16.04px + 0.247vw,19px);
+  --t1:clamp(21px,19.56px + 0.37vw,24px);
+  --t2:clamp(27px,25.56px + 0.37vw,30px);
+  --t3:clamp(34px,32.07px + 0.494vw,38px);
+  --lh-body:1.55;--lh-head:1.15;
+  --s1:8px;--s2:16px;--s3:24px;--s4:32px;--s5:40px;--s6:48px;--s8:64px;--s10:80px;--s12:96px;--s14:112px;
+  --sec:var(--s8);--gut:var(--s3);--wrap:1040px;--measure:35em;
+}
+@media(min-width:900px){:root{--sec:var(--s14);--gut:var(--s6)}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--body);font-size:var(--t0);line-height:var(--lh-body);overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--maroon)}
+h1,h2,h3{font-family:var(--head);font-weight:600;line-height:var(--lh-head);margin:0;text-wrap:balance}
+h1{font-size:var(--t3);max-width:14ch}
+h2{font-size:var(--t2);max-width:24em}
+h3{font-size:var(--t1)}
+p,ul,ol{margin:0}
+p{text-wrap:pretty}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--gut)}
+.measure{max-width:var(--measure)}
+.stack{display:flex;flex-direction:column;gap:var(--s2)}
+.stack-lg{display:flex;flex-direction:column;gap:var(--s3)}
+.eyebrow{font-size:var(--t-1);letter-spacing:.14em;text-transform:uppercase;color:var(--maroon)}
+.rule{height:2px;width:56px;background:var(--maroon);border-radius:1px}
+.lead{font-size:var(--t1)}
+.soft{color:var(--ink-soft)}
+.small{font-size:var(--t-1)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 var(--s3);border-radius:6px;border:2px solid var(--gold);background:var(--gold);color:var(--dark);font-family:var(--body);font-weight:700;font-size:var(--t0);line-height:var(--lh-body);text-decoration:none;cursor:pointer;text-align:center;width:100%}
+@media(min-width:600px){.btn{width:auto}}
+.btn:hover{background:var(--gold-deep);border-color:var(--gold-deep);color:var(--dark)}
+.btn[disabled]{opacity:.6;cursor:default}
+.btn:focus-visible,a:focus-visible,input:focus-visible,button:focus-visible,textarea:focus-visible,h1:focus-visible,h2:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.btn-quiet{background:transparent;border-color:var(--maroon);color:var(--maroon);font-weight:400}
+.btn-quiet:hover{background:var(--cream-deep);border-color:var(--maroon);color:var(--maroon)}
+.linkbtn{background:none;border:0;padding:0;font:inherit;color:var(--maroon);text-decoration:underline;cursor:pointer;min-height:44px;display:inline-flex;align-items:center}
+.hdr{background:rgba(242,235,219,.96);border-bottom:1px solid var(--line)}
+.hdr .wrap{display:flex;align-items:center;justify-content:space-between;gap:var(--s3);min-height:64px}
+.brand{font-family:var(--head);font-weight:600;font-size:var(--t1);line-height:var(--lh-head);color:var(--ink)}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:var(--t-1)}
+.field input{min-height:52px;padding:0 14px;border:1px solid var(--line);border-radius:6px;font-size:var(--t0);font-family:inherit;line-height:var(--lh-body);background:var(--white);color:var(--ink);width:100%}
+.field.err input,.field.err textarea{border-color:var(--maroon)}
+.errmsg{font-size:var(--t-1);color:var(--maroon);display:none}
+.err .errmsg,.errmsg.show{display:block}
+.hidden{display:none!important}
+.sr{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+footer{background:var(--dark);color:var(--cream);padding:var(--s6) 0}
+footer .wrap{display:flex;flex-direction:column;gap:var(--s2)}
+footer .fine{font-size:var(--t-1);color:var(--footer-soft);max-width:var(--measure)}
+footer a{color:var(--cream)}
+/* quiz */
+main{padding:var(--s5) 0 var(--sec)}
+@media(min-width:900px){main{padding:var(--s8) 0 var(--sec)}}
+.banner{background:var(--maroon);color:var(--white);font-size:var(--t-1);letter-spacing:.06em}
+.banner .wrap{min-height:40px;display:flex;align-items:center}
+.check{display:flex;gap:12px;align-items:flex-start;cursor:pointer;min-height:44px}
+.check input{width:24px;height:24px;margin:2px 0 0;flex:0 0 auto;accent-color:var(--maroon)}
+.progress{display:flex;flex-direction:column;gap:var(--s1)}
+.progress .bar{height:6px;background:var(--cream-deep);border-radius:3px;overflow:hidden}
+.progress .fill{height:100%;background:var(--maroon);width:0;transition:width .25s}
+@media(prefers-reduced-motion:reduce){.progress .fill{transition:none}}
+.card{background:var(--white);border:1px solid var(--line);border-radius:8px;padding:var(--s3)}
+@media(min-width:900px){.card{padding:var(--s5)}}
+.qhead{display:flex;align-items:center;justify-content:space-between;gap:var(--s2);border-bottom:1px solid var(--line);padding-bottom:var(--s2);margin-bottom:var(--s3)}
+.qnum{display:inline-flex;align-items:center;justify-content:center;min-width:36px;height:36px;padding:0 8px;background:var(--dark);color:var(--white);font-weight:700;font-size:var(--t-1);border-radius:4px}
+.qbody{display:grid;gap:var(--s3)}
+.qbody.split{grid-template-columns:1fr}
+@media(min-width:900px){.qbody.split{grid-template-columns:1fr 1fr;gap:var(--s6)}.qbody.split .passage{border-right:1px solid var(--line);padding-right:var(--s6)}}
+.passage{white-space:pre-line}
+.prompt{white-space:pre-line}
+.choices{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.choice{display:flex;align-items:flex-start;gap:14px;width:100%;min-height:56px;padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:var(--white);color:var(--ink);font:inherit;text-align:left;cursor:pointer}
+.choice:hover{border-color:var(--ink-soft)}
+.choice .ltr{flex:0 0 32px;height:32px;border:1.5px solid var(--ink);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:var(--t-1)}
+.choice .txt{padding-top:3px;white-space:pre-line}
+.choice[aria-pressed="true"]{border:2px solid var(--maroon);padding:11px 13px;background:#FBF8F1}
+.choice[aria-pressed="true"] .ltr{background:var(--maroon);border-color:var(--maroon);color:var(--white)}
+.conf{display:flex;flex-direction:column;gap:var(--s2);margin-top:var(--s3);padding-top:var(--s3);border-top:1px solid var(--line)}
+.conf .pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.conf .pair .btn{width:100%}
+.report{margin-top:var(--s2)}
+.report textarea{min-height:88px;padding:12px 14px;border:1px solid var(--line);border-radius:6px;font:inherit;width:100%;resize:vertical;background:var(--white);color:var(--ink)}
+.moves{list-style:none;margin:0;padding:0;display:grid;gap:var(--s2)}
+.moves li{padding-top:var(--s2);border-top:2px solid var(--maroon)}
+.moves .name{font-family:var(--head);font-weight:600;font-size:var(--t1);line-height:var(--lh-head);display:block;margin-bottom:4px}
+.tally{font-family:var(--head);font-weight:600;font-size:var(--t2);line-height:var(--lh-head);color:var(--maroon)}
+.block{margin-top:var(--s8);padding-top:var(--s5);border-top:1px solid var(--line)}
+.form{display:flex;flex-direction:column;gap:var(--s2);max-width:var(--measure)}
+.status{min-height:1.55em}
+</style>
+</head>
+<body>
+<div class="banner hidden" id="banner"><div class="wrap"><span>PREVIEW. The questions are still in review, and emails go to test addresses only.</span></div></div>
+<header class="hdr"><div class="wrap"><span class="brand">Score Samurai</span></div></header>
+
+<main id="main" tabindex="-1">
+<div class="wrap">
+
+<noscript><p class="measure">The quiz needs JavaScript. Turn it on and reload the page.</p></noscript>
+
+<!-- 1. intro -->
+<section id="intro" class="stack-lg measure" aria-labelledby="h-intro">
+  <div class="eyebrow">The Score Samurai Quiz</div>
+  <h1 id="h-intro" tabindex="-1">Find the moves that cost you points.</h1>
+  <div class="rule"></div>
+  <p class="lead" id="introLine">Eight questions, about six minutes, and your results come up right away.</p>
+  <div class="field" id="ageField">
+    <label class="check" for="age"><input type="checkbox" id="age" required aria-describedby="ageErr"><span>I'm 13 or older</span></label>
+    <span class="errmsg" id="ageErr">Tick this to start.</span>
+  </div>
+  <div><button class="btn" id="start" type="button">Start</button></div>
+  <p class="status soft" id="loadStatus" role="status" aria-live="polite"></p>
+</section>
+
+<!-- 2. questions -->
+<section id="quiz" class="hidden" aria-labelledby="qTitle">
+  <div class="progress" aria-hidden="false">
+    <div class="small soft" id="progLabel">Question 1 of 8</div>
+    <div class="bar" role="progressbar" aria-labelledby="progLabel" aria-valuemin="0" aria-valuemax="8" aria-valuenow="1" id="progBar"><div class="fill" id="progFill"></div></div>
+  </div>
+  <div class="card" style="margin-top:var(--s3)">
+    <div class="qhead"><span class="qnum" id="qNum">1</span><span class="small soft" id="qSection"></span></div>
+    <h2 class="sr" id="qTitle" tabindex="-1">Question 1</h2>
+    <div class="qbody" id="qBody">
+      <div class="passage" id="qPassage"></div>
+      <div class="stack">
+        <p class="prompt" id="qPrompt"></p>
+        <ul class="choices" id="qChoices" aria-label="Answer choices"></ul>
+        <div class="conf hidden" id="conf">
+          <p id="confQ">How sure are you?</p>
+          <div class="pair"><button class="btn" type="button" data-conf="sure">Sure</button><button class="btn" type="button" data-conf="guessing">Guessing</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="report">
+    <button class="linkbtn small" type="button" id="repOpen" aria-expanded="false" aria-controls="repForm">Report a problem with this question</button>
+    <div id="repForm" class="hidden stack" style="max-width:var(--measure)">
+      <label class="small" for="repNote">What looks wrong? (optional)</label>
+      <textarea id="repNote" maxlength="1000"></textarea>
+      <div><button class="linkbtn" type="button" id="repSend">Send the report</button></div>
+    </div>
+    <p class="small soft status" id="repStatus" role="status" aria-live="polite"></p>
+  </div>
+</section>
+
+<!-- 3. results -->
+<section id="results" class="hidden" aria-labelledby="h-res">
+  <div class="stack-lg measure">
+    <div class="eyebrow">Your results</div>
+    <h1 id="h-res" tabindex="-1">Here is what cost you points.</h1>
+    <div class="rule"></div>
+    <p class="tally" id="tally"></p>
+    <ul class="moves" id="moves"></ul>
+    <p id="clean" class="hidden">No move cost you a point on these questions. The full breakdown still shows how each one was built.</p>
+  </div>
+
+  <!-- 4. email ask -->
+  <div class="block" id="emailBlock">
+    <form class="form" id="ef" novalidate>
+      <h2 id="h-email">Get the full breakdown: every question explained, in the order to fix them.</h2>
+      <div class="field" id="fStudent"><label for="student">Student email</label><input id="student" name="student_email" type="email" autocomplete="email" required><span class="errmsg">Enter an email address.</span></div>
+      <div class="field" id="fParent"><label for="parent">Parent email (optional)</label><input id="parent" name="parent_email" type="email" autocomplete="off"><span class="errmsg">That address doesn't look complete.</span></div>
+      <label class="check small" for="updates"><input type="checkbox" id="updates" name="updates"><span>Also send me The Daily Strike and updates</span></label>
+      <input class="sr" tabindex="-1" autocomplete="off" name="website" id="website" aria-hidden="true">
+      <div><button class="btn" id="send" type="submit">Send my breakdown</button></div>
+      <p class="small soft">We collect the email addresses you enter and your quiz answers. We use them only to send your breakdown and to help with your Diagnostic. We never sell them, and unsubscribing takes one click.</p>
+      <p class="status" id="sendStatus" role="status" aria-live="polite"></p>
+    </form>
+    <div id="sent" class="hidden stack measure" tabindex="-1">
+      <h2>Your breakdown is on its way.</h2>
+      <p id="sentLine">Check your inbox in a minute or two.</p>
+    </div>
+  </div>
+
+  <!-- 5. Diagnostic -->
+  <div class="block stack-lg measure" id="diagBlock">
+    <h2>A full read of your practice test</h2>
+    <p>The quiz shows a few moves. The free Dojo Diagnostic reads a whole practice test and says what to fix first. The written Diagnostic comes back within one business day.</p>
+    <div><a class="btn btn-quiet" id="diagBtn" href="https://scoresamurai.com/v6/#diagnostic">Get Your Free Dojo Diagnostic</a></div>
+  </div>
+</section>
+
+</div>
+</main>
+
+<footer><div class="wrap">
+  <p class="fine">Score Samurai LLC. Nationwide over Zoom. <a href="mailto:senseijay@scoresamurai.com">senseijay@scoresamurai.com</a></p>
+  <p class="fine">Score Samurai is not affiliated with or endorsed by College Board. SAT, PSAT and Digital SAT are College Board trademarks.</p>
+</div></footer>
+
+<script>
+(function () {
+  "use strict";
+  var ENDPOINT = "__ENDPOINT__";
+  var DIAG = "https://scoresamurai.com/v6/";
+  var $ = function (id) { return document.getElementById(id); };
+  function ev(name, p) { try { if (window.gtag) gtag("event", name, p || {}); } catch (e) {} }
+  function rid() { var a = new Uint8Array(6); (window.crypto || window.msCrypto).getRandomValues(a); return "QZ-" + new Date().toISOString().slice(2, 10).replace(/-/g, "") + "-" + Array.prototype.map.call(a, function (b) { return ("0" + b.toString(36)).slice(-2); }).join("").toUpperCase(); }
+  function post(obj) {
+    obj.page = location.href; obj.ua = navigator.userAgent;
+    return fetch(ENDPOINT, { method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(obj) });
+  }
+  function focusEl(el) { if (!el) return; el.focus({ preventScroll: true }); window.scrollTo({ top: 0 }); }
+
+  var S = { id: rid(), qs: [], i: 0, answers: [], shownAt: 0, pick: null, verified: false };
+  var LET = ["A", "B", "C", "D"];
+
+  /* Every choice keeps its own key and move. If "shuffle" is on, the order changes on screen,
+     but each shown letter maps back to the choice's original letter, which is what gets scored. */
+  function prep(q, shuffle) {
+    var list = q.choices.map(function (c) { return { key: c.letter, text: c.text, right: c.letter === q.answer }; });
+    if (shuffle) for (var i = list.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = list[i]; list[i] = list[j]; list[j] = t; }
+    list.forEach(function (c, i) { c.shown = LET[i]; });
+    var keyed = list.filter(function (c) { return c.right; }).length;
+    var mapOK = keyed === 1 && list.every(function (c) { return q.choices.some(function (o) { return o.letter === c.key && o.text === c.text; }); });
+    return mapOK ? list : null;
+  }
+
+  function load() {
+    $("loadStatus").textContent = "Loading the questions.";
+    $("start").disabled = true;
+    return fetch(ENDPOINT + "?action=questions&t=" + Date.now()).then(function (r) { return r.json(); }).then(function (d) {
+      if (!d.ok || !d.questions || !d.questions.length) throw new Error("none");
+      S.verified = !!d.verified;
+      S.qs = d.questions.map(function (q) { var v = prep(q, d.shuffle); return v ? { q: q, view: v } : null; }).filter(Boolean);
+      if (!S.qs.length) throw new Error("none");
+      if (!S.verified) $("banner").classList.remove("hidden");
+      var n = S.qs.length;
+      if (n !== 8) $("introLine").textContent = (n === 1 ? "One question" : n + " questions") + ", about " + Math.max(1, Math.round(n * 0.75)) + " minutes, and your results come up right away.";
+      $("progBar").setAttribute("aria-valuemax", n);
+      $("loadStatus").textContent = "";
+      $("start").disabled = false;
+      /* Render check (preview only): ?render=N opens question N as a student sees it, for the solve screenshots. */
+      var rn = parseInt(new URLSearchParams(location.search).get("render") || "", 10);
+      if (!S.verified && rn >= 1 && rn <= n) { $("intro").classList.add("hidden"); $("quiz").classList.remove("hidden"); show(rn - 1); }
+    }).catch(function () {
+      $("loadStatus").textContent = "The quiz is being set up. Check back soon.";
+    });
+  }
+
+  $("start").addEventListener("click", function () {
+    if (!$("age").checked) { $("ageField").classList.add("err"); $("age").focus(); return; }
+    $("ageField").classList.remove("err");
+    $("intro").classList.add("hidden"); $("quiz").classList.remove("hidden");
+    ev("quiz_start", { quiz_id: S.id, preview: S.verified ? "no" : "yes" });
+    show(0);
+  });
+  $("age").addEventListener("change", function () { if ($("age").checked) $("ageField").classList.remove("err"); });
+
+  function show(i) {
+    S.i = i; S.pick = null;
+    var it = S.qs[i], q = it.q, n = S.qs.length;
+    $("progLabel").textContent = "Question " + (i + 1) + " of " + n;
+    $("progBar").setAttribute("aria-valuenow", i + 1);
+    $("progFill").style.width = ((i + 1) / n * 100) + "%";
+    $("qNum").textContent = i + 1;
+    $("qTitle").textContent = "Question " + (i + 1) + " of " + n;
+    $("qSection").textContent = q.section || "";
+    $("qPassage").textContent = q.passage || "";
+    $("qPassage").classList.toggle("hidden", !q.passage);
+    $("qBody").classList.toggle("split", !!q.passage);
+    $("qPrompt").textContent = q.prompt;
+    var ul = $("qChoices"); ul.textContent = "";
+    it.view.forEach(function (c) {
+      var li = document.createElement("li"), b = document.createElement("button");
+      b.type = "button"; b.className = "choice"; b.setAttribute("aria-pressed", "false"); b.dataset.key = c.key;
+      var l = document.createElement("span"); l.className = "ltr"; l.textContent = c.shown; l.setAttribute("aria-hidden", "true");
+      var t = document.createElement("span"); t.className = "txt"; t.textContent = c.text;
+      var s = document.createElement("span"); s.className = "sr"; s.textContent = "Choice " + c.shown + ": ";
+      b.appendChild(l); b.appendChild(s); b.appendChild(t); li.appendChild(b); ul.appendChild(li);
+    });
+    $("conf").classList.add("hidden");
+    $("repForm").classList.add("hidden"); $("repOpen").setAttribute("aria-expanded", "false"); $("repStatus").textContent = ""; $("repNote").value = "";
+    S.shownAt = performance.now();
+    focusEl($("qTitle"));
+  }
+
+  $("qChoices").addEventListener("click", function (e) {
+    var b = e.target.closest(".choice"); if (!b) return;
+    Array.prototype.forEach.call($("qChoices").querySelectorAll(".choice"), function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+    S.pick = b.dataset.key;
+    var shown = b.querySelector(".ltr").textContent;
+    $("confQ").textContent = "You picked " + shown + ". How sure are you?";
+    var c = $("conf"), wasHidden = c.classList.contains("hidden");
+    c.classList.remove("hidden");
+    if (wasHidden) c.querySelector("button").focus({ preventScroll: true });
+    c.scrollIntoView({ block: "nearest", behavior: "smooth" });
+  });
+
+  $("conf").addEventListener("click", function (e) {
+    var b = e.target.closest("[data-conf]"); if (!b || !S.pick) return;
+    var it = S.qs[S.i], ms = Math.round(performance.now() - S.shownAt);
+    var right = S.pick === it.q.answer;
+    S.answers[S.i] = { id: it.q.id, choice: S.pick, confidence: b.dataset.conf, ms: ms };
+    ev("quiz_answer", { quiz_id: S.id, question: S.i + 1, question_id: it.q.id, correct: right ? "yes" : "no", confidence: b.dataset.conf });
+    if (S.i + 1 < S.qs.length) show(S.i + 1); else finish();
+  });
+
+  $("repOpen").addEventListener("click", function () {
+    var f = $("repForm"), open = f.classList.contains("hidden");
+    f.classList.toggle("hidden", !open); $("repOpen").setAttribute("aria-expanded", open ? "true" : "false");
+    if (open) $("repNote").focus();
+  });
+  $("repSend").addEventListener("click", function () {
+    var it = S.qs[S.i];
+    $("repSend").disabled = true;
+    post({ type: "report", quiz_id: S.id, question_id: it.q.id, n: S.i + 1, note: $("repNote").value.trim(), shown: it.view.map(function (c) { return c.shown + "=" + c.key; }).join(" ") })
+      .then(function () { $("repStatus").textContent = "Thanks. Sensei Jay will look at this question."; $("repForm").classList.add("hidden"); $("repOpen").setAttribute("aria-expanded", "false"); })
+      .catch(function () { $("repStatus").textContent = "That didn't go through. Email senseijay@scoresamurai.com instead."; })
+      .then(function () { $("repSend").disabled = false; });
+  });
+
+  /* results, from the question data */
+  function tally() {
+    var agg = {}, order = [], right = 0;
+    S.answers.forEach(function (a, i) {
+      var q = S.qs[i].q;
+      if (a.choice === q.answer) { right++; return; }
+      var ch = q.choices.filter(function (c) { return c.letter === a.choice; })[0];
+      var m = (ch && ch.move) || q.move || { name: "An unnamed move", line: "" };
+      if (!agg[m.name]) { agg[m.name] = { name: m.name, line: m.line, sure: 0, guess: 0, first: i }; order.push(m.name); }
+      if (a.confidence === "sure") agg[m.name].sure++; else agg[m.name].guess++;
+      if (!agg[m.name].line && m.line) agg[m.name].line = m.line;
+    });
+    var moves = order.map(function (k) { return agg[k]; }).sort(function (a, b) { return (b.sure - a.sure) || ((b.sure + b.guess) - (a.sure + a.guess)) || (a.first - b.first); });
+    return { right: right, moves: moves };
+  }
+
+  function finish() {
+    var t = tally(), n = S.qs.length;
+    $("quiz").classList.add("hidden"); $("results").classList.remove("hidden");
+    $("tally").textContent = "You got " + t.right + " of " + n + " right.";
+    var ul = $("moves"); ul.textContent = "";
+    t.moves.slice(0, 3).forEach(function (m) {
+      var li = document.createElement("li"), nm = document.createElement("span");
+      nm.className = "name"; nm.textContent = m.name; li.appendChild(nm);
+      var p = document.createElement("p"); p.textContent = m.line || ""; li.appendChild(p);
+      ul.appendChild(li);
+    });
+    $("clean").classList.toggle("hidden", t.moves.length > 0);
+    $("h-res").textContent = t.moves.length ? "Here is what cost you points." : "Here is how you did.";
+    var link = DIAG + "?quiz=" + encodeURIComponent(S.id) + "&utm_source=quiz&utm_medium=results#diagnostic";
+    $("diagBtn").href = link;
+    ev("quiz_finish", { quiz_id: S.id, correct: t.right, of: n, moves: t.moves.slice(0, 3).map(function (m) { return m.name; }).join("|") });
+    post({ type: "finish", quiz_id: S.id, answers: S.answers }).catch(function () {});
+    focusEl($("h-res"));
+    watchCta();
+  }
+
+  /* One call to action at a time: whichever block holds more of the screen gets the gold button. */
+  function watchCta() {
+    if (!("IntersectionObserver" in window)) return;
+    var send = $("send"), diag = $("diagBtn"), vis = { e: 0, d: 0 };
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (x) { vis[x.target.id === "emailBlock" ? "e" : "d"] = x.intersectionRatio; });
+      var done = !$("sent").classList.contains("hidden");
+      var diagOn = done || vis.d > vis.e;
+      diag.classList.toggle("btn-quiet", !diagOn);
+      send.classList.toggle("btn-quiet", diagOn);
+    }, { threshold: [0, .1, .25, .5, .75, 1] });
+    io.observe($("emailBlock")); io.observe($("diagBlock"));
+  }
+
+  $("diagBtn").addEventListener("click", function () { ev("quiz_diagnostic", { quiz_id: S.id }); });
+
+  function ok(v) { return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v); }
+  $("ef").addEventListener("submit", function (e) {
+    e.preventDefault();
+    if ($("website").value) return;
+    var st = $("student").value.trim(), pa = $("parent").value.trim(), good = true;
+    $("fStudent").classList.toggle("err", !ok(st)); if (!ok(st)) { good = false; $("student").focus(); }
+    $("fParent").classList.toggle("err", !!pa && !ok(pa)); if (pa && !ok(pa) && good) { good = false; $("parent").focus(); }
+    if (!good) return;
+    var btn = $("send"); btn.disabled = true; btn.textContent = "Sending";
+    var upd = $("updates").checked;
+    post({ type: "email", quiz_id: S.id, answers: S.answers, student_email: st, parent_email: pa, updates: upd })
+      .then(function () {
+        ev("quiz_email", { quiz_id: S.id, parent: pa ? "yes" : "no", updates: upd ? "yes" : "no" });
+        $("ef").classList.add("hidden"); $("sent").classList.remove("hidden");
+        $("sentLine").textContent = S.verified ? "Check your inbox in a minute or two." : "Preview mode: the breakdown only goes out to test addresses while the questions are in review.";
+        $("diagBtn").classList.remove("btn-quiet");
+        focusEl($("sent"));
+      })
+      .catch(function () { btn.disabled = false; btn.textContent = "Send my breakdown"; $("sendStatus").textContent = "That didn't go through. Try again, or email senseijay@scoresamurai.com."; });
+  });
+  ["student", "parent"].forEach(function (k) { $(k).addEventListener("input", function () { $(k === "student" ? "fStudent" : "fParent").classList.remove("err"); }); });
+
+  load();
+})();
+</script>
+</body>
+</html>
