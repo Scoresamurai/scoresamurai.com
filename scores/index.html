@@ -174,7 +174,7 @@ footer .fine{font-size:var(--t-1);color:var(--footer-soft);max-width:var(--measu
       <div class="notes">
         <h2>About these numbers</h2>
         <ul>
-          <li id="srcline">Source: IPEDS, National Center for Education Statistics. Admissions data for fall 2023, the newest year published.</li>
+          <li id="srcline">Source: IPEDS, National Center for Education Statistics. Admissions data for fall 2024, the newest year out. This is a provisional release. A few numbers may still change.</li>
           <li>These ranges come only from students who sent SAT scores.</li>
           <li>Each range adds the two section scores at the same percentile. That makes the total approximate.</li>
           <li>These are estimates, not a prediction of admission.</li>
@@ -209,7 +209,7 @@ footer .fine{font-size:var(--t-1);color:var(--footer-soft);max-width:var(--measu
     var mid = (s.erw50 != null && s.math50 != null) ? s.erw50 + s.math50 : Math.round((lo + hi) / 20) * 10;
     return { lo: lo, mid: mid, hi: hi };
   }
-  fetch('ipeds-sat-2023.json').then(function(r){ return r.json(); }).then(function(d){
+  fetch('ipeds-sat-2024.json').then(function(r){ return r.json(); }).then(function(d){
     var f = d.fields;
     schools = d.schools.map(function(r){
       var o = {}; f.forEach(function(k, i){ o[k] = r[i]; });
