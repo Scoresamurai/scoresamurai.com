@@ -5,7 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Score Samurai Quiz</title>
 <meta name="description" content="Eight SAT questions and your results right away.">
-<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://scoresamurai.com/quiz/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Score Samurai">
+<meta property="og:title" content="The Score Samurai Quiz">
+<meta property="og:description" content="Eight SAT questions, about six minutes. Find the moves that cost you points.">
+<meta property="og:url" content="https://scoresamurai.com/quiz/">
+<meta property="og:image" content="https://scoresamurai.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Score Samurai">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/warrior.png">
 <link rel="preload" href="/fonts/dm-sans-400-700.woff2" as="font" type="font/woff2" crossorigin>
 <script>window.addEventListener("load",function(){var s=document.createElement("script");s.async=true;s.src="https://www.googletagmanager.com/gtag/js?id=G-LYZRWG13P3";document.head.appendChild(s);});</script>
@@ -200,7 +210,7 @@ main{padding:var(--s5) 0 var(--sec)}
   <div class="block stack-lg measure" id="diagBlock">
     <h2>A full read of your practice test</h2>
     <p>The quiz shows a few moves. The free Dojo Diagnostic reads a whole practice test and says what to fix first. The written Diagnostic comes back within one business day.</p>
-    <div><a class="btn btn-quiet" id="diagBtn" href="https://scoresamurai.com/v6/#diagnostic">Get Your Free Dojo Diagnostic</a></div>
+    <div><a class="btn btn-quiet" id="diagBtn" href="https://scoresamurai.com/#diagnostic">Get Your Free Dojo Diagnostic</a></div>
   </div>
 </section>
 
@@ -216,7 +226,7 @@ main{padding:var(--s5) 0 var(--sec)}
 (function () {
   "use strict";
   var ENDPOINT = "https://script.google.com/macros/s/AKfycbzHCm2n1NymsAokUKrpqhwStrVQDt7zLkqiYvFLlsY0vuQqPvm9VGTzbPahXekMjE5X/exec";
-  var DIAG = "https://scoresamurai.com/v6/";
+  var DIAG = "https://scoresamurai.com/";
   var $ = function (id) { return document.getElementById(id); };
   function ev(name, p) { try { if (window.gtag) gtag("event", name, p || {}); } catch (e) {} }
   function rid() { var a = new Uint8Array(6); (window.crypto || window.msCrypto).getRandomValues(a); return "QZ-" + new Date().toISOString().slice(2, 10).replace(/-/g, "") + "-" + Array.prototype.map.call(a, function (b) { return ("0" + b.toString(36)).slice(-2); }).join("").toUpperCase(); }
