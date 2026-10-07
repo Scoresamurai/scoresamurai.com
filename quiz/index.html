@@ -120,6 +120,10 @@ main{padding:var(--s5) 0 var(--sec)}
 .block{margin-top:var(--s8);padding-top:var(--s5);border-top:1px solid var(--line)}
 .form{display:flex;flex-direction:column;gap:var(--s2);max-width:var(--measure)}
 .status{min-height:1.55em}
+.foot-nav{display:flex;flex-direction:column;gap:var(--s1)}
+.foot-row{display:flex;flex-wrap:wrap;align-items:center;gap:0 var(--s3)}
+.foot-h{font-size:var(--t-1);letter-spacing:.14em;text-transform:uppercase;color:var(--footer-soft);min-height:44px;display:inline-flex;align-items:center}
+footer .foot-nav a{color:var(--cream);text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
 </style>
 </head>
 <body>
@@ -218,6 +222,7 @@ main{padding:var(--s5) 0 var(--sec)}
 </main>
 
 <footer><div class="wrap">
+  <nav class="foot-nav" aria-label="More from Score Samurai"><div class="foot-row"><span class="foot-h">Free tools</span><a href="/quiz/">Free SAT quiz</a><a href="/plan/">Done Date planner</a><a href="/belt/">Which belt are you?</a></div><div class="foot-row"><span class="foot-h">Read</span><a href="/sat-punctuation/">Why do I keep missing SAT punctuation questions</a><a href="/sat-vocabulary-in-context/">Why do I get SAT vocabulary in context questions wrong</a><a href="/sat-reading-answer-choices/">Why do the SAT reading answer choices all look correct</a><a href="/sat-math-wrong-answer/">Why do I solve SAT math correctly and still get it wrong</a><a href="/sat-inequality-tables/">Why do I miss SAT inequality questions with tables</a><a href="/sat-score-report/">How to read an SAT score report</a></div></nav>
   <p class="fine">Based in the New York Metropolitan Area. Nationwide over Zoom. Score Samurai LLC. <a href="mailto:senseijay@scoresamurai.com">senseijay@scoresamurai.com</a></p>
   <p class="fine">Score Samurai is not affiliated with or endorsed by College Board. SAT, PSAT and Digital SAT are College Board trademarks.</p>
 </div></footer>
