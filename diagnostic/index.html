@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Dojo Diagnostic | Score Samurai</title>
-<meta name="description" content="One form. The written Dojo Diagnostic comes back within one business day: the traps costing points, which one moves the score fastest, and what we would do first.">
+<meta name="description" content="One form. Within one business day you get a written Diagnostic: where your points are going, the moves costing you the most, and what to fix first.">
 <link rel="canonical" href="https://scoresamurai.com/diagnostic/">
 <link rel="icon" href="/warrior.png">
 <meta name="robots" content="noindex">
@@ -81,6 +81,7 @@ new MutationObserver(scan).observe(document.documentElement, { childList: true, 
 .steps i{display:block;height:4px;flex:1;background:var(--line);border-radius:2px}
 .steps i.on{background:var(--gold)}
 .hidden{display:none}
+footer .fine{display:flex;flex-direction:column;gap:6px;max-width:440px}
 </style>
 </head>
 <body>
@@ -92,7 +93,7 @@ new MutationObserver(scan).observe(document.documentElement, { childList: true, 
     <div class="stack" style="gap:12px">
       <div class="eyebrow">The Dojo Diagnostic</div>
       <h1 style="font-size:clamp(30px,4vw,42px)">One form. Back within one business day.</h1>
-      <p class="body">This is free and there is nothing to buy. The Dojo Diagnostic comes back within one business day: the traps that are costing you points, which one would move your score fastest, and what we would do first. A parent is copied on the same email, so they see exactly what you see.</p>
+      <p class="body">Within one business day you get a written Diagnostic: where your points are going, the moves costing you the most, and what to fix first. It's free, and there's nothing to buy. A parent gets a copy of the same email, so they see what you see.</p>
     </div>
 
     <form id="dx" novalidate class="stack" style="gap:16px">
@@ -160,7 +161,7 @@ new MutationObserver(scan).observe(document.documentElement, { childList: true, 
 </section>
 </main>
 
-<footer><div class="wrap"><div class="brand"><img src="/warrior.png" alt="" style="width:26px;height:26px"><span style="color:var(--cream);font-size:15px">Score Samurai</span></div><div class="links"><a href="/">Home</a><a href="mailto:senseijay@scoresamurai.com">senseijay@scoresamurai.com</a><a href="/privacy/">Privacy</a></div><div>New York Metropolitan Area · Nationwide over Zoom · Score Samurai LLC</div></div></footer>
+<footer><div class="wrap"><div class="brand"><img src="/warrior.png" alt="" style="width:26px;height:26px"><span style="color:var(--cream);font-size:15px">Score Samurai</span></div><div class="links"><a href="/">Home</a><a href="mailto:senseijay@scoresamurai.com">senseijay@scoresamurai.com</a><a href="/privacy/">Privacy</a></div><div class="fine"><div>Based in the New York Metropolitan Area. Nationwide over Zoom. Score Samurai LLC.</div><div>Score Samurai is not affiliated with or endorsed by College Board. SAT, PSAT and Digital SAT are College Board trademarks.</div></div></div></footer>
 <script src="/diag.js" defer></script>
 </body>
 </html>
