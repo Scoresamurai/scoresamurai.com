@@ -7,7 +7,16 @@
 <meta name="description" content="One form. Within one business day you get a written Diagnostic: where your points are going, the moves costing you the most, and what to fix first.">
 <link rel="canonical" href="https://scoresamurai.com/diagnostic/">
 <link rel="icon" href="/warrior.png">
-<meta name="robots" content="noindex">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Score Samurai">
+<meta property="og:title" content="The Dojo Diagnostic | Score Samurai">
+<meta property="og:description" content="One form. Within one business day you get a written Diagnostic: where your points are going, the moves costing you the most, and what to fix first.">
+<meta property="og:url" content="https://scoresamurai.com/diagnostic/">
+<meta property="og:image" content="https://scoresamurai.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Score Samurai">
+<meta name="twitter:card" content="summary_large_image">
 <!-- Google tag (gtag.js) -->
 <script>window.addEventListener("load",function(){var s=document.createElement("script");s.async=true;s.src="https://www.googletagmanager.com/gtag/js?id=G-LYZRWG13P3";document.head.appendChild(s);});</script>
 <script>
@@ -117,7 +126,7 @@ footer .fine{display:flex;flex-direction:column;gap:6px;max-width:440px}
       <!-- SCREEN 2: the test -->
       <div class="screen hidden" data-screen="2">
         <h2 style="font-size:24px">The test</h2>
-        <div class="field"><label for="testdate">Target test date</label><select id="testdate" name="target_test_date" required><option value="">Choose</option><option value="October 3, 2026">October 3, 2026</option><option value="November 7, 2026">November 7, 2026</option><option value="December 5, 2026">December 5, 2026</option><option value="March 6, 2027">March 6, 2027</option><option value="May 1, 2027">May 1, 2027</option><option value="June 5, 2027">June 5, 2027</option><option value="Fall 2027">Fall 2027</option><option value="Not sure yet">Not sure yet</option></select><span class="errmsg">Pick the date you are aiming at.</span></div>
+        <div class="field"><label for="testdate">Which SAT do you want to be your last?</label><select id="testdate" name="target_test_date" required><option value="">Choose</option><option value="November 7, 2026">November 7, 2026</option><option value="December 5, 2026">December 5, 2026</option><option value="March 6, 2027">March 6, 2027</option><option value="May 1, 2027">May 1, 2027</option><option value="June 5, 2027">June 5, 2027</option><option value="Not sure yet">Not sure yet</option></select><span class="errmsg">Pick one, or Not sure yet.</span></div>
         <div class="field"><label for="recent">Most recent SAT or PSAT score</label><input id="recent" name="recent_score" placeholder="Enter N/A if not yet taken" required><span class="errmsg">A score, or N/A.</span></div>
         <div class="row2">
           <div class="field"><label for="math">Math section score</label><input id="math" name="math_score" placeholder="or N/A" required><span class="errmsg">A score, or N/A.</span></div>
