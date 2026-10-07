@@ -322,6 +322,21 @@ footer .fine{font-size:var(--t-1);color:var(--footer-soft);max-width:var(--measu
 .sticky-cta.show{transform:translateY(0)}
 @media(min-width:900px){.sticky-cta{display:none}}
 @media(prefers-reduced-motion:reduce){.sticky-cta{transition:none}}
+.nav{gap:var(--s2)}
+.nav a{white-space:nowrap}
+.hdr .brand{white-space:nowrap}
+@media(min-width:900px) and (max-width:1099px){.nav{gap:var(--s1) var(--s2)}.nav a{font-size:var(--t-1)}}
+.free-grid{display:grid;gap:var(--s5)}
+@media(min-width:900px){.free-grid{grid-template-columns:1fr 1fr;gap:var(--s6);align-items:start}}
+.free-card{min-width:0;background:var(--white);border-top:3px solid var(--maroon);padding:var(--s4) var(--s3);display:flex;flex-direction:column;gap:var(--s3)}
+@media(min-width:900px){.free-card{padding:var(--s5)}}
+.free-card .sec-head{margin-bottom:0}
+.btn-2{background:transparent;border-color:var(--maroon);color:var(--maroon)}
+.btn-2:hover{background:var(--maroon);border-color:var(--maroon);color:var(--white)}
+.foot-nav{display:flex;flex-direction:column;gap:var(--s1)}
+.foot-row{display:flex;flex-wrap:wrap;align-items:center;gap:0 var(--s3)}
+.foot-h{font-size:var(--t-1);letter-spacing:.14em;text-transform:uppercase;color:var(--footer-soft);min-height:44px;display:inline-flex;align-items:center}
+footer .foot-nav a{color:var(--cream);text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
 </style>
 </head>
 <body>
@@ -330,7 +345,7 @@ footer .fine{font-size:var(--t-1);color:var(--footer-soft);max-width:var(--measu
   <div class="wrap">
     <a class="brand" href="#top">Score Samurai</a>
     <nav class="nav" aria-label="Sections">
-      <a href="#why">Why the SAT</a><a href="#dojo">The Dojo</a><a href="#how">How it works</a><a href="#method">The method</a><a href="#plans">Plans</a><a href="#faq">Questions</a>
+      <a href="#why">Why the SAT</a><a href="#dojo">The Dojo</a><a href="#how">How it works</a><a href="#method">The method</a><a href="#plans">Plans</a><a href="/quiz/">Free SAT quiz</a><a href="#faq">Questions</a>
     </nav>
   </div>
 </header>
@@ -347,6 +362,7 @@ footer .fine{font-size:var(--t-1);color:var(--footer-soft);max-width:var(--measu
       <div class="hero-cta">
         <a class="btn js-tb" id="heroCta" href="#diagnostic">Get Your Free Dojo Diagnostic</a>
         <p class="soft">Based in the New York Metropolitan Area. Nationwide over Zoom.</p>
+        <a class="textlink small" href="/plan/">Find your Done Date</a>
       </div>
     </div>
   </div>
@@ -409,7 +425,6 @@ footer .fine{font-size:var(--t-1);color:var(--footer-soft);max-width:var(--measu
         <li class="belt"><svg viewBox="0 0 120 42" aria-hidden="true"><rect x="2" y="12" width="116" height="18" rx="3" fill="#7A4A2B"/><path d="M52 12 L68 30 M68 12 L52 30" stroke="#54321C" stroke-width="3" stroke-linecap="round"/><rect x="54" y="8" width="12" height="26" rx="2" fill="#7A4A2B" stroke="#54321C" stroke-width="2"/></svg><div><h3>Brown</h3><p>Closes when the hard-module moves in one section stop costing points.</p></div></li>
         <li class="belt"><svg viewBox="0 0 120 42" aria-hidden="true"><rect x="2" y="12" width="116" height="18" rx="3" fill="#141110"/><path d="M52 12 L68 30 M68 12 L52 30" stroke="#5A544E" stroke-width="3" stroke-linecap="round"/><rect x="54" y="8" width="12" height="26" rx="2" fill="#141110" stroke="#5A544E" stroke-width="2"/></svg><div><h3>Black</h3><p>Closes when the hard-module moves in both sections stop costing points.</p></div></li>
       </ul>
-      <p class="measure">Each belt means a set of the test's moves no longer works on you.</p>
       <p class="pull">Nobody hands you Green. You take it.</p>
     </div>
   </div>
@@ -654,18 +669,29 @@ footer .fine{font-size:var(--t-1);color:var(--footer-soft);max-width:var(--measu
 <!-- 10. THE TRAP MAP -->
 <section id="trapmap" aria-labelledby="h-tm">
   <div class="wrap">
-    <div class="sec-head">
-      <div class="eyebrow">Free</div>
-      <h2 id="h-tm">The Trap Map.</h2>
-      <div class="rule"></div>
-    </div>
-    <div class="stack-lg">
-      <p class="lead measure">Five traps, a ten-question diagnostic and a page for parents on reading a score report. Free, in your inbox within a minute.</p>
-      <div class="tm formwrap"></div>
-      <script>
+    <div class="free-grid">
+      <div class="free-card">
+        <div class="sec-head">
+          <div class="eyebrow">Free</div>
+          <h2 id="h-tm">The Trap Map.</h2>
+          <div class="rule"></div>
+        </div>
+        <p class="lead measure">Five traps, a ten-question check and a page for parents on reading a score report. Free, in your inbox within a minute.</p>
+        <div class="tm formwrap"></div>
+        <script>
       (function(){function go(){var w=document.querySelector("#trapmap .formwrap");if(!w||w.querySelector("script"))return;var s=document.createElement("script");s.async=true;s.setAttribute("data-uid","02e5ef800a");s.src="https://score-samurai.kit.com/02e5ef800a/index.js";w.appendChild(s);}if(document.readyState==="complete"){setTimeout(go,0);}else{window.addEventListener("load",function(){setTimeout(go,0);});}})();
       </script>
-      <p class="small soft">No spam. Unsubscribe any time.</p>
+        <p class="small soft">No spam. Unsubscribe any time.</p>
+      </div>
+      <div class="free-card">
+        <div class="sec-head">
+          <div class="eyebrow">The Score Samurai Quiz</div>
+          <h2 id="h-quiz">Find the moves that cost you points.</h2>
+          <div class="rule"></div>
+        </div>
+        <p class="lead measure">Eight questions, about six minutes, and your results come up right away.</p>
+        <div><a class="btn btn-2" href="/quiz/">Free SAT quiz</a></div>
+      </div>
     </div>
   </div>
 </section>
@@ -677,6 +703,7 @@ footer .fine{font-size:var(--t-1);color:var(--footer-soft);max-width:var(--measu
   <div class="wrap">
     <div class="brand">Score Samurai</div>
     <div class="links"><a href="/privacy/">Privacy</a><a href="mailto:senseijay@scoresamurai.com">senseijay@scoresamurai.com</a></div>
+    <nav class="foot-nav" aria-label="More from Score Samurai"><div class="foot-row"><span class="foot-h">Free tools</span><a href="/quiz/">Free SAT quiz</a><a href="/plan/">Done Date planner</a><a href="/belt/">Which belt are you?</a></div><div class="foot-row"><span class="foot-h">Read</span><a href="/sat-punctuation/">Why do I keep missing SAT punctuation questions</a><a href="/sat-vocabulary-in-context/">Why do I get SAT vocabulary in context questions wrong</a><a href="/sat-reading-answer-choices/">Why do the SAT reading answer choices all look correct</a><a href="/sat-math-wrong-answer/">Why do I solve SAT math correctly and still get it wrong</a><a href="/sat-inequality-tables/">Why do I miss SAT inequality questions with tables</a><a href="/sat-score-report/">How to read an SAT score report</a></div></nav>
     <p class="fine">Based in the New York Metropolitan Area. Nationwide over Zoom. Score Samurai LLC.</p>
     <p class="fine">Score Samurai is not affiliated with or endorsed by College Board. SAT, PSAT and Digital SAT are College Board trademarks.</p>
   </div>

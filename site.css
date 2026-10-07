@@ -186,3 +186,10 @@ footer .links a,.hdr-cta{min-height:44px;min-width:44px;display:inline-flex;alig
 .hdr .brand{min-height:44px}
 .eyebrow{color:#735617}
 .band-maroon .eyebrow{color:var(--gold)}
+
+/* footer rows, Oct 7 2026 */
+footer .wrap{flex-direction:column;align-items:flex-start}
+footer .foot-nav{display:flex;flex-direction:column;gap:4px;width:100%}
+footer .foot-row{display:flex;flex-wrap:wrap;align-items:center;gap:0 16px}
+footer .foot-h{font-size:12px;letter-spacing:.14em;text-transform:uppercase;min-height:44px;display:inline-flex;align-items:center;color:#E7DCC6}
+footer .foot-nav a{min-height:44px;display:inline-flex;align-items:center}
