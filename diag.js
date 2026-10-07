@@ -8,11 +8,12 @@
   var bars = form.querySelectorAll(".steps i");
   var cur = 0;
 
-  function show(n) {
+  function show(n, moved) {
     cur = n;
     screens.forEach(function (s, i) { s.classList.toggle("hidden", i !== n); });
     bars.forEach(function (b, i) { b.classList.toggle("on", i <= n); });
     document.getElementById("stepLabel").textContent = "Step " + (n + 1) + " of 3";
+    if (!moved) return;
     var first = screens[n].querySelector("input,select,textarea");
     if (first) first.focus({ preventScroll: true });
     window.scrollTo({ top: form.offsetTop - 80, behavior: "smooth" });
@@ -31,8 +32,8 @@
   }
 
   form.addEventListener("click", function (e) {
-    if (e.target.matches("[data-next]")) { if (valid(cur)) show(cur + 1); }
-    if (e.target.matches("[data-back]")) { show(cur - 1); }
+    if (e.target.matches("[data-next]")) { if (valid(cur)) show(cur + 1, true); }
+    if (e.target.matches("[data-back]")) { show(cur - 1, true); }
   });
   form.querySelectorAll("input,select,textarea").forEach(function (f) {
     f.addEventListener("input", function () { f.closest(".field") && f.closest(".field").classList.remove("err"); });
@@ -66,5 +67,5 @@
       });
   });
 
-  show(0);
+  show(0, false);
 })();
