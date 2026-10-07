@@ -67,13 +67,13 @@
     var belt, color, border, summary;
     if (firing.length === 0 && correct === Q.length) {
       belt = "Green, working toward Blue"; color = "#3F7A3E"; border = "#3F7A3E";
-      summary = "Ten for ten. None of the five Trap Map traps fired today, which is what Green means on the Dojo ladder. The points you are losing on a real test are in the timed patterns, which is Blue's work, and only a full set of misses can name them.";
+      summary = "Ten for ten. None of the five Trap Map traps caught you today. That is a strong start, and it is not a belt yet. The points you are losing on a real test are in the timed patterns, which is Blue's work, and only a full set of misses can name them.";
     } else if (firing.length === 0) {
       belt = "White, close to Green"; color = "#F3ECDD"; border = "#C9BFA8";
-      summary = correct + " of ten. No trap fired twice, which is the bar, but " + (Q.length - correct) + (Q.length - correct === 1 ? " miss" : " misses") + " on one afternoon is a habit waiting to be named. Green is a term of work away.";
+      summary = correct + " of ten. No trap fired twice, which is the bar, but " + (Q.length - correct) + (Q.length - correct === 1 ? " miss" : " misses") + " on one afternoon is a habit waiting to be named. Green comes when the first set of moves on your Roadmap stops costing points across two practice tests.";
     } else {
       belt = "White"; color = "#F3ECDD"; border = "#C9BFA8";
-      summary = correct + " of ten. " + (firing.length === 1 ? "One trap" : firing.length + " traps") + " fired the way the test is built to make " + (firing.length === 1 ? "it" : "them") + " fire. Every student starts here. A belt moves when a named trap stops costing points across two straight practice tests, and the first one is usually the fastest.";
+      summary = correct + " of ten. " + (firing.length === 1 ? "One trap" : firing.length + " traps") + " fired the way the test is built to make " + (firing.length === 1 ? "it" : "them") + " fire. Every student starts here. A belt moves when a set of moves on your Roadmap stops costing points on real practice tests.";
     }
     el("rbelt").textContent = belt;
     el("rline").style.background = color; el("rline").style.borderColor = border;
