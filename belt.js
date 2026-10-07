@@ -66,7 +66,7 @@
 
     var belt, color, border, summary;
     if (firing.length === 0 && correct === Q.length) {
-      belt = "Green, working toward Blue"; color = "#3F7A3E"; border = "#3F7A3E";
+      belt = "A clean run. Green is in sight."; color = "#3F7A3E"; border = "#3F7A3E";
       summary = "Ten for ten. None of the five Trap Map traps caught you today. That is a strong start, and it is not a belt yet. The points you are losing on a real test are in the timed patterns, which is Blue's work, and only a full set of misses can name them.";
     } else if (firing.length === 0) {
       belt = "White, close to Green"; color = "#F3ECDD"; border = "#C9BFA8";
