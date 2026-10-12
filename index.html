@@ -121,7 +121,7 @@ new MutationObserver(scan).observe(document.documentElement, { childList: true, 
 {"@type":"Question","name":"What do we actually get?","acceptedAnswer":{"@type":"Answer","text":"A written Diagnostic showing exactly where the points are going. A plan built backward from the date you want to be done. Every session taught by Sensei Jay himself. A note home every week, so nobody has to ask."}},
 {"@type":"Question","name":"When should we start?","acceptedAnswer":{"@type":"Answer","text":"Pick the sitting you want to be your last, then count back. Start with enough runway and the plan has a backup date built in. The free Diagnostic sets the date."}},
 {"@type":"Question","name":"What is a good SAT score?","acceptedAnswer":{"@type":"Answer","text":"Good is whatever gets you into the schools on your list. For one student that's a 1200, and for another it's a 1450. The Diagnostic starts with your list and works back to the score each school expects, then to the moves that get you there."}},
-{"@type":"Question","name":"Do colleges require the SAT?","acceptedAnswer":{"@type":"Answer","text":"More of the hardest schools to get into require it every year. Required now (as of September 2026): Brown, Caltech, Cornell, Dartmouth, Harvard, Johns Hopkins, MIT, Penn, Stanford and Yale. Required from the 2027-28 cycle (as of September 2026): Columbia and Princeton. Both stay test-optional for students applying this fall. Many other schools stay test-optional. A strong score still helps there, and policies change, so check each school's own page. Middle 50 percent of SAT scores (25th to 75th percentile), fall 2024 entering class: Brown 740-780 Reading and Writing, 770-800 Math; Columbia 740-780 Reading and Writing, 770-800 Math; Cornell 730-770 Reading and Writing, 770-800 Math; Dartmouth 740-780 Reading and Writing, 760-790 Math; Harvard 740-780 Reading and Writing, 770-800 Math; MIT 740-780 Reading and Writing, 780-800 Math; Penn 740-770 Reading and Writing, 770-800 Math; Princeton 740-780 Reading and Writing, 770-800 Math; Stanford 740-780 Reading and Writing, 770-800 Math; Yale 730-780 Reading and Writing, 740-790 Math. Source: federal IPEDS data for fall 2024 (a provisional release, the newest out), via College Navigator. These ranges count only students who sent scores. Use them as a guide, not a guarantee."}}
+{"@type":"Question","name":"Do colleges require the SAT?","acceptedAnswer":{"@type":"Answer","text":"More of the hardest schools to get into require it every year. Required now (as of September 2026): Brown, Caltech, Cornell, Dartmouth, Harvard, Johns Hopkins, MIT, Penn, Stanford and Yale. Required from the 2027-28 cycle (as of September 2026): Columbia and Princeton. Both stay test-optional for students applying this fall. Many other schools stay test-optional. A strong score still helps there, and policies change, so check each school's own page. Middle 50 percent of SAT scores (25th to 75th percentile), fall 2024 entering class: Brown 740-780 Reading and Writing, 770-800 Math; Columbia 740-780 Reading and Writing, 770-800 Math; Cornell 730-770 Reading and Writing, 770-800 Math; Dartmouth 740-780 Reading and Writing, 760-790 Math; Harvard 740-780 Reading and Writing, 770-800 Math; MIT 740-780 Reading and Writing, 780-800 Math; Penn 740-770 Reading and Writing, 770-800 Math; Princeton 740-780 Reading and Writing, 770-800 Math; Stanford 740-780 Reading and Writing, 770-800 Math; Yale 730-780 Reading and Writing, 740-790 Math. Source: federal IPEDS data for fall 2024 (a provisional release, the newest out), via College Navigator. These ranges count only students who sent scores. Use them as a guide, not a promise."}}
 ]
 }
 ]
@@ -337,6 +337,30 @@ footer .fine{font-size:var(--t-1);color:var(--footer-soft);max-width:var(--measu
 .foot-row{display:flex;flex-wrap:wrap;align-items:center;gap:0 var(--s3)}
 .foot-h{font-size:var(--t-1);letter-spacing:.14em;text-transform:uppercase;color:var(--footer-soft);min-height:44px;display:inline-flex;align-items:center}
 footer .foot-nav a{color:var(--cream);text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
+/* evidence pass, Oct 12 2026 */
+.strip{padding:0 0 var(--sec)}
+.strip .plate{background:var(--white);border-top:3px solid var(--maroon);padding:var(--s3);display:grid;gap:var(--s3);align-items:center}
+@media(min-width:900px){.strip .plate{grid-template-columns:auto 1fr;gap:var(--s4);padding:var(--s4) var(--s5)}}
+.strip .plate-mark{width:56px;height:56px;display:none}
+@media(min-width:900px){.strip .plate-mark{display:block}}
+.strip ul{list-style:none;margin:0;padding:0;display:grid;gap:var(--s3)}
+@media(min-width:900px){.strip ul{grid-template-columns:repeat(3,1fr);gap:var(--s4)}}
+.strip li{padding-top:var(--s1);border-top:2px solid var(--gold);font-family:var(--head);font-weight:600;font-size:var(--t0);line-height:var(--lh-head);text-wrap:balance}
+.teach{display:flex;flex-direction:column;gap:var(--s2);max-width:var(--measure)}
+.teach p{font-size:var(--t1)}
+.teach cite{font-style:normal;font-size:var(--t-1);color:var(--ink-soft)}
+.note-card{background:var(--white);border-top:3px solid var(--maroon);padding:var(--s4) var(--s3);max-width:var(--measure);display:flex;flex-direction:column;gap:var(--s2)}
+.note-card .tag{display:inline-block;font-size:var(--t-1);letter-spacing:.14em;text-transform:uppercase;color:var(--white);background:var(--maroon);padding:2px 10px;border-radius:3px;align-self:flex-start}
+.note-card .subj{font-family:var(--head);font-weight:600;font-size:var(--t1);line-height:var(--lh-head)}
+.note-card dl{margin:0;display:grid;gap:var(--s1)}
+.note-card dt{font-size:var(--t-1);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}
+.note-card dd{margin:0 0 var(--s1)}
+.disc{font-size:var(--t-1);color:var(--ink-soft);max-width:var(--measure)}
+.log{width:100%;border-collapse:collapse;max-width:var(--measure);font-size:var(--t-1)}
+.log caption{text-align:left;font-size:var(--t-1);color:var(--ink-soft);padding-bottom:var(--s1)}
+.log th,.log td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+.log thead th{font-family:var(--head);font-weight:600;color:var(--maroon)}
+.log td.open{color:var(--ink-soft)}
 </style>
 </head>
 <body>
@@ -364,6 +388,20 @@ footer .foot-nav a{color:var(--cream);text-decoration:none;min-height:44px;displ
         <p class="soft">Based in the New York Metropolitan Area. Nationwide over Zoom.</p>
         <a class="textlink small" href="/plan/">Find your Done Date</a>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- 1b. EVIDENCE STRIP (Oct 12, evidence pass) -->
+<section class="strip" aria-label="What you get">
+  <div class="wrap">
+    <div class="plate">
+      <img class="plate-mark" src="/warrior.png" alt="" width="56" height="56" loading="lazy">
+      <ul>
+        <li>Numbers from Session 1. A score log you can read, baseline to test day.</li>
+        <li>Talk to Sensei Jay before you pay. The Diagnostic call is free and it is the taster.</li>
+        <li>Every Diagnostic answered in writing within one business day.</li>
+      </ul>
     </div>
   </div>
 </section>
@@ -473,8 +511,50 @@ footer .foot-nav a{color:var(--cream);text-decoration:none;min-height:44px;displ
   </div>
 </section>
 
+<!-- 4b. HOW SENSEI JAY TEACHES (Oct 12, evidence pass) -->
+<section id="teaches" class="band" aria-labelledby="h-teach">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">In the Dojo</div>
+      <h2 id="h-teach">How Sensei Jay teaches.</h2>
+      <div class="rule"></div>
+    </div>
+    <blockquote class="teach">
+      <p>I teach one move at a time, and I never rush it. I show the move once. Then the student does the solving while I watch for the habit that cost the points.</p>
+      <p>Every move gets a name, so it can be spotted before it fires. We finish when the student can say the rule in their own words. That is the only version I trust to hold up on test day.</p>
+      <cite>Sensei Jay, The SAT Sensei</cite>
+    </blockquote>
+  </div>
+</section>
+
+<!-- 4c. THE WEEKLY NOTE, SAMPLE (Oct 12, evidence pass) -->
+<section id="note" aria-labelledby="h-note">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">The update</div>
+      <h2 id="h-note">The note that comes home every week.</h2>
+      <div class="rule"></div>
+      <p class="soft measure">This is the document the parent actually holds. Here is one, filled in for a sample student.</p>
+    </div>
+    <div class="stack-lg">
+      <article class="note-card" aria-label="Example weekly note">
+        <span class="tag">Example</span>
+        <p class="subj">Sample Student, week 2 at the Dojo</p>
+        <dl>
+          <dt>What closed this week</dt><dd>The math foundations. Belt: White.</dd>
+          <dt>What is next</dt><dd>The Half-Finished Move, in Math and in Reading and Writing.</dd>
+          <dt>Trap count</dt><dd>7 of the 8 moves on the Roadmap are still costing points.</dd>
+          <dt>Next session</dt><dd>Thursday, 7:30 PM ET, on Zoom.</dd>
+        </dl>
+        <p class="small soft">Signed Sensei Jay, The SAT Sensei. <a class="textlink" href="/sample/">See the full note and the two documents that come with it.</a></p>
+      </article>
+      <p class="disc" role="note">Sample for illustration only. The Sample Student is not a real student. Every score, miss and note on this page was made up to show what the documents look like. It shows the work, not a result any student got or will get. Individual results vary.</p>
+    </div>
+  </div>
+</section>
+
 <!-- 5. THE METHOD -->
-<section id="method" class="band" aria-labelledby="h-method">
+<section id="method" aria-labelledby="h-method">
   <div class="wrap">
     <div class="sec-head">
       <div class="eyebrow">The method</div>
@@ -499,42 +579,34 @@ footer .foot-nav a{color:var(--cream);text-decoration:none;min-height:44px;displ
   </div>
 </section>
 
-<!-- 6. WHERE THE POINTS WERE GOING -->
-<section id="cases" aria-labelledby="h-cases">
+<!-- 6. THE SCORE LOG (Oct 12, evidence pass; replaces the three illustrative cases) -->
+<section id="scorelog" class="band" aria-labelledby="h-log">
   <div class="wrap">
     <div class="sec-head">
-      <div class="eyebrow">Where the points were going</div>
-      <h2 id="h-cases">Three students. Three habits. Same fix.</h2>
+      <div class="eyebrow">The score log</div>
+      <h2 id="h-log">Numbers from Session 1.</h2>
       <div class="rule"></div>
-      <p class="soft">Details changed.</p>
     </div>
-    <div class="cases">
-      <article class="case">
-        <div class="k">1210</div>
-        <p>The fourth practice test came back within twenty points of the first three. The family had bought more tests and the student had taken them. The score had not moved, because nothing about how the questions were being read had changed.</p>
-        <p>The Diagnostic put the fourteen misses side by side. Nine of them were two patterns: answer choices that were true but did not answer the question asked, and punctuation chosen by ear. Both have a name and a rule.</p>
-        <p>The sessions closed those two first.</p>
-        <p class="out">The gap to 1350 was never fourteen questions. It was two habits.</p>
-      </article>
-      <article class="case">
-        <div class="k">1090</div>
-        <p>An A in Algebra 2 and a score that said otherwise, so the student had decided the problem was nerves and the parents had half believed it. The misses said something more useful.</p>
-        <p>On every Math module there was a question that asked for 2x plus 3 and got x, worked correctly and answered wrong. On every module the last four questions were blank, because the first eighteen had taken too long.</p>
-        <p>Two habits, one of them fixable on the spot with Desmos doing the arithmetic.</p>
-        <p class="out">"Bad at tests" had never been true.</p>
-      </article>
-      <article class="case">
-        <div class="k">Friday</div>
-        <p>The family had already paid for the big brand: a term with a rotating cast of tutors, a workbook, and no way to tell whether any of it was working.</p>
-        <p>Here the update arrives every Friday with the week's speed and accuracy by section and the move that cost the most points, named.</p>
-        <p class="out">The first week, she forwarded it to her husband. It was the first time either of them could see what the money was doing.</p>
-      </article>
+    <div class="stack-lg">
+      <p class="lead measure">Every student has a score log from the first session. It holds the baseline practice score, the midpoint, the final, and the moves still costing points after every session. The student and the parent can read it any week.</p>
+      <table class="log">
+        <caption>Example. Sample for illustration. Not a real student. Individual results vary.</caption>
+        <thead><tr><th scope="col">When</th><th scope="col">Score</th><th scope="col">Moves still costing points</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Baseline, before Session 1</th><td>1140 (Math 560, Reading and Writing 580)</td><td>8 on the Roadmap</td></tr>
+          <tr><th scope="row">Session 1</th><td class="open">No test this week</td><td>8</td></tr>
+          <tr><th scope="row">Session 2</th><td class="open">No test this week</td><td>7</td></tr>
+          <tr><th scope="row">Midpoint practice test</th><td class="open">Logged the day it lands</td><td class="open">Logged the day it lands</td></tr>
+          <tr><th scope="row">Final practice test</th><td class="open">Logged the day it lands</td><td class="open">Logged the day it lands</td></tr>
+        </tbody>
+      </table>
+      <p class="measure">When a family gives written permission, their real log goes here in place of the sample.</p>
     </div>
   </div>
 </section>
 
 <!-- 7. PLANS -->
-<section id="plans" class="band" aria-labelledby="h-plans">
+<section id="plans" aria-labelledby="h-plans">
   <div class="wrap">
     <div class="sec-head">
       <div class="eyebrow">Plans</div>
@@ -549,12 +621,28 @@ footer .foot-nav a{color:var(--cream);text-decoration:none;min-height:44px;displ
     <div class="plans-note stack">
       <p class="measure">Plans are priced after the Diagnostic. The length depends on the gap, and the Diagnostic is free.</p>
       <p class="measure">Every plan runs on the same Roadmap and the same Sensei. The only difference is how much ground there is to cover.</p>
+      <p class="measure">Evenings and weekends. Built around practice and games.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 7b. REVIEWS (Oct 12, evidence pass). Hidden until the first Yelp review exists: remove the hidden attribute and set data-yelp-url. -->
+<section id="reviews" class="band" aria-labelledby="h-rev" hidden data-source="yelp" data-yelp-url="">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Reviews</div>
+      <h2 id="h-rev">What families say.</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="stack-lg">
+      <div class="cases" id="revList"></div>
+      <p class="measure"><a class="textlink" id="revLink" href="#" rel="noopener">Read every review on Yelp</a></p>
     </div>
   </div>
 </section>
 
 <!-- 8. FREQUENTLY ASKED -->
-<section id="faq" aria-labelledby="h-faq">
+<section id="faq" class="band" aria-labelledby="h-faq">
   <div class="wrap">
     <div class="sec-head">
       <div class="eyebrow">Questions</div>
@@ -591,7 +679,7 @@ footer .foot-nav a{color:var(--cream);text-decoration:none;min-height:44px;displ
             <tr><th scope="row">Yale</th><td>730–780</td><td>740–790</td></tr>
           </tbody>
         </table>
-        <p class="small soft">Source: federal IPEDS data for fall 2024 (a provisional release, the newest out), via <a href="https://nces.ed.gov/collegenavigator/">College Navigator</a>. These ranges count only students who sent scores. Use them as a guide, not a guarantee.</p>
+        <p class="small soft">Source: federal IPEDS data for fall 2024 (a provisional release, the newest out), via <a href="https://nces.ed.gov/collegenavigator/">College Navigator</a>. These ranges count only students who sent scores. Use them as a guide, not a promise.</p>
       </div></details>
     </div>
   </div>
@@ -607,6 +695,7 @@ footer .foot-nav a{color:var(--cream);text-decoration:none;min-height:44px;displ
     </div>
     <div class="stack-lg diag-intro">
       <p class="lead measure">One form. The written Diagnostic comes back within one business day, to the student and to the parent. It says where the score stands, where it needs to be, and what we would do first.</p>
+      <p class="measure">You talk to Sensei Jay before anyone pays.</p>
       <p class="measure">If you would rather talk it through first, there is a free fifteen-minute call on Zoom. <a href="https://calendly.com/senseijay-scoresamurai/dojo-diagnostic">Book it here.</a> The form comes first either way.</p>
       <p class="pull">One form. One business day. Then you know.</p>
     </div>
