@@ -151,14 +151,6 @@ new MutationObserver(scan).observe(document.documentElement, { childList: true, 
 },
 {
 "@type": "Question",
-"name": "Why a dojo?",
-"acceptedAnswer": {
-"@type": "Answer",
-"text": "Sensei Jay saw the SAT for what it is. It is a knowledge test, but also a game of moves. The same patterns come back every year, the way a martial art repeats its forms."
-}
-},
-{
-"@type": "Question",
 "name": "Can an app do this?",
 "acceptedAnswer": {
 "@type": "Answer",
@@ -438,6 +430,31 @@ footer .foot-nav a{color:var(--cream);text-decoration:none;min-height:44px;displ
 .log td.open{color:var(--ink-soft)}
 @media(max-width:899px){.hero{padding-top:var(--s10)}.hero-mark{width:160px;height:160px}.hero-copy{gap:var(--s4)}.hero-trust{margin-top:var(--s5)}}
 @media(min-width:900px){:root{--sec:var(--s12)}}
+/* depth: collapsibles, native details, closed by default */
+.more{max-width:var(--measure);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.mores{margin-top:var(--s3);max-width:var(--measure)}
+.mores .more{border-top:0}
+.mores .more:first-child{border-top:1px solid var(--line)}
+.more summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:var(--s2);min-height:44px;padding:6px 0;font-family:var(--head);font-weight:600;font-size:var(--t0);line-height:var(--lh-head);color:var(--maroon)}
+.more summary::-webkit-details-marker{display:none}
+.more summary::after{content:"+";font-family:var(--body);font-weight:400;font-size:var(--t1);color:var(--maroon);flex:0 0 auto}
+.more[open] summary::after{content:"\2212"}
+.more .in{padding:0 0 var(--s3);display:flex;flex-direction:column;gap:var(--s2)}
+.more .in ol,.more .in ul{margin:0;padding-left:1.25em;display:grid;gap:var(--s1)}
+.more .in dl{margin:0;display:grid;gap:var(--s1)}
+.more .in dt{font-family:var(--head);font-weight:600}
+.more .in dd{margin:0 0 var(--s1)}
+.more .runin{font-weight:600}
+.more .sample{background:var(--white);border-top:3px solid var(--maroon);padding:var(--s3);display:flex;flex-direction:column;gap:var(--s2)}
+.more .sample .tag{display:inline-block;font-size:var(--t-1);letter-spacing:.14em;text-transform:uppercase;color:var(--white);background:var(--maroon);padding:2px 10px;border-radius:3px;align-self:flex-start}
+.more .sample .subj{font-family:var(--head);font-weight:600}
+.more .sample .box{margin:0;padding-left:1.25em;display:grid;gap:var(--s1)}
+.more .log td.blank{min-width:5em}
+.strip .more{margin-top:var(--s2)}
+/* depth: room for the summaries inside the height budgets */
+:root{--sec:56px}
+@media(max-width:899px){.hero{padding-bottom:var(--s8)}}
+@media(min-width:900px){:root{--sec:var(--s10)}}
 </style>
 </head>
 <body>
@@ -481,6 +498,18 @@ footer .foot-nav a{color:var(--cream);text-decoration:none;min-height:44px;displ
         <li>A written progress update every week.</li>
       </ul>
     </div>
+    <details class="more" id="why-samurai"><summary>Why a samurai?</summary><div class="in">
+<p>The SAT reuses the same traps on every test. A trap is a wrong answer built to catch a common habit.</p>
+<p>Training here means seeing those traps until beating them is automatic. That is what a dojo is for.</p>
+<dl>
+<dt>The Warrior</dt><dd>Our mascot, and the goal: a student who spots the trap before it fires.</dd>
+<dt>The Dojo</dt><dd>The training itself. One on one, every session with Sensei Jay.</dd>
+<dt>The Roadmap</dt><dd>The written plan, built from the student's own misses. It lists what to fix, in the order it costs points.</dd>
+<dt>Pattern</dt><dd>A kind of question the SAT keeps repeating, with its trap built in. Sensei Jay has named 44 of them.</dd>
+<dt>Move</dt><dd>The test's play inside a pattern, like baiting a student to stop one step early. The Roadmap lists the moves to close.</dd>
+<dt>Closed</dt><dd>A pattern that has not cost a point across two practice tests in a row.</dd>
+</dl>
+</div></details>
   </div>
 </section>
 
@@ -498,10 +527,48 @@ footer .foot-nav a{color:var(--cream);text-decoration:none;min-height:44px;displ
       <li><p><span class="runin">The sessions:</span> 50 minutes, one-on-one over Zoom, every one with Sensei Jay.</p></li>
       <li><p><span class="runin">The update:</span> what closed and what is next, every week.</p></li>
     </ol>
+    <div class="mores">
+<details class="more" id="diag-sample"><summary>What the Diagnostic looks like</summary><div class="in">
+<p>Free and written, back within one business day. It reads the scores on the form, plus a practice test if the student has one.</p>
+<p>Here is the top of one, for a fictional student.</p>
+<div class="sample" role="note" aria-label="Sample Diagnostic excerpt">
+<span class="tag">Sample</span>
+<p class="subj">Dojo Diagnostic: Sample Student</p>
+<p>The three traps costing the most points, in order:</p>
+<ol class="box">
+<li><span class="runin">The Answer to a Different Question.</span> Solves for the wrong value in Math.</li>
+<li><span class="runin">Can Each Half Stand Alone.</span> Picks commas by ear in Reading and Writing.</li>
+<li><span class="runin">Which Denominator.</span> Takes the percent of the wrong total.</li>
+</ol>
+<p><span class="runin">First on the Roadmap:</span> trap 1, then 2, then 3. Belt: White, the next is Green.</p>
+<p><span class="runin">Done Date:</span> the sitting the family picked, with one backup sitting after it.</p>
+<p class="small soft">Signed Sensei Jay.</p>
+</div>
+<p class="disc">Sample for illustration. Fictional student, not a real Diagnostic.</p>
+</div></details>
+<details class="more" id="belts-how"><summary>How the belts work</summary><div class="in">
+<p>The ladder runs White, Green, Blue, Brown, Black.</p>
+<p>Every student holds White from the Diagnostic on.</p>
+<p>Each belt comes with its own set of named patterns. A pattern is closed when it stops costing points across two practice tests in a row.</p>
+<p>Close the whole set, and the next belt is earned. Sensei Jay judges each one and logs it on the Roadmap.</p>
+<p>A belt shows what is closed. It never predicts a score.</p>
+</div></details>
+<details class="more" id="session-run"><summary>How a session runs</summary><div class="in">
+<p>Fifty minutes, one on one over Zoom, every one with Sensei Jay.</p>
+<ol>
+<li><span class="runin">Say it back.</span> The student states the last rule from memory. If it slipped, it goes back in today's work.</li>
+<li><span class="runin">One trap at a time.</span> Sensei Jay names the trap and works one question out loud. The student solves the next one alone.</li>
+<li><span class="runin">Write the rule.</span> The student puts it in their own words. The trap stays on the board until they can.</li>
+<li><span class="runin">Ghosts.</span> Later sessions drop in an old trap without warning. Catching it cold shows it held.</li>
+<li><span class="runin">End on a win.</span> The last question is one the student solves alone. Homework locks in the new rules.</li>
+</ol>
+<p>On Math, every question gets a decision: the test's built-in Desmos calculator, or by hand.</p>
+</div></details>
+    </div>
   </div>
 </section>
 
-<!-- 3. THE WEEKLY NOTE, SAMPLE -->
+<!-- 3. THE WEEKLY UPDATE, SAMPLE -->
 <section id="note" aria-labelledby="h-note">
   <div class="wrap">
     <div class="sec-head">
@@ -515,13 +582,28 @@ footer .foot-nav a{color:var(--cream);text-decoration:none;min-height:44px;displ
         <span class="tag">Example</span>
         <p class="subj">Sample Student, week 2 at the Dojo</p>
         <dl>
-          <dt>What closed this week</dt><dd>Comma questions in Reading and Writing. Solving for the wrong value in Math.</dd>
+          <dt>What improved this week</dt><dd>Comma questions in Reading and Writing. Solving for the wrong value in Math.</dd>
           <dt>What is next</dt><dd>Timing in the second Math module.</dd>
           <dt>Still costing points</dt><dd>7 of the 8 items on the Roadmap.</dd>
         </dl>
         <p class="small soft">Signed Sensei Jay. <a class="textlink" href="/sample/">See the full sample</a></p>
       </article>
       <p class="disc" role="note">Sample for illustration. Not a real student. Individual results vary.</p>
+      <details class="more" id="proof"><summary>Proof of method</summary><div class="in">
+<p><span class="runin">The patterns.</span> 44 named patterns, mapped across Math and Reading and Writing. Each one sits on a belt.</p>
+<p><span class="runin">The work behind them.</span> Close to a decade with this test. 1,168 real SAT questions catalogued, one at a time.</p>
+<p><span class="runin">The score log.</span> Every family gets one. This is the empty template.</p>
+<table class="log">
+<caption>Score log template. Blank on purpose.</caption>
+<thead><tr><th scope="col">When</th><th scope="col">Score</th><th scope="col">Traps still costing points</th></tr></thead>
+<tbody>
+<tr><th scope="row">Baseline practice test</th><td class="blank"></td><td class="blank"></td></tr>
+<tr><th scope="row">Each session</th><td class="blank"></td><td class="blank"></td></tr>
+<tr><th scope="row">Midpoint practice test</th><td class="blank"></td><td class="blank"></td></tr>
+<tr><th scope="row">Final practice test</th><td class="blank"></td><td class="blank"></td></tr>
+</tbody>
+</table>
+</div></details>
     </div>
   </div>
 </section>
@@ -545,8 +627,8 @@ footer .foot-nav a{color:var(--cream);text-decoration:none;min-height:44px;displ
   </div>
 </section>
 
-<!-- 7b. REVIEWS (Oct 12, evidence pass). Hidden until the first Yelp review exists: remove the hidden attribute and set data-yelp-url. -->
-<section id="reviews" aria-labelledby="h-rev" hidden data-source="yelp" data-yelp-url="">
+<!-- 7b. REVIEWS. Hidden until the first real review exists. The platform is chosen then: remove the hidden attribute and set the link. -->
+<section id="reviews" aria-labelledby="h-rev" hidden>
   <div class="wrap">
     <div class="sec-head">
       <div class="eyebrow">Reviews</div>
@@ -555,7 +637,7 @@ footer .foot-nav a{color:var(--cream);text-decoration:none;min-height:44px;displ
     </div>
     <div class="stack-lg">
       <div class="cases" id="revList"></div>
-      <p class="measure"><a class="textlink" id="revLink" href="#" rel="noopener">Read every review on Yelp</a></p>
+      <p class="measure"><a class="textlink" id="revLink" href="#" rel="noopener">Read every review</a></p>
     </div>
   </div>
 </section>
@@ -571,7 +653,6 @@ footer .foot-nav a{color:var(--cream);text-decoration:none;min-height:44px;displ
     <div class="faq">
       <details><summary>What does it cost?</summary><div class="a"><p>That depends on the plan, and the plan depends on the gap. The free Diagnostic sets both.</p></div></details>
       <details><summary>Why fifty minutes?</summary><div class="a"><p>In Sensei Jay's experience, hard focus fades after about fifty minutes. So each session takes a few moves from the Roadmap and teaches them. It drills them, then ends on a fresh question the student has to win alone. The work between sessions is where the moves set.</p></div></details>
-      <details><summary>Why a dojo?</summary><div class="a"><p>Sensei Jay saw the SAT for what it is. It is a knowledge test, but also a game of moves. The same patterns come back every year, the way a martial art repeats its forms.</p></div></details>
       <details><summary>Can an app do this?</summary><div class="a"><p>The way Sensei Jay sees it, AI can answer the question. It cannot see why this student keeps missing it. That is the difference between an app and a Sensei.</p></div></details>
       <details><summary>What do we actually get?</summary><div class="a"><p>A written Diagnostic showing exactly where the points are going. A plan built backward from the date you want to be done. Every session taught by Sensei Jay himself. A written progress update every week, so nobody has to ask.</p></div></details>
       <details><summary>When should we start?</summary><div class="a"><p>Pick the sitting you want to be your last, then count back. Start with enough runway and the plan has a backup date built in. The free Diagnostic sets the date.</p></div></details>
@@ -621,7 +702,7 @@ footer .foot-nav a{color:var(--cream);text-decoration:none;min-height:44px;displ
         </div>
         <div class="screen hidden" data-screen="3">
           <h3>A parent to copy</h3>
-          <p class="soft">The Diagnostic goes to both of you. The weekly notes go to the parent if you enroll.</p>
+          <p class="soft">The Diagnostic goes to both of you. The weekly updates go to the parent if you enroll.</p>
           <div class="row2">
             <div class="field"><label for="pfirst">Parent first name</label><input id="pfirst" name="parent_first" autocomplete="section-parent given-name" required><span class="errmsg">Needed.</span></div>
             <div class="field"><label for="plast">Parent last name</label><input id="plast" name="parent_last" autocomplete="section-parent family-name" required><span class="errmsg">Needed.</span></div>
@@ -694,7 +775,7 @@ footer.sf .sf-cb{margin:8px 0 0;color:#B3A796;font-size:13px;max-width:44em}
     </div>
     <nav class="sf-col" aria-label="Score Samurai">
       <p class="sf-h">Score Samurai</p>
-      <ul><li><a href="/#how">How it works</a></li><li><a href="/#plans">Plans</a></li><li><a href="/dojo/">The Dojo</a></li><li><a href="/sample/">Sample weekly note</a></li><li><a href="/#faq">Questions</a></li></ul>
+      <ul><li><a href="/#how">How it works</a></li><li><a href="/#plans">Plans</a></li><li><a href="/dojo/">The Dojo</a></li><li><a href="/sample/">Sample weekly update</a></li><li><a href="/#faq">Questions</a></li></ul>
     </nav>
     <nav class="sf-col" aria-label="Free tools">
       <p class="sf-h">Free tools</p>
