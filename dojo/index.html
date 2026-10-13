@@ -317,6 +317,27 @@ footer .foot-nav a{color:var(--cream);text-decoration:none;min-height:44px;displ
 @media(max-width:899px){.hero{padding-top:var(--s10)}.hero-mark{width:160px;height:160px}.hero-copy{gap:var(--s4)}.hero-trust{margin-top:var(--s5)}}
 @media(min-width:900px){:root{--sec:var(--s12)}}
 .band-maroon .btn{color:var(--dark)}
+/* depth: collapsibles, native details, closed by default */
+.more{max-width:var(--measure);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.mores{margin-top:var(--s3);max-width:var(--measure)}
+.mores .more{border-top:0}
+.mores .more:first-child{border-top:1px solid var(--line)}
+.more summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:var(--s2);min-height:44px;padding:6px 0;font-family:var(--head);font-weight:600;font-size:var(--t0);line-height:var(--lh-head);color:var(--maroon)}
+.more summary::-webkit-details-marker{display:none}
+.more summary::after{content:"+";font-family:var(--body);font-weight:400;font-size:var(--t1);color:var(--maroon);flex:0 0 auto}
+.more[open] summary::after{content:"\2212"}
+.more .in{padding:0 0 var(--s3);display:flex;flex-direction:column;gap:var(--s2)}
+.more .in ol,.more .in ul{margin:0;padding-left:1.25em;display:grid;gap:var(--s1)}
+.more .in dl{margin:0;display:grid;gap:var(--s1)}
+.more .in dt{font-family:var(--head);font-weight:600}
+.more .in dd{margin:0 0 var(--s1)}
+.more .runin{font-weight:600}
+.more .sample{background:var(--white);border-top:3px solid var(--maroon);padding:var(--s3);display:flex;flex-direction:column;gap:var(--s2)}
+.more .sample .tag{display:inline-block;font-size:var(--t-1);letter-spacing:.14em;text-transform:uppercase;color:var(--white);background:var(--maroon);padding:2px 10px;border-radius:3px;align-self:flex-start}
+.more .sample .subj{font-family:var(--head);font-weight:600}
+.more .sample .box{margin:0;padding-left:1.25em;display:grid;gap:var(--s1)}
+.more .log td.blank{min-width:5em}
+.strip .more{margin-top:var(--s2)}
 </style>
 </head>
 <body>
@@ -401,6 +422,13 @@ footer .foot-nav a{color:var(--cream);text-decoration:none;min-height:44px;displ
         <li class="belt"><svg viewBox="0 0 120 42" aria-hidden="true"><rect x="2" y="12" width="116" height="18" rx="3" fill="#7A4A2B"/><path d="M52 12 L68 30 M68 12 L52 30" stroke="#54321C" stroke-width="3" stroke-linecap="round"/><rect x="54" y="8" width="12" height="26" rx="2" fill="#7A4A2B" stroke="#54321C" stroke-width="2"/></svg><div><h3>Brown</h3><p>Closes when the hard-module moves in one section stop costing points.</p></div></li>
         <li class="belt"><svg viewBox="0 0 120 42" aria-hidden="true"><rect x="2" y="12" width="116" height="18" rx="3" fill="#141110"/><path d="M52 12 L68 30 M68 12 L52 30" stroke="#5A544E" stroke-width="3" stroke-linecap="round"/><rect x="54" y="8" width="12" height="26" rx="2" fill="#141110" stroke="#5A544E" stroke-width="2"/></svg><div><h3>Black</h3><p>Closes when the hard-module moves in both sections stop costing points.</p></div></li>
       </ul>
+      <details class="more" id="belts-how-dojo"><summary>How the belts work</summary><div class="in">
+<p>The ladder runs White, Green, Blue, Brown, Black.</p>
+<p>Every student holds White from the Diagnostic on.</p>
+<p>Each belt comes with its own set of named patterns. A pattern is closed when it stops costing points across two practice tests in a row.</p>
+<p>Close the whole set, and the next belt is earned. Sensei Jay judges each one and logs it on the Roadmap.</p>
+<p>A belt shows what is closed. It never predicts a score.</p>
+</div></details>
       <p class="pull">Nobody hands you Green. You take it.</p>
     </div>
   </div>
@@ -459,7 +487,7 @@ footer .foot-nav a{color:var(--cream);text-decoration:none;min-height:44px;displ
       <div class="points">
         <p><span class="runin">The same moves, every test.</span> The wrong answers are built from the same handful of habits, year after year. A procedure stopped one step early. A first meaning trusted too fast. A true sentence that answers a question nobody asked. Once a student can name the move, it stops working.</p>
         <p><span class="runin">The Desmos work.</span> Desmos is built into the Math section. Half of the timing problem is knowing which questions to send to it. The rest is knowing which to work by hand. We decide that question by question, until the choice is a reflex.</p>
-        <p><span class="runin">Weekly tracking.</span> Speed and accuracy are tracked every week, by section, and reported to the parent in the written note. Nobody has to ask how it is going.</p>
+        <p><span class="runin">Weekly tracking.</span> Speed and accuracy are tracked every week, by section, and reported to the parent in the written update. Nobody has to ask how it is going.</p>
         <p><span class="runin">Why students get stuck.</span> No two students are stuck for the same reason. One loses points to the clock. Another picks the answer that is true and still wrong. A third knows the math cold and freezes when a question looks unfamiliar.</p>
       </div>
     </div>
@@ -626,7 +654,7 @@ footer.sf .sf-cb{margin:8px 0 0;color:#B3A796;font-size:13px;max-width:44em}
     </div>
     <nav class="sf-col" aria-label="Score Samurai">
       <p class="sf-h">Score Samurai</p>
-      <ul><li><a href="/#how">How it works</a></li><li><a href="/#plans">Plans</a></li><li><a href="/dojo/">The Dojo</a></li><li><a href="/sample/">Sample weekly note</a></li><li><a href="/#faq">Questions</a></li></ul>
+      <ul><li><a href="/#how">How it works</a></li><li><a href="/#plans">Plans</a></li><li><a href="/dojo/">The Dojo</a></li><li><a href="/sample/">Sample weekly update</a></li><li><a href="/#faq">Questions</a></li></ul>
     </nav>
     <nav class="sf-col" aria-label="Free tools">
       <p class="sf-h">Free tools</p>
