@@ -161,7 +161,7 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
 /* Kit form 9907591, restyled onto .tm input and .btn */
 .formwrap .formkit-form{background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important;margin:0!important;max-width:none!important;font-family:inherit!important}
 .formwrap .formkit-form *{font-family:inherit!important}
-.formwrap .formkit-header,.formwrap .formkit-subheader,.formwrap .formkit-guarantee,.formwrap .formkit-background,.formwrap .formkit-image{display:none!important}
+.formwrap .formkit-header,.formwrap .formkit-subheader,.formwrap [class*="formkit-guar"],.formwrap .formkit-background,.formwrap .formkit-image{display:none!important}
 .formwrap .formkit-fields{display:flex!important;flex-wrap:wrap!important;gap:10px!important;margin:0!important;align-items:stretch!important}
 .formwrap .formkit-field{flex:1 1 200px!important;min-width:200px!important;margin:0!important}
 .formwrap .formkit-input{height:48px!important;padding:0 14px!important;border:1px solid #C9BFA8!important;border-radius:8px!important;font-size:15px!important;font-family:inherit!important;background:#fff!important;color:var(--ink)!important;width:100%!important;box-shadow:none!important;margin:0!important}

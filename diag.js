@@ -39,6 +39,13 @@
     f.addEventListener("input", function () { f.closest(".field") && f.closest(".field").classList.remove("err"); });
   });
 
+  form.addEventListener("keydown", function (e) {
+    if (e.key !== "Enter" || e.isComposing) return;
+    var t = e.target;
+    if (!t || t.tagName === "TEXTAREA" || t.tagName === "BUTTON" || t.tagName === "A") return;
+    if (cur < 2) { e.preventDefault(); if (valid(cur)) show(cur + 1, true); }
+  });
+
   form.addEventListener("submit", function (e) {
     e.preventDefault();
     if (!valid(2)) return;
@@ -68,4 +75,6 @@
   });
 
   show(0, false);
+  var firstField = document.getElementById("first");
+  if (firstField) { try { firstField.focus({ preventScroll: true }); } catch (e) {} }
 })();
