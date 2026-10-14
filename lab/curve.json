@@ -1,0 +1,325 @@
+{
+ "name": "Dojo Score Lab conversion table",
+ "version": "v2, Oct 14 2026",
+ "status": "UNCALIBRATED ESTIMATE. College Board publishes no raw-to-scale table for the digital SAT and scores with Item Response Theory, so the same number right can earn different scores. Every point below is a published example, a scale end, or the route offset below. The page never shows a single number alone: every section and total is shown with the range set in 'range'. Replace with logged pairs (Bluebook module counts, Bluebook score, real score) as students come through.",
+ "how_the_page_uses_it": "For each section the page adds Module 1 and Module 2 correct and reads the scaled score by straight-line interpolation on the route's table. If Module 1 is in the 'either' band, it reads both routes and the range covers both. Each route estimate is rounded to the nearest 10 and clamped to the section scale. Then the range in 'range' is applied.",
+ "scale": {
+  "section_min": 200,
+  "section_max": 800,
+  "total_min": 400,
+  "total_max": 1600,
+  "source": "cb_scale"
+ },
+ "items": {
+  "rw": {
+   "module1": 27,
+   "module2": 27,
+   "source": "cb_structure"
+  },
+  "math": {
+   "module1": 22,
+   "module2": 22,
+   "source": "cb_structure"
+  }
+ },
+ "module1_route": {
+  "rw": {
+   "easier_max": 18,
+   "either": [
+    19,
+    19
+   ],
+   "harder_min": 20
+  },
+  "math": {
+   "easier_max": 13,
+   "either": [
+    14,
+    15
+   ],
+   "harder_min": 16
+  },
+  "basis": "College Board publishes no threshold. Coaching estimates put it near 70 to 75 percent of Module 1 (ivy_threshold): about 19 to 20 of 27 and 16 to 17 of 22. The one published worked example (num8ers, older Digital Practice Test 1) shows Reading and Writing routed harder at 20 and easier at 18, and Math routed harder at 14 and easier at 13. The 'either' band (Reading and Writing 19, Math 14 to 15) is where the two sources disagree, so the page never asserts a route inside it.",
+  "label": "An estimate. College Board publishes no threshold.",
+  "sources": [
+   "ivy_threshold",
+   "n8_example"
+  ]
+ },
+ "rounding": 10,
+ "range": {
+  "section_halfwidth": 50,
+  "total_halfwidth": 70,
+  "method": "Section range = lowest route estimate minus 50 to highest route estimate plus 50. Total range = lowest route total minus 70 to highest route total plus 70. All rounded to 10 and clamped to the scale. Point shown = the middle of the range, labelled 'about'.",
+  "why_50": "College Board's own score report puts a real section score at plus or minus 30 on a retake (cb_ranges). This table blends two third-party estimates (n8_example and ll_table); where both speak to the same raw score they differ by up to 35 points (Math, 35 of 44). 50 per section covers that disagreement plus most of College Board's own band.",
+  "why_70": "College Board's total band is plus or minus 40 (cb_ranges). Two section errors of 50 that are not fully tied combine to about 70 (square root of 2 times 50), which is wider than College Board's own band.",
+  "replace_when": "8 or more logged pairs on a route: set the halfwidths to the 80th percentile of absolute error and log the change."
+ },
+ "sections": {
+  "rw": {
+   "harder": [
+    {
+     "raw": 0,
+     "scaled": 200,
+     "source": "cb_scale"
+    },
+    {
+     "raw": 21.6,
+     "scaled": 455,
+     "source": "ll_table",
+     "note": "band midpoint at 20 of 40 scored, mapped to the full module count"
+    },
+    {
+     "raw": 27.0,
+     "scaled": 505,
+     "source": "ll_table",
+     "note": "band midpoint at 25 of 40 scored, mapped to the full module count"
+    },
+    {
+     "raw": 32.4,
+     "scaled": 555,
+     "source": "ll_table",
+     "note": "band midpoint at 30 of 40 scored, mapped to the full module count"
+    },
+    {
+     "raw": 36.7,
+     "scaled": 595,
+     "source": "ll_table",
+     "note": "band midpoint at 34 of 40 scored, mapped to the full module count"
+    },
+    {
+     "raw": 41.0,
+     "scaled": 645,
+     "source": "ll_table",
+     "note": "band midpoint at 38 of 40 scored, mapped to the full module count"
+    },
+    {
+     "raw": 43,
+     "scaled": 660,
+     "source": "n8_example"
+    },
+    {
+     "raw": 45.4,
+     "scaled": 695,
+     "source": "ll_table",
+     "note": "band midpoint at 42 of 40 scored, mapped to the full module count"
+    },
+    {
+     "raw": 48.6,
+     "scaled": 735,
+     "source": "ll_table",
+     "note": "band midpoint at 45 of 40 scored, mapped to the full module count"
+    },
+    {
+     "raw": 51.8,
+     "scaled": 785,
+     "source": "ll_table",
+     "note": "band midpoint at 48 of 40 scored, mapped to the full module count"
+    },
+    {
+     "raw": 54,
+     "scaled": 800,
+     "source": "cb_800"
+    }
+   ],
+   "easier": [
+    {
+     "raw": 0,
+     "scaled": 200,
+     "source": "route_offset",
+     "from": "cb_scale"
+    },
+    {
+     "raw": 21.6,
+     "scaled": 405,
+     "source": "route_offset",
+     "from": "ll_table"
+    },
+    {
+     "raw": 27.0,
+     "scaled": 442,
+     "source": "route_offset",
+     "from": "ll_table"
+    },
+    {
+     "raw": 32.4,
+     "scaled": 480,
+     "source": "route_offset",
+     "from": "ll_table"
+    },
+    {
+     "raw": 36.7,
+     "scaled": 510,
+     "source": "route_offset",
+     "from": "ll_table"
+    },
+    {
+     "raw": 41.0,
+     "scaled": 550,
+     "source": "route_offset",
+     "from": "ll_table"
+    },
+    {
+     "raw": 43,
+     "scaled": 560,
+     "source": "route_offset",
+     "from": "n8_example"
+    },
+    {
+     "raw": 45.4,
+     "scaled": 595,
+     "source": "route_offset",
+     "from": "ll_table"
+    },
+    {
+     "raw": 46,
+     "scaled": 602,
+     "source": "route_offset",
+     "note": "highest raw reachable on the easier route under the either band"
+    }
+   ]
+  },
+  "math": {
+   "harder": [
+    {
+     "raw": 0,
+     "scaled": 200,
+     "source": "cb_scale"
+    },
+    {
+     "raw": 13.2,
+     "scaled": 435,
+     "source": "ll_table",
+     "note": "band midpoint at 12 of 50 scored, mapped to the full module count"
+    },
+    {
+     "raw": 17.6,
+     "scaled": 475,
+     "source": "ll_table",
+     "note": "band midpoint at 16 of 50 scored, mapped to the full module count"
+    },
+    {
+     "raw": 22.0,
+     "scaled": 525,
+     "source": "ll_table",
+     "note": "band midpoint at 20 of 50 scored, mapped to the full module count"
+    },
+    {
+     "raw": 26.4,
+     "scaled": 575,
+     "source": "ll_table",
+     "note": "band midpoint at 24 of 50 scored, mapped to the full module count"
+    },
+    {
+     "raw": 30.8,
+     "scaled": 625,
+     "source": "ll_table",
+     "note": "band midpoint at 28 of 50 scored, mapped to the full module count"
+    },
+    {
+     "raw": 35,
+     "scaled": 655,
+     "source": "n8_example+ll_table",
+     "note": "n8 example 640 at 35; ll band midpoint 675 at 32 of 40 (35.2 of 44); the two averaged"
+    },
+    {
+     "raw": 38.5,
+     "scaled": 725,
+     "source": "ll_table",
+     "note": "band midpoint at 35 of 50 scored, mapped to the full module count"
+    },
+    {
+     "raw": 41.8,
+     "scaled": 780,
+     "source": "ll_table",
+     "note": "band midpoint at 38 of 50 scored, mapped to the full module count"
+    },
+    {
+     "raw": 44,
+     "scaled": 800,
+     "source": "cb_800"
+    }
+   ],
+   "easier": [
+    {
+     "raw": 0,
+     "scaled": 200,
+     "source": "route_offset",
+     "from": "cb_scale"
+    },
+    {
+     "raw": 13.2,
+     "scaled": 397,
+     "source": "route_offset",
+     "from": "ll_table"
+    },
+    {
+     "raw": 17.6,
+     "scaled": 425,
+     "source": "route_offset",
+     "from": "ll_table"
+    },
+    {
+     "raw": 22.0,
+     "scaled": 462,
+     "source": "route_offset",
+     "from": "ll_table"
+    },
+    {
+     "raw": 26.4,
+     "scaled": 500,
+     "source": "route_offset",
+     "from": "ll_table"
+    },
+    {
+     "raw": 30.8,
+     "scaled": 537,
+     "source": "route_offset",
+     "from": "ll_table"
+    },
+    {
+     "raw": 35,
+     "scaled": 555,
+     "source": "route_offset",
+     "from": "n8_example+ll_table"
+    },
+    {
+     "raw": 37,
+     "scaled": 595,
+     "source": "route_offset",
+     "note": "highest raw reachable on the easier route under the either band"
+    }
+   ]
+  }
+ },
+ "sources": {
+  "cb_scale": "College Board, Understanding Scores: sections 200 to 800, total 400 to 1600. https://satsuite.collegeboard.org/sat/scores/understanding-scores (read Oct 9 2026)",
+  "cb_structure": "College Board, SAT structure: Reading and Writing two modules of 27, Math two modules of 22. https://satsuite.collegeboard.org/sat/whats-on-the-test/structure (read Oct 9 2026)",
+  "cb_irt": "College Board, How Scores Are Calculated: Item Response Theory; two students with the same number correct may get different section scores; each module has two unscored pretest questions. https://satsuite.collegeboard.org/sat/scores/understanding-scores/how-scores-are-calculated (read Oct 14 2026)",
+  "cb_ranges": "College Board, A Guide to PDF Score Reports (2026): score ranges, Total plus or minus 40 points, Section plus or minus 30 points, showing how much scores would likely vary on another administration. https://satsuite.collegeboard.org/media/pdf/guide-pdf-score-reports.pdf (read Oct 14 2026)",
+  "cb_800": "College Board blog: after Module 1 misses an 800 is not possible even with every Module 2 answer right. https://blog.collegeboard.org/what-digital-sat-adaptive-testing (read Oct 9 2026)",
+  "cb_pct": "College Board research, Understanding SAT Scores, total-score percentiles, nationally representative sample and SAT user group. https://research.collegeboard.org/reports/sat-suite/understanding-scores/sat (read Oct 14 2026)",
+  "ivy_threshold": "IvyStrides, Digital SAT Module 1 score ceiling: roughly 70 to 75 percent or more of Module 1 correct; College Board does not publish one threshold. https://www.ivystrides.com/blog/digital-sat-module-1-score-ceiling/ (read Oct 9 2026)",
+  "ivy_cap": "IvyStrides: the easier route caps a section somewhere in the high 500s to low 600s. Same URL (read Oct 9 2026)",
+  "n8_example": "num8ers, A student's guide to the adaptive SAT, older Digital Practice Test 1 analysis: Reading and Writing 20 + 23 = 43 on the higher route scored 660, 18 + 25 = 43 on the lower route 560; Math 14 + 21 = 35 higher 640, 13 + 22 = 35 lower 540. The page says to use these as an illustration, not a conversion table. https://num8ers.com/guides/digital-sat-scoring-adaptive-modules/ (read Oct 14 2026)",
+  "ll_table": "Larry Learns, SAT score calculator: harder-routing estimate bands built from released practice tests, out of 50 Reading and Writing and 40 Math scored questions; the page says to subtract roughly 50 to 100 points for the easier route. https://www.larrylearns.com/blog/sat-score-calculator (read Oct 14 2026). Band midpoints are mapped to the full module count (54 and 44) by ratio.",
+  "route_offset": "Score Samurai arithmetic: the harder-route value at the same raw score minus 100 points, scaled down toward the floor (100 x raw / anchor raw, full 100 at and above the anchor). The 100 is the gap in the n8 worked example in both sections, and inside the 50 to 100 points ll_table gives for the easier route."
+ },
+ "calibration": {
+  "pairs": [],
+  "pair_shape": {
+   "date": "YYYY-MM-DD",
+   "student": "initials only",
+   "rw_m1": 0,
+   "rw_m2": 0,
+   "math_m1": 0,
+   "math_m2": 0,
+   "bluebook_rw": 0,
+   "bluebook_math": 0,
+   "real_rw": 0,
+   "real_math": 0,
+   "test_date": "YYYY-MM-DD"
+  },
+  "method": "When a section has 8 or more pairs on a route, refit that route's points to the pairs (least squares on a piecewise line through the existing raw values), keep the scale ends, bump the version, reset the range halfwidths per range.replace_when, and log the change in the Change Log."
+ }
+}

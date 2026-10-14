@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dojo Score Lab | Score Samurai</title>
+<meta name="description" content="Enter your Bluebook practice-test module scores. Get an estimated score range, the rule behind your misses, and a read on sending the score.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Score Samurai">
+<meta property="og:title" content="Dojo Score Lab | Score Samurai">
+<meta property="og:description" content="What a Bluebook practice test says about test day, as an estimated range.">
+<meta property="og:url" content="https://scoresamurai.com/lab/">
+<meta property="og:image" content="https://scoresamurai.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Score Samurai">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://scoresamurai.com/lab/">
+<link rel="icon" href="/warrior.png">
+<!--
+SOURCE LINES. Every number on this page and where it comes from. Branch preview-lab, Oct 14 2026 (labpress).
+
+Station 1, the estimate
+- 27 and 27, 22 and 22 questions per module; 200 to 800 per section, 400 to 1600 total: College Board structure and Understanding Scores pages (lab/curve.json "items", "scale").
+- The estimate itself: lab/curve.json v2, an uncalibrated table blended from two published third-party estimates (num8ers worked example, Larry Learns harder-route bands) with every point sourced in the file. College Board publishes no conversion table and scores with Item Response Theory (How Scores Are Calculated, read Oct 14 2026), which the page says in plain words.
+- The range: section plus or minus 50, total plus or minus 70, widened to cover both routes when Module 1 is on the line (curve.json "range"). College Board's own report band is plus or minus 30 a section and 40 total (A Guide to PDF Score Reports, 2026), quoted on the page as "about 40 points".
+- Module 1 route bands, Reading and Writing 19 and Math 14 to 15 "could be either": IvyStrides (70 to 75 percent) and the num8ers worked example (curve.json "module1_route").
+- "high 500s to low 600s" on the easier route (in the "How sure is this?" fold): IvyStrides, read Oct 9 2026.
+- Percentile line: College Board research, Understanding SAT Scores, SAT user group, total scores 900 to 1550, read Oct 14 2026. Shown for both ends of the range.
+
+Station 2, the patterns
+- Names, rule lines and Desmos lines: Score Samurai Pattern Codex, patterns 3, 29, 24, 27, 2, 6, 14, 19, 12, 45.
+- "In 58 questions" (29) and "In 10 questions" (14) across eight official practice tests: Bluebook Question Index, Tests 4 to 11, recounted Oct 14 2026.
+- "AI can answer the question. It cannot see why you keep missing it.": the root FAQ answer, Sensei Jay's view.
+
+Station 3, send or hold
+- Middle 50 and middle score per college: IPEDS ADM2024 (fall 2024, provisional), /scores/ipeds-sat-2024.json, retrieved Oct 1 2026. 25th = ERW25 + Math25, middle = ERW50 + Math50, 75th = ERW75 + Math75 (approximate, same method as /scores/). Policy R, O, B from the same file.
+- Send or hold: labelled as the Lab's rule of thumb, never as a college's rule.
+
+Station 4, PSAT check
+- Selection Index = (2 x Reading and Writing + Math) / 10; PSAT sections 160 to 760: College Board.
+- New Jersey 223, New York 220, Connecticut 220, Commended 208 (class of 2027) and the October 2026 estimates (222 to 225; 219 to 223; Commended 207 to 212): Compass Prep, updated Sept 22 2026, read Oct 14 2026.
+
+Next step and email
+- "within one business day": the Diagnostic promise on the root and /diagnostic/.
+-->
+<!-- Google tag (gtag.js) -->
+<script>window.addEventListener("load",function(){var s=document.createElement("script");s.async=true;s.src="https://www.googletagmanager.com/gtag/js?id=G-LYZRWG13P3";document.head.appendChild(s);});</script>
+<script>
+ window.dataLayer = window.dataLayer || [];
+ function gtag(){dataLayer.push(arguments);}
+ gtag('js', new Date());
+ gtag('config', 'G-LYZRWG13P3');
+</script>
+<!-- Score Samurai GA4 events: diagnostic_open on any .js-tb button. Same hook as v6. -->
+<script>
+(function () {
+function ev(name, params) {
+if (typeof window.gtag === 'function') window.gtag('event', name, params || {});
+}
+document.addEventListener('click', function (e) {
+var t = e.target && e.target.closest ? e.target.closest('.js-tb') : null;
+if (!t) return;
+ev('diagnostic_open', { link_text: (t.textContent || '').trim().slice(0, 100), page_path: location.pathname, tool: 'lab' });
+}, true);
+})();
+</script>
+<link rel="preload" href="/fonts/playfair-display-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/dm-sans-400-700.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Playfair Display";font-weight:600;font-display:swap;src:url(/fonts/playfair-display-600.woff2) format("woff2")}
+@font-face{font-family:"DM Sans";font-weight:400 700;font-display:swap;src:url(/fonts/dm-sans-400-700.woff2) format("woff2")}
+/* ---------- the v6 system, verbatim ---------- */
+:root{
+  --maroon:#7A0B10;--maroon-deep:#5E080C;--cream:#F2EBDB;--cream-deep:#E7DEC8;--gold:#C9A24A;--gold-deep:#A8822F;--dark:#1C0406;--ink:#1C0406;--ink-soft:#5A4D46;--line:#D6CBB3;--white:#FFFFFF;--footer-soft:#D9CDB8;
+  --head:"Playfair Display",Georgia,"Times New Roman",serif;
+  --body:"DM Sans",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+  --t-1:clamp(14px,13.52px + 0.1235vw,15px);
+  --t0:clamp(17px,16.04px + 0.247vw,19px);
+  --t1:clamp(21px,19.56px + 0.37vw,24px);
+  --t2:clamp(27px,25.56px + 0.37vw,30px);
+  --t3:clamp(34px,32.07px + 0.494vw,38px);
+  --lh-body:1.55;--lh-head:1.15;
+  --s1:8px;--s2:16px;--s3:24px;--s4:32px;--s5:40px;--s6:48px;--s8:64px;--s10:80px;--s12:96px;--s14:112px;
+  --sec:var(--s8);--gut:var(--s3);--wrap:1040px;--measure:35em;
+}
+@media(min-width:900px){:root{--sec:var(--s14);--gut:var(--s6)}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--body);font-size:var(--t0);line-height:var(--lh-body);overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--maroon)}
+h1,h2,h3{font-family:var(--head);font-weight:600;line-height:var(--lh-head);margin:0;text-wrap:balance}
+h1{font-size:var(--t3);max-width:14ch}
+@media(min-width:900px){h1{max-width:none}}
+h2{font-size:var(--t2);max-width:24em}
+h3{font-size:var(--t1)}
+p,ul,ol{margin:0}
+p{text-wrap:pretty}
+strong{font-weight:400}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--gut)}
+.measure{max-width:var(--measure)}
+.stack{display:flex;flex-direction:column;gap:var(--s2)}
+.stack-lg{display:flex;flex-direction:column;gap:var(--s3)}
+section{padding:var(--sec) 0}
+.band{background:var(--white)}
+.sec-head{display:flex;flex-direction:column;gap:var(--s2);margin-bottom:var(--s5)}
+@media(min-width:900px){.sec-head{margin-bottom:var(--s6)}}
+.eyebrow{font-size:var(--t-1);letter-spacing:.14em;text-transform:uppercase;color:var(--maroon)}
+.rule{height:2px;width:56px;background:var(--maroon);border-radius:1px}
+.lead{font-size:var(--t1)}
+.soft{color:var(--ink-soft)}
+.small{font-size:var(--t-1)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 var(--s3);border-radius:6px;border:2px solid var(--gold);background:var(--gold);color:var(--dark);font-family:var(--body);font-weight:700;font-size:var(--t0);line-height:var(--lh-body);text-decoration:none;cursor:pointer;text-align:center}
+.btn:hover{background:var(--gold-deep);border-color:var(--gold-deep);color:var(--dark)}
+.btn:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.linkbtn{background:none;border:0;padding:0;font:inherit;color:var(--maroon);text-decoration:underline;cursor:pointer;min-height:44px;display:inline-flex;align-items:center}
+.hdr{position:sticky;top:0;z-index:20;background:rgba(242,235,219,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.hdr .wrap{display:flex;align-items:center;justify-content:space-between;gap:var(--s3);min-height:64px}
+.brand{font-family:var(--head);font-weight:600;font-size:var(--t1);line-height:var(--lh-head);color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;min-height:44px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:var(--t-1)}
+.field input,.field select{min-height:48px;padding:0 14px;border:1px solid var(--line);border-radius:6px;font-size:var(--t0);font-family:inherit;line-height:var(--lh-body);background:var(--white);color:var(--ink);width:100%}
+.hidden{display:none}
+.sr{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+footer{background:var(--dark);color:var(--cream);padding:var(--sec) 0}
+footer .wrap{display:flex;flex-direction:column;gap:var(--s2)}
+footer .brand{color:var(--cream)}
+footer a{color:var(--cream);text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
+footer .links{display:flex;flex-wrap:wrap;gap:0 var(--s3)}
+footer .fine{font-size:var(--t-1);color:var(--footer-soft);max-width:var(--measure)}
+/* ---------- the Lab, on the same tokens ---------- */
+.tool{padding-top:var(--s6)}
+@media(min-width:900px){.tool{padding-top:var(--s12)}}
+.lab{display:flex;flex-direction:column;gap:var(--s6);max-width:820px}
+.st{display:flex;flex-direction:column;gap:var(--s3);padding:var(--s4) var(--s3);background:var(--white);border:1px solid var(--line);border-radius:10px}
+@media(min-width:600px){.st{padding:var(--s5) var(--s5)}}
+.st-k{font-size:var(--t-1);letter-spacing:.14em;text-transform:uppercase;color:var(--maroon)}
+.st h2{margin-top:-8px}
+.g2{display:grid;grid-template-columns:1fr;gap:var(--s3)}
+@media(min-width:600px){.g2{grid-template-columns:1fr 1fr}}
+.in2{display:grid;grid-template-columns:1fr 1fr;gap:var(--s2)}
+.sect-t{display:flex;justify-content:space-between;align-items:center;gap:var(--s1);flex-wrap:wrap;font-weight:700;min-height:32px}
+.route{font-size:var(--t-1);font-weight:700;border-radius:999px;padding:2px 12px}
+.route.harder{background:var(--maroon);color:var(--white)}
+.route.easier{background:var(--cream);color:var(--ink);border:1px solid var(--line)}
+.route.either{background:var(--cream-deep);color:var(--ink)}
+.field input[type=number]{font-variant-numeric:tabular-nums}
+.res{display:grid;grid-template-columns:1fr 1fr;gap:var(--s2) var(--s3);border-top:2px solid var(--maroon);padding-top:var(--s3)}
+.res .tot{grid-column:1/-1}
+.res .k{font-size:var(--t-1);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+.res .v{font-family:var(--head);font-weight:600;font-size:var(--t2);line-height:var(--lh-head);font-variant-numeric:lining-nums tabular-nums}
+.res .tot .v{font-size:var(--t3);color:var(--maroon)}
+.note{padding:var(--s2);border-left:3px solid var(--gold);background:var(--cream)}
+.note p+p{margin-top:var(--s1)}
+.src{font-size:var(--t-1);color:var(--ink-soft)}
+details.more{border-top:1px solid var(--line)}
+details.more summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-weight:700;color:var(--maroon)}
+details.more .in{padding-bottom:var(--s2);display:flex;flex-direction:column;gap:var(--s1)}
+.traps{display:grid;grid-template-columns:1fr;gap:var(--s1)}
+@media(min-width:600px){.traps{grid-template-columns:1fr 1fr}}
+.lt{display:flex;gap:12px;align-items:flex-start;padding:12px;border:1px solid var(--line);border-radius:6px;background:var(--white);cursor:pointer;min-height:44px}
+.lt:has(input:checked){border:2px solid var(--maroon);padding:11px}
+.lt input{margin-top:4px;width:20px;height:20px;accent-color:var(--maroon);flex:none}
+.lt .n{display:block;font-weight:700}
+.lt .d{display:block;font-size:var(--t-1);color:var(--ink-soft)}
+.move{padding:var(--s2);border-left:3px solid var(--maroon);background:var(--cream);display:flex;flex-direction:column;gap:6px}
+.move .mv{font-family:var(--head);font-weight:600;font-size:var(--t1);color:var(--maroon)}
+.move .des{font-size:var(--t-1);color:var(--ink-soft)}
+.pill{display:inline-block;padding:4px 12px;border-radius:999px;font-weight:700;font-size:var(--t-1);color:var(--white);background:var(--ink-soft)}
+.pill.good{background:#1F6B3A}.pill.warn{background:#7A5200}.pill.bad{background:var(--maroon)}.pill.info{background:var(--dark)}
+.bar{position:relative;height:14px;border-radius:7px;background:var(--cream-deep);margin-top:var(--s1)}
+.bar .mid{position:absolute;top:0;bottom:0;background:var(--gold);border-radius:7px}
+.bar .you{position:absolute;top:3px;height:8px;background:var(--maroon);border-radius:4px}
+.axis{display:flex;justify-content:space-between;font-size:var(--t-1);color:var(--ink-soft)}
+.key{display:flex;flex-wrap:wrap;gap:4px var(--s3);font-size:var(--t-1);color:var(--ink-soft)}
+.key i{display:inline-block;width:14px;height:10px;border-radius:3px;margin-right:6px;vertical-align:middle}
+.next{background:var(--maroon);color:var(--cream);border-radius:10px;padding:var(--s4) var(--s3);display:flex;flex-direction:column;gap:var(--s2);align-items:flex-start}
+@media(min-width:600px){.next{padding:var(--s5)}}
+.next h2{color:var(--white)}
+.chk{display:flex;gap:12px;align-items:flex-start;cursor:pointer;min-height:44px}
+.chk input{margin-top:4px;width:20px;height:20px;accent-color:var(--maroon);flex:none}
+.field .errmsg{display:none;font-size:var(--t-1);color:var(--maroon);font-weight:700}
+.field.err input{border:2px solid var(--maroon)}
+.field.err .errmsg{display:block}
+.done{padding:var(--s2);border-left:3px solid #1F6B3A;background:var(--cream)}
+.act{display:flex;flex-direction:column;gap:var(--s1);align-items:stretch}
+.act .btn{width:100%}
+@media(min-width:600px){.act{align-items:flex-start}.act .btn{width:auto}}
+.disc{font-size:var(--t-1);color:var(--ink-soft)}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<header class="hdr">
+  <div class="wrap">
+    <a class="brand" href="/">Score Samurai</a>
+  </div>
+</header>
+<main id="top">
+  <section class="tool">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Dojo Score Lab</span>
+        <h1>What your practice test is telling you.</h1>
+        <div class="rule" aria-hidden="true"></div>
+        <p class="lead measure">Enter how many you got right in each module of a Bluebook practice test. You get an estimated range, the rule behind your misses, and a read on sending the score.</p>
+      </div>
+      <p id="lab-load" class="soft" hidden></p>
+      <div id="lab-body" class="lab">
+
+        <section class="st" aria-labelledby="h-s1">
+          <span class="st-k">Step 1</span>
+          <h2 id="h-s1">Your estimated range</h2>
+          <div class="g2">
+            <div class="stack">
+              <div class="sect-t"><span>Reading and Writing</span><span class="route" id="rw-route"></span></div>
+              <div class="in2">
+                <div class="field"><label for="rw1">Module 1 right, of 27</label><input type="number" id="rw1" min="0" max="27" inputmode="numeric" autocomplete="off"></div>
+                <div class="field"><label for="rw2">Module 2 right, of 27</label><input type="number" id="rw2" min="0" max="27" inputmode="numeric" autocomplete="off"></div>
+              </div>
+            </div>
+            <div class="stack">
+              <div class="sect-t"><span>Math</span><span class="route" id="m-route"></span></div>
+              <div class="in2">
+                <div class="field"><label for="m1">Module 1 right, of 22</label><input type="number" id="m1" min="0" max="22" inputmode="numeric" autocomplete="off"></div>
+                <div class="field"><label for="m2">Module 2 right, of 22</label><input type="number" id="m2" min="0" max="22" inputmode="numeric" autocomplete="off"></div>
+              </div>
+            </div>
+          </div>
+          <p class="soft" id="wait1">Fill in all four boxes to see your range.</p>
+          <div id="result" class="stack" aria-live="polite" hidden>
+            <div class="res">
+              <div class="tot"><p class="k">Estimated total</p><p class="v" id="t-score"></p><p id="t-range"></p><p class="soft" id="t-pct"></p></div>
+              <div><p class="k">Reading and Writing</p><p class="v" id="rw-score"></p><p class="soft" id="rw-sub"></p></div>
+              <div><p class="k">Math</p><p class="v" id="m-score"></p><p class="soft" id="m-sub"></p></div>
+            </div>
+            <div class="note">
+              <p><b>Module 1 sets the ceiling.</b> It decides which Module 2 you get. Only the harder one opens the top of the scale.</p>
+              <p id="route-now"></p>
+            </div>
+          </div>
+          <details class="more"><summary>How sure is this?</summary><div class="in">
+            <p>College Board publishes no conversion table. It scores each question by its difficulty, so the same number right can earn different scores.</p>
+            <p>That is why the Lab gives a range, never one number. Even on the real test, College Board says a score can move about 40 points on a retake.</p>
+            <p>On the easier Module 2, practice-test analyses put the section top in the high 500s to low 600s.</p>
+            <p>The table behind the Lab is our estimate, built from published examples. Real scores will tune it. College Board publishes no Module 1 cutoff either, so near the line the range covers both routes.</p>
+            <p class="src">Percentiles: College Board, SAT takers, total scores.</p>
+          </div></details>
+        </section>
+
+        <section class="st" aria-labelledby="h-s2">
+          <span class="st-k">Step 2</span>
+          <h2 id="h-s2">Where the points are going</h2>
+          <p>Tick the kinds of questions you missed. Each one is a named pattern with a rule that beats it. The way Sensei Jay sees it, AI can answer the question. It cannot see why you keep missing it.</p>
+          <fieldset class="stack" style="border:0;margin:0;padding:0"><legend class="sect-t">Reading and Writing</legend><div class="traps" id="rw-traps"><label class="lt"><input type="checkbox" data-key="rw" data-n="3"><span><span class="n">Name the Relationship</span><span class="d">Transitions: the word fit the sentence, not the link between the sentences.</span></span></label><label class="lt"><input type="checkbox" data-key="rw" data-n="29"><span><span class="n">Can Each Half Stand Alone</span><span class="d">Punctuation between two halves: commas, semicolons, periods.</span></span></label><label class="lt"><input type="checkbox" data-key="rw" data-n="24"><span><span class="n">Same Mechanism, Not Same Topic</span><span class="d">Support or weaken a claim: the answer was on topic but missed the point.</span></span></label><label class="lt"><input type="checkbox" data-key="rw" data-n="27"><span><span class="n">Cover the Word</span><span class="d">Words in context: I picked the word that sounded smartest.</span></span></label><label class="lt"><input type="checkbox" data-key="rw" data-n="2"><span><span class="n">The Answer to a Different Question</span><span class="d">Evidence and notes: the answer was true, but it answered something else.</span></span></label></div></fieldset>
+          <fieldset class="stack" style="border:0;margin:0;padding:0"><legend class="sect-t">Math</legend><div class="traps" id="m-traps"><label class="lt"><input type="checkbox" data-key="m" data-n="6"><span><span class="n">Name It Before You Solve It</span><span class="d">Word problems: the algebra was fine, the setup was wrong.</span></span></label><label class="lt"><input type="checkbox" data-key="m" data-n="14"><span><span class="n">Count the Crossings</span><span class="d">Systems: how many solutions, or where two graphs meet.</span></span></label><label class="lt"><input type="checkbox" data-key="m" data-n="19"><span><span class="n">Which Denominator</span><span class="d">Tables and probability: I divided by the wrong total.</span></span></label><label class="lt"><input type="checkbox" data-key="m" data-n="12"><span><span class="n">The Shape on Sight</span><span class="d">Quadratics and factoring: I did it the long way and slipped.</span></span></label><label class="lt"><input type="checkbox" data-key="m" data-n="45"><span><span class="n">Sine and Cosine Trade Places</span><span class="d">Right triangles: sine and cosine questions.</span></span></label></div></fieldset>
+          <p class="soft" id="moves-sub" aria-live="polite">Tick a kind of question you missed to see its rule.</p>
+          <div class="stack" id="moves"></div>
+        </section>
+
+        <section class="st" aria-labelledby="h-s3">
+          <span class="st-k">Step 3</span>
+          <h2 id="h-s3">Send it or hold it</h2>
+          <p>Many colleges are test optional. A score helps most when it lands in the range they already admit. Pick a college to see where your range sits.</p>
+          <div class="field"><label for="school">College</label><input type="text" id="school" list="schools" placeholder="Start typing a college" autocomplete="off"><datalist id="schools"></datalist></div>
+          <div class="in2">
+            <div class="field"><label for="c25">Their 25th percentile</label><input type="number" id="c25" min="400" max="1600" step="10" inputmode="numeric" autocomplete="off"></div>
+            <div class="field"><label for="c75">Their 75th percentile</label><input type="number" id="c75" min="400" max="1600" step="10" inputmode="numeric" autocomplete="off"></div>
+          </div>
+          <div class="stack" aria-live="polite" style="border-top:1px solid var(--line);padding-top:var(--s3)">
+            <p><span class="pill none" id="v-pill">Pick a college</span></p>
+            <p id="v-text">Pick a college, or type its middle 50 range.</p>
+            <div class="bar" aria-hidden="true"><div class="mid" id="bar-mid" hidden></div><div class="you" id="bar-you" hidden></div></div>
+            <div class="axis" aria-hidden="true"><span>1000</span><span>1300</span><span>1600</span></div>
+            <p class="key" aria-hidden="true"><span><i style="background:var(--gold)"></i>Their middle 50</span><span><i style="background:var(--maroon)"></i>Your range</span></p>
+            <p class="soft" id="v-gap"></p>
+          </div>
+          <p class="src">College ranges and policies: IPEDS, National Center for Education Statistics, fall 2024 admissions. Ranges cover only students who sent scores. Policies change, so check each college&rsquo;s own testing page before deciding.</p>
+        </section>
+
+        <section class="next" aria-labelledby="h-next">
+          <h2 id="h-next">Want the full read?</h2>
+          <p>Sensei Jay reads the questions you missed and writes back the plan. Free and written, within one business day.</p>
+          <div class="act"><a class="btn js-tb" href="/diagnostic/">Get Your Free Dojo Diagnostic</a></div>
+        </section>
+
+        <section class="st" aria-labelledby="h-s4">
+          <span class="st-k">Juniors</span>
+          <h2 id="h-s4">PSAT check</h2>
+          <div class="g2">
+            <div class="field"><label for="state">State</label><select id="state"><option value="NJ" selected>New Jersey</option><option value="NY">New York</option><option value="CT">Connecticut</option></select></div>
+            <div class="in2">
+              <div class="field"><label for="p-rw">PSAT Reading and Writing</label><input type="number" id="p-rw" min="160" max="760" step="10" inputmode="numeric" autocomplete="off"></div>
+              <div class="field"><label for="p-m">PSAT Math</label><input type="number" id="p-m" min="160" max="760" step="10" inputmode="numeric" autocomplete="off"></div>
+            </div>
+          </div>
+          <p id="psat-text" aria-live="polite">Enter both PSAT section scores, 160 to 760.</p>
+          <p class="src" id="psat-est">Estimates for the October 2026 PSAT, not final: New Jersey 222 to 225, Commended 207 to 212.</p>
+          <p class="src">Cutoffs: Compass Prep, updated Sept 22 2026. Selection Index formula: College Board. Cutoffs change every year.</p>
+        </section>
+
+        <section class="st" aria-labelledby="h-cap">
+          <span class="st-k">Keep it</span>
+          <h2 id="h-cap">Email me this scorecard</h2>
+          <p>Your range, your rules and your college read, in one email. For students 13 and older.</p>
+          <form id="cap-form" class="stack" novalidate>
+            <div class="g2">
+              <div class="field"><label for="first">First name <span class="soft">(optional)</span></label><input type="text" id="first" autocomplete="given-name"></div>
+              <div class="field" id="f-email"><label for="email">Your email</label><input type="email" id="email" autocomplete="email" inputmode="email" required aria-describedby="e-email"><span class="errmsg" id="e-email">Enter an email address.</span></div>
+            </div>
+            <label class="chk"><input type="checkbox" id="parent"> Also send one copy to a parent.</label>
+            <div class="field" id="f-pemail" hidden><label for="p-email">Parent email</label><input type="email" id="p-email" autocomplete="off" inputmode="email" aria-describedby="e-pemail"><span class="errmsg" id="e-pemail">Enter the parent&rsquo;s email address.</span></div>
+            <input type="text" name="website" tabindex="-1" autocomplete="off" class="sr" aria-hidden="true">
+            <div class="act"><button class="btn" type="submit" id="cap-btn" style="background:var(--white);border-color:var(--maroon);color:var(--maroon)">Email me my scorecard</button></div>
+            <p class="soft" id="cap-status" aria-live="polite"></p>
+            <p class="src">We send the scorecard and nothing else. A parent gets one email, only if you ask, and is not added to any list. <a href="/privacy/">Privacy</a></p>
+          </form>
+          <div class="done" id="done" tabindex="-1" hidden><p><b>Sent.</b> Check your inbox in a minute.</p></div>
+        </section>
+
+        <p class="disc">Estimates from practice-test inputs, not official scores. Individual results vary.</p>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="sf" id="site-footer">
+<style>
+@font-face{font-family:"Playfair Display";font-weight:600;font-display:swap;src:url(/fonts/playfair-display-600.woff2) format("woff2")}
+@font-face{font-family:"DM Sans";font-weight:400 700;font-display:swap;src:url(/fonts/dm-sans-400-700.woff2) format("woff2")}
+footer.sf{background:#1C0406;color:#F2EBDB;padding:56px 0 40px;margin:0;font-family:"DM Sans",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;font-size:16px;line-height:1.5;text-align:left}
+footer.sf *{box-sizing:border-box}
+footer.sf .sf-wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+footer.sf .sf-cols{display:grid;grid-template-columns:1fr;gap:28px}
+footer.sf a{color:#F2EBDB;text-decoration:none;min-height:44px;display:inline-flex;align-items:center;min-width:44px}
+footer.sf a:hover{text-decoration:underline}
+footer.sf a:focus-visible,footer.sf summary:focus-visible{outline:3px solid #C9A24A;outline-offset:2px}
+footer.sf .sf-brand{font-family:"Playfair Display",Georgia,serif;font-weight:600;font-size:22px;line-height:1.15}
+footer.sf .sf-tag{margin:0;color:#D9CDB8}
+footer.sf .sf-c1{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+footer.sf .sf-btn{background:#C9A24A;color:#1C0406;font-weight:700;border-radius:6px;padding:0 20px;min-height:48px;margin:6px 0 2px;white-space:nowrap}
+footer.sf li a{padding:6px 0;line-height:1.35}
+footer.sf .sf-btn:hover{background:#A8822F;text-decoration:none}
+footer.sf .sf-h{display:flex;align-items:center;min-height:44px;margin:0;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#D9CDB8;font-weight:400}
+footer.sf ul{list-style:none;margin:0;padding:0}
+footer.sf li{margin:0}
+footer.sf details summary{list-style:none;cursor:pointer;justify-content:space-between}
+footer.sf details summary::-webkit-details-marker{display:none}
+footer.sf details summary::after{content:"+";font-size:20px;color:#C9A24A;letter-spacing:0}
+footer.sf details[open] summary::after{content:"\2212"}
+footer.sf .sf-bar{margin-top:32px;padding-top:16px;border-top:1px solid rgba(242,235,219,.18);display:flex;flex-wrap:wrap;align-items:center;gap:0 10px;color:#D9CDB8;font-size:14px}
+footer.sf .sf-dot{color:#8C7F72}
+footer.sf .sf-cb{margin:8px 0 0;color:#B3A796;font-size:13px;max-width:44em}
+@media(min-width:900px){
+  footer.sf{padding:72px 0 48px}
+  footer.sf .sf-wrap{padding:0 48px}
+  footer.sf .sf-cols{grid-template-columns:1.5fr 1fr 1fr 1.6fr;gap:40px}
+  footer.sf details summary{cursor:default;pointer-events:none}
+  footer.sf details summary::after,footer.sf details[open] summary::after{content:none}
+}
+@media(max-width:899px){footer.sf{padding-bottom:112px}footer.sf .sf-dot2{display:none}footer.sf .sf-loc{flex-basis:100%}}
+</style>
+<div class="sf-wrap">
+  <div class="sf-cols">
+    <div class="sf-col sf-c1">
+      <a class="sf-brand" href="/">Score Samurai</a>
+      <p class="sf-tag">One-on-one SAT tutoring over Zoom.</p>
+      <a class="sf-btn js-tb" href="/#diagnostic">Get Your Free Dojo Diagnostic</a>
+      <a href="mailto:senseijay@scoresamurai.com">senseijay@scoresamurai.com</a>
+    </div>
+    <nav class="sf-col" aria-label="Score Samurai">
+      <p class="sf-h">Score Samurai</p>
+      <ul><li><a href="/#how">How it works</a></li><li><a href="/#plans">Plans</a></li><li><a href="/dojo/">The Dojo</a></li><li><a href="/sample/">Sample weekly update</a></li><li><a href="/#faq">Questions</a></li></ul>
+    </nav>
+    <nav class="sf-col" aria-label="Free tools">
+      <p class="sf-h">Free tools</p>
+      <ul><li><a href="/belt/">Which belt are you?</a></li><li><a href="/quiz/">Free SAT quiz</a></li><li><a href="/plan/">Done Date planner</a></li><li><a href="/dojo/#trapmap">The Trap Map</a></li></ul>
+    </nav>
+    <details class="sf-col sf-read" id="sfRead">
+      <summary class="sf-h">Read</summary>
+      <ul><li><a href="/sat-punctuation/">Why do I keep missing SAT punctuation questions</a></li><li><a href="/sat-vocabulary-in-context/">Why do I get SAT vocabulary in context questions wrong</a></li><li><a href="/sat-reading-answer-choices/">Why do the SAT reading answer choices all look correct</a></li><li><a href="/sat-math-wrong-answer/">Why do I solve SAT math correctly and still get it wrong</a></li><li><a href="/sat-inequality-tables/">Why do I miss SAT inequality questions with tables</a></li><li><a href="/sat-score-report/">How to read an SAT score report</a></li><li><a href="/is-1200-a-good-sat-score/">Is 1200 a good SAT score?</a></li></ul>
+    </details>
+  </div>
+  <div class="sf-bar"><a href="/privacy/">Privacy</a><span class="sf-dot" aria-hidden="true">&middot;</span><span>Score Samurai LLC</span><span class="sf-dot sf-dot2" aria-hidden="true">&middot;</span><span class="sf-loc">Based in the New York Metropolitan Area. Nationwide over Zoom.</span></div>
+  <p class="sf-cb">Score Samurai is not affiliated with or endorsed by College Board. SAT, PSAT and Digital SAT are College Board trademarks.</p>
+</div>
+<script>(function(){var d=document.getElementById('sfRead');if(!d||!window.matchMedia)return;var m=window.matchMedia('(min-width:900px)');function s(){if(m.matches)d.open=true;}s();if(m.addEventListener)m.addEventListener('change',s);})();</script>
+</footer>
+<script src="/lab/lab.js" defer></script>
+</body>
+</html>
