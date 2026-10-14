@@ -56,6 +56,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://scoresamurai.com/lab/</loc>
+    <lastmod>2026-10-14</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://scoresamurai.com/quiz/</loc>
     <lastmod>2026-10-07</lastmod>
     <priority>0.7</priority>
