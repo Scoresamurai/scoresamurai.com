@@ -198,7 +198,6 @@ footer .foot-nav a{color:var(--cream);text-decoration:none;min-height:44px;displ
       <h2 id="h-email">Get the full breakdown: every question explained, in the order to fix them.</h2>
       <div class="field" id="fStudent"><label for="student">Student email</label><input id="student" name="student_email" type="email" autocomplete="email" required><span class="errmsg">Enter an email address.</span></div>
       <div class="field" id="fParent"><label for="parent">Parent email (optional)</label><input id="parent" name="parent_email" type="email" autocomplete="off"><span class="errmsg">That address doesn't look complete.</span></div>
-      <label class="check small" for="updates"><input type="checkbox" id="updates" name="updates"><span>Also send me The Daily Strike and updates</span></label>
       <input class="sr" tabindex="-1" autocomplete="off" name="website" id="website" aria-hidden="true">
       <div><button class="btn" id="send" type="submit">Send my breakdown</button></div>
       <p class="small soft">We collect the email addresses you enter and your quiz answers. We use them only to send your breakdown and to help with your Diagnostic. We never sell them, and unsubscribing takes one click.</p>
@@ -215,6 +214,13 @@ footer .foot-nav a{color:var(--cream);text-decoration:none;min-height:44px;displ
     <h2>A full read of your practice test</h2>
     <p>The quiz shows a few moves. The free Dojo Diagnostic reads a whole practice test and says what to fix first. The written Diagnostic comes back within one business day.</p>
     <div><a class="btn btn-quiet" id="diagBtn" href="https://scoresamurai.com/#diagnostic">Get Your Free Dojo Diagnostic</a></div>
+  </div>
+
+  <!-- 6. The Daily Strike: Kit's own form (Daily Strike, uid 47f0f7baf8), embed code copied from the Kit dashboard, added once results show -->
+  <div class="block stack measure" id="strikeBlock">
+    <h2>The Daily Strike</h2>
+    <p>One SAT trap and the move that beats it, by email. Confirm from your inbox to start. For students 13 and older.</p>
+    <template id="strikeEmbed"><script async data-uid="47f0f7baf8" src="https://score-samurai.kit.com/47f0f7baf8/index.js"></script></template>
   </div>
 </section>
 
@@ -450,6 +456,7 @@ footer.sf .sf-cb{margin:8px 0 0;color:#B3A796;font-size:13px;max-width:44em}
     post({ type: "finish", quiz_id: S.id, answers: S.answers }).catch(function () {});
     focusEl($("h-res"));
     watchCta();
+    var tp = $("strikeEmbed"); if (tp && !S.strike) { S.strike = true; tp.parentNode.appendChild(document.importNode(tp.content, true)); }
   }
 
   /* One call to action at a time: whichever block holds more of the screen gets the gold button. */
@@ -477,10 +484,9 @@ footer.sf .sf-cb{margin:8px 0 0;color:#B3A796;font-size:13px;max-width:44em}
     $("fParent").classList.toggle("err", !!pa && !ok(pa)); if (pa && !ok(pa) && good) { good = false; $("parent").focus(); }
     if (!good) return;
     var btn = $("send"); btn.disabled = true; btn.textContent = "Sending";
-    var upd = $("updates").checked;
-    post({ type: "email", quiz_id: S.id, answers: S.answers, student_email: st, parent_email: pa, updates: upd })
+    post({ type: "email", quiz_id: S.id, answers: S.answers, student_email: st, parent_email: pa, updates: false })
       .then(function () {
-        ev("quiz_email", { quiz_id: S.id, parent: pa ? "yes" : "no", updates: upd ? "yes" : "no" });
+        ev("quiz_email", { quiz_id: S.id, parent: pa ? "yes" : "no" });
         $("ef").classList.add("hidden"); $("sent").classList.remove("hidden");
         $("sentLine").textContent = S.verified ? "Check your inbox in a minute or two." : "Preview mode: the breakdown only goes out to test addresses while the questions are in review.";
         $("diagBtn").classList.remove("btn-quiet");
