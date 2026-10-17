@@ -1,5 +1,5 @@
 /**
- * Dojo Score Lab capture: add-on for the Diagnostic intake Web App (apps-script/Code.gs). NOT DEPLOYED.
+ * Dojo Score Lab capture: add-on for the Diagnostic intake Web App (apps-script/Code.gs). DEPLOYED v3 Oct 17 (wave1site).
  * v2, branch preview-lab, Oct 14 2026 (labpress). Replaces the Oct 12 draft.
  *
  * Turn it on, in this order, only after Sensei's "go":
@@ -23,7 +23,8 @@
 var LAB_TAB = "Lab Scorecards";
 var LAB_HEAD = ["received_at", "lab_first", "lab_email", "lab_parent_email", "total_about", "total_range", "rw_range", "math_range",
   "rw_m1", "rw_m2", "math_m1", "math_m2", "rw_route", "math_route", "traps", "school", "school_unitid", "school_mid50", "verdict",
-  "psat_state", "psat_si", "curve_version", "emails", "utm_source", "utm_medium", "utm_campaign", "page"];
+  "psat_state", "psat_si", "curve_version", "emails", "utm_source", "utm_medium", "utm_campaign", "page",
+  "utm_content", "utm_term", "gclid", "fbclid"];
 var LAB_DIAG = "https://scoresamurai.com/diagnostic/";
 var LAB_ROUTE = { harder: "harder", easier: "easier", either: "could be either" };
 
@@ -54,6 +55,7 @@ function lab_(d) {
 function labTab_() {
   var ss = SpreadsheetApp.openById(RESULTS_TRACKER_ID), sh = ss.getSheetByName(LAB_TAB);
   if (!sh) { sh = ss.insertSheet(LAB_TAB); sh.appendRow(LAB_HEAD); sh.setFrozenRows(1); }
+  head_(sh, LAB_HEAD);
   return sh;
 }
 
