@@ -86,6 +86,7 @@ section{padding:var(--sec) 0}
 .field label{font-size:var(--t-1)}
 .field input,.field select{min-height:48px;padding:0 14px;border:1px solid var(--line);border-radius:6px;font-size:var(--t0);font-family:inherit;line-height:var(--lh-body);background:var(--white);color:var(--ink);width:100%}
 .hidden{display:none}
+footer.sf .sf-btn{display:none}
 .sr{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 footer{background:var(--dark);color:var(--cream);padding:var(--sec) 0}
 footer .wrap{display:flex;flex-direction:column;gap:var(--s2)}
@@ -194,6 +195,7 @@ footer .foot-nav a{color:var(--cream);text-decoration:none;min-height:44px;displ
   <section aria-labelledby="h-c">
     <div class="wrap">
       <div class="cta">
+        <a class="btn js-tb" href="/#diagnostic">Get Your Free Dojo Diagnostic</a>
         <p class="disc" role="note">Sample for illustration only. The Sample Student is not a real student. Every score, miss and update on this page was made up to show what the documents look like. It shows the work, not a result any student got or will get. Individual results vary.</p>
       </div>
     </div>
@@ -260,6 +262,7 @@ footer.sf .sf-cb{margin:8px 0 0;color:#B3A796;font-size:13px;max-width:44em}
   <p class="sf-cb">Score Samurai is not affiliated with or endorsed by College Board. SAT, PSAT and Digital SAT are College Board trademarks.</p>
 </div>
 <script>(function(){var d=document.getElementById('sfRead');if(!d||!window.matchMedia)return;var m=window.matchMedia('(min-width:900px)');function s(){if(m.matches)d.open=true;}s();if(m.addEventListener)m.addEventListener('change',s);})();</script>
+<script>(function(){var K=["utm_source","utm_medium","utm_campaign","utm_content","utm_term","gclid","fbclid"];function cur(){var q=new URLSearchParams(location.search),o={},n=0;K.forEach(function(k){var v=q.get(k);if(v){o[k]=v.slice(0,200);n++;}});return n?o:null;}try{var c=cur();if(c&&!localStorage.getItem("ss_attr")){c.first_page=location.pathname;c.first_at=new Date().toISOString();localStorage.setItem("ss_attr",JSON.stringify(c));}}catch(e){}window.ssAttr=function(){var s=null,o={};try{s=JSON.parse(localStorage.getItem("ss_attr")||"null");}catch(e){}var c=cur()||{};K.forEach(function(k){var v=(s&&s[k])||c[k];if(v)o[k]=v;});return o;};})();</script>
 </footer>
 </body>
 </html>
