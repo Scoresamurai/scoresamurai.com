@@ -1,5 +1,5 @@
 /**
- * Score Samurai: Dojo Diagnostic intake endpoint. DEPLOYED v3 Oct 17 2026 (wave1site), same deployment and /exec URL.
+ * Score Samurai: Dojo Diagnostic intake endpoint. DEPLOYED v4 Oct 17 2026 (wave1site), same deployment and /exec URL.
  * Deploy as a Web App from senseijay@scoresamurai.com: Execute as Me, Who has access: Anyone.
  * Paste the deployment URL into diag.js ENDPOINT and the copy inside index.html.
  *
@@ -102,8 +102,11 @@ function sheet_() {
   return sh;
 }
 
-/* Adds any new column names to the end of the header row. Existing columns never move. */
+/* Adds any new column names to the end of the header row. Existing columns never move.
+   The sheet grows first when it is narrower than the header (Lab Scorecards was 27 columns wide). */
 function head_(sh, names) {
+  var maxc = sh.getMaxColumns();
+  if (maxc < names.length) sh.insertColumnsAfter(maxc, names.length - maxc);
   if (sh.getLastColumn() < names.length) sh.getRange(1, 1, 1, names.length).setValues([names]);
 }
 
