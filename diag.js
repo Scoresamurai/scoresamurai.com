@@ -24,7 +24,7 @@
     var ok = true;
     screens[n].querySelectorAll("[required]").forEach(function (f) {
       var field = f.closest(".field");
-      var good = f.value.trim() !== "" && (f.type !== "email" || /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(f.value.trim()));
+      var good = f.type === "radio" ? !!form.querySelector('input[name="' + f.name + '"]:checked') : f.value.trim() !== "" && (f.type !== "email" || /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(f.value.trim()));
       field.classList.toggle("err", !good);
       if (!good && ok) { ok = false; f.focus(); }
     });
@@ -39,6 +39,23 @@
     f.addEventListener("input", function () { f.closest(".field") && f.closest(".field").classList.remove("err"); });
   });
 
+  /* Who's filling this in: a parent sees the student's fields labelled as the student's, and the browser stops offering the parent's own details there. */
+  var roleLabels = { first: "Student’s first name", last: "Student’s last name", semail: "Student’s email", school: "Student’s school" };
+  form.querySelectorAll('input[name="role"]').forEach(function (r) {
+    r.addEventListener("change", function () {
+      var parent = form.role.value === "parent";
+      Object.keys(roleLabels).forEach(function (id) {
+        var inp = document.getElementById(id), lab = form.querySelector('label[for="' + id + '"]');
+        if (!inp || !lab) return;
+        if (!lab.hasAttribute("data-own")) lab.setAttribute("data-own", lab.textContent);
+        lab.textContent = parent ? roleLabels[id] : lab.getAttribute("data-own");
+        if (!inp.hasAttribute("data-ac")) inp.setAttribute("data-ac", inp.getAttribute("autocomplete") || "");
+        inp.setAttribute("autocomplete", parent ? "off" : inp.getAttribute("data-ac"));
+      });
+      var h = screens[0].querySelector("h2,h3");
+      if (h) { if (!h.hasAttribute("data-own")) h.setAttribute("data-own", h.textContent); h.textContent = parent ? "About the student" : h.getAttribute("data-own"); }
+    });
+  });
   form.addEventListener("keydown", function (e) {
     if (e.key !== "Enter" || e.isComposing) return;
     var t = e.target;
@@ -57,12 +74,17 @@
     var data = {};
     new FormData(form).forEach(function (v, k) { data[k] = String(v).trim(); });
     data.page = location.href; data.submitted_at = new Date().toISOString();
-    var params = new URLSearchParams(location.search);
-    ["utm_source", "utm_medium", "utm_campaign"].forEach(function (k) { if (params.get(k)) data[k] = params.get(k); });
+    var attr = window.ssAttr ? window.ssAttr() : {};
+    Object.keys(attr).forEach(function (k) { data[k] = attr[k]; });
 
-    fetch(ENDPOINT, { method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(data) })
-      .then(function () {
+    /* The reply is read: "Sent" and the GA4 submit event happen only when the script answers ok:true. */
+    fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(data) })
+      .then(function (r) { return r.json(); })
+      .then(function (j) {
+        if (!j || j.ok !== true) throw new Error("not ok");
         form.classList.add("hidden");
+        var cal = document.getElementById("cal"); if (cal && !cal.getAttribute("src")) cal.setAttribute("src", cal.getAttribute("data-src"));
+        var book = document.getElementById("bookLine"); if (book) book.classList.add("hidden");
         document.querySelector(".steps").classList.add("hidden");
         document.getElementById("done").classList.remove("hidden");
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -75,6 +97,6 @@
   });
 
   show(0, false);
-  var firstField = document.getElementById("first");
+  var firstField = form.querySelector('input[name="role"]');
   if (firstField) { try { firstField.focus({ preventScroll: true }); } catch (e) {} }
 })();
