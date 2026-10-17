@@ -288,6 +288,7 @@ footer.sf .sf-cb{margin:8px 0 0;color:#B3A796;font-size:13px;max-width:44em}
   <p class="sf-cb">Score Samurai is not affiliated with or endorsed by College Board. SAT, PSAT and Digital SAT are College Board trademarks.</p>
 </div>
 <script>(function(){var d=document.getElementById('sfRead');if(!d||!window.matchMedia)return;var m=window.matchMedia('(min-width:900px)');function s(){if(m.matches)d.open=true;}s();if(m.addEventListener)m.addEventListener('change',s);})();</script>
+<script>(function(){var K=["utm_source","utm_medium","utm_campaign","utm_content","utm_term","gclid","fbclid"];function cur(){var q=new URLSearchParams(location.search),o={},n=0;K.forEach(function(k){var v=q.get(k);if(v){o[k]=v.slice(0,200);n++;}});return n?o:null;}try{var c=cur();if(c&&!localStorage.getItem("ss_attr")){c.first_page=location.pathname;c.first_at=new Date().toISOString();localStorage.setItem("ss_attr",JSON.stringify(c));}}catch(e){}window.ssAttr=function(){var s=null,o={};try{s=JSON.parse(localStorage.getItem("ss_attr")||"null");}catch(e){}var c=cur()||{};K.forEach(function(k){var v=(s&&s[k])||c[k];if(v)o[k]=v;});return o;};})();</script>
 </footer>
 
 <script>
@@ -300,6 +301,7 @@ footer.sf .sf-cb{margin:8px 0 0;color:#B3A796;font-size:13px;max-width:44em}
   function rid() { var a = new Uint8Array(6); (window.crypto || window.msCrypto).getRandomValues(a); return "QZ-" + new Date().toISOString().slice(2, 10).replace(/-/g, "") + "-" + Array.prototype.map.call(a, function (b) { return ("0" + b.toString(36)).slice(-2); }).join("").toUpperCase(); }
   function post(obj) {
     obj.page = location.href; obj.ua = navigator.userAgent;
+    var a = window.ssAttr ? window.ssAttr() : {}; Object.keys(a).forEach(function (k) { if (obj[k] == null) obj[k] = a[k]; });
     return fetch(ENDPOINT, { method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(obj) });
   }
   function focusEl(el) { if (!el) return; el.focus({ preventScroll: true }); window.scrollTo({ top: 0 }); }
