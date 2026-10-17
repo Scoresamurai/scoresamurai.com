@@ -258,7 +258,8 @@
     var q = new URLSearchParams(location.search), data = scorecard();
     data.source = "lab"; data.lab_first = $("first").value.trim(); data.lab_email = email;
     data.lab_parent_email = needP ? pe : ""; data.submitted_at = new Date().toISOString(); data.page = location.pathname;
-    ["utm_source", "utm_medium", "utm_campaign"].forEach(function (k) { if (q.get(k)) data[k] = q.get(k); });
+    var a = window.ssAttr ? window.ssAttr() : {}; Object.keys(a).forEach(function (k) { data[k] = a[k]; });
+    ["utm_source", "utm_medium", "utm_campaign"].forEach(function (k) { if (!data[k] && q.get(k)) data[k] = q.get(k); });
     fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(data) })
       .then(function (r) { return r.json(); })
       .then(function (j) {
