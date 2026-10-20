@@ -1,5 +1,5 @@
 /**
- * Dojo Score Lab capture: add-on for the Diagnostic intake Web App (apps-script/Code.gs). DEPLOYED v3 Oct 17 (wave1site).
+ * Dojo Score Lab capture: add-on for the Diagnostic intake Web App (apps-script/Code.gs). DEPLOYED v5 Oct 20 (sitepro).
  * v2, branch preview-lab, Oct 14 2026 (labpress). Replaces the Oct 12 draft.
  *
  * Turn it on, in this order, only after Sensei's "go":
@@ -85,7 +85,7 @@ function labStudentBody_(d, first) {
     "",
     "These are estimates from practice-test inputs, not official scores. Even a real score can move about 40 points on a retake.",
     "",
-    "Want the full read? The Dojo Diagnostic is free and written. Sensei Jay reads the questions you missed and writes back within one business day. Start it here: " + LAB_DIAG,
+    "Want the full read? The Dojo Diagnostic is free and written. Sensei Jay reads the questions you missed and writes back within 24 hours. Start it here: " + LAB_DIAG,
     "",
     "Sensei Jay",
     "Score Samurai LLC",
@@ -107,7 +107,7 @@ function labParentBody_(d, first) {
     "Patterns marked as costing points: " + (d.traps || "none marked") + ".",
     d.school ? "College check, " + d.school + ": " + d.verdict + "." : "",
     "",
-    "If you want the full read, the Dojo Diagnostic is free and written. Sensei Jay reads the missed questions himself and replies within one business day: " + LAB_DIAG,
+    "If you want the full read, the Dojo Diagnostic is free and written. Sensei Jay reads the missed questions himself and replies within 24 hours: " + LAB_DIAG,
     "",
     "Sensei Jay",
     "Score Samurai LLC",
