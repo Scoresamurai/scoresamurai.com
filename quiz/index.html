@@ -212,7 +212,7 @@ footer .foot-nav a{color:var(--cream);text-decoration:none;min-height:44px;displ
   <!-- 5. Diagnostic -->
   <div class="block stack-lg measure" id="diagBlock">
     <h2>A full read of your practice test</h2>
-    <p>The quiz shows a few moves. The free Dojo Diagnostic reads a whole practice test and says what to fix first. The written Diagnostic comes back within one business day.</p>
+    <p>The quiz shows a few moves. The free Dojo Diagnostic reads a whole practice test and says what to fix first. The written Diagnostic comes back within 24 hours.</p>
     <div><a class="btn btn-quiet" id="diagBtn" href="https://scoresamurai.com/#diagnostic">Get Your Free Dojo Diagnostic</a></div>
   </div>
 
@@ -302,7 +302,9 @@ footer.sf .sf-cb{margin:8px 0 0;color:#B3A796;font-size:13px;max-width:44em}
   function post(obj) {
     obj.page = location.href; obj.ua = navigator.userAgent;
     var a = window.ssAttr ? window.ssAttr() : {}; Object.keys(a).forEach(function (k) { if (obj[k] == null) obj[k] = a[k]; });
-    return fetch(ENDPOINT, { method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(obj) });
+    return fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(obj) })
+      .then(function (r) { return r.json(); })
+      .then(function (j) { if (!j || j.ok !== true) throw new Error("not ok"); return j; });
   }
   function focusEl(el) { if (!el) return; el.focus({ preventScroll: true }); window.scrollTo({ top: 0 }); }
   /* After a pick, bring Sure and Guessing fully into view on every screen. Instant scroll, measured after layout, so it never stalls. */
