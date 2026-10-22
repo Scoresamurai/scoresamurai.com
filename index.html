@@ -113,7 +113,7 @@ ev('diagnostic_open', { link_text: (t.textContent || '').trim().slice(0, 100), p
      "name": "What does it cost?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "The plan sets the number of sessions, and the free Diagnostic sets the plan. The price comes in writing after the call, before you decide anything."
+      "text": "The plan sets the number of sessions, and the free Diagnostic sets the plan. The price comes in writing with the Diagnostic, before you decide anything."
      }
     },
     {
@@ -134,10 +134,10 @@ ev('diagnostic_open', { link_text: (t.textContent || '').trim().slice(0, 100), p
     },
     {
      "@type": "Question",
-     "name": "What is the call like?",
+     "name": "Is there a call?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Fifteen minutes on Zoom with a parent on. Sensei Jay walks through the written Diagnostic, names the first three traps, and lays out the plan. No pitch deck."
+      "text": "Only if you want one. You can book a free 15-minute Zoom with Sensei Jay, a parent on, when you submit the form or after the written Diagnostic arrives. He walks through the Diagnostic and the plan. No pitch deck. It is optional; the written Diagnostic has everything a family needs to decide."
      }
     },
     {
@@ -395,6 +395,7 @@ section[id]{scroll-margin-top:72px}
 .field.err .opts label{border:2px solid var(--gold)}
 .status{color:var(--cream);min-height:1.2em}
 .cal{display:block;width:100%;height:700px;border:0;border-radius:8px;background:var(--white)}
+.done[hidden],iframe:not([src]){display:none}
 
 .done:focus{outline:none}
 .disc{font-size:var(--t-1);color:var(--ink-soft);max-width:var(--measure)}
@@ -496,9 +497,9 @@ footer.sf .sf-btn{display:none}
     <p class="small soft">Sample for illustration. Maya is not a real student. <a href="/sample/">See the full sample</a></p>
   </div>
   <ol class="timeline">
-    <li><span class="t">Minute 0</span><span>The form lands with Sensei Jay. A confirmation goes to the student and the parent, and a free 15-minute Zoom can be booked on the same screen.</span></li>
-    <li><span class="t">Within 24 hours</span><span>The written Diagnostic arrives: where the score stands, where it needs to be, what to fix first.</span></li>
-    <li><span class="t">The call</span><span>Fifteen minutes on Zoom, with a parent on. The plan and the price follow in writing.</span></li>
+    <li><span class="t">Minute 0</span><span>The form lands with Sensei Jay. A confirmation goes to the student and the parent. If you want to talk it through, an optional 15-minute Zoom can be booked on the same screen.</span></li>
+    <li><span class="t">Within 24 hours</span><span>The written Diagnostic arrives: where the score stands, where it needs to be, what to fix first, and the plan and price in writing.</span></li>
+    <li><span class="t">Optional call</span><span>If you want to talk it through, a free 15-minute Zoom with Sensei Jay, a parent on. Not required; plenty of families go straight from the written Diagnostic to Session 1.</span></li>
     <li><span class="t">Session 1</span><span>The first trap comes off the Roadmap. The first written update follows that week.</span></li>
   </ol>
 </div></section>
@@ -529,7 +530,7 @@ footer.sf .sf-btn{display:none}
 
 <section id="for"><div class="wrap">
   <div class="aud">
-    <div><div class="eyebrow">For parents</div><h3>Visibility nobody has to ask for.</h3><ul><li>A written Diagnostic, back within 24 hours, before any money changes hands.</li><li>The price in writing after the call.</li><li>A progress update every week: what closed, what is next.</li><li>The same teacher in every session. No handoffs, no junior tutors.</li></ul></div>
+    <div><div class="eyebrow">For parents</div><h3>Visibility nobody has to ask for.</h3><ul><li>A written Diagnostic, back within 24 hours, before any money changes hands.</li><li>The plan and the price in writing, with the Diagnostic.</li><li>A progress update every week: what closed, what is next.</li><li>The same teacher in every session. No handoffs, no junior tutors.</li></ul></div>
     <div><div class="eyebrow">For students</div><h3>Get this test over with.</h3><ul><li>You are not bad at this test. You keep falling for the same five traps, and they have names.</li><li>Reading: the answer that is true but answers a different question. Writing: the comma you picked by ear. Math: the problem you solved right and still got wrong.</li><li>Fifty minutes, one trap at a time. Then you solve the next one alone.</li><li>Pick the sitting you want to be your last. We count back from it.</li></ul></div>
   </div>
 </div></section>
@@ -540,7 +541,7 @@ footer.sf .sf-btn{display:none}
     <p>I have spent nearly a decade on this test. I catalogued 1,168 real SAT questions one at a time and named the 44 patterns the test keeps reusing. I do not hand students to a junior tutor and I do not run a course. I read every Diagnostic, teach every session, and write every weekly update myself.</p>
     <p>If a student is not a fit after the first session, I will say so.</p>
     <p class="sig">Signed: Sensei Jay</p>
-    <ul class="cred"><li>One-on-one over Zoom. New York metropolitan area, families nationwide.</li><li>The Warrior is the face of the brand. Sensei Jay is on every call and in every session.</li></ul>
+    <ul class="cred"><li>One-on-one over Zoom. New York metropolitan area, families nationwide.</li><li>The Warrior is the face of the brand. Sensei Jay takes every optional call and teaches every session.</li></ul>
   </div>
 </div></section>
 
@@ -557,10 +558,10 @@ footer.sf .sf-btn{display:none}
 <section id="faq" class="band"><div class="wrap">
   <div class="sec-head"><div class="eyebrow">Questions</div><h2>Frequently asked.</h2></div>
   <div class="faq">
-    <details><summary>What does it cost?</summary><div class="a"><p>The plan sets the number of sessions, and the free Diagnostic sets the plan. The price comes in writing after the call, before you decide anything.</p></div></details>
+    <details><summary>What does it cost?</summary><div class="a"><p>The plan sets the number of sessions, and the free Diagnostic sets the plan. The price comes in writing with the Diagnostic, before you decide anything.</p></div></details>
     <details><summary>Do you guarantee a score?</summary><div class="a"><p>No. Guarantees in test prep come with pages of conditions, and a score depends on the student doing the work between sessions. What is promised is this: a written Diagnostic before you pay, the same teacher in every session, and a written update every week so you can see for yourself whether the traps are closing.</p></div></details>
     <details><summary>We already use Khan Academy and an AI tutor. Why this?</summary><div class="a"><p>Keep them. They are the gym. AI can answer the question. It cannot see why this student keeps missing it, and it will not notice when the same trap fires three weeks in a row. Sensei Jay reads the misses, decides what to fix first, and holds the student to it.</p></div></details>
-    <details><summary>What is the call like?</summary><div class="a"><p>Fifteen minutes on Zoom with a parent on. Sensei Jay walks through the written Diagnostic, names the first three traps, and lays out the plan. No pitch deck.</p></div></details>
+    <details><summary>Is there a call?</summary><div class="a"><p>Only if you want one. You can book a free 15-minute Zoom with Sensei Jay, a parent on, when you submit the form or after the written Diagnostic arrives. He walks through the Diagnostic and the plan. No pitch deck. It is optional; the written Diagnostic has everything a family needs to decide.</p></div></details>
     <details><summary>What if the student is not motivated?</summary><div class="a"><p>Most are not, at the start. The sessions are built for that: one trap at a time, a question they win alone at the end of every session, and a weekly update that makes progress visible. Motivation tends to follow the first closed trap.</p></div></details>
     <details><summary>Why fifty minutes?</summary><div class="a"><p>In Sensei Jay's experience, hard focus fades after about fifty minutes. So each session takes a few moves from the Roadmap and teaches them, drills them, then ends on a fresh question the student has to win alone. The work between sessions is where the moves set.</p></div></details>
     <details><summary>When should we start?</summary><div class="a"><p>Pick the sitting you want to be your last, then count back. Start with enough runway and the plan has a backup date built in. The free Diagnostic sets the date.</p></div></details>
@@ -628,8 +629,8 @@ footer.sf .sf-btn{display:none}
     <h3>The Diagnostic is on its way.</h3>
     <p>Sensei Jay reads every one himself and writes back within 24 hours. Look for &ldquo;Your Dojo Diagnostic is on its way&rdquo; in your inbox, and check spam if it is not there.</p>
     <p>If you have a recent Bluebook practice test, reply to the confirmation email with a screenshot of the results page.</p>
-    <p>Want to talk it through first? Book a free 15-minute Zoom call with Sensei Jay below. A parent should be on.</p>
-    <iframe id="cal" class="cal" title="Book a free 15-minute Zoom call with Sensei Jay" data-src="https://calendly.com/senseijay-scoresamurai/dojo-diagnostic?embed_domain=scoresamurai.com&amp;embed_type=Inline&amp;hide_gdpr_banner=1"></iframe>
+    <p>Want to talk it through? Optional: book a free 15-minute Zoom with Sensei Jay below, a parent on. Your written Diagnostic arrives within 24 hours either way.</p>
+    <iframe id="cal" class="cal" title="Optional: book a free 15-minute Zoom with Sensei Jay" data-src="https://calendly.com/senseijay-scoresamurai/dojo-diagnostic?embed_domain=scoresamurai.com&amp;embed_type=Inline&amp;hide_gdpr_banner=1"></iframe>
   </div>
 </div></section>
 </main>
