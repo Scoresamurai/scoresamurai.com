@@ -1,5 +1,5 @@
 /**
- * Score Samurai: Dojo Diagnostic intake endpoint. DEPLOYED v5 Oct 20 2026 (sitepro), same deployment and /exec URL.
+ * Score Samurai: Dojo Diagnostic intake endpoint. DEPLOYED v8 Oct 22 2026 (optcall), same deployment and /exec URL.
  * Deploy as a Web App from senseijay@scoresamurai.com: Execute as Me, Who has access: Anyone.
  * Paste the deployment URL into diag.js ENDPOINT and the copy inside index.html.
  *
@@ -71,7 +71,7 @@ function studentBody_(d) {
   return "Hi " + d.student_first + ",\n\n" +
     "Your Dojo Diagnostic is on its way. I read every one personally and write back within 24 hours, to this address and to " + d.parent_email + ".\n\n" +
     "If you have a recent Bluebook practice test, reply to this email with a screenshot of the results page, or the questions you missed, and the read gets sharper.\n\n" +
-    "If you would rather talk it through, there is a free fifteen-minute call on Zoom: " + BOOK + "\n\n" +
+    "If you'd like to talk it through, you can book an optional 15-minute Zoom with me here: " + BOOK + ". Your written Diagnostic is on its way within 24 hours either way.\n\n" +
     "Sensei Jay\nScore Samurai\nscoresamurai.com";
 }
 
@@ -84,7 +84,7 @@ function parentBody_(d) {
     " I read every request myself, and the written Diagnostic will reach you and " + s + " within 24 hours.\n\n" +
     "It shows where " + s + "'s score stands, where it needs to be and what to fix first.\n\n" +
     "If " + s + " has taken a recent practice test in Bluebook, the College Board's testing app, a screenshot of the results page makes the read sharper. Reply to this email with it.\n\n" +
-    "If you would like to talk before then, you can book a free 15-minute Zoom call here: " + BOOK + "\n\n" +
+    "If you'd like to talk it through, you can book an optional 15-minute Zoom with me here: " + BOOK + ". Your written Diagnostic is on its way within 24 hours either way.\n\n" +
     "Sensei Jay\nScore Samurai LLC\nscoresamurai.com";
 }
 
