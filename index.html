@@ -395,7 +395,9 @@ section[id]{scroll-margin-top:72px}
 .field.err .opts label{border:2px solid var(--gold)}
 .status{color:var(--cream);min-height:1.2em}
 .cal{display:block;width:100%;height:700px;border:0;border-radius:8px;background:var(--white)}
-.done[hidden],iframe:not([src]){display:none}
+[hidden],.done[hidden],.screen[hidden],iframe:not([src]){display:none!important}
+.callbox{display:flex;flex-direction:column;gap:var(--s2);max-width:var(--measure);margin-top:var(--s6);padding-top:var(--s4);border-top:1px solid rgba(242,235,219,.3)}
+.callbox h3{color:var(--white)}
 
 .done:focus{outline:none}
 .disc{font-size:var(--t-1);color:var(--ink-soft);max-width:var(--measure)}
@@ -442,7 +444,6 @@ footer.sf .sf-btn{display:none}
   <ul class="facts">
     <li><span class="n">Nearly a decade</span><span>teaching this one test.</span></li>
     <li><span class="n">1,168</span><span>real SAT questions catalogued, one at a time.</span></li>
-    <li><span class="n">44</span><span>named patterns across Math and Reading and Writing.</span></li>
     <li><span class="n">Every session</span><span>taught by Sensei Jay himself.</span></li>
   </ul>
   <div class="gets"><div class="eyebrow">What every family gets</div><ul><li>A personal Dojo Roadmap, built from the Diagnostic.</li><li>A score log from Session 1 to test day.</li><li>A written progress update every week.</li></ul></div>
@@ -531,14 +532,14 @@ footer.sf .sf-btn{display:none}
 <section id="for"><div class="wrap">
   <div class="aud">
     <div><div class="eyebrow">For parents</div><h3>Visibility nobody has to ask for.</h3><ul><li>A written Diagnostic, back within 24 hours, before any money changes hands.</li><li>The plan and the price in writing, with the Diagnostic.</li><li>A progress update every week: what closed, what is next.</li><li>The same teacher in every session. No handoffs, no junior tutors.</li></ul></div>
-    <div><div class="eyebrow">For students</div><h3>Get this test over with.</h3><ul><li>You are not bad at this test. You keep falling for the same five traps, and they have names.</li><li>Reading: the answer that is true but answers a different question. Writing: the comma you picked by ear. Math: the problem you solved right and still got wrong.</li><li>Fifty minutes, one trap at a time. Then you solve the next one alone.</li><li>Pick the sitting you want to be your last. We count back from it.</li></ul></div>
+    <div><div class="eyebrow">For students</div><h3>Get this test over with.</h3><ul><li>You are not bad at this test. You keep falling for the same few traps, and they have names.</li><li>Reading: the answer that is true but answers a different question. Writing: the comma you picked by ear. Math: the problem you solved right and still got wrong.</li><li>Fifty minutes, one trap at a time. Then you solve the next one alone.</li><li>Pick the sitting you want to be your last. We count back from it.</li></ul></div>
   </div>
 </div></section>
 
 <section id="who" class="band"><div class="wrap">
   <div class="sec-head"><div class="eyebrow">Who teaches</div><h2>Every session, Sensei Jay himself.</h2></div>
   <div class="teach plate">
-    <p>I have spent nearly a decade on this test. I catalogued 1,168 real SAT questions one at a time and named the 44 patterns the test keeps reusing. I do not hand students to a junior tutor and I do not run a course. I read every Diagnostic, teach every session, and write every weekly update myself.</p>
+    <p>I have spent nearly a decade on this test. I catalogued 1,168 real SAT questions one at a time and named the patterns the test keeps reusing. I do not hand students to a junior tutor and I do not run a course. I read every Diagnostic, teach every session, and write every weekly update myself.</p>
     <p>If a student is not a fit after the first session, I will say so.</p>
     <p class="sig">Signed: Sensei Jay</p>
     <ul class="cred"><li>One-on-one over Zoom. New York metropolitan area, families nationwide.</li><li>The Warrior is the face of the brand. Sensei Jay takes every optional call and teaches every session.</li></ul>
@@ -623,6 +624,13 @@ footer.sf .sf-btn{display:none}
       <p class="small">Your information is used to prepare the Diagnostic and for nothing else. <a href="/privacy/">Privacy</a></p>
     </div>
   </form>
+
+  <div class="callbox" id="callbox">
+    <div class="eyebrow">Optional call</div>
+    <h3>Rather talk it through?</h3>
+    <p>Book a free, optional 15-minute Zoom with Sensei Jay below, a parent on. Your written Diagnostic arrives within 24 hours either way.</p>
+    <iframe id="cal0" class="cal" loading="lazy" title="Optional: book a free 15-minute Zoom with Sensei Jay" src="https://calendly.com/senseijay-scoresamurai/dojo-diagnostic?embed_domain=scoresamurai.com&amp;embed_type=Inline&amp;hide_gdpr_banner=1"></iframe>
+  </div>
 
   <div class="done" id="done" hidden tabindex="-1">
     <div class="eyebrow">Sent</div>
@@ -764,6 +772,7 @@ footer.sf .sf-cb{margin:8px 0 0;color:#B3A796;font-size:13px;max-width:44em}
       .then(function(j){
         if(!j||j.ok!==true)throw new Error('not ok');
         form.hidden=true;
+        var cb=document.getElementById('callbox');if(cb)cb.hidden=true;
         var cal=document.getElementById('cal');if(cal&&!cal.getAttribute('src'))cal.setAttribute('src',cal.getAttribute('data-src'));
         var d=document.getElementById('done');d.hidden=false;d.scrollIntoView({block:'start'});try{d.focus({preventScroll:true})}catch(x){}
         try{localStorage.removeItem(KEY)}catch(x){}
