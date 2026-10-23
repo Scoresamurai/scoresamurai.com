@@ -97,7 +97,8 @@ new MutationObserver(scan).observe(document.documentElement, { childList: true, 
 .role .opts label:has(input:checked){border:2px solid var(--maroon);padding:0 11px}
 .field.role input{height:20px;width:20px;padding:0;margin:0;accent-color:var(--maroon);flex:none}
 .cal{display:block;width:100%;height:700px;border:0;border-radius:8px;background:#fff}
-iframe:not([src]){display:none}
+.calbox{display:flex;flex-direction:column;gap:14px;margin-top:28px}
+.calbox h2{font-size:24px}
 footer .fine{display:flex;flex-direction:column;gap:6px;max-width:440px}
 </style>
 </head>
@@ -171,12 +172,16 @@ footer .fine{display:flex;flex-direction:column;gap:6px;max-width:440px}
       <h2 style="font-size:28px">The Diagnostic is on its way.</h2>
       <p class="body">Sensei Jay reads every one personally and writes back within 24 hours. If you have a recent Bluebook practice test, reply to the confirmation email with a screenshot of the results page.</p>
       <p class="body">Look for &ldquo;Your Dojo Diagnostic is on its way&rdquo; in your inbox, and check spam if it is not there.</p>
-      <p class="body">Want to talk it through? Optional: book a free 15-minute Zoom with Sensei Jay below, a parent on. Your written Diagnostic arrives within 24 hours either way.</p>
-      <iframe id="cal" class="cal" title="Optional: book a free 15-minute Zoom with Sensei Jay" data-src="https://calendly.com/senseijay-scoresamurai/dojo-diagnostic?embed_domain=scoresamurai.com&amp;embed_type=Inline&amp;hide_gdpr_banner=1"></iframe>
+      <p class="body">Want to talk it through? The optional 15-minute Zoom with Sensei Jay is right below, a parent on. Your written Diagnostic arrives within 24 hours either way.</p>
       <a class="btn btn-ghost" href="/" style="align-self:flex-start">Back to the site</a>
     </div>
 
-    <p class="muted" style="text-align:center" id="bookLine">Prefer to talk it through? <a href="https://calendly.com/senseijay-scoresamurai/dojo-diagnostic">Book an optional free 15-minute Zoom.</a> Your written Diagnostic arrives within 24 hours either way.</p>
+    <div class="calbox" id="calbox">
+      <h2>Want to talk it through?</h2>
+      <p class="body">Optional: book a free 15-minute Zoom with Sensei Jay below, a parent on. Your written Diagnostic arrives within 24 hours either way, whether or not you book.</p>
+      <iframe id="cal" class="cal" title="Optional: book a free 15-minute Zoom with Sensei Jay" loading="lazy" src="https://calendly.com/senseijay-scoresamurai/dojo-diagnostic?embed_domain=scoresamurai.com&amp;embed_type=Inline&amp;hide_gdpr_banner=1"></iframe>
+    </div>
+
     <p class="muted" style="text-align:center">Your information is used to prepare the Diagnostic and for nothing else. <a href="/privacy/">Privacy</a></p>
   </div>
 </section>
