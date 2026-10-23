@@ -395,9 +395,9 @@ section[id]{scroll-margin-top:72px}
 .field.err .opts label{border:2px solid var(--gold)}
 .status{color:var(--cream);min-height:1.2em}
 .cal{display:block;width:100%;height:700px;border:0;border-radius:8px;background:var(--white)}
-[hidden],.done[hidden],.screen[hidden],iframe:not([src]){display:none!important}
-.callbox{display:flex;flex-direction:column;gap:var(--s2);max-width:var(--measure);margin-top:var(--s6);padding-top:var(--s4);border-top:1px solid rgba(242,235,219,.3)}
-.callbox h3{color:var(--white)}
+[hidden]{display:none!important}
+.calbox{display:flex;flex-direction:column;gap:var(--s2);max-width:44em;margin-top:var(--s5)}
+.calbox h3{color:var(--white)}
 
 .done:focus{outline:none}
 .disc{font-size:var(--t-1);color:var(--ink-soft);max-width:var(--measure)}
@@ -625,20 +625,18 @@ footer.sf .sf-btn{display:none}
     </div>
   </form>
 
-  <div class="callbox" id="callbox">
-    <div class="eyebrow">Optional call</div>
-    <h3>Rather talk it through?</h3>
-    <p>Book a free, optional 15-minute Zoom with Sensei Jay below, a parent on. Your written Diagnostic arrives within 24 hours either way.</p>
-    <iframe id="cal0" class="cal" loading="lazy" title="Optional: book a free 15-minute Zoom with Sensei Jay" src="https://calendly.com/senseijay-scoresamurai/dojo-diagnostic?embed_domain=scoresamurai.com&amp;embed_type=Inline&amp;hide_gdpr_banner=1"></iframe>
-  </div>
-
   <div class="done" id="done" hidden tabindex="-1">
     <div class="eyebrow">Sent</div>
     <h3>The Diagnostic is on its way.</h3>
     <p>Sensei Jay reads every one himself and writes back within 24 hours. Look for &ldquo;Your Dojo Diagnostic is on its way&rdquo; in your inbox, and check spam if it is not there.</p>
     <p>If you have a recent Bluebook practice test, reply to the confirmation email with a screenshot of the results page.</p>
-    <p>Want to talk it through? Optional: book a free 15-minute Zoom with Sensei Jay below, a parent on. Your written Diagnostic arrives within 24 hours either way.</p>
-    <iframe id="cal" class="cal" title="Optional: book a free 15-minute Zoom with Sensei Jay" data-src="https://calendly.com/senseijay-scoresamurai/dojo-diagnostic?embed_domain=scoresamurai.com&amp;embed_type=Inline&amp;hide_gdpr_banner=1"></iframe>
+    <p>Want to talk it through? The optional 15-minute Zoom with Sensei Jay is right below, a parent on. Your written Diagnostic arrives within 24 hours either way.</p>
+  </div>
+
+  <div class="calbox" id="calbox">
+    <h3>Want to talk it through?</h3>
+    <p>Optional: book a free 15-minute Zoom with Sensei Jay below, a parent on. Your written Diagnostic arrives within 24 hours either way, whether or not you book.</p>
+    <iframe id="cal" class="cal" title="Optional: book a free 15-minute Zoom with Sensei Jay" loading="lazy" src="https://calendly.com/senseijay-scoresamurai/dojo-diagnostic?embed_domain=scoresamurai.com&amp;embed_type=Inline&amp;hide_gdpr_banner=1"></iframe>
   </div>
 </div></section>
 </main>
@@ -772,7 +770,6 @@ footer.sf .sf-cb{margin:8px 0 0;color:#B3A796;font-size:13px;max-width:44em}
       .then(function(j){
         if(!j||j.ok!==true)throw new Error('not ok');
         form.hidden=true;
-        var cb=document.getElementById('callbox');if(cb)cb.hidden=true;
         var cal=document.getElementById('cal');if(cal&&!cal.getAttribute('src'))cal.setAttribute('src',cal.getAttribute('data-src'));
         var d=document.getElementById('done');d.hidden=false;d.scrollIntoView({block:'start'});try{d.focus({preventScroll:true})}catch(x){}
         try{localStorage.removeItem(KEY)}catch(x){}
