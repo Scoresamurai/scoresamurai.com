@@ -189,6 +189,7 @@ section[id]{scroll-margin-top:64px}
 .belt{display:grid;grid-template-columns:96px 1fr;gap:var(--s3);align-items:start}
 .belt svg{width:96px;height:34px;display:block;margin-top:4px}
 .belt p{margin:0}
+.belt .mk{font-family:var(--body);font-size:var(--t-1);line-height:1.3;color:var(--maroon);margin:2px 0 4px}
 .steps{list-style:none;margin:0;padding:0;display:grid;gap:var(--s3);counter-reset:step}
 @media(min-width:900px){.steps{grid-template-columns:repeat(4,1fr);gap:var(--s6)}}
 .steps li{display:grid;grid-template-columns:40px 1fr;gap:var(--s2);align-items:start;align-content:start}
@@ -416,15 +417,15 @@ footer .foot-nav a{color:var(--cream);text-decoration:none;min-height:44px;displ
       <p class="measure">Sensei Jay saw the SAT for what it is. It is a knowledge test, but also a game of moves. The same patterns come back every year, the way a martial art repeats its forms.</p>
       <p class="measure">So he built Score Samurai to turn students into SAT Samurai Warriors. He became the Sensei and opened the Dojo. He hands out belts as each student closes the moves that used to cost them points. Each belt means a set of the test's moves no longer works on them.</p>
       <ul class="belts" aria-label="The belts">
-        <li class="belt"><svg viewBox="0 0 120 42" aria-hidden="true"><rect x="2" y="12" width="116" height="18" rx="3" fill="#F7F2E6" stroke="#B9AE96" stroke-width="2"/><path d="M52 12 L68 30 M68 12 L52 30" stroke="#B9AE96" stroke-width="3" stroke-linecap="round"/><rect x="54" y="8" width="12" height="26" rx="2" fill="#F7F2E6" stroke="#B9AE96" stroke-width="2"/></svg><div><h3>White</h3><p>Held from the Diagnostic. Every student starts here.</p></div></li>
-        <li class="belt"><svg viewBox="0 0 120 42" aria-hidden="true"><rect x="2" y="12" width="116" height="18" rx="3" fill="#2E6B3A"/><path d="M52 12 L68 30 M68 12 L52 30" stroke="#1F4A28" stroke-width="3" stroke-linecap="round"/><rect x="54" y="8" width="12" height="26" rx="2" fill="#2E6B3A" stroke="#1F4A28" stroke-width="2"/></svg><div><h3>Green</h3><p>Closes when the first set of moves on the Roadmap stops costing points across two practice tests.</p></div></li>
+        <li class="belt"><svg viewBox="0 0 120 42" aria-hidden="true"><rect x="2" y="12" width="116" height="18" rx="3" fill="#F7F2E6" stroke="#B9AE96" stroke-width="2"/><path d="M52 12 L68 30 M68 12 L52 30" stroke="#B9AE96" stroke-width="3" stroke-linecap="round"/><rect x="54" y="8" width="12" height="26" rx="2" fill="#F7F2E6" stroke="#B9AE96" stroke-width="2"/></svg><div><h3>White</h3><p class="mk">Most students start here</p><p>The first belt on the ladder.</p></div></li>
+        <li class="belt"><svg viewBox="0 0 120 42" aria-hidden="true"><rect x="2" y="12" width="116" height="18" rx="3" fill="#2E6B3A"/><path d="M52 12 L68 30 M68 12 L52 30" stroke="#1F4A28" stroke-width="3" stroke-linecap="round"/><rect x="54" y="8" width="12" height="26" rx="2" fill="#2E6B3A" stroke="#1F4A28" stroke-width="2"/></svg><div><h3>Green</h3><p class="mk">The other common start</p><p>Closes when the first set of moves on the Roadmap stops costing points across two practice tests.</p></div></li>
         <li class="belt"><svg viewBox="0 0 120 42" aria-hidden="true"><rect x="2" y="12" width="116" height="18" rx="3" fill="#25457A"/><path d="M52 12 L68 30 M68 12 L52 30" stroke="#172E55" stroke-width="3" stroke-linecap="round"/><rect x="54" y="8" width="12" height="26" rx="2" fill="#25457A" stroke="#172E55" stroke-width="2"/></svg><div><h3>Blue</h3><p>Closes when the timed moves are closed and Desmos is a habit.</p></div></li>
         <li class="belt"><svg viewBox="0 0 120 42" aria-hidden="true"><rect x="2" y="12" width="116" height="18" rx="3" fill="#7A4A2B"/><path d="M52 12 L68 30 M68 12 L52 30" stroke="#54321C" stroke-width="3" stroke-linecap="round"/><rect x="54" y="8" width="12" height="26" rx="2" fill="#7A4A2B" stroke="#54321C" stroke-width="2"/></svg><div><h3>Brown</h3><p>Closes when the hard-module moves in one section stop costing points.</p></div></li>
         <li class="belt"><svg viewBox="0 0 120 42" aria-hidden="true"><rect x="2" y="12" width="116" height="18" rx="3" fill="#141110"/><path d="M52 12 L68 30 M68 12 L52 30" stroke="#5A544E" stroke-width="3" stroke-linecap="round"/><rect x="54" y="8" width="12" height="26" rx="2" fill="#141110" stroke="#5A544E" stroke-width="2"/></svg><div><h3>Black</h3><p>Closes when the hard-module moves in both sections stop costing points.</p></div></li>
       </ul>
       <details class="more" id="belts-how-dojo"><summary>How the belts work</summary><div class="in">
 <p>The ladder runs White, Green, Blue, Brown, Black.</p>
-<p>Every student holds White from the Diagnostic on.</p>
+<p>The Diagnostic places you at the belt your score has already earned.</p>
 <p>Each belt comes with its own set of named patterns. A pattern is closed when it stops costing points across two practice tests in a row.</p>
 <p>Close the whole set, and the next belt is earned. Sensei Jay judges each one and logs it on the Roadmap.</p>
 <p>A belt shows what is closed. It never predicts a score.</p>
