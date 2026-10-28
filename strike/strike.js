@@ -258,7 +258,7 @@
     var d = $("desmos"); d.innerHTML = "";
     if (item.section === "Math") {
       var txt = item.desmos || "By hand, Desmos adds nothing here.";
-      var m = /^(Desmos[^:]{0,12}):\s*/.exec(txt);
+      var m = /^(Desmos[^:]{0,12}|By hand):\s*/.exec(txt);
       d.appendChild(el("b", null, (m ? m[1] : "Desmos") + ":")); d.appendChild(document.createTextNode(" "));
       rich(d, m ? txt.slice(m[0].length) : txt); d.hidden = false;
     } else d.hidden = true;

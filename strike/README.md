@@ -5,7 +5,7 @@ One SAT question per Eastern calendar date, the same for everyone, no account. B
 ## Files
 - index.html: the page, CSS inline, the house footer (with "Daily Strike" first under Free tools). Relative paths only (../fonts, ../warrior.png, strike-bank.json), so the same files run on scoresamurai.com/strike/ and on a branch preview.
 - strike.js: day keying, local state, the board and its tile flip, the result card, share (text plus square PNG), measurement.
-- strike-bank.json: Room 4's launch bank (STRIKEBANK, Oct 28 2026), 60 days from Tue Nov 17 2026, wired in whole. Its source is Content / Daily Strike / strike-bank.json.
+- strike-bank.json: Room 4's launch bank (STRIKEBANK, Oct 28 2026), 60 days from Tue Nov 17 2026, wired in whole, with Sensei's ten approved line rewrites and neutral label ids (STRIKEPREP, Oct 28 2026). Its source is Content / Daily Strike / strike-bank.json.
 - warrior-strike.webp: the Warrior in the strike pose, 778 by 800 (Brand v3 / Warrior repair Oct 13 / warrior-strike-repaired.png, as delivered, resized).
 - dm-sans-math.woff2: the signs ≤ and ≥ from DM Sans (Google Fonts, OFL), at the same optical size as ../fonts/dm-sans-400-700.woff2, which lacks them. Loaded only by unicode-range, so it costs nothing on days without them.
 - strike-lining.woff2: a small cut of ../fonts/playfair-display-600.woff2 whose digits are its own lining figures, for the share image only (a canvas cannot ask Playfair for lining figures, and its default old-style 1 and 0 read as "1o").
@@ -22,8 +22,8 @@ One SAT question per Eastern calendar date, the same for everyone, no account. B
 {
   "version": "string",
   "start": "YYYY-MM-DD",          // Eastern date of Day 1; day n = days since start + 1
-  "labels": {                       // the trap families used in this bank: id and tile colour only
-    "<family-id>": { "tile": "orange|yellow|purple|blue|red|brown" }
+  "labels": {                       // the trap families used in this bank: a neutral id (s01, s02 ...) and a tile colour only
+    "<sNN>": { "tile": "orange|yellow|purple|blue|red|brown" }
   },
   "days": [                         // days[0] is Day 1, in order; Math and Reading and Writing alternate
     {
@@ -33,7 +33,7 @@ One SAT question per Eastern calendar date, the same for everyone, no account. B
       "stem": "<question line, or empty>",
       "choices": ["A", "B", "C", "D"],
       "key": 0-3,
-      "labels": ["<family-id>" | null, ...],  // one per choice; null on the key
+      "labels": ["<sNN>" | null, ...],        // one per choice; null on the key
       "reads": ["<plain line>" | null, ...],  // one per choice; null on the key; Friend Test voice
       "explain": "<about 40 words>",
       "desmos": "<Desmos Strategy Guide technique; Math only>",  // empty on a Math day prints: By hand, Desmos adds nothing here.
@@ -47,7 +47,7 @@ One SAT question per Eastern calendar date, the same for everyone, no account. B
   ]
 }
 ```
-- No Codex name is stored in the bank or shown anywhere: not on the page, not in the share text, not in the saved image. The family id only picks the tile colour; the player sees the plain read line.
+- No Codex name and no Codex-shaped id is stored in the bank or shown anywhere: not on the page, not in the share text, not in the saved image. The neutral id only picks the tile colour; the player sees the plain read line. Only Content / Daily Strike / strike-bank-master.json (internal, never on the site) maps the ids to the Codex.
 - Green is reserved for the struck tile and is never a label colour.
 - Superscript digits (², ³, ⁴, ⁷ and the rest) are set as real digits raised in DM Sans, so every glyph comes from the house face.
 - Every question must be VERIFIED in the Original Problem Bank (standing rule 3) before it enters this file.

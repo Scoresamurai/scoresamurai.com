@@ -1,150 +1,150 @@
 {
- "version": "strikebank-2026-10-28",
+ "version": "strikebank-2026-10-28-strikeprep",
  "start": "2026-11-17",
- "note": "Daily Strike launch bank, 60 questions, Day 1 = Tue Nov 17 2026, Math and Reading and Writing alternating. Every question VERIFIED in the Original Problem Bank (standing rule 3, STRIKEBANK Oct 28 2026); live-page solve pending. Label ids are trap families from the Pattern Codex; names and audit live in strike-bank-master.json, which is not for the site.",
+ "note": "Daily Strike launch bank, 60 questions, Day 1 = Tue Nov 17 2026, Math and Reading and Writing alternating. Every question VERIFIED in the Original Problem Bank (standing rule 3, STRIKEBANK Oct 28 2026); live-page solve pending. Label ids are neutral (s01 to s48) and only pick a tile colour; the master file maps them to the Codex and is not for the site.",
  "labels": {
-  "angle-relay": {
-   "tile": "orange"
-  },
-  "answer-to-a-different-question": {
-   "tile": "orange"
-  },
-  "can-each-half-stand-alone": {
-   "tile": "orange"
-  },
-  "clause-with-no-predicate": {
+  "s01": {
    "tile": "yellow"
   },
-  "complete-clause-introducer": {
-   "tile": "yellow"
+  "s02": {
+   "tile": "orange"
   },
-  "compounding-percent-trap": {
+  "s03": {
    "tile": "purple"
   },
-  "count-the-crossings": {
-   "tile": "orange"
-  },
-  "cover-the-word": {
+  "s04": {
    "tile": "yellow"
   },
-  "divide-the-whole-house": {
+  "s05": {
    "tile": "orange"
   },
-  "essential-means-no-punctuation": {
+  "s06": {
    "tile": "orange"
   },
-  "every-number-has-a-job": {
+  "s07": {
+   "tile": "yellow"
+  },
+  "s08": {
    "tile": "orange"
   },
-  "exponent-addition-ambush": {
-   "tile": "orange"
-  },
-  "extreme-answer": {
+  "s09": {
    "tile": "purple"
   },
-  "familiar-meaning-ambush": {
+  "s10": {
    "tile": "orange"
   },
-  "goal-line": {
+  "s11": {
    "tile": "yellow"
   },
-  "half-finished-move": {
+  "s12": {
    "tile": "yellow"
   },
-  "half-right-is-all-wrong": {
-   "tile": "yellow"
-  },
-  "isolate-dont-solve": {
-   "tile": "orange"
-  },
-  "know-your-audience": {
-   "tile": "orange"
-  },
-  "move-the-passage-never-makes": {
-   "tile": "yellow"
-  },
-  "name-it-before-you-solve-it": {
+  "s13": {
    "tile": "purple"
   },
-  "name-the-relationship": {
-   "tile": "yellow"
-  },
-  "one-way-curve": {
+  "s14": {
    "tile": "orange"
   },
-  "outlier-drags-the-mean": {
+  "s15": {
+   "tile": "yellow"
+  },
+  "s16": {
    "tile": "orange"
   },
-  "parrot": {
-   "tile": "yellow"
-  },
-  "qualifier-check": {
+  "s17": {
    "tile": "orange"
   },
-  "range-is-not-a-number": {
-   "tile": "yellow"
+  "s18": {
+   "tile": "orange"
   },
-  "region-has-to-be-checked-not-eyeballed": {
-   "tile": "yellow"
-  },
-  "same-mechanism-not-same-topic": {
-   "tile": "yellow"
-  },
-  "shape-on-sight": {
+  "s19": {
    "tile": "purple"
   },
-  "shift-goes-the-wrong-way": {
+  "s20": {
    "tile": "orange"
   },
-  "sign-that-doesnt-travel": {
-   "tile": "purple"
-  },
-  "sine-and-cosine-trade-places": {
-   "tile": "orange"
-  },
-  "slope-plus-one-point-is-the-whole-line": {
-   "tile": "orange"
-  },
-  "sometimes-the-answer-is-nothing": {
-   "tile": "orange"
-  },
-  "squared-not-linear": {
-   "tile": "orange"
-  },
-  "tense-frame": {
+  "s21": {
    "tile": "yellow"
   },
-  "threshold-split": {
+  "s22": {
    "tile": "orange"
   },
-  "trace-one-row": {
+  "s23": {
    "tile": "orange"
   },
-  "trace-the-referent": {
-   "tile": "orange"
-  },
-  "vanishing-variable": {
-   "tile": "orange"
-  },
-  "weigh-the-groups-not-the-means": {
-   "tile": "orange"
-  },
-  "what-the-chart-wont-tell-you": {
+  "s24": {
    "tile": "yellow"
   },
-  "what-the-slopes-are-doing": {
+  "s25": {
+   "tile": "purple"
+  },
+  "s26": {
    "tile": "orange"
   },
-  "whats-left-standing": {
-   "tile": "purple"
-  },
-  "which-denominator": {
+  "s27": {
    "tile": "yellow"
   },
-  "which-name-owns-this-fact": {
+  "s28": {
+   "tile": "orange"
+  },
+  "s29": {
+   "tile": "yellow"
+  },
+  "s30": {
    "tile": "purple"
   },
-  "which-way-the-sentence-faces": {
+  "s31": {
+   "tile": "yellow"
+  },
+  "s32": {
+   "tile": "orange"
+  },
+  "s33": {
+   "tile": "yellow"
+  },
+  "s34": {
+   "tile": "orange"
+  },
+  "s35": {
+   "tile": "orange"
+  },
+  "s36": {
+   "tile": "yellow"
+  },
+  "s37": {
+   "tile": "orange"
+  },
+  "s38": {
+   "tile": "purple"
+  },
+  "s39": {
+   "tile": "orange"
+  },
+  "s40": {
+   "tile": "orange"
+  },
+  "s41": {
+   "tile": "yellow"
+  },
+  "s42": {
+   "tile": "yellow"
+  },
+  "s43": {
+   "tile": "orange"
+  },
+  "s44": {
+   "tile": "orange"
+  },
+  "s45": {
+   "tile": "orange"
+  },
+  "s46": {
+   "tile": "orange"
+  },
+  "s47": {
+   "tile": "orange"
+  },
+  "s48": {
    "tile": "orange"
   }
  },
@@ -163,9 +163,9 @@
    "key": 0,
    "labels": [
     null,
-    "region-has-to-be-checked-not-eyeballed",
-    "divide-the-whole-house",
-    "divide-the-whole-house"
+    "s01",
+    "s02",
+    "s02"
    ],
    "reads": [
     null,
@@ -189,9 +189,9 @@
    ],
    "key": 3,
    "labels": [
-    "extreme-answer",
-    "parrot",
-    "answer-to-a-different-question",
+    "s03",
+    "s04",
+    "s05",
     null
    ],
    "reads": [
@@ -217,9 +217,9 @@
    "key": 0,
    "labels": [
     null,
-    "slope-plus-one-point-is-the-whole-line",
-    "slope-plus-one-point-is-the-whole-line",
-    "slope-plus-one-point-is-the-whole-line"
+    "s06",
+    "s06",
+    "s06"
    ],
    "reads": [
     null,
@@ -244,9 +244,9 @@
    "key": 0,
    "labels": [
     null,
-    "name-the-relationship",
-    "can-each-half-stand-alone",
-    "can-each-half-stand-alone"
+    "s07",
+    "s08",
+    "s08"
    ],
    "reads": [
     null,
@@ -270,10 +270,10 @@
    ],
    "key": 1,
    "labels": [
-    "sign-that-doesnt-travel",
+    "s09",
     null,
-    "sign-that-doesnt-travel",
-    "sign-that-doesnt-travel"
+    "s09",
+    "s09"
    ],
    "reads": [
     "Subtracted 2x but not the −4. Taking away a negative 4 adds 4.",
@@ -297,9 +297,9 @@
    ],
    "key": 3,
    "labels": [
-    "essential-means-no-punctuation",
-    "essential-means-no-punctuation",
-    "complete-clause-introducer",
+    "s10",
+    "s10",
+    "s11",
     null
    ],
    "reads": [
@@ -324,10 +324,10 @@
    ],
    "key": 1,
    "labels": [
-    "half-finished-move",
+    "s12",
     null,
-    "shape-on-sight",
-    "answer-to-a-different-question"
+    "s13",
+    "s05"
    ],
    "reads": [
     "Found the center, 3, and stopped. The two answers sit either side of 3, so they add to 6.",
@@ -336,7 +336,7 @@
     "14 is the right side of the equation, not the sum of the solutions."
    ],
    "explain": "An absolute value equation splits into two cases. 2x − 6 = 14 gives x = 10, and 2x − 6 = −14 gives x = −4. Add them: 10 + (−4) = 6.",
-   "desmos": "Desmos play: Technique 1. Type y = |2x − 6| and y = 14, click both crossings, (−4, 14) and (10, 14), and add the x-values."
+   "desmos": "Desmos play: Technique 1. Type y = |2x − 6| and y = 14. Click both crossings, (−4, 14) and (10, 14), and add the x-values."
   },
   {
    "id": "SS-OUT-R3",
@@ -352,9 +352,9 @@
    "key": 0,
    "labels": [
     null,
-    "trace-the-referent",
-    "tense-frame",
-    "tense-frame"
+    "s14",
+    "s15",
+    "s15"
    ],
    "reads": [
     null,
@@ -378,10 +378,10 @@
    ],
    "key": 1,
    "labels": [
-    "half-finished-move",
+    "s12",
     null,
-    "angle-relay",
-    "angle-relay"
+    "s16",
+    "s16"
    ],
    "reads": [
     "38 is half of angle Q. That's one link in the chain, so keep going to angle QSR.",
@@ -406,9 +406,9 @@
    "key": 0,
    "labels": [
     null,
-    "familiar-meaning-ambush",
-    "familiar-meaning-ambush",
-    "familiar-meaning-ambush"
+    "s17",
+    "s17",
+    "s17"
    ],
    "reads": [
     null,
@@ -432,10 +432,10 @@
    ],
    "key": 2,
    "labels": [
-    "half-finished-move",
-    "answer-to-a-different-question",
+    "s12",
+    "s05",
     null,
-    "half-finished-move"
+    "s12"
    ],
    "reads": [
     "Found the 3-point change and stopped. Percent change still divides that 3 by the starting 15.",
@@ -459,10 +459,10 @@
    ],
    "key": 1,
    "labels": [
-    "trace-one-row",
+    "s18",
     null,
-    "trace-one-row",
-    "trace-one-row"
+    "s18",
+    "s18"
    ],
    "reads": [
     "Read the row backward. At Oak Park, 260 weekend rides is more than 190 weekday rides.",
@@ -519,10 +519,10 @@
    ],
    "key": 1,
    "labels": [
-    "answer-to-a-different-question",
+    "s05",
     null,
-    "compounding-percent-trap",
-    "half-finished-move"
+    "s19",
+    "s12"
    ],
    "reads": [
     "80% compares 2025 with 2024. The question compares 2025 with 2023.",
@@ -547,9 +547,9 @@
    "key": 0,
    "labels": [
     null,
-    "know-your-audience",
-    "goal-line",
-    "goal-line"
+    "s20",
+    "s21",
+    "s21"
    ],
    "reads": [
     null,
@@ -584,9 +584,9 @@
    "key": 0,
    "labels": [
     null,
-    "count-the-crossings",
-    "count-the-crossings",
-    "count-the-crossings"
+    "s22",
+    "s22",
+    "s22"
    ],
    "reads": [
     null,
@@ -617,10 +617,10 @@
    ],
    "key": 2,
    "labels": [
-    "sometimes-the-answer-is-nothing",
-    "sometimes-the-answer-is-nothing",
+    "s23",
+    "s23",
     null,
-    "sometimes-the-answer-is-nothing"
+    "s23"
    ],
    "reads": [
     "A colon needs a full sentence before it, and The exhibit includes isn't one.",
@@ -644,16 +644,16 @@
    ],
    "key": 2,
    "labels": [
-    "what-the-chart-wont-tell-you",
-    "answer-to-a-different-question",
+    "s24",
+    "s05",
     null,
-    "what-the-chart-wont-tell-you"
+    "s24"
    ],
    "reads": [
     "A box plot shows the median, 75. It never shows the mean.",
     "46 is the range, 98 − 52. The interquartile range is 84 − 68 = 16.",
     null,
-    "A wider or narrower box shows how spread out the scores are, not how many students are in it."
+    "A wider or narrower box shows how spread out the scores are. It doesn't show how many students there are."
    ],
    "explain": "The median is the 13th of the 25 scores in order, and it's 75. So the 13th through 25th scores are all 75 or higher. That's 13 students, which is more than half.",
    "desmos": "By hand, Desmos adds nothing here. There's no list to type, and the skill is knowing what a box plot can show."
@@ -672,9 +672,9 @@
    "key": 0,
    "labels": [
     null,
-    "answer-to-a-different-question",
-    "whats-left-standing",
-    "parrot"
+    "s05",
+    "s25",
+    "s04"
    ],
    "reads": [
     null,
@@ -698,10 +698,10 @@
    ],
    "key": 2,
    "labels": [
-    "what-the-slopes-are-doing",
-    "half-finished-move",
+    "s26",
+    "s12",
     null,
-    "half-finished-move"
+    "s12"
    ],
    "reads": [
     "Paired the numbers wrong, k/3 = 6/9. Match x with x and y with y: k/3 = 9/6.",
@@ -732,9 +732,9 @@
    ],
    "key": 3,
    "labels": [
-    "move-the-passage-never-makes",
-    "answer-to-a-different-question",
-    "whats-left-standing",
+    "s27",
+    "s05",
+    "s25",
     null
    ],
    "reads": [
@@ -759,9 +759,9 @@
    ],
    "key": 3,
    "labels": [
-    "every-number-has-a-job",
-    "every-number-has-a-job",
-    "every-number-has-a-job",
+    "s28",
+    "s28",
+    "s28",
     null
    ],
    "reads": [
@@ -786,14 +786,14 @@
    ],
    "key": 3,
    "labels": [
-    "answer-to-a-different-question",
-    "half-right-is-all-wrong",
-    "half-right-is-all-wrong",
+    "s05",
+    "s29",
+    "s29",
     null
    ],
    "reads": [
     "Only one historian appears, and the text reports no disagreement.",
-    "The first half is right, but the text never mentions a second hospital, so the whole choice is wrong.",
+    "The first half is right, but the text never mentions a second hospital. That sinks the whole choice.",
     "The stables did close, but the text never says their owners wanted asphalt.",
     null
    ],
@@ -813,10 +813,10 @@
    ],
    "key": 2,
    "labels": [
-    "name-it-before-you-solve-it",
-    "answer-to-a-different-question",
+    "s30",
+    "s05",
     null,
-    "name-it-before-you-solve-it"
+    "s30"
    ],
    "reads": [
     "If all 14 boats had 4 seats, there'd be 12 seats too many. Each 1-seat boat cuts 3, not 4.",
@@ -840,9 +840,9 @@
    ],
    "key": 3,
    "labels": [
-    "same-mechanism-not-same-topic",
-    "same-mechanism-not-same-topic",
-    "same-mechanism-not-same-topic",
+    "s31",
+    "s31",
+    "s31",
     null
    ],
    "reads": [
@@ -867,10 +867,10 @@
    ],
    "key": 2,
    "labels": [
-    "one-way-curve",
-    "name-it-before-you-solve-it",
+    "s32",
+    "s30",
     null,
-    "name-it-before-you-solve-it"
+    "s30"
    ],
    "reads": [
     "Multiplied 100 by the 3 doubling steps. Doubling 3 times multiplies by 2 × 2 × 2 = 8.",
@@ -894,10 +894,10 @@
    ],
    "key": 2,
    "labels": [
-    "cover-the-word",
-    "cover-the-word",
+    "s33",
+    "s33",
     null,
-    "cover-the-word"
+    "s33"
    ],
    "reads": [
     "Eloquent means good with words. Priya hardly speaks, so it's the opposite.",
@@ -921,10 +921,10 @@
    ],
    "key": 1,
    "labels": [
-    "half-finished-move",
+    "s12",
     null,
-    "half-finished-move",
-    "half-finished-move"
+    "s12",
+    "s12"
    ],
    "reads": [
     "Stretched the slope but left the intercept at 9. The 9 gets multiplied and moved too.",
@@ -933,7 +933,7 @@
     "Multiplied by 2.5 but dropped the + 4 that lifts every point."
    ],
    "explain": "Every y on the line changes the same way, so the new line is y = 2.5(1.6x + 9) + 4. That's 4x + 22.5 + 4, which is y = 4x + 26.5.",
-   "desmos": "By hand: apply the change to the whole line, 2.5(1.6x + 9) + 4. Desmos play as a check: Technique 6. Put x1 = 0, 5, 10, 15 and y1 = 9, 17, 25, 33 in a table, type y2 = 2.5y1 + 4, and run y2 ~ m x1 + b. It returns m = 4 and b = 26.5."
+   "desmos": "By hand: apply the change to the whole line, 2.5(1.6x + 9) + 4. Desmos check, Technique 6: table x1 = 0, 5, 10, 15 and y1 = 9, 17, 25, 33. Type y2 = 2.5y1 + 4 and run y2 ~ m x1 + b for m = 4 and b = 26.5."
   },
   {
    "id": "SS-OUT-R13",
@@ -948,9 +948,9 @@
    ],
    "key": 3,
    "labels": [
-    "can-each-half-stand-alone",
-    "can-each-half-stand-alone",
-    "can-each-half-stand-alone",
+    "s08",
+    "s08",
+    "s08",
     null
    ],
    "reads": [
@@ -975,10 +975,10 @@
    ],
    "key": 1,
    "labels": [
-    "shift-goes-the-wrong-way",
+    "s34",
     null,
-    "shift-goes-the-wrong-way",
-    "shift-goes-the-wrong-way"
+    "s34",
+    "s34"
    ],
    "reads": [
     "Read right as plus. Inside the parentheses, minus 5 moves the graph right.",
@@ -1002,9 +1002,9 @@
    ],
    "key": 3,
    "labels": [
-    "which-way-the-sentence-faces",
-    "which-way-the-sentence-faces",
-    "which-way-the-sentence-faces",
+    "s35",
+    "s35",
+    "s35",
     null
    ],
    "reads": [
@@ -1029,10 +1029,10 @@
    ],
    "key": 1,
    "labels": [
-    "which-denominator",
+    "s36",
     null,
-    "answer-to-a-different-question",
-    "answer-to-a-different-question"
+    "s05",
+    "s05"
    ],
    "reads": [
     "Divided 4 by all 30 students. The pick is only from the 12 soccer players.",
@@ -1056,9 +1056,9 @@
    ],
    "key": 3,
    "labels": [
-    "familiar-meaning-ambush",
-    "cover-the-word",
-    "familiar-meaning-ambush",
+    "s17",
+    "s33",
+    "s17",
     null
    ],
    "reads": [
@@ -1083,10 +1083,10 @@
    ],
    "key": 1,
    "labels": [
-    "threshold-split",
+    "s37",
     null,
-    "threshold-split",
-    "name-it-before-you-solve-it"
+    "s37",
+    "s30"
    ],
    "reads": [
     "Charged everyone $6. Only the first 20 people pay $6, and the rest pay $4.",
@@ -1111,9 +1111,9 @@
    "key": 0,
    "labels": [
     null,
-    "extreme-answer",
-    "extreme-answer",
-    "answer-to-a-different-question"
+    "s03",
+    "s03",
+    "s05"
    ],
    "reads": [
     null,
@@ -1137,10 +1137,10 @@
    ],
    "key": 1,
    "labels": [
-    "which-denominator",
+    "s36",
     null,
-    "answer-to-a-different-question",
-    "name-it-before-you-solve-it"
+    "s05",
+    "s30"
    ],
    "reads": [
     "Used muffins over scones. The question wants muffins over everything baked.",
@@ -1164,9 +1164,9 @@
    ],
    "key": 3,
    "labels": [
-    "which-name-owns-this-fact",
-    "parrot",
-    "answer-to-a-different-question",
+    "s38",
+    "s04",
+    "s05",
     null
    ],
    "reads": [
@@ -1191,10 +1191,10 @@
    ],
    "key": 1,
    "labels": [
-    "half-finished-move",
+    "s12",
     null,
-    "half-finished-move",
-    "sign-that-doesnt-travel"
+    "s12",
+    "s09"
    ],
    "reads": [
     "Set k + 52 equal to the radius, 9. The equation needs the radius squared, 81.",
@@ -1224,10 +1224,10 @@
    ],
    "key": 2,
    "labels": [
-    "name-the-relationship",
-    "name-the-relationship",
+    "s07",
+    "s07",
     null,
-    "name-the-relationship"
+    "s07"
    ],
    "reads": [
     "As a result needs a cause. The honey yields don't cause the wild bee finding.",
@@ -1251,10 +1251,10 @@
    ],
    "key": 1,
    "labels": [
-    "exponent-addition-ambush",
+    "s39",
     null,
-    "exponent-addition-ambush",
-    "exponent-addition-ambush"
+    "s39",
+    "s39"
    ],
    "reads": [
     "Added the 2 and the 3. The numbers in front multiply: 2 × 3 = 6.",
@@ -1278,13 +1278,13 @@
    ],
    "key": 3,
    "labels": [
-    "complete-clause-introducer",
-    "complete-clause-introducer",
-    "complete-clause-introducer",
+    "s11",
+    "s11",
+    "s11",
     null
    ],
    "reads": [
-    "A comma can't introduce a list after a full sentence, and the list's own semicolons make it more confusing.",
+    "A comma can't introduce a list after a full sentence. The list's own semicolons make it worse.",
     "Copied the semicolons inside the list. A semicolon needs a full sentence after it.",
     "With no mark, three plant dyes runs straight into indigo, as if they were one name.",
     null
@@ -1305,15 +1305,15 @@
    ],
    "key": 1,
    "labels": [
-    "sine-and-cosine-trade-places",
+    "s40",
     null,
-    "sine-and-cosine-trade-places",
-    "sine-and-cosine-trade-places"
+    "s40",
+    "s40"
    ],
    "reads": [
     "Took 1 − 28/53. The trade happens between the angles, not between the numbers.",
     null,
-    "45/53 is cos P, the other ratio for the angle you were given. The question asks for cos Q.",
+    "45/53 is cos P, the other ratio for the given angle. The question asks for cos Q.",
     "Flipped the given ratio upside down."
    ],
    "explain": "Angles P and Q add to 90° because R is the right angle. The side opposite P is the side next to Q. So cos Q = sin P = 28/53.",
@@ -1333,9 +1333,9 @@
    "key": 0,
    "labels": [
     null,
-    "can-each-half-stand-alone",
-    "can-each-half-stand-alone",
-    "clause-with-no-predicate"
+    "s08",
+    "s08",
+    "s41"
    ],
    "reads": [
     null,
@@ -1359,9 +1359,9 @@
    ],
    "key": 3,
    "labels": [
-    "range-is-not-a-number",
-    "answer-to-a-different-question",
-    "range-is-not-a-number",
+    "s42",
+    "s05",
+    "s42",
     null
    ],
    "reads": [
@@ -1387,9 +1387,9 @@
    "key": 0,
    "labels": [
     null,
-    "move-the-passage-never-makes",
-    "move-the-passage-never-makes",
-    "move-the-passage-never-makes"
+    "s27",
+    "s27",
+    "s27"
    ],
    "reads": [
     null,
@@ -1413,10 +1413,10 @@
    ],
    "key": 2,
    "labels": [
-    "name-it-before-you-solve-it",
-    "squared-not-linear",
+    "s30",
+    "s43",
     null,
-    "squared-not-linear"
+    "s43"
    ],
    "reads": [
     "Divided by 3. A foot is smaller than a yard, so the number of square feet grows.",
@@ -1441,9 +1441,9 @@
    "key": 0,
    "labels": [
     null,
-    "goal-line",
-    "goal-line",
-    "goal-line"
+    "s21",
+    "s21",
+    "s21"
    ],
    "reads": [
     null,
@@ -1477,9 +1477,9 @@
    ],
    "key": 3,
    "labels": [
-    "region-has-to-be-checked-not-eyeballed",
-    "region-has-to-be-checked-not-eyeballed",
-    "region-has-to-be-checked-not-eyeballed",
+    "s01",
+    "s01",
+    "s01",
     null
    ],
    "reads": [
@@ -1505,9 +1505,9 @@
    "key": 0,
    "labels": [
     null,
-    "same-mechanism-not-same-topic",
-    "answer-to-a-different-question",
-    "same-mechanism-not-same-topic"
+    "s31",
+    "s05",
+    "s31"
    ],
    "reads": [
     null,
@@ -1531,10 +1531,10 @@
    ],
    "key": 1,
    "labels": [
-    "answer-to-a-different-question",
+    "s05",
     null,
-    "half-finished-move",
-    "sign-that-doesnt-travel"
+    "s12",
+    "s09"
    ],
    "reads": [
     "−9 is the number at the end of x² + 8x − 9. One solution needs the left side's lowest value, −25.",
@@ -1558,13 +1558,13 @@
    ],
    "key": 2,
    "labels": [
-    "tense-frame",
-    "tense-frame",
+    "s15",
+    "s15",
     null,
-    "tense-frame"
+    "s15"
    ],
    "reads": [
-    "Have waited reaches up to now, but by the time the boat arrived sets a point in the past.",
+    "Have waited reaches up to now. By the time the boat arrived sets a point in the past.",
     "Present tense doesn't fit a moment that's already in the past.",
     null,
     "Present tense again. The boat already arrived."
@@ -1585,16 +1585,16 @@
    ],
    "key": 2,
    "labels": [
-    "divide-the-whole-house",
-    "divide-the-whole-house",
+    "s02",
+    "s02",
     null,
-    "half-finished-move"
+    "s12"
    ],
    "reads": [
     "Doubled only the 0.5x² side. That turns it into x² = 3x + 10, which gives 5.",
-    "Doubled 0.5x² and 3x but not the 10, so you solved x² = 6x + 10.",
+    "Doubled 0.5x² and 3x but not the 10, which turns it into x² = 6x + 10.",
     null,
-    "Used the quadratic formula but never divided by 2, so you got about 16.8 instead of 8.4."
+    "Used the quadratic formula but never divided by 2, which gives about 16.8 instead of 8.4."
    ],
    "explain": "The choices are ranges, so a rough value is enough. At x = 8 the curve gives 32 and the line gives 34. At x = 10 the curve gives 50 and the line gives 40. They cross in between.",
    "desmos": "Desmos play: Technique 1. Type y = 0.5x² and y = 3x + 10 and click the right-hand crossing. It reads about (8.39, 35.2), between 8 and 10.",
@@ -1619,10 +1619,10 @@
    ],
    "key": 2,
    "labels": [
-    "whats-left-standing",
-    "parrot",
+    "s25",
+    "s04",
     null,
-    "parrot"
+    "s04"
    ],
    "reads": [
     "That was Marsh's first idea, and the text rules it out: purer sand changed nothing.",
@@ -1647,9 +1647,9 @@
    "key": 0,
    "labels": [
     null,
-    "weigh-the-groups-not-the-means",
-    "name-it-before-you-solve-it",
-    "half-finished-move"
+    "s44",
+    "s30",
+    "s12"
    ],
    "reads": [
     null,
@@ -1673,10 +1673,10 @@
    ],
    "key": 2,
    "labels": [
-    "trace-the-referent",
-    "trace-the-referent",
+    "s14",
+    "s14",
     null,
-    "trace-the-referent"
+    "s14"
    ],
    "reads": [
     "They points to the two founders, but the sentence is describing the cannery.",
@@ -1700,10 +1700,10 @@
    ],
    "key": 1,
    "labels": [
-    "outlier-drags-the-mean",
+    "s45",
     null,
-    "outlier-drags-the-mean",
-    "outlier-drags-the-mean"
+    "s45",
+    "s45"
    ],
    "reads": [
     "The median was 8 and stays 8. Adding another 8 doesn't move the middle.",
@@ -1712,7 +1712,7 @@
     "That's backward. The median holds at 8, and the mean is the one that rises."
    ],
    "explain": "The old mean is 44 ÷ 6, about 7.33. Adding an 8, which is above that, raises the mean to 52 ÷ 7, about 7.43. The middle value is 8 before and after, so the median stays.",
-   "desmos": "Desmos play: Technique 6. Type L = [3, 5, 8, 8, 9, 11] and N = [3, 5, 8, 8, 8, 9, 11]. mean(L) is about 7.33 and mean(N) about 7.43, while both medians are 8.",
+   "desmos": "Desmos play: Technique 6. Type L = [3, 5, 8, 8, 9, 11] and N = [3, 5, 8, 8, 8, 9, 11]. The mean goes from about 7.33 to about 7.43. Both medians are 8.",
    "structured": {
     "display": [
      "3, 5, 8, 8, 9, 11"
@@ -1733,10 +1733,10 @@
    ],
    "key": 2,
    "labels": [
-    "name-the-relationship",
-    "name-the-relationship",
+    "s07",
+    "s07",
     null,
-    "name-the-relationship"
+    "s07"
    ],
    "reads": [
     "The cereus is a desert plant, so it looks like an example. But it blooms in summer, not spring.",
@@ -1760,10 +1760,10 @@
    ],
    "key": 2,
    "labels": [
-    "half-finished-move",
-    "vanishing-variable",
+    "s12",
+    "s46",
     null,
-    "vanishing-variable"
+    "s46"
    ],
    "reads": [
     "Copied the 1 from inside the parentheses. The 3 multiplies it too, so it becomes 3.",
@@ -1787,9 +1787,9 @@
    ],
    "key": 3,
    "labels": [
-    "cover-the-word",
-    "cover-the-word",
-    "cover-the-word",
+    "s33",
+    "s33",
+    "s33",
     null
    ],
    "reads": [
@@ -1815,9 +1815,9 @@
    "key": 0,
    "labels": [
     null,
-    "isolate-dont-solve",
-    "isolate-dont-solve",
-    "sign-that-doesnt-travel"
+    "s47",
+    "s47",
+    "s09"
    ],
    "reads": [
     null,
@@ -1847,9 +1847,9 @@
    ],
    "key": 3,
    "labels": [
-    "qualifier-check",
-    "qualifier-check",
-    "extreme-answer",
+    "s48",
+    "s48",
+    "s03",
     null
    ],
    "reads": [
