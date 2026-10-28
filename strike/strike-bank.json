@@ -1,136 +1,1865 @@
 {
-  "version": "placeholder-2026-10-28b",
-  "placeholder": true,
-  "note": "PLACEHOLDER BANK. Four Trap Map questions already on the site (trap.js, Sensei-solved). Replace this whole file with Room 4's audited strike-bank.json in the schema in README.md. No Codex name is stored or shown: labels carry the trap family and its tile colour only, and each wrong choice carries its own plain reading in reads.",
-  "start": "2026-10-28",
-  "labels": {
-    "half-finished": {
-      "tile": "orange"
-    },
-    "out-of-order": {
-      "tile": "brown"
-    },
-    "different-question": {
-      "tile": "yellow"
-    },
-    "unsupported": {
-      "tile": "purple"
-    },
-    "familiar-meaning": {
-      "tile": "blue"
-    },
-    "region-eyeballed": {
-      "tile": "red"
-    }
+ "version": "strikebank-2026-10-28",
+ "start": "2026-11-17",
+ "note": "Daily Strike launch bank, 60 questions, Day 1 = Tue Nov 17 2026, Math and Reading and Writing alternating. Every question VERIFIED in the Original Problem Bank (standing rule 3, STRIKEBANK Oct 28 2026); live-page solve pending. Label ids are trap families from the Pattern Codex; names and audit live in strike-bank-master.json, which is not for the site.",
+ "labels": {
+  "angle-relay": {
+   "tile": "orange"
   },
-  "days": [
-    {
-      "id": "PH-TRAPMAP-4",
-      "section": "Math",
-      "passage": "If 3(x − 4) = 2x + 5, what is the value of 2x − 3?",
-      "stem": "",
-      "choices": [
-        "14",
-        "17",
-        "31",
-        "34"
+  "answer-to-a-different-question": {
+   "tile": "orange"
+  },
+  "can-each-half-stand-alone": {
+   "tile": "orange"
+  },
+  "clause-with-no-predicate": {
+   "tile": "yellow"
+  },
+  "complete-clause-introducer": {
+   "tile": "yellow"
+  },
+  "compounding-percent-trap": {
+   "tile": "purple"
+  },
+  "count-the-crossings": {
+   "tile": "orange"
+  },
+  "cover-the-word": {
+   "tile": "yellow"
+  },
+  "divide-the-whole-house": {
+   "tile": "orange"
+  },
+  "essential-means-no-punctuation": {
+   "tile": "orange"
+  },
+  "every-number-has-a-job": {
+   "tile": "orange"
+  },
+  "exponent-addition-ambush": {
+   "tile": "orange"
+  },
+  "extreme-answer": {
+   "tile": "purple"
+  },
+  "familiar-meaning-ambush": {
+   "tile": "orange"
+  },
+  "goal-line": {
+   "tile": "yellow"
+  },
+  "half-finished-move": {
+   "tile": "yellow"
+  },
+  "half-right-is-all-wrong": {
+   "tile": "yellow"
+  },
+  "isolate-dont-solve": {
+   "tile": "orange"
+  },
+  "know-your-audience": {
+   "tile": "orange"
+  },
+  "move-the-passage-never-makes": {
+   "tile": "yellow"
+  },
+  "name-it-before-you-solve-it": {
+   "tile": "purple"
+  },
+  "name-the-relationship": {
+   "tile": "yellow"
+  },
+  "one-way-curve": {
+   "tile": "orange"
+  },
+  "outlier-drags-the-mean": {
+   "tile": "orange"
+  },
+  "parrot": {
+   "tile": "yellow"
+  },
+  "qualifier-check": {
+   "tile": "orange"
+  },
+  "range-is-not-a-number": {
+   "tile": "yellow"
+  },
+  "region-has-to-be-checked-not-eyeballed": {
+   "tile": "yellow"
+  },
+  "same-mechanism-not-same-topic": {
+   "tile": "yellow"
+  },
+  "shape-on-sight": {
+   "tile": "purple"
+  },
+  "shift-goes-the-wrong-way": {
+   "tile": "orange"
+  },
+  "sign-that-doesnt-travel": {
+   "tile": "purple"
+  },
+  "sine-and-cosine-trade-places": {
+   "tile": "orange"
+  },
+  "slope-plus-one-point-is-the-whole-line": {
+   "tile": "orange"
+  },
+  "sometimes-the-answer-is-nothing": {
+   "tile": "orange"
+  },
+  "squared-not-linear": {
+   "tile": "orange"
+  },
+  "tense-frame": {
+   "tile": "yellow"
+  },
+  "threshold-split": {
+   "tile": "orange"
+  },
+  "trace-one-row": {
+   "tile": "orange"
+  },
+  "trace-the-referent": {
+   "tile": "orange"
+  },
+  "vanishing-variable": {
+   "tile": "orange"
+  },
+  "weigh-the-groups-not-the-means": {
+   "tile": "orange"
+  },
+  "what-the-chart-wont-tell-you": {
+   "tile": "yellow"
+  },
+  "what-the-slopes-are-doing": {
+   "tile": "orange"
+  },
+  "whats-left-standing": {
+   "tile": "purple"
+  },
+  "which-denominator": {
+   "tile": "yellow"
+  },
+  "which-name-owns-this-fact": {
+   "tile": "purple"
+  },
+  "which-way-the-sentence-faces": {
+   "tile": "orange"
+  }
+ },
+ "days": [
+  {
+   "id": "SS-STRIKE-05",
+   "section": "Math",
+   "passage": "Which inequality is equivalent to −6x + 18 ≥ 42?",
+   "stem": "",
+   "choices": [
+    "x − 3 ≤ −7",
+    "x − 3 ≥ −7",
+    "x + 18 ≤ −7",
+    "x − 3 ≤ 42"
+   ],
+   "key": 0,
+   "labels": [
+    null,
+    "region-has-to-be-checked-not-eyeballed",
+    "divide-the-whole-house",
+    "divide-the-whole-house"
+   ],
+   "reads": [
+    null,
+    "Divided every term by −6 but kept ≥. Dividing by a negative flips the sign.",
+    "Divided −6x and 42 by −6 but left the 18 alone.",
+    "Divided the left side by −6 but left the 42 alone."
+   ],
+   "explain": "Divide every term on both sides by −6. Then −6x becomes x, 18 becomes −3, and 42 becomes −7. Dividing by a negative flips ≥ to ≤, so you get x − 3 ≤ −7.",
+   "desmos": "Desmos play: Technique 5, as a check. Type −6x + 18 ≥ 42 and each choice. Only x − 3 ≤ −7 shades the same region, x ≤ −4."
+  },
+  {
+   "id": "SS-W1027-10",
+   "section": "Reading and Writing",
+   "passage": "Ecologist Ruth Abara counted nesting songbirds in two city parks over three summers. In the park where native shrubs had been planted, nesting pairs roughly doubled; in the other park, the number barely changed. Because the two parks also differ in size and noise level, Abara's results most likely ______",
+   "stem": "Which choice most logically completes the text?",
+   "choices": [
+    "prove that native shrubs cause songbirds to nest in city parks.",
+    "indicate that the number of songbirds across the city has doubled.",
+    "show that songbirds avoid parks that are large and noisy.",
+    "suggest that native shrubs may help songbirds, though other differences could explain the result."
+   ],
+   "key": 3,
+   "labels": [
+    "extreme-answer",
+    "parrot",
+    "answer-to-a-different-question",
+    null
+   ],
+   "reads": [
+    "Prove and cause claim too much. Counts from two parks that differ in other ways can't prove that.",
+    "It reuses doubled, but the doubling was in one park, not across the whole city.",
+    "The text never says which park is bigger or noisier, so this can't be drawn from it.",
+    null
+   ],
+   "explain": "Nesting doubled in the park with native shrubs, but the two parks also differ in size and noise. So the shrubs might explain the jump, or the other differences might. The right answer keeps both possibilities open.",
+   "desmos": ""
+  },
+  {
+   "id": "SS-W1103-06",
+   "section": "Math",
+   "passage": "A line in the xy-plane passes through the points (2, 7) and (6, 19).",
+   "stem": "Which equation defines the line?",
+   "choices": [
+    "y = 3x + 1",
+    "y = 3x + 7",
+    "y = 4x − 1",
+    "y = (1/3)x + 19/3"
+   ],
+   "key": 0,
+   "labels": [
+    null,
+    "slope-plus-one-point-is-the-whole-line",
+    "slope-plus-one-point-is-the-whole-line",
+    "slope-plus-one-point-is-the-whole-line"
+   ],
+   "reads": [
+    null,
+    "Used 7 as the y-intercept. But 7 is the y-value at x = 2, not at x = 0.",
+    "Used the run, 6 − 2 = 4, as the slope. Slope is rise over run: 12 ÷ 4 = 3.",
+    "Flipped the slope to run over rise. Slope is rise over run: 12 ÷ 4 = 3."
+   ],
+   "explain": "The slope is (19 − 7) ÷ (6 − 2) = 3. Put the point (2, 7) into y = 3x + b: 7 = 6 + b, so b = 1. The line is y = 3x + 1.",
+   "desmos": "Desmos play: Technique 4. Plot (2, 7) and (6, 19), then graph each choice. Only y = 3x + 1 passes through both points."
+  },
+  {
+   "id": "SS-W1027-02",
+   "section": "Reading and Writing",
+   "passage": "Most riders welcomed the new ferry schedule. A few commuters still had ______ the first boat now leaves before most of them are awake.",
+   "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+   "choices": [
+    "complaints, though;",
+    "complaints; though,",
+    "complaints, though,",
+    "complaints though,"
+   ],
+   "key": 0,
+   "labels": [
+    null,
+    "name-the-relationship",
+    "can-each-half-stand-alone",
+    "can-each-half-stand-alone"
+   ],
+   "reads": [
+    null,
+    "This moves though into the second sentence, where it would set the early boat against the complaints. That makes no sense.",
+    "Only commas sit between two full sentences here. That's a comma splice.",
+    "Only a comma comes before the second full sentence, so it's still a comma splice."
+   ],
+   "explain": "“A few commuters still had complaints, though” is a full sentence, and so is the part about the first boat. “Though” belongs with the complaints. A semicolon then separates the two sentences.",
+   "desmos": ""
+  },
+  {
+   "id": "SS-OUT-M8",
+   "section": "Math",
+   "passage": "Which expression is equivalent to (5x + 9) − (2x − 4)?",
+   "stem": "",
+   "choices": [
+    "3x + 5",
+    "3x + 13",
+    "7x + 5",
+    "3x − 13"
+   ],
+   "key": 1,
+   "labels": [
+    "sign-that-doesnt-travel",
+    null,
+    "sign-that-doesnt-travel",
+    "sign-that-doesnt-travel"
+   ],
+   "reads": [
+    "Subtracted 2x but not the −4. Taking away a negative 4 adds 4.",
+    null,
+    "Added 2x instead of subtracting it. The minus sign hits every term in the second group.",
+    "Flipped the sign of the 13. Nine minus −4 is positive 13."
+   ],
+   "explain": "The minus sign hits both terms in the second group, so −(2x − 4) becomes −2x + 4. Then 5x − 2x = 3x and 9 + 4 = 13. The answer is 3x + 13.",
+   "desmos": "Desmos play: Technique 4. Pick x = 1. The original gives 14 − (−2) = 16, and only 3x + 13 also gives 16."
+  },
+  {
+   "id": "SS-W1027-14",
+   "section": "Reading and Writing",
+   "passage": "In 2019, marine ______ published a field guide to the tide pools of the northern coast, illustrated with her own watercolors.",
+   "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+   "choices": [
+    "biologist, Talia Brooks,",
+    "biologist, Talia Brooks",
+    "biologist: Talia Brooks",
+    "biologist Talia Brooks"
+   ],
+   "key": 3,
+   "labels": [
+    "essential-means-no-punctuation",
+    "essential-means-no-punctuation",
+    "complete-clause-introducer",
+    null
+   ],
+   "reads": [
+    "Paired commas mark the name as extra. But the name is needed to say who published the guide.",
+    "One comma cuts the title off from its name. The name is needed, so nothing goes between them.",
+    "A colon needs a full sentence before it, and In 2019, marine biologist isn't one.",
+    null
+   ],
+   "explain": "Without her name, the sentence can't tell you which biologist published the guide. Words you need to identify someone take no commas. So “marine biologist Talia Brooks” stays together.",
+   "desmos": ""
+  },
+  {
+   "id": "SS-W1027-09",
+   "section": "Math",
+   "passage": "The solutions to |2x − 6| = 14 are r and s.",
+   "stem": "What is the value of r + s?",
+   "choices": [
+    "3",
+    "6",
+    "10",
+    "14"
+   ],
+   "key": 1,
+   "labels": [
+    "half-finished-move",
+    null,
+    "shape-on-sight",
+    "answer-to-a-different-question"
+   ],
+   "reads": [
+    "Found the center, 3, and stopped. The two answers sit either side of 3, so they add to 6.",
+    null,
+    "Solved 2x − 6 = 14 and stopped. The other case, 2x − 6 = −14, gives −4.",
+    "14 is the right side of the equation, not the sum of the solutions."
+   ],
+   "explain": "An absolute value equation splits into two cases. 2x − 6 = 14 gives x = 10, and 2x − 6 = −14 gives x = −4. Add them: 10 + (−4) = 6.",
+   "desmos": "Desmos play: Technique 1. Type y = |2x − 6| and y = 14, click both crossings, (−4, 14) and (10, 14), and add the x-values."
+  },
+  {
+   "id": "SS-OUT-R3",
+   "section": "Reading and Writing",
+   "passage": "The box of old letters ______ found in the attic last spring.",
+   "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+   "choices": [
+    "was",
+    "were",
+    "are",
+    "have been"
+   ],
+   "key": 0,
+   "labels": [
+    null,
+    "trace-the-referent",
+    "tense-frame",
+    "tense-frame"
+   ],
+   "reads": [
+    null,
+    "Were matches letters, the nearby noun. The subject is box, which is singular.",
+    "Are is plural and present, but last spring sets the past.",
+    "Have been is plural, and last spring is a finished past time."
+   ],
+   "explain": "Skip the words between the subject and the verb: the box was found. “Box” is one thing, and “last spring” is in the past. So the verb is “was.”",
+   "desmos": ""
+  },
+  {
+   "id": "SS-STRIKE-03",
+   "section": "Math",
+   "passage": "In triangle PQR, angle P measures 44° and angle Q measures 76°. Point S lies on side PR so that segment QS divides angle PQR into two equal angles.",
+   "stem": "What is the measure, in degrees, of angle QSR?",
+   "choices": [
+    "38",
+    "82",
+    "98",
+    "120"
+   ],
+   "key": 1,
+   "labels": [
+    "half-finished-move",
+    null,
+    "angle-relay",
+    "angle-relay"
+   ],
+   "reads": [
+    "38 is half of angle Q. That's one link in the chain, so keep going to angle QSR.",
+    null,
+    "98 is angle PSQ, the angle on the other side of S. Angle QSR is 180 − 98 = 82.",
+    "Used all of angle Q, 76°. Segment QS takes only half of it, 38°."
+   ],
+   "explain": "Angle R is 180 − 44 − 76 = 60°. Segment QS splits angle Q into two 38° angles. In triangle QSR, angle QSR is 180 − 38 − 60 = 82°.",
+   "desmos": "By hand, Desmos adds nothing here. Each step is one subtraction, and keeping track of the angles is the skill."
+  },
+  {
+   "id": "SS-OUT-R7",
+   "section": "Reading and Writing",
+   "passage": "The lab's approach was truly novel: no team had tried it before.",
+   "stem": "As used in the text, what does \"novel\" most nearly mean?",
+   "choices": [
+    "new",
+    "fictional",
+    "lengthy",
+    "literary"
+   ],
+   "key": 0,
+   "labels": [
+    null,
+    "familiar-meaning-ambush",
+    "familiar-meaning-ambush",
+    "familiar-meaning-ambush"
+   ],
+   "reads": [
+    null,
+    "Fictional comes from the other meaning of novel, a book. Here novel describes an approach.",
+    "Lengthy comes from the book meaning, since novels are long. Here novel describes an approach.",
+    "Literary is the book meaning again. The clue is that no team had tried it before."
+   ],
+   "explain": "The sentence explains the word for you: no team had tried the approach before. Something no one has tried is new. “Novel” can mean a book, but here it means new.",
+   "desmos": ""
+  },
+  {
+   "id": "SS-W1027-01",
+   "section": "Math",
+   "passage": "Last year, 15% of the students at Corvale High School walked to school. This year, 18% of the students walked to school. The percentage of students who walked to school this year is p% greater than the percentage last year.",
+   "stem": "What is the value of p?",
+   "choices": [
+    "3",
+    "18",
+    "20",
+    "120"
+   ],
+   "key": 2,
+   "labels": [
+    "half-finished-move",
+    "answer-to-a-different-question",
+    null,
+    "half-finished-move"
+   ],
+   "reads": [
+    "Found the 3-point change and stopped. Percent change still divides that 3 by the starting 15.",
+    "Gave this year's percent. The question asks how much bigger it is than last year's.",
+    null,
+    "Divided 18 by 15 and read 1.2 as 120%. That's the whole new amount, so take away the starting 100%."
+   ],
+   "explain": "The share went from 15% to 18%, a jump of 3. To see how much greater that is, compare the 3 to the starting 15: 3 ÷ 15 = 0.2, which is 20%.",
+   "desmos": "By hand, Desmos adds nothing here. Choosing the starting value is the skill, and 3 ÷ 15 is quick."
+  },
+  {
+   "id": "SS-W1103-07",
+   "section": "Reading and Writing",
+   "passage": "Average Daily Bike-Share Rides at Four Stations (weekday, weekend): Mill Street 410, 380; Lakefront 220, 540; Union Square 650, 300; Oak Park 190, 260. A city planner compared average daily rides at four bike-share stations in Avon Ridge. Weekend rides outnumbered weekday rides at only two of the stations. At the Oak Park station, for example, weekend rides ______",
+   "stem": "Which choice most effectively uses data from the table to complete the example?",
+   "choices": [
+    "were lower than weekday rides.",
+    "exceeded weekday rides by 70.",
+    "exceeded weekday rides by 320.",
+    "were about half of weekday rides."
+   ],
+   "key": 1,
+   "labels": [
+    "trace-one-row",
+    null,
+    "trace-one-row",
+    "trace-one-row"
+   ],
+   "reads": [
+    "Read the row backward. At Oak Park, 260 weekend rides is more than 190 weekday rides.",
+    null,
+    "320 is the Lakefront gap, 540 − 220. The sentence is about Oak Park.",
+    "About half fits Union Square, 300 against 650. Oak Park is a different row."
+   ],
+   "explain": "Find the Oak Park row: 190 rides on weekdays and 260 on weekends. Weekend rides were higher by 260 − 190 = 70, which fits the claim the example is meant to support.",
+   "desmos": "",
+   "structured": {
+    "table": {
+     "title": "Average Daily Bike-Share Rides at Four Stations",
+     "columns": [
+      "Station",
+      "Weekday",
+      "Weekend"
+     ],
+     "rows": [
+      [
+       "Mill Street",
+       "410",
+       "380"
       ],
-      "key": 2,
-      "labels": [
-        "out-of-order",
-        "half-finished",
-        null,
-        "half-finished"
+      [
+       "Lakefront",
+       "220",
+       "540"
       ],
-      "reads": [
-        "Subtracted 3 from x before doubling it.",
-        "Solved for x and stopped there.",
-        null,
-        "Doubled x and stopped one step short."
+      [
+       "Union Square",
+       "650",
+       "300"
       ],
-      "explain": "Expand to get 3x − 12 = 2x + 5, so x = 17. The trap is stopping there. The question asks for 2x − 3, so finish the move: 2 times 17 is 34, and 34 minus 3 is 31.",
-      "desmos": "Graph y = 3(x − 4) and y = 2x + 5. They cross at x = 17. Then finish by hand: 2(17) − 3."
+      [
+       "Oak Park",
+       "190",
+       "260"
+      ]
+     ]
     },
-    {
-      "id": "PH-TRAPMAP-3",
-      "section": "Reading and Writing",
-      "passage": "Urban beekeepers in Chicago have reported that rooftop hives produce more honey per colony than hives in the farmland outside the city. Entomologist Dana Whitfield attributes the difference to the city's ornamental plantings, which bloom in staggered waves from March through October and give urban bees a longer foraging season than single-crop fields provide. She cautions, though, that her team measured only honey yield and did not follow the colonies through the winter.",
-      "stem": "According to the text, what does Whitfield identify as the cause of the difference in honey production?",
-      "choices": [
-        "Rooftop hives produce more honey per colony than farmland hives.",
-        "Ornamental plantings extend the foraging season for urban bees.",
-        "Her team did not follow the colonies through the winter.",
-        "Farmland outside the city supports larger colonies."
-      ],
-      "key": 1,
-      "labels": [
-        "different-question",
-        null,
-        "different-question",
-        "unsupported"
-      ],
-      "reads": [
-        "Picked a true fact, but not the cause.",
-        null,
-        "Picked her warning, not the cause.",
-        "Picked a detail the text never gives."
-      ],
-      "explain": "Three of these choices are true, and that is the trick. The question asks for the cause Whitfield gives. She points to the plantings that bloom from March to October. The other true choices are the result and her warning.",
-      "desmos": ""
-    },
-    {
-      "id": "PH-TRAPMAP-5",
-      "section": "Math",
-      "passage": "Which table gives three values of x and their corresponding values of y that all satisfy the inequality y > 2x − 5?",
-      "stem": "",
-      "choices": [
-        "x: 0, 2, 4    y: 0, 1, 3",
-        "x: 0, 1, 3    y: 0, −2, 0",
-        "x: 0, 2, 4    y: −6, −2, 2",
-        "x: 0, 2, 4    y: 0, 1, 5"
-      ],
-      "key": 3,
-      "labels": [
-        "region-eyeballed",
-        "region-eyeballed",
-        "region-eyeballed",
-        null
-      ],
-      "reads": [
-        "Missed that the last point sits right on the line.",
-        "Checked two rows and skipped the third.",
-        "Flipped the inequality the wrong way.",
-        null
-      ],
-      "explain": "Put each row into y > 2x − 5. A point on the line fails, because the sign is strict. Only one table passes on every row. Check the last row first, since that is where the bad tables break.",
-      "desmos": "Type y > 2x − 5, then add each table as points. Every point has to sit in the shaded part, not on the line."
-    },
-    {
-      "id": "PH-TRAPMAP-2",
-      "section": "Reading and Writing",
-      "passage": "Early reviews of the new bridge praised its elegance, but the chief engineer's own assessment was more qualified: the span would hold, she wrote, provided the river never rose past the flood levels recorded in the previous century.",
-      "stem": "As used in the text, what does the word “qualified” most nearly mean?",
-      "choices": [
-        "certified",
-        "conditional",
-        "enthusiastic",
-        "technical"
-      ],
-      "key": 1,
-      "labels": [
-        "familiar-meaning",
-        null,
-        "unsupported",
-        "unsupported"
-      ],
-      "reads": [
-        "Went with the meaning everyone knows.",
-        null,
-        "Read the opposite of her tone.",
-        "Guessed from the setting, not the sentence."
-      ],
-      "explain": "Qualified has a well-known meaning, but this sentence uses a different one. The engineer says the bridge will hold only if the river stays below old flood levels. That is a condition. Here the word means it comes with a condition.",
-      "desmos": ""
-    }
-  ]
+    "passage_body": "A city planner compared average daily rides at four bike-share stations in Avon Ridge. Weekend rides outnumbered weekday rides at only two of the stations. At the Oak Park station, for example, weekend rides ______"
+   }
+  },
+  {
+   "id": "SS-W1027-17",
+   "section": "Math",
+   "passage": "The number of members in a hiking club increased by 20% from 2023 to 2024 and then decreased by 20% from 2024 to 2025.",
+   "stem": "The number of members in 2025 was what percent of the number of members in 2023?",
+   "choices": [
+    "80%",
+    "96%",
+    "100%",
+    "120%"
+   ],
+   "key": 1,
+   "labels": [
+    "answer-to-a-different-question",
+    null,
+    "compounding-percent-trap",
+    "half-finished-move"
+   ],
+   "reads": [
+    "80% compares 2025 with 2024. The question compares 2025 with 2023.",
+    null,
+    "Let +20% and −20% cancel. The drop is taken from a bigger number, so it removes more.",
+    "Stopped after the increase. The 2025 drop still has to happen."
+   ],
+   "explain": "Up 20% multiplies the members by 1.2. Down 20% multiplies them by 0.8. Together that's 1.2 × 0.8 = 0.96, so 2025 had 96% of the 2023 members.",
+   "desmos": "By hand, Desmos adds nothing here. Setting up 1.2 × 0.8 is the skill, and the multiplication is quick."
+  },
+  {
+   "id": "SS-W1103-03",
+   "section": "Reading and Writing",
+   "passage": "While researching a topic, a student has taken the following notes: • A tidal turbine is an underwater machine that turns moving seawater into electricity. • In 2024, a team at Kestrel Point tested a new turbine blade made of flax fiber. • The flax blade weighed 30 percent less than a standard carbon blade. • It produced the same amount of power as the carbon blade. The student wants to present the team’s findings to an audience already familiar with tidal turbines.",
+   "stem": "Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+   "choices": [
+    "The flax blade tested at Kestrel Point in 2024 weighed 30 percent less than a standard carbon blade but produced the same power.",
+    "A tidal turbine, which makes power from moving seawater, was tested at Kestrel Point in 2024.",
+    "Flax fiber can be used to make turbine blades.",
+    "In 2024, a team at Kestrel Point tested a new turbine blade."
+   ],
+   "key": 0,
+   "labels": [
+    null,
+    "know-your-audience",
+    "goal-line",
+    "goal-line"
+   ],
+   "reads": [
+    null,
+    "It explains what a tidal turbine is, which this audience already knows, and it never gives the findings.",
+    "It's a general fact about flax with none of the test's findings.",
+    "It says a test happened but not what the test found."
+   ],
+   "explain": "This audience already knows what tidal turbines are, so skip the background. The goal is the findings: the flax blade was 30 percent lighter and made the same power. Only one choice gives both.",
+   "desmos": "",
+   "structured": {
+    "notes_intro": "While researching a topic, a student has taken the following notes:",
+    "notes": [
+     "A tidal turbine is an underwater machine that turns moving seawater into electricity.",
+     "In 2024, a team at Kestrel Point tested a new turbine blade made of flax fiber.",
+     "The flax blade weighed 30 percent less than a standard carbon blade.",
+     "It produced the same amount of power as the carbon blade."
+    ],
+    "passage_body": "The student wants to present the team’s findings to an audience already familiar with tidal turbines."
+   }
+  },
+  {
+   "id": "SS-W1103-08",
+   "section": "Math",
+   "passage": "y = x² + 6; y = 4x + 1. How many solutions does the given system of equations have?",
+   "stem": "",
+   "choices": [
+    "Zero",
+    "Exactly one",
+    "Exactly two",
+    "Infinitely many"
+   ],
+   "key": 0,
+   "labels": [
+    null,
+    "count-the-crossings",
+    "count-the-crossings",
+    "count-the-crossings"
+   ],
+   "reads": [
+    null,
+    "Expected the line to touch the curve once. Graph them, and the line stays under the curve the whole way.",
+    "Assumed a line always cuts a parabola twice. This line stays below the curve.",
+    "A line and a parabola can't share infinitely many points."
+   ],
+   "explain": "Set them equal: x² + 6 = 4x + 1, so x² − 4x + 5 = 0. That's (x − 2)² + 1 = 0, and a square plus 1 is never 0. So there are zero solutions.",
+   "desmos": "Desmos play: Technique 2. Type y = x² + 6 and y = 4x + 1. The line passes under the curve and never touches it.",
+   "structured": {
+    "display": [
+     "y = x² + 6",
+     "y = 4x + 1"
+    ],
+    "passage_body": ""
+   }
+  },
+  {
+   "id": "SS-OUT-R1",
+   "section": "Reading and Writing",
+   "passage": "The exhibit ______ maps, letters, and photographs from the 1890s.",
+   "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+   "choices": [
+    "includes:",
+    "includes;",
+    "includes",
+    "includes,"
+   ],
+   "key": 2,
+   "labels": [
+    "sometimes-the-answer-is-nothing",
+    "sometimes-the-answer-is-nothing",
+    null,
+    "sometimes-the-answer-is-nothing"
+   ],
+   "reads": [
+    "A colon needs a full sentence before it, and The exhibit includes isn't one.",
+    "A semicolon needs a full sentence on both sides.",
+    null,
+    "A comma would split the verb from what the exhibit includes."
+   ],
+   "explain": "“Includes” and the list after it belong together, so nothing goes between them. The list comes right after the verb, with no mark at all.",
+   "desmos": ""
+  },
+  {
+   "id": "SS-STRIKE-04",
+   "section": "Math",
+   "passage": "A box plot summarizes the scores of 25 students on a quiz. The minimum is 52, the first quartile is 68, the median is 75, the third quartile is 84, and the maximum is 98.",
+   "stem": "Which statement must be true?",
+   "choices": [
+    "The mean score is 75.",
+    "The interquartile range of the scores is 46.",
+    "At least half of the students scored 75 or higher.",
+    "More students scored from 68 to 75 than from 75 to 84."
+   ],
+   "key": 2,
+   "labels": [
+    "what-the-chart-wont-tell-you",
+    "answer-to-a-different-question",
+    null,
+    "what-the-chart-wont-tell-you"
+   ],
+   "reads": [
+    "A box plot shows the median, 75. It never shows the mean.",
+    "46 is the range, 98 − 52. The interquartile range is 84 − 68 = 16.",
+    null,
+    "A wider or narrower box shows how spread out the scores are, not how many students are in it."
+   ],
+   "explain": "The median is the 13th of the 25 scores in order, and it's 75. So the 13th through 25th scores are all 75 or higher. That's 13 students, which is more than half.",
+   "desmos": "By hand, Desmos adds nothing here. There's no list to type, and the skill is knowing what a box plot can show."
+  },
+  {
+   "id": "SS-W1103-05",
+   "section": "Reading and Writing",
+   "passage": "Botanist Mira Castell noticed that a rare mountain orchid grows only where a certain fungus lives in the soil. In a greenhouse, she planted the orchid's seeds in sterilized soil, and none sprouted. She then planted seeds in sterilized soil to which only the fungus had been added, and those seeds sprouted. These results suggest that ______",
+   "stem": "Which choice most logically completes the text?",
+   "choices": [
+    "the orchid's seeds need the fungus in order to sprout.",
+    "the orchid grows best on high mountain slopes.",
+    "sterilizing soil damages the orchid's seeds.",
+    "the fungus can grow only where the orchid is present."
+   ],
+   "key": 0,
+   "labels": [
+    null,
+    "answer-to-a-different-question",
+    "whats-left-standing",
+    "parrot"
+   ],
+   "reads": [
+    null,
+    "The experiment never compares slopes or heights.",
+    "The second batch rules this out. Seeds in sterilized soil sprouted once the fungus was added.",
+    "It flips the relationship. The test shows what the orchid needs, not what the fungus needs."
+   ],
+   "explain": "Seeds in sterilized soil didn't sprout. Seeds in the same soil with the fungus added did. The only difference was the fungus, so the seeds need it to sprout.",
+   "desmos": ""
+  },
+  {
+   "id": "SS-W1027-03",
+   "section": "Math",
+   "passage": "2(x + 3y) = 7 − x; kx + 9y = 4. In the given system of equations, k is a constant.",
+   "stem": "If the system has no solution, what is the value of k?",
+   "choices": [
+    "2",
+    "3",
+    "9/2",
+    "9"
+   ],
+   "key": 2,
+   "labels": [
+    "what-the-slopes-are-doing",
+    "half-finished-move",
+    null,
+    "half-finished-move"
+   ],
+   "reads": [
+    "Paired the numbers wrong, k/3 = 6/9. Match x with x and y with y: k/3 = 9/6.",
+    "Never moved the −x over. Collect it and the line is 3x + 6y = 7.",
+    null,
+    "Multiplied only the x by 2. The 2 multiplies the 3y too, which gives 6y."
+   ],
+   "explain": "Rewrite the first equation as 3x + 6y = 7. No solution means parallel lines, so the x and y numbers keep the same ratio: k/3 = 9/6. That gives k = 9/2.",
+   "desmos": "Desmos play: Technique 2. Type both equations as written with a slider for k. At k = 4.5 the lines run parallel and never meet.",
+   "structured": {
+    "display": [
+     "2(x + 3y) = 7 − x",
+     "kx + 9y = 4"
+    ],
+    "passage_body": "In the given system of equations, k is a constant."
+   }
+  },
+  {
+   "id": "SS-RW-MIP-005",
+   "section": "Reading and Writing",
+   "passage": "This spring, crews in the farm town of Hollin Ford cut narrow gaps into the old stone walls that line its fields. Many visitors assumed the walls were being torn down. In fact, the gaps let foxes pass between fields, and farmer Odalys Brenner says the foxes now keep mice out of her grain stores.",
+   "stem": "Which choice best states the main purpose of the text?",
+   "choices": [
+    "To trace the history of the stone walls around Hollin Ford",
+    "To report that foxes now keep mice out of one farmer's grain",
+    "To warn that the town's old walls are being destroyed",
+    "To explain the real reason for a practice that visitors misread"
+   ],
+   "key": 3,
+   "labels": [
+    "move-the-passage-never-makes",
+    "answer-to-a-different-question",
+    "whats-left-standing",
+    null
+   ],
+   "reads": [
+    "The text never traces the walls' history. It only explains why gaps were cut this spring.",
+    "That's a true detail from the last sentence. It's evidence, not the job of the whole text.",
+    "That's the visitors' mistaken view. The text sets it up only to correct it.",
+    null
+   ],
+   "explain": "The text first gives what visitors assumed, that the walls were being torn down. Then it says what the gaps are really for. So its purpose is to explain a practice that people misread.",
+   "desmos": ""
+  },
+  {
+   "id": "SS-OUT-N7",
+   "section": "Math",
+   "passage": "A towing company's charge C, in dollars, to tow a car m miles is given by C = 4m + 95.",
+   "stem": "What is the best interpretation of 95 in this context?",
+   "choices": [
+    "The charge for each mile, in dollars",
+    "The total charge, in dollars, for a one-mile tow",
+    "The number of miles the car is towed",
+    "The fixed charge, in dollars, for each tow"
+   ],
+   "key": 3,
+   "labels": [
+    "every-number-has-a-job",
+    "every-number-has-a-job",
+    "every-number-has-a-job",
+    null
+   ],
+   "reads": [
+    "The charge for each mile is the 4 next to m. The 95 doesn't change with the miles.",
+    "A one-mile tow costs 4 + 95 = 99, so 95 can't be that total.",
+    "The miles are m. The 95 is in dollars.",
+    null
+   ],
+   "explain": "In C = 4m + 95, the 4 is multiplied by the miles, so it's the cost per mile. The 95 is charged no matter how far the tow goes, so it's the fixed charge.",
+   "desmos": "By hand, Desmos adds nothing here. There's nothing to graph, and naming each number's job is the skill."
+  },
+  {
+   "id": "SS-STRIKE-07",
+   "section": "Reading and Writing",
+   "passage": "In the 1970s, the town of Elm Rock replaced its gravel roads with asphalt. Historian Dana Kole notes that the change cut travel times to the regional hospital by nearly half. She also found that several family-run stables, which had depended on horse traffic along the old gravel roads, closed within five years of the paving.",
+   "stem": "Which choice best states the main idea of the text?",
+   "choices": [
+    "Historians disagree about whether paving Elm Rock's roads made trips to the hospital faster.",
+    "Paving Elm Rock's roads made trips to the hospital faster, which led the town to build a second hospital.",
+    "Several family-run stables in Elm Rock closed because their owners wanted asphalt roads.",
+    "Paving Elm Rock's roads made trips to the hospital faster, but the change was followed by the closing of several stables that depended on horse traffic."
+   ],
+   "key": 3,
+   "labels": [
+    "answer-to-a-different-question",
+    "half-right-is-all-wrong",
+    "half-right-is-all-wrong",
+    null
+   ],
+   "reads": [
+    "Only one historian appears, and the text reports no disagreement.",
+    "The first half is right, but the text never mentions a second hospital, so the whole choice is wrong.",
+    "The stables did close, but the text never says their owners wanted asphalt.",
+    null
+   ],
+   "explain": "Kole reports two results of the paving. Trips to the hospital got faster, and stables that relied on horses closed. The main idea needs both, and every part of the choice must be in the text.",
+   "desmos": ""
+  },
+  {
+   "id": "SS-MATH-LIN-009",
+   "section": "Math",
+   "passage": "A rowing club owns 14 boats. Each boat has either 1 seat or 4 seats. When every seat is filled, the boats hold 44 rowers in all.",
+   "stem": "How many of the club's boats have 4 seats?",
+   "choices": [
+    "3",
+    "4",
+    "10",
+    "11"
+   ],
+   "key": 2,
+   "labels": [
+    "name-it-before-you-solve-it",
+    "answer-to-a-different-question",
+    null,
+    "name-it-before-you-solve-it"
+   ],
+   "reads": [
+    "If all 14 boats had 4 seats, there'd be 12 seats too many. Each 1-seat boat cuts 3, not 4.",
+    "Found the number of 1-seat boats. The question asks for the 4-seat boats.",
+    null,
+    "Divided 44 rowers by 4, as if every boat had 4 seats. Some boats seat only 1."
+   ],
+   "explain": "Let f be the number of 4-seat boats, so 14 − f boats have 1 seat. The seats add up to 4f + (14 − f) = 44. That gives 3f = 30, so f = 10.",
+   "desmos": "By hand, Desmos adds nothing here. Naming the two kinds of boats and writing the equation is the whole question."
+  },
+  {
+   "id": "SS-W1103-09",
+   "section": "Reading and Writing",
+   "passage": "Economist Marisol Vega argues that a city’s free weekend bus service increased spending at its downtown shops, because the buses brought in shoppers who would otherwise have stayed home.",
+   "stem": "Which finding, if true, would most directly support Vega’s claim?",
+   "choices": [
+    "The free buses carried about 3,000 riders each weekend during their first month.",
+    "Several new restaurants opened downtown two years after the service began.",
+    "The city painted the free buses in the colors of the downtown business association.",
+    "Weekend sales at downtown shops rose after the free service began, while weekend sales in a similar city without free buses did not change."
+   ],
+   "key": 3,
+   "labels": [
+    "same-mechanism-not-same-topic",
+    "same-mechanism-not-same-topic",
+    "same-mechanism-not-same-topic",
+    null
+   ],
+   "reads": [
+    "It's about the buses, the right topic, but it never shows that shoppers spent more.",
+    "Restaurants that opened two years later could come from many other causes.",
+    "The paint says nothing about who came downtown or what they spent.",
+    null
+   ],
+   "explain": "Vega's claim is that the buses raised downtown spending. The right finding shows sales rose after the buses began, while a similar city without them saw no change. That points to the buses as the reason.",
+   "desmos": ""
+  },
+  {
+   "id": "SS-OUT-M17",
+   "section": "Math",
+   "passage": "A sample of bacteria doubles in number every 2 hours. The sample starts with 100 bacteria.",
+   "stem": "How many bacteria will there be after 6 hours?",
+   "choices": [
+    "300",
+    "600",
+    "800",
+    "6,400"
+   ],
+   "key": 2,
+   "labels": [
+    "one-way-curve",
+    "name-it-before-you-solve-it",
+    null,
+    "name-it-before-you-solve-it"
+   ],
+   "reads": [
+    "Multiplied 100 by the 3 doubling steps. Doubling 3 times multiplies by 2 × 2 × 2 = 8.",
+    "Multiplied 100 by the 6 hours. The sample doubles every 2 hours, which is 3 times in 6 hours.",
+    null,
+    "Doubled every hour, 6 times. The sample doubles once every 2 hours."
+   ],
+   "explain": "In 6 hours there are three 2-hour steps, and each one doubles the sample. So 100 becomes 200, then 400, then 800.",
+   "desmos": "The setup is by hand. Desmos play as a check: Technique 4. Type y = 100 × 2^(x/2), add a table, and read x = 6. It shows y = 800."
+  },
+  {
+   "id": "SS-W1027-18",
+   "section": "Reading and Writing",
+   "passage": "Unlike her talkative older brother, Priya was ______ at family dinners, often getting through an entire meal without saying a word.",
+   "stem": "Which choice completes the text with the most logical and precise word or phrase?",
+   "choices": [
+    "eloquent",
+    "attentive",
+    "reticent",
+    "impatient"
+   ],
+   "key": 2,
+   "labels": [
+    "cover-the-word",
+    "cover-the-word",
+    null,
+    "cover-the-word"
+   ],
+   "reads": [
+    "Eloquent means good with words. Priya hardly speaks, so it's the opposite.",
+    "Attentive means paying attention. The text only says she didn't talk.",
+    null,
+    "Nothing in the text suggests impatience."
+   ],
+   "explain": "The sentence explains the blank: she got through whole meals without a word, unlike her talkative brother. Your own word is “quiet.” Reticent means quiet and holding back.",
+   "desmos": ""
+  },
+  {
+   "id": "SS-BLK-03",
+   "section": "Math",
+   "passage": "A data set of 40 points has the line of best fit y = 1.6x + 9. A researcher changes every y-value in the data set by multiplying it by 2.5 and then adding 4. The x-values do not change.",
+   "stem": "Which equation is the line of best fit for the new data set?",
+   "choices": [
+    "y = 4x + 9",
+    "y = 4x + 26.5",
+    "y = 1.6x + 26.5",
+    "y = 4x + 22.5"
+   ],
+   "key": 1,
+   "labels": [
+    "half-finished-move",
+    null,
+    "half-finished-move",
+    "half-finished-move"
+   ],
+   "reads": [
+    "Stretched the slope but left the intercept at 9. The 9 gets multiplied and moved too.",
+    null,
+    "Moved the line up but kept the slope. Multiplying every y by 2.5 makes the line 2.5 times as steep.",
+    "Multiplied by 2.5 but dropped the + 4 that lifts every point."
+   ],
+   "explain": "Every y on the line changes the same way, so the new line is y = 2.5(1.6x + 9) + 4. That's 4x + 22.5 + 4, which is y = 4x + 26.5.",
+   "desmos": "By hand: apply the change to the whole line, 2.5(1.6x + 9) + 4. Desmos play as a check: Technique 6. Put x1 = 0, 5, 10, 15 and y1 = 9, 17, 25, 33 in a table, type y2 = 2.5y1 + 4, and run y2 ~ m x1 + b. It returns m = 4 and b = 26.5."
+  },
+  {
+   "id": "SS-OUT-R13",
+   "section": "Reading and Writing",
+   "passage": "The storm knocked out power across the ______ crews worked through the night to restore it.",
+   "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+   "choices": [
+    "county,",
+    "county, however,",
+    "county",
+    "county;"
+   ],
+   "key": 3,
+   "labels": [
+    "can-each-half-stand-alone",
+    "can-each-half-stand-alone",
+    "can-each-half-stand-alone",
+    null
+   ],
+   "reads": [
+    "A comma alone can't join two full sentences. That's a comma splice.",
+    "However isn't a joining word, so the comma before it still splices two sentences.",
+    "With no mark at all, the two sentences run together.",
+    null
+   ],
+   "explain": "Test each half alone. “The storm knocked out power across the county” is a full sentence, and so is “crews worked through the night to restore it.” Two full sentences need a semicolon here.",
+   "desmos": ""
+  },
+  {
+   "id": "SS-OUT-N2",
+   "section": "Math",
+   "passage": "The function f is defined by f(x) = x². In the xy-plane, the graph of y = g(x) is the graph of y = f(x) shifted 5 units to the right.",
+   "stem": "Which equation defines g?",
+   "choices": [
+    "g(x) = (x + 5)²",
+    "g(x) = (x − 5)²",
+    "g(x) = x² + 5",
+    "g(x) = x² − 5"
+   ],
+   "key": 1,
+   "labels": [
+    "shift-goes-the-wrong-way",
+    null,
+    "shift-goes-the-wrong-way",
+    "shift-goes-the-wrong-way"
+   ],
+   "reads": [
+    "Read right as plus. Inside the parentheses, minus 5 moves the graph right.",
+    null,
+    "Adding 5 outside the square moves the graph up 5, not right.",
+    "Subtracting 5 outside the square moves the graph down 5, not right."
+   ],
+   "explain": "To move a graph 5 units right, replace x with x − 5. That makes g(x) = (x − 5)². Check it: the low point moves from (0, 0) to (5, 0).",
+   "desmos": "Desmos play: Technique 1. Type y = x² and each choice. Only y = (x − 5)² sits 5 units to the right, with its low point at (5, 0)."
+  },
+  {
+   "id": "SS-OUT-N3",
+   "section": "Reading and Writing",
+   "passage": "After practice, the coach asked her players ______",
+   "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+   "choices": [
+    "why did they lose the ball?",
+    "why did they lose the ball.",
+    "why they lost the ball?",
+    "why they lost the ball."
+   ],
+   "key": 3,
+   "labels": [
+    "which-way-the-sentence-faces",
+    "which-way-the-sentence-faces",
+    "which-way-the-sentence-faces",
+    null
+   ],
+   "reads": [
+    "This asks the question directly, but the sentence only reports what the coach asked.",
+    "The period is right, but the words are in question order.",
+    "The word order is right, but a reported question ends with a period.",
+    null
+   ],
+   "explain": "The sentence reports the coach's question. A reported question keeps statement order, as in “they lost,” and it ends with a period like any statement.",
+   "desmos": ""
+  },
+  {
+   "id": "SS-OUT-M11",
+   "section": "Math",
+   "passage": "In a club of 30 students, 12 play soccer. Of the soccer players, 4 also play tennis. If one of the soccer players is chosen at random, what is the probability that the student also plays tennis?",
+   "stem": "",
+   "choices": [
+    "2/15",
+    "1/3",
+    "2/5",
+    "2/3"
+   ],
+   "key": 1,
+   "labels": [
+    "which-denominator",
+    null,
+    "answer-to-a-different-question",
+    "answer-to-a-different-question"
+   ],
+   "reads": [
+    "Divided 4 by all 30 students. The pick is only from the 12 soccer players.",
+    null,
+    "12/30 is the chance of picking a soccer player from the whole club. That's a different question.",
+    "8/12 is the share of soccer players who don't play tennis."
+   ],
+   "explain": "The student is picked from the soccer players only, so the bottom number is 12. Of those 12, 4 play tennis. The probability is 4/12, which is 1/3.",
+   "desmos": "By hand, Desmos adds nothing here. Choosing the denominator, the 12 soccer players, is the whole question."
+  },
+  {
+   "id": "SS-W1027-06",
+   "section": "Reading and Writing",
+   "passage": "Planting a wide belt of dune grass helped temper the force of winter storms on the beach houses behind the dunes. That winter, the houses suffered far less damage than in any earlier year.",
+   "stem": "As used in the text, what does the word “temper” most nearly mean?",
+   "choices": [
+    "anger",
+    "measure",
+    "toughen",
+    "lessen"
+   ],
+   "key": 3,
+   "labels": [
+    "familiar-meaning-ambush",
+    "cover-the-word",
+    "familiar-meaning-ambush",
+    null
+   ],
+   "reads": [
+    "That's the mood meaning, losing your temper. Grass can't make a storm angry.",
+    "Nothing in the text is being measured.",
+    "That's the metal meaning, tempering steel to make it tougher. The storms didn't get stronger.",
+    null
+   ],
+   "explain": "The houses had far less damage after the grass was planted. So the grass must have reduced the storms' force. Here “temper” means lessen.",
+   "desmos": ""
+  },
+  {
+   "id": "SS-STRIKE-01",
+   "section": "Math",
+   "passage": "A museum charges a group $6 per person for the first 20 people and $4 per person for each person after the first 20.",
+   "stem": "Which expression gives the total charge, in dollars, for a group of n people, where n > 20?",
+   "choices": [
+    "6n",
+    "4n + 40",
+    "4n + 120",
+    "6n − 40"
+   ],
+   "key": 1,
+   "labels": [
+    "threshold-split",
+    null,
+    "threshold-split",
+    "name-it-before-you-solve-it"
+   ],
+   "reads": [
+    "Charged everyone $6. Only the first 20 people pay $6, and the rest pay $4.",
+    null,
+    "Charged the first 20 twice: $120, then $4 more for all n people. Only n − 20 pay $4.",
+    "Swapped the rates, $4 for the first 20 and $6 for everyone after."
+   ],
+   "explain": "Split the group at 20. The first 20 pay 20 × 6 = $120. The other n − 20 people pay $4 each. The total is 120 + 4(n − 20), which is 4n + 40.",
+   "desmos": "The setup is by hand. Desmos play as a check: Technique 4. Pick n = 30, where the real charge is 120 + 40 = 160. Type each choice with n = 30, and only 4n + 40 gives 160."
+  },
+  {
+   "id": "SS-STRIKE-06",
+   "section": "Reading and Writing",
+   "passage": "Marine biologist Ilse Varga tagged 60 young sea turtles that hatched on a beach lit by nearby streetlights and 60 that hatched on a dark beach a few miles away. Within an hour, 51 of the dark-beach hatchlings had reached the water, compared with only 32 of the lit-beach hatchlings. Many of the other lit-beach hatchlings crawled toward the streetlights instead. Varga concluded that ______",
+   "stem": "Which choice most logically completes the text?",
+   "choices": [
+    "artificial light can draw some hatchlings away from the sea.",
+    "artificial light prevents every hatchling from reaching the sea.",
+    "hatchlings on dark beaches always reach the water within an hour.",
+    "streetlights near beaches cause more sea turtles to hatch."
+   ],
+   "key": 0,
+   "labels": [
+    null,
+    "extreme-answer",
+    "extreme-answer",
+    "answer-to-a-different-question"
+   ],
+   "reads": [
+    null,
+    "Every is too strong. 32 of the 60 lit-beach hatchlings still reached the water.",
+    "Always is too strong. 51 of 60 is most of them, not all.",
+    "The study counted hatchlings reaching the water, not how many turtles hatched."
+   ],
+   "explain": "Fewer lit-beach hatchlings reached the water, and many crawled toward the lights. So light can pull some hatchlings away from the sea. The right answer says exactly that, with “can” and “some.”",
+   "desmos": ""
+  },
+  {
+   "id": "SS-W1027-11",
+   "section": "Math",
+   "passage": "At a bakery, the ratio of muffins to scones baked one morning was 4 to 7. Only muffins and scones were baked that morning.",
+   "stem": "What fraction of the items baked that morning were muffins?",
+   "choices": [
+    "4/7",
+    "4/11",
+    "7/11",
+    "3/7"
+   ],
+   "key": 1,
+   "labels": [
+    "which-denominator",
+    null,
+    "answer-to-a-different-question",
+    "name-it-before-you-solve-it"
+   ],
+   "reads": [
+    "Used muffins over scones. The question wants muffins over everything baked.",
+    null,
+    "Found the scones' share. The question asks about the muffins.",
+    "Read 4 to 7 as 4 out of 7 and took the rest, 3. The 7 is the scones alone."
+   ],
+   "explain": "A ratio of 4 to 7 means 4 muffins for every 7 scones, so every group of 11 items has 4 muffins. Muffins make up 4/11 of everything baked.",
+   "desmos": "By hand, Desmos adds nothing here. Adding the parts, 4 + 7 = 11, is the whole question."
+  },
+  {
+   "id": "SS-W1027-20",
+   "section": "Reading and Writing",
+   "passage": "Historian Tomas Ekberg argues that the canal in the town of Lysmore was built mainly to carry coal. Historian Lucia Ferraro agrees that coal moved on the canal but argues that the canal was built mainly to bring water to the town’s mills, pointing to its route past all six mill sites.",
+   "stem": "Based on the text, Ferraro would most likely agree with which statement?",
+   "choices": [
+    "The canal was built mainly to carry coal.",
+    "The canal’s route was chosen to avoid the mill sites.",
+    "The town’s mills ran on coal rather than on water.",
+    "Coal was carried on the canal, but carrying coal was not its main purpose."
+   ],
+   "key": 3,
+   "labels": [
+    "which-name-owns-this-fact",
+    "parrot",
+    "answer-to-a-different-question",
+    null
+   ],
+   "reads": [
+    "That's Ekberg's claim, and Ferraro argues against it.",
+    "It reuses the route and the mill sites but flips them. Ferraro says the route passes all six mills.",
+    "Ferraro says the canal brought water to the mills. The text never says the mills ran on coal.",
+    null
+   ],
+   "explain": "Ferraro agrees that coal moved on the canal, but she says its main job was bringing water to the mills. The right answer keeps both parts of her view.",
+   "desmos": ""
+  },
+  {
+   "id": "SS-BLK-01",
+   "section": "Math",
+   "passage": "Equation: x² + y² + 8x − 12y = k. In the xy-plane, the graph of the given equation is a circle with radius 9, and k is a constant.",
+   "stem": "What is the value of k?",
+   "choices": [
+    "−43",
+    "29",
+    "81",
+    "133"
+   ],
+   "key": 1,
+   "labels": [
+    "half-finished-move",
+    null,
+    "half-finished-move",
+    "sign-that-doesnt-travel"
+   ],
+   "reads": [
+    "Set k + 52 equal to the radius, 9. The equation needs the radius squared, 81.",
+    null,
+    "Read k as the radius squared before completing the square. The 16 and the 36 still have to move across.",
+    "Subtracted 52 instead of adding it. Completing the square adds 16 and 36 to the right side."
+   ],
+   "explain": "Add 16 and 36 to both sides to make two squares: (x + 4)² + (y − 6)² = k + 52. The right side must be the radius squared, 81. So k = 29.",
+   "desmos": "Desmos play: Technique 9. Type x² + y² + 8x − 12y = k with a slider for k. At k = 29 the circle is centered at (−4, 6) and reaches (5, 6), 9 units away.",
+   "structured": {
+    "display": [
+     "x² + y² + 8x − 12y = k"
+    ],
+    "passage_body": "In the xy-plane, the graph of the given equation is a circle with radius 9, and k is a constant."
+   }
+  },
+  {
+   "id": "SS-QB-SATLYS-085",
+   "section": "Reading and Writing",
+   "passage": "Rooftop beehives have become common in several large cities, and some city hives produce more honey per colony than rural ones, since city gardens bloom over a longer season. ______ ecologist Tomás Reyes found that where hives are packed closely together, wild bees visit fewer flowers, a sign the honeybees may be crowding them out.",
+   "stem": "Which choice completes the text with the most logical transition?",
+   "choices": [
+    "As a result,",
+    "On the contrary,",
+    "That said,",
+    "For instance,"
+   ],
+   "key": 2,
+   "labels": [
+    "name-the-relationship",
+    "name-the-relationship",
+    null,
+    "name-the-relationship"
+   ],
+   "reads": [
+    "As a result needs a cause. The honey yields don't cause the wild bee finding.",
+    "On the contrary denies the first sentence. The second sentence adds a downside without denying anything.",
+    null,
+    "The bee finding isn't an example of the honey claim."
+   ],
+   "explain": "The first sentence praises city hives. The second adds a downside while the honey claim still stands. That's a mild turn, and “That said” is the transition for a mild turn.",
+   "desmos": ""
+  },
+  {
+   "id": "SS-W1027-07",
+   "section": "Math",
+   "passage": "Which expression is equivalent to (2x³)(3x⁴)?",
+   "stem": "",
+   "choices": [
+    "5x⁷",
+    "6x⁷",
+    "6x¹²",
+    "5x¹²"
+   ],
+   "key": 1,
+   "labels": [
+    "exponent-addition-ambush",
+    null,
+    "exponent-addition-ambush",
+    "exponent-addition-ambush"
+   ],
+   "reads": [
+    "Added the 2 and the 3. The numbers in front multiply: 2 × 3 = 6.",
+    null,
+    "Multiplied the exponents. When like bases multiply, the exponents add: 3 + 4 = 7.",
+    "Added the numbers and multiplied the exponents, so both rules got swapped."
+   ],
+   "explain": "Multiply the numbers in front: 2 × 3 = 6. Then x³ times x⁴ adds the exponents, which gives x⁷. So the product is 6x⁷.",
+   "desmos": "Desmos play: Technique 4. Pick x = 2. The original gives 16 × 48 = 768, and only 6x⁷ also gives 768."
+  },
+  {
+   "id": "SS-QB-SATLYS-113",
+   "section": "Reading and Writing",
+   "passage": "After weeks of testing thread samples, textile conservator Imani Okafor traced the old quilt's colors to three plant ______ indigo, a deep blue; madder root, a brick red; and weld, a pale yellow.",
+   "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+   "choices": [
+    "dyes,",
+    "dyes;",
+    "dyes",
+    "dyes:"
+   ],
+   "key": 3,
+   "labels": [
+    "complete-clause-introducer",
+    "complete-clause-introducer",
+    "complete-clause-introducer",
+    null
+   ],
+   "reads": [
+    "A comma can't introduce a list after a full sentence, and the list's own semicolons make it more confusing.",
+    "Copied the semicolons inside the list. A semicolon needs a full sentence after it.",
+    "With no mark, three plant dyes runs straight into indigo, as if they were one name.",
+    null
+   ],
+   "explain": "The words before the blank already make a full sentence: Okafor traced the colors to three plant dyes. What follows names those dyes. A colon is the mark that introduces that list.",
+   "desmos": ""
+  },
+  {
+   "id": "SS-MATH-GEO-004",
+   "section": "Math",
+   "passage": "In right triangle PQR, angle R is the right angle and sin P = 28/53.",
+   "stem": "What is the value of cos Q?",
+   "choices": [
+    "25/53",
+    "28/53",
+    "45/53",
+    "53/28"
+   ],
+   "key": 1,
+   "labels": [
+    "sine-and-cosine-trade-places",
+    null,
+    "sine-and-cosine-trade-places",
+    "sine-and-cosine-trade-places"
+   ],
+   "reads": [
+    "Took 1 − 28/53. The trade happens between the angles, not between the numbers.",
+    null,
+    "45/53 is cos P, the other ratio for the angle you were given. The question asks for cos Q.",
+    "Flipped the given ratio upside down."
+   ],
+   "explain": "Angles P and Q add to 90° because R is the right angle. The side opposite P is the side next to Q. So cos Q = sin P = 28/53.",
+   "desmos": "By hand, Desmos adds nothing here. The answer is the given ratio, read through the triangle."
+  },
+  {
+   "id": "SS-BLK-02",
+   "section": "Reading and Writing",
+   "passage": "To color their wool, the weavers of the Tarrow Valley soak it in a dye made from crushed walnut hulls, ______ a deep brown that darkens a little more each time the cloth is washed.",
+   "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+   "choices": [
+    "producing",
+    "this produces",
+    "it produces",
+    "produces"
+   ],
+   "key": 0,
+   "labels": [
+    null,
+    "can-each-half-stand-alone",
+    "can-each-half-stand-alone",
+    "clause-with-no-predicate"
+   ],
+   "reads": [
+    null,
+    "This produces starts a second full sentence after only a comma. That's a comma splice.",
+    "It produces is a second full sentence too, joined by only a comma.",
+    "Produces has no subject of its own here, so the words after the comma can't attach."
+   ],
+   "explain": "The sentence already has its main verb, “soak.” The words after the comma tell what the dye does. “Producing” adds that part without starting a new sentence.",
+   "desmos": ""
+  },
+  {
+   "id": "SS-BB7-M-51",
+   "section": "Math",
+   "passage": "From a random sample of 150 households in a town, the mean amount of trash a household throws away each week is estimated to be 28 pounds, with an associated margin of error of 4 pounds. Based on this estimate, which of the following is NOT a plausible value for the mean weekly amount of trash, in pounds, thrown away by all households in the town?",
+   "stem": "",
+   "choices": [
+    "24.5",
+    "28",
+    "31.5",
+    "33"
+   ],
+   "key": 3,
+   "labels": [
+    "range-is-not-a-number",
+    "answer-to-a-different-question",
+    "range-is-not-a-number",
+    null
+   ],
+   "reads": [
+    "24.5 sits inside 24 to 32, so it's plausible even though it's far from 28.",
+    "28 is the estimate itself, so it's plausible. The question asks for a value that isn't.",
+    "31.5 sits inside 24 to 32, so it's plausible.",
+    null
+   ],
+   "explain": "A margin of error of 4 around 28 gives a plausible range of 24 to 32. Values inside that range are believable. Only 33 falls outside, so it's the one that isn't plausible.",
+   "desmos": "By hand, Desmos adds nothing here. 28 − 4 and 28 + 4 are mental math, and the skill is knowing the range is the answer."
+  },
+  {
+   "id": "SS-BB11-RW-33",
+   "section": "Reading and Writing",
+   "passage": "For decades, the standard account held that a coastal bird species migrated south each autumn to escape the cold. Tracking data collected between 2015 and 2022 showed instead that the birds left only after their main prey fish moved offshore, regardless of temperature. Researchers now describe the migration as a response to food rather than to weather.",
+   "stem": "Which choice best describes the overall structure of the text?",
+   "choices": [
+    "It presents a long-held explanation, offers evidence against it, and states a revised explanation.",
+    "It compares two explanations and calls for more study to decide between them.",
+    "It describes a research method and evaluates its strengths and weaknesses.",
+    "It proposes a solution to a problem faced by the bird species."
+   ],
+   "key": 0,
+   "labels": [
+    null,
+    "move-the-passage-never-makes",
+    "move-the-passage-never-makes",
+    "move-the-passage-never-makes"
+   ],
+   "reads": [
+    null,
+    "There are two explanations, but the text settles on one and never calls for more study.",
+    "The tracking data is used as evidence. The text never weighs its strengths and weaknesses.",
+    "The text explains a behavior. It never proposes a solution to a problem."
+   ],
+   "explain": "First the text gives the old view, that the birds fled the cold. Then it gives tracking data against it. It ends with the new view, that food drives the trip. The right answer names all three moves.",
+   "desmos": ""
+  },
+  {
+   "id": "SS-OUT-M10",
+   "section": "Math",
+   "passage": "A rug has an area of 3 square yards. What is the area of the rug, in square feet? (1 yard = 3 feet)",
+   "stem": "",
+   "choices": [
+    "1",
+    "9",
+    "27",
+    "81"
+   ],
+   "key": 2,
+   "labels": [
+    "name-it-before-you-solve-it",
+    "squared-not-linear",
+    null,
+    "squared-not-linear"
+   ],
+   "reads": [
+    "Divided by 3. A foot is smaller than a yard, so the number of square feet grows.",
+    "Multiplied by 3 once. A square yard is 3 feet by 3 feet, so it holds 9 square feet.",
+    null,
+    "Multiplied by 9 and then by 3 again. Each square yard holds exactly 9 square feet."
+   ],
+   "explain": "One square yard is 3 feet by 3 feet, so it holds 9 square feet. Three square yards hold 3 × 9 = 27 square feet.",
+   "desmos": "By hand, Desmos adds nothing here. The move is squaring the 3, and typing 3 × 3² only confirms 27."
+  },
+  {
+   "id": "SS-W1103-15",
+   "section": "Reading and Writing",
+   "passage": "While researching a topic, a student has taken the following notes: • The Kessler Bridge in Ortham opened in 1937. • It was designed by the engineer Helen Voss. • At 1,210 feet, it was the longest suspension bridge in the state until 1962. • The Aldine Bridge, also designed by Voss, opened in 1941 and is 680 feet long. The student wants to compare the lengths of the two bridges.",
+   "stem": "Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+   "choices": [
+    "At 1,210 feet, the Kessler Bridge is longer than the 680-foot Aldine Bridge.",
+    "Helen Voss designed both the Kessler Bridge and the Aldine Bridge.",
+    "The Kessler Bridge was the longest suspension bridge in the state until 1962.",
+    "The Aldine Bridge opened in 1941, four years after the Kessler Bridge."
+   ],
+   "key": 0,
+   "labels": [
+    null,
+    "goal-line",
+    "goal-line",
+    "goal-line"
+   ],
+   "reads": [
+    null,
+    "It's true, but it compares who designed the bridges, not how long they are.",
+    "It gives one bridge's length but never compares it with the Aldine Bridge.",
+    "It compares opening years, not lengths."
+   ],
+   "explain": "The goal is to compare the lengths of the two bridges. Only one choice gives both lengths, 1,210 feet and 680 feet. It also says which bridge is longer.",
+   "desmos": "",
+   "structured": {
+    "notes_intro": "While researching a topic, a student has taken the following notes:",
+    "notes": [
+     "The Kessler Bridge in Ortham opened in 1937.",
+     "It was designed by the engineer Helen Voss.",
+     "At 1,210 feet, it was the longest suspension bridge in the state until 1962.",
+     "The Aldine Bridge, also designed by Voss, opened in 1941 and is 680 feet long."
+    ],
+    "passage_body": "The student wants to compare the lengths of the two bridges."
+   }
+  },
+  {
+   "id": "SS-OUT-M16",
+   "section": "Math",
+   "passage": "Which point (x, y) is a solution to the inequality y > 5 − 2x?",
+   "stem": "",
+   "choices": [
+    "(0, 4)",
+    "(1, 2)",
+    "(2, 1)",
+    "(3, 0)"
+   ],
+   "key": 3,
+   "labels": [
+    "region-has-to-be-checked-not-eyeballed",
+    "region-has-to-be-checked-not-eyeballed",
+    "region-has-to-be-checked-not-eyeballed",
+    null
+   ],
+   "reads": [
+    "Testing (0, 4) gives 4 > 5, which is false. Close to the line is still outside.",
+    "Testing gives 2 > 3, which is false.",
+    "Testing gives 1 > 1, which is false. The point sits on the line, and the sign is greater than.",
+    null
+   ],
+   "explain": "Put each point into y > 5 − 2x. For (3, 0), you get 0 > 5 − 6, which is 0 > −1, and that's true. The other three points make a false statement.",
+   "desmos": "Desmos play: Technique 5. Type y > 5 − 2x and the four points. Only (3, 0) sits inside the shaded region, and (2, 1) sits on the dashed line."
+  },
+  {
+   "id": "SS-BLK-04",
+   "section": "Reading and Writing",
+   "passage": "Night herons that nest near Calder Marsh lay fewer eggs in years when the marsh floods in early spring. Ecologist Rhea Tamsin argues that the floods cut egg-laying because they drown the frogs the herons rely on for food in the weeks before nesting begins.",
+   "stem": "Which finding, if true, would most directly weaken Tamsin's claim?",
+   "choices": [
+    "Herons lay fewer eggs in flood years even where frogs stay plentiful.",
+    "Herons at a distant marsh also lay fewer eggs after floods.",
+    "Early spring floods drown more frogs than late spring floods do.",
+    "Frogs are a smaller part of the herons' late-summer diet."
+   ],
+   "key": 0,
+   "labels": [
+    null,
+    "same-mechanism-not-same-topic",
+    "answer-to-a-different-question",
+    "same-mechanism-not-same-topic"
+   ],
+   "reads": [
+    null,
+    "It shows floods matter at another marsh but never mentions frogs, so the frog explanation is untouched.",
+    "Floods drowning frogs fits Tamsin's claim. It supports her instead of weakening her.",
+    "It's about late summer, but her claim is about the weeks before nesting, in spring."
+   ],
+   "explain": "Tamsin says floods cut egg-laying by killing frogs. If herons still lay fewer eggs in flood years where frogs stay plentiful, the frogs can't explain the drop. That breaks her explanation.",
+   "desmos": ""
+  },
+  {
+   "id": "SS-W1027-13",
+   "section": "Math",
+   "passage": "In the equation (x − 1)(x + 9) = k, k is a constant. If the equation has exactly one real solution, what is the value of k?",
+   "stem": "",
+   "choices": [
+    "−9",
+    "−25",
+    "16",
+    "25"
+   ],
+   "key": 1,
+   "labels": [
+    "answer-to-a-different-question",
+    null,
+    "half-finished-move",
+    "sign-that-doesnt-travel"
+   ],
+   "reads": [
+    "−9 is the number at the end of x² + 8x − 9. One solution needs the left side's lowest value, −25.",
+    null,
+    "Squared half of 8 and stopped. Completing the square still has to account for the −9.",
+    "Solved it but dropped the minus sign. The low point of the graph is at −25."
+   ],
+   "explain": "The left side is 0 at x = 1 and x = −9, and lowest halfway between, at x = −4. There it equals (−5)(5) = −25. Only k = −25 gives exactly one x.",
+   "desmos": "Desmos play: Technique 3. Type y = (x − 1)(x + 9) and click the gray vertex. It reads (−4, −25), so y = −25 touches the curve once."
+  },
+  {
+   "id": "SS-OUT-R9",
+   "section": "Reading and Writing",
+   "passage": "By the time the boat arrived, the hikers ______ at the dock for six hours.",
+   "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+   "choices": [
+    "have waited",
+    "are waiting",
+    "had been waiting",
+    "wait"
+   ],
+   "key": 2,
+   "labels": [
+    "tense-frame",
+    "tense-frame",
+    null,
+    "tense-frame"
+   ],
+   "reads": [
+    "Have waited reaches up to now, but by the time the boat arrived sets a point in the past.",
+    "Present tense doesn't fit a moment that's already in the past.",
+    null,
+    "Present tense again. The boat already arrived."
+   ],
+   "explain": "“By the time the boat arrived” points to a moment in the past. The waiting started earlier and was still going on then. “Had been waiting” shows action that ran up to a past moment.",
+   "desmos": ""
+  },
+  {
+   "id": "SS-STRIKE-02",
+   "section": "Math",
+   "passage": "y = 0.5x²; y = 3x + 10. The graphs of the given equations in the xy-plane intersect at two points.",
+   "stem": "Which interval contains the greater of the two x-coordinates of those points?",
+   "choices": [
+    "Between 4 and 6",
+    "Between 6 and 8",
+    "Between 8 and 10",
+    "Between 16 and 18"
+   ],
+   "key": 2,
+   "labels": [
+    "divide-the-whole-house",
+    "divide-the-whole-house",
+    null,
+    "half-finished-move"
+   ],
+   "reads": [
+    "Doubled only the 0.5x² side. That turns it into x² = 3x + 10, which gives 5.",
+    "Doubled 0.5x² and 3x but not the 10, so you solved x² = 6x + 10.",
+    null,
+    "Used the quadratic formula but never divided by 2, so you got about 16.8 instead of 8.4."
+   ],
+   "explain": "The choices are ranges, so a rough value is enough. At x = 8 the curve gives 32 and the line gives 34. At x = 10 the curve gives 50 and the line gives 40. They cross in between.",
+   "desmos": "Desmos play: Technique 1. Type y = 0.5x² and y = 3x + 10 and click the right-hand crossing. It reads about (8.39, 35.2), between 8 and 10.",
+   "structured": {
+    "display": [
+     "y = 0.5x²",
+     "y = 3x + 10"
+    ],
+    "passage_body": "The graphs of the given equations in the xy-plane intersect at two points."
+   }
+  },
+  {
+   "id": "SS-STRIKE-08",
+   "section": "Reading and Writing",
+   "passage": "Glassblower Teo Marsh once believed that the cloudy streaks in his early vases came from impurities in his sand. After switching to a purer sand changed nothing, he tested his furnace and found that it ran cooler than its dial showed. Once he raised the heat to make up the difference, the streaks disappeared.",
+   "stem": "Based on the text, what most likely caused the cloudy streaks in Marsh's early vases?",
+   "choices": [
+    "Impurities in the sand that Marsh used",
+    "A furnace that ran hotter than its dial showed",
+    "Glass that was heated less than Marsh intended",
+    "The purer sand that Marsh switched to"
+   ],
+   "key": 2,
+   "labels": [
+    "whats-left-standing",
+    "parrot",
+    null,
+    "parrot"
+   ],
+   "reads": [
+    "That was Marsh's first idea, and the text rules it out: purer sand changed nothing.",
+    "It borrows the text's words, furnace and dial, but flips cooler to hotter.",
+    null,
+    "It reuses purer sand from the text, but switching to it changed nothing."
+   ],
+   "explain": "The furnace ran cooler than its dial showed, so the glass got less heat than Marsh thought. Raising the heat made the streaks go away. The right answer says that in different words.",
+   "desmos": ""
+  },
+  {
+   "id": "SS-W1027-21",
+   "section": "Math",
+   "passage": "Orchard 1 has 12 apple trees, and the mean harvest per tree was 72 kilograms. Orchard 2 has 18 apple trees. The mean harvest per tree for all 30 trees in the two orchards was 84 kilograms.",
+   "stem": "What was the mean harvest per tree, in kilograms, for Orchard 2?",
+   "choices": [
+    "92",
+    "96",
+    "102",
+    "1,656"
+   ],
+   "key": 0,
+   "labels": [
+    null,
+    "weigh-the-groups-not-the-means",
+    "name-it-before-you-solve-it",
+    "half-finished-move"
+   ],
+   "reads": [
+    null,
+    "Treated 84 as halfway between 72 and the answer. The orchards have different numbers of trees.",
+    "Gave Orchard 1 the 18 trees. Orchard 1 has 12.",
+    "Found Orchard 2's total harvest and stopped. Divide it by the 18 trees."
+   ],
+   "explain": "Turn the means into totals. All 30 trees made 30 × 84 = 2,520 kg, and Orchard 1 made 12 × 72 = 864 kg. That leaves 1,656 kg for 18 trees, or 92 kg per tree.",
+   "desmos": "By hand, Desmos adds nothing here. Two totals and one division are the whole question."
+  },
+  {
+   "id": "SS-W1103-11",
+   "section": "Reading and Writing",
+   "passage": "The old cannery on Pike Street that the two founders of the Larkspur Theater Company rented in 1991 was in rough shape: ______ had no seats, no stage lights, and a roof that leaked in every storm.",
+   "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+   "choices": [
+    "they",
+    "she",
+    "it",
+    "them"
+   ],
+   "key": 2,
+   "labels": [
+    "trace-the-referent",
+    "trace-the-referent",
+    null,
+    "trace-the-referent"
+   ],
+   "reads": [
+    "They points to the two founders, but the sentence is describing the cannery.",
+    "She is one person, and no single woman appears in the sentence.",
+    null,
+    "Them can't be the subject of had, and the cannery is one thing."
+   ],
+   "explain": "The part after the colon explains why the cannery was in rough shape. The cannery is the thing with no seats and a leaky roof. One building takes the pronoun “it.”",
+   "desmos": ""
+  },
+  {
+   "id": "SS-W1103-04",
+   "section": "Math",
+   "passage": "Data set: 3, 5, 8, 8, 9, 11. A seventh value, 8, is added to the given data set.",
+   "stem": "Which statement best compares the new data set with the original data set?",
+   "choices": [
+    "Both the mean and the median increase.",
+    "The mean increases, and the median stays the same.",
+    "Neither the mean nor the median changes.",
+    "The median increases, and the mean stays the same."
+   ],
+   "key": 1,
+   "labels": [
+    "outlier-drags-the-mean",
+    null,
+    "outlier-drags-the-mean",
+    "outlier-drags-the-mean"
+   ],
+   "reads": [
+    "The median was 8 and stays 8. Adding another 8 doesn't move the middle.",
+    null,
+    "The new 8 matches the median, but the old mean was about 7.33. A value above the mean pulls it up.",
+    "That's backward. The median holds at 8, and the mean is the one that rises."
+   ],
+   "explain": "The old mean is 44 ÷ 6, about 7.33. Adding an 8, which is above that, raises the mean to 52 ÷ 7, about 7.43. The middle value is 8 before and after, so the median stays.",
+   "desmos": "Desmos play: Technique 6. Type L = [3, 5, 8, 8, 9, 11] and N = [3, 5, 8, 8, 8, 9, 11]. mean(L) is about 7.33 and mean(N) about 7.43, while both medians are 8.",
+   "structured": {
+    "display": [
+     "3, 5, 8, 8, 9, 11"
+    ],
+    "passage_body": "A seventh value, 8, is added to the given data set."
+   }
+  },
+  {
+   "id": "SS-OUT-R12",
+   "section": "Reading and Writing",
+   "passage": "Most desert plants bloom in the spring. ______ the night-blooming cereus flowers only on a few summer nights each year.",
+   "stem": "Which choice completes the text with the most logical transition?",
+   "choices": [
+    "For example,",
+    "Similarly,",
+    "In contrast,",
+    "As a result,"
+   ],
+   "key": 2,
+   "labels": [
+    "name-the-relationship",
+    "name-the-relationship",
+    null,
+    "name-the-relationship"
+   ],
+   "reads": [
+    "The cereus is a desert plant, so it looks like an example. But it blooms in summer, not spring.",
+    "Similarly would mean the cereus also blooms in spring, and it doesn't.",
+    null,
+    "Nothing in the first sentence causes the summer blooms."
+   ],
+   "explain": "Most desert plants bloom in spring, but the cereus blooms in summer. The second sentence goes against the first, so the transition has to show contrast.",
+   "desmos": ""
+  },
+  {
+   "id": "SS-OUT-M15",
+   "section": "Math",
+   "passage": "If 3(2x + 1) = 6x + c has infinitely many solutions, what is the value of c?",
+   "stem": "",
+   "choices": [
+    "1",
+    "2",
+    "3",
+    "6"
+   ],
+   "key": 2,
+   "labels": [
+    "half-finished-move",
+    "vanishing-variable",
+    null,
+    "vanishing-variable"
+   ],
+   "reads": [
+    "Copied the 1 from inside the parentheses. The 3 multiplies it too, so it becomes 3.",
+    "The 2 belongs to the x term. Infinitely many solutions means the constants must match.",
+    null,
+    "6 is the x number, and it already matches on both sides. The constants have to match too."
+   ],
+   "explain": "Distribute: 3(2x + 1) = 6x + 3. For every x to work, both sides must be exactly the same, so 6x + 3 = 6x + c. That makes c = 3.",
+   "desmos": "Desmos play: Technique 1. Type y = 3(2x + 1) and y = 6x + c with a slider for c. At c = 3 the two lines land on top of each other."
+  },
+  {
+   "id": "SS-W1103-01",
+   "section": "Reading and Writing",
+   "passage": "Conductor Maren Hartwig expected the orchestra’s new series of experimental music to draw small, doubtful crowds. Instead, the series proved ______: every concert sold out, and the hall added two extra dates to meet demand.",
+   "stem": "Which choice completes the text with the most logical and precise word?",
+   "choices": [
+    "tolerable",
+    "controversial",
+    "permanent",
+    "popular"
+   ],
+   "key": 3,
+   "labels": [
+    "cover-the-word",
+    "cover-the-word",
+    "cover-the-word",
+    null
+   ],
+   "reads": [
+    "Tolerable means people put up with it. Sold-out shows and extra dates mean much more than that.",
+    "Controversial means disputed. The text shows high demand, not a fight.",
+    "Nothing says the series will last. The text is about how big the crowds were.",
+    null
+   ],
+   "explain": "The clue comes right after the blank: every concert sold out, and extra dates were added. Cover the choices and your own word is something like “a hit.” Popular matches it.",
+   "desmos": ""
+  },
+  {
+   "id": "SS-W1103-02",
+   "section": "Math",
+   "passage": "Formula: A = (h/2)(b + c). The formula gives the area A of a trapezoid whose parallel sides have lengths b and c and whose height is h.",
+   "stem": "Which equation gives c in terms of A, h, and b?",
+   "choices": [
+    "c = 2A/h − b",
+    "c = (2A − b)/h",
+    "c = A/(2h) − b",
+    "c = 2A/h + b"
+   ],
+   "key": 0,
+   "labels": [
+    null,
+    "isolate-dont-solve",
+    "isolate-dont-solve",
+    "sign-that-doesnt-travel"
+   ],
+   "reads": [
+    null,
+    "Subtracted b before clearing the h/2. But h/2 multiplies b too, so clear it first.",
+    "Divided by 2h. Undoing h/2 means multiplying by 2/h.",
+    "Cleared the h/2, then added b. Moving b across the equals sign makes it −b."
+   ],
+   "explain": "Multiply both sides by 2/h to get 2A/h = b + c. Then subtract b from both sides. That leaves c = 2A/h − b.",
+   "desmos": "Desmos play: Technique 4. With h = 4, b = 3 and c = 5, the area is 16. Type each choice with A = 16, h = 4 and b = 3, and only 2A/h − b returns 5.",
+   "structured": {
+    "display": [
+     "A = (h/2)(b + c)"
+    ],
+    "passage_body": "The formula gives the area A of a trapezoid whose parallel sides have lengths b and c and whose height is h."
+   }
+  },
+  {
+   "id": "SS-STRIKE-09",
+   "section": "Reading and Writing",
+   "passage": "A survey of 400 community gardeners in Ohio found that most of those who added compost to their beds reported larger tomato harvests the following season. Some gardeners who did not use compost also reported larger harvests, which the survey's authors attribute to an unusually wet summer.",
+   "stem": "Which choice is best supported by the text?",
+   "choices": [
+    "Most gardeners who did not use compost reported larger harvests.",
+    "Only gardeners who used compost reported larger tomato harvests.",
+    "Compost was the main reason tomato harvests grew across Ohio that year.",
+    "More than half of the gardeners who used compost said their tomato harvests grew."
+   ],
+   "key": 3,
+   "labels": [
+    "qualifier-check",
+    "qualifier-check",
+    "extreme-answer",
+    null
+   ],
+   "reads": [
+    "The text says some of those gardeners did, not most.",
+    "Only doesn't fit. Some gardeners without compost also reported bigger harvests.",
+    "Main reason and across Ohio go further than a survey of 400 gardeners can show.",
+    null
+   ],
+   "explain": "The text says most gardeners who used compost reported larger harvests, and most means more than half. The wrong choices add “only” or “main reason,” or put “most” on the wrong group.",
+   "desmos": ""
+  }
+ ]
 }

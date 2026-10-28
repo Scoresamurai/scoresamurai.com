@@ -15,126 +15,259 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#7A0B10">
 <link rel="icon" href="../warrior.png">
-<link rel="preload" href="../fonts/dm-sans-400-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../fonts/playfair-display-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/dm-sans-400-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="strike-bank.json" as="fetch" type="application/json" crossorigin>
 <style>
 @font-face{font-family:"Playfair Display";font-weight:600;font-display:swap;src:url(../fonts/playfair-display-600.woff2) format("woff2")}
 @font-face{font-family:"Playfair Display SC";font-weight:400;font-display:swap;src:url(../fonts/playfair-display-sc-400.woff2) format("woff2")}
 @font-face{font-family:"DM Sans";font-weight:400 700;font-display:swap;src:url(../fonts/dm-sans-400-700.woff2) format("woff2")}
-:root{--maroon:#7A0B10;--maroon-deep:#5E080C;--cream:#F2EBDB;--cream-deep:#E7DEC8;--gold:#C9A24A;--gold-deep:#A8822F;--ink:#1C0406;--ink-soft:#5A4D46;--line:#D6CBB3;--white:#FFFFFF;
---t-orange:#D9772B;--t-yellow:#E3B53B;--t-purple:#7E57A8;--t-blue:#3C6FB0;--t-red:#C23B32;--t-brown:#8A5A3B;--t-green:#3F8A4F;
---head:"Playfair Display",Georgia,"Times New Roman",serif;--sc:"Playfair Display SC",Georgia,serif;--body:"DM Sans",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
+@font-face{font-family:"DM Sans";font-weight:400 700;font-display:swap;src:url(dm-sans-math.woff2) format("woff2");unicode-range:U+2264-2265}
+:root{--maroon:#7A0B10;--cream:#F2EBDB;--cream-2:#E9DCC0;--gold:#C9A24A;--gold-2:#B08A35;--ink:#1C0406;--ink-2:#5A4D46;--white:#FFFFFF;--rule:#E2D9C6;
+--t-orange:#E07B39;--t-yellow:#E3B53B;--t-purple:#8F6BBF;--t-blue:#5B8BD0;--t-red:#D9534A;--t-brown:#A87452;--t-green:#3F8A4F;
+--head:"Playfair Display",Georgia,"Times New Roman",serif;--sc:"Playfair Display SC",Georgia,serif;--body:"DM Sans",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+--ring:rgba(242,235,219,.55);--ease:cubic-bezier(.2,.7,.2,1)}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;overflow-x:hidden}
+body{margin:0;background:var(--white);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;overflow-x:hidden}
 img{max-width:100%;height:auto;display:block}
 a{color:var(--maroon)}
-button{font-family:inherit}
-:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
-.wrap{max-width:560px;margin:0 auto;padding:0 16px}
-.hdr{background:var(--maroon);color:var(--cream)}
-.hdr .wrap{display:flex;align-items:center;justify-content:space-between;min-height:56px;gap:12px}
-.hdr a{color:var(--cream);text-decoration:none;font-family:var(--sc);font-size:16px;letter-spacing:.08em;min-height:44px;display:inline-flex;align-items:center}
-.hdr .day{font-size:14px;color:#E9DCC0;font-variant-numeric:tabular-nums}
-main{padding:20px 0 40px}
-h1{font-family:var(--head);font-weight:600;font-size:32px;line-height:1.1;margin:0}
-.lede{margin:6px 0 0;color:var(--ink-soft);font-size:16px}
-.how{margin:8px 0 0;font-size:15px;color:var(--ink)}
-.me{margin:14px 0 0;display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;font-size:15px;color:var(--ink-soft)}
-.me[hidden]{display:none}
-.chip{display:inline-flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--line);border-radius:999px;padding:4px 12px;min-height:32px}
-.grid{display:inline-flex;gap:4px;vertical-align:middle}
-.tile{width:18px;height:18px;border-radius:4px;display:inline-block}
+button{font-family:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--maroon);outline-offset:2px}
+.on-maroon :focus-visible{outline-color:var(--gold)}
+.wrap{max-width:640px;margin:0 auto;padding:0 20px}
+.sc{font-family:var(--sc);letter-spacing:.14em}
+.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+/* tiles */
 .t-orange{background:var(--t-orange)}.t-yellow{background:var(--t-yellow)}.t-purple{background:var(--t-purple)}.t-blue{background:var(--t-blue)}.t-red{background:var(--t-red)}.t-brown{background:var(--t-brown)}.t-green{background:var(--t-green)}
-.card{margin:18px 0 0;background:var(--white);border:1px solid var(--line);border-radius:12px;padding:18px 16px}
-.tag{display:inline-block;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--maroon);font-weight:700}
-.passage{margin:10px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:17px;line-height:1.6}
-.stem{margin:12px 0 0;font-weight:700}
-.choices{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-direction:column;gap:10px}
-.choice{width:100%;display:flex;align-items:flex-start;gap:12px;text-align:left;background:var(--white);border:1.5px solid var(--line);border-radius:10px;padding:12px;min-height:52px;font-size:16px;line-height:1.4;color:var(--ink);cursor:pointer}
-.choice:hover{border-color:var(--maroon)}
-.choice .ltr{flex:none;width:28px;height:28px;border-radius:50%;border:1.5px solid var(--ink);display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:14px}
-.choice[disabled]{cursor:default}
-.choice.caught{opacity:.55;text-decoration:line-through;text-decoration-thickness:1.5px}
-.choice.caught .ltr{border-color:transparent;color:var(--white)}
-.choice.caught .ltr.t-orange,.choice.caught .ltr.t-yellow{color:var(--ink)}
-.choice.won{border-color:var(--t-green);background:#EEF6EF}
-.choice.won .ltr{background:var(--t-green);border-color:var(--t-green);color:var(--white)}
-.msg{min-height:24px;margin:12px 0 0;font-size:15px;color:var(--ink-soft)}
-/* the result card */
-.result{margin:18px 0 0;background:var(--maroon);color:var(--cream);border-radius:16px;padding:20px 16px 22px;display:grid;gap:18px;overflow:hidden}
+.board{display:flex;gap:8px;perspective:600px}
+.board .s{width:44px;height:44px;border:1.5px solid var(--ring);flex:none}
+.board .s[class*="t-"]{border:2px solid var(--cream)}
+/* the compact bar that follows the page down */
+.bar{position:fixed;top:0;left:0;right:0;z-index:20;background:var(--maroon);color:var(--cream);transform:translateY(-100%);transition:transform .22s var(--ease);visibility:hidden}
+.bar.show{transform:none;visibility:visible}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;min-height:56px;gap:12px}
+.bar a{color:var(--cream);text-decoration:none;font-family:var(--head);font-weight:600;font-size:22px;line-height:1;min-height:44px;display:inline-flex;align-items:center}
+.bar .board{gap:5px}
+.bar .board .s{width:22px;height:22px;border-width:1.5px}
+/* the opening band */
+.band{background:var(--maroon);color:var(--cream)}
+.band .wrap{padding-top:14px;padding-bottom:24px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:12px;color:var(--cream-2)}
+.top a{color:var(--cream-2);text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
+.top a:hover{color:var(--cream)}
+h1{margin:12px 0 0;font-family:var(--head);font-weight:600;font-size:44px;line-height:1;letter-spacing:-.005em}
+.lede{margin:12px 0 0;font-size:15px;line-height:1.45;color:var(--cream-2)}
+.how{margin:2px 0 0;font-size:15px;line-height:1.45;color:var(--cream)}
+.band .board{margin-top:20px}
+.me{margin:16px 0 0;display:flex;flex-wrap:wrap;align-items:center;gap:6px 16px;font-size:14px;color:var(--cream-2)}
+.me[hidden]{display:none}
+.me .board{margin:0;gap:3px;display:inline-flex;vertical-align:-2px}
+.me .board .s{width:12px;height:12px;border-width:1px}
+.me .yd{display:inline-flex;align-items:center;gap:8px}
+/* the result: the Warrior on his stage, the floor below */
 .result[hidden]{display:none}
-.r-hero{display:grid;justify-items:center;text-align:center;gap:6px}
-.r-art{width:100%;display:flex;justify-content:center;background:radial-gradient(closest-side,rgba(242,235,219,.30),rgba(242,235,219,.10) 60%,rgba(242,235,219,0) 100%)}
-.r-art img{width:auto;height:260px}
-.r-kicker{margin:0;font-family:var(--sc);font-size:15px;letter-spacing:.12em;color:#E9DCC0}
-.r-title{margin:0;font-family:var(--head);font-weight:600;font-size:40px;line-height:1.05;color:var(--cream)}
-.r-line{margin:0;font-family:var(--head);font-weight:600;font-size:26px;line-height:1.15;color:var(--gold)}
-.r-grid{display:flex;justify-content:center;gap:8px}
-.r-grid .tile{flex:0 1 88px;min-width:0;width:auto;height:auto;aspect-ratio:1;border-radius:14px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
-.share{display:grid;justify-items:center;gap:8px}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;min-width:200px;padding:0 28px;border-radius:10px;border:0;background:var(--gold);color:var(--ink);font-weight:700;font-size:17px;cursor:pointer;text-decoration:none}
-.btn:hover{background:var(--gold-deep)}
-.shared{font-size:14px;color:#E9DCC0;min-height:20px}
-.legend{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:15px}
+.stage{background:var(--cream);overflow:hidden}
+.stage .top{color:var(--ink-2);padding-top:14px}
+.stage .top a{color:var(--ink-2)}
+.stage .top a:hover{color:var(--ink)}
+.warrior{display:block;height:252px;width:auto;margin:4px auto -6px;position:relative;z-index:1}
+.floor{background:var(--maroon);color:var(--cream);text-align:center}
+.floor .wrap{padding-top:26px;padding-bottom:30px}
+.kicker{margin:0;font-weight:400;font-size:13px;line-height:1.4;letter-spacing:.24em;color:var(--gold)}
+.rtitle{margin:8px 0 0;font-family:var(--head);font-weight:600;font-size:60px;line-height:1;font-variant-numeric:lining-nums}
+.rline{margin:10px 0 0;font-family:var(--head);font-weight:600;font-size:26px;line-height:1.2;color:var(--gold);font-variant-numeric:lining-nums}
+.floor .board{justify-content:center;gap:10px;margin:24px auto 0}
+.floor .board .s{width:auto;height:auto;flex:0 1 72px;aspect-ratio:1;min-width:0}
+.floor .board .s[class*="t-"]{border-width:2.5px}
+.share{margin-top:26px;display:grid;justify-items:center;gap:10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;min-width:240px;padding:0 28px;border:0;border-radius:2px;background:var(--gold);color:var(--ink);font-weight:700;font-size:17px;letter-spacing:.01em;cursor:pointer}
+.btn:hover{background:#D8B25A}
+.shared{min-height:20px;font-size:14px;color:var(--cream-2)}
+.next{margin:6px 0 0;font-size:14px;color:var(--cream-2);font-variant-numeric:tabular-nums}
+.settle{animation:settle .34s var(--ease) both}
+.settle .warrior{animation:settle .42s var(--ease) both}
+@keyframes settle{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+/* the sheet: the question, and after the strike, the read */
+.sheet .wrap{padding-top:24px;padding-bottom:40px}
+.after[hidden]{display:none}
+.after{padding-bottom:26px;margin-bottom:22px;border-bottom:2px solid var(--ink)}
+.h{margin:0;font-family:var(--sc);font-weight:400;font-size:13px;letter-spacing:.16em;color:var(--maroon)}
+.h + *{margin-top:10px}
+.legend{list-style:none;margin:10px 0 22px;padding:0;display:grid;gap:10px;font-size:16px;line-height:1.5}
 .legend[hidden]{display:none}
-.legend li{display:flex;align-items:flex-start;gap:10px}
-.legend .tile{width:16px;height:16px;flex:none;margin-top:4px}
-.explain{background:var(--white);color:var(--ink);border-radius:10px;padding:14px}
-.explain p{margin:0}
-.desmos{margin:10px 0 0 !important;font-size:15px;color:var(--ink-soft)}
+.legend li{display:flex;gap:12px;align-items:flex-start}
+.legend .s{flex:none;width:14px;height:14px;margin-top:5px}
+.explain{margin:10px 0 0;font-size:16px;line-height:1.6}
+.desmos{margin:12px 0 0;font-size:15px;line-height:1.55;color:var(--ink-2)}
 .desmos b{color:var(--ink)}
-.diag{margin:0;font-size:16px}
-.diag a{color:var(--gold);font-weight:700}
-.next{margin:0;font-size:14px;color:#E9DCC0;font-variant-numeric:tabular-nums}
-.empty{margin:18px 0 0}
+.diag{margin:18px 0 0;font-size:16px}
+.diag a{font-weight:700}
+.qhead{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.qhead .dn{font-family:var(--head);font-weight:600;font-size:15px;font-variant-numeric:lining-nums}
+.q{margin-top:10px;font-size:17px;line-height:1.6}
+.q p{margin:0}
+.q p + p,.q p + ul,.q ul + p,.q figure + p,.q .disp + p{margin-top:12px}
+.q ul.notes{margin:10px 0 0;padding:0 0 0 1.1em}
+.q ul.notes li{margin:6px 0 0;padding-left:.2em}
+.q ul.notes li::marker{color:var(--maroon)}
+.q .disp{margin:6px 0 0;padding:12px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);display:grid;gap:4px;justify-items:center;font-size:19px;font-variant-numeric:lining-nums}
+.q figure{margin:2px 0 0}
+.q figcaption{font-weight:700;font-size:15px;line-height:1.4;margin-bottom:8px}
+.q .tbl{overflow-x:auto}
+.q table{border-collapse:collapse;width:100%;font-size:16px;font-variant-numeric:tabular-nums lining-nums}
+.q th,.q td{padding:8px 10px;text-align:right;border-bottom:1px solid var(--rule)}
+.q th:first-child,.q td:first-child{text-align:left;padding-left:0}
+.q th:last-child,.q td:last-child{padding-right:0}
+.q thead th{font-weight:700;border-bottom:1.5px solid var(--ink);font-size:14px}
+sup{font-size:.68em;line-height:0;vertical-align:.42em}
+.stem{margin:16px 0 0;font-weight:700;font-size:16px;line-height:1.45}
+.stem[hidden]{display:none}
+.choices{list-style:none;margin:14px 0 0;padding:0;border-bottom:1px solid var(--rule)}
+.choices li{border-top:1px solid var(--rule)}
+.choice{width:100%;display:flex;gap:14px;align-items:flex-start;text-align:left;background:none;border:0;padding:13px 0;min-height:56px;font-size:16px;line-height:1.45;cursor:pointer}
+.choice .l{flex:none;width:30px;height:30px;border:1.5px solid var(--ink);display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;background:var(--white)}
+.choice .x{padding-top:4px}
+.choice:not([disabled]):hover .l{background:var(--cream)}
+.choice[disabled]{cursor:default}
+.choice.caught .x{color:var(--ink-2);text-decoration:line-through;text-decoration-thickness:1.5px}
+.choice .l.t-orange{background:var(--t-orange)}.choice .l.t-yellow{background:var(--t-yellow)}.choice .l.t-purple{background:var(--t-purple)}.choice .l.t-blue{background:var(--t-blue)}.choice .l.t-red{background:var(--t-red)}.choice .l.t-brown{background:var(--t-brown)}
+.choice.won .l{background:var(--t-green);color:var(--ink)}
+.choice.won .x{font-weight:700}
+.read{margin:0 0 14px 44px;padding:10px 12px;background:var(--cream);font-size:15px;line-height:1.45}
+.read[hidden]{display:none}
 .empty[hidden]{display:none}
-footer{background:#1C0406;color:#F2EBDB;padding:32px 0 40px;font-size:14px;line-height:1.5}
-footer a{color:#F2EBDB;min-height:44px;display:inline-flex;align-items:center}
-footer p{margin:6px 0 0;color:#D9CDB8}
-@media(min-width:900px){main{padding:40px 0 64px}h1{font-size:40px}.r-art img{height:300px}.r-title{font-size:44px}}
+.empty p{margin:0;font-size:17px}
+.empty .h{margin-bottom:10px}
+@media(min-width:900px){
+  .band .wrap{padding-top:18px;padding-bottom:30px}
+  h1{font-size:56px;margin-top:18px}
+  .lede,.how{font-size:16px}
+  .board .s{width:52px;height:52px}
+  .warrior{height:300px}
+  .rtitle{font-size:72px}
+  .rline{font-size:30px}
+  .floor .board .s{flex-basis:84px}
+  .sheet .wrap{padding-top:32px;padding-bottom:56px}
+}
+@media(prefers-reduced-motion:reduce){.settle,.settle .warrior{animation:none}.bar{transition:none}}
 </style>
 </head>
 <body>
-<header class="hdr"><div class="wrap"><a href="https://scoresamurai.com/">Score Samurai</a><span class="day" id="hdrDay"></span></div></header>
-<main><div class="wrap">
-  <h1>Daily Strike</h1>
-  <p class="lede">One SAT question a day, the same one for everyone. It takes under a minute.</p>
-  <p class="how">Pick an answer. A wrong pick earns a coloured tile and you pick again.</p>
-  <p class="me" id="me" hidden></p>
-
-  <section class="card" id="qcard" aria-labelledby="qtag" hidden>
-    <span class="tag" id="qtag"></span>
-    <p class="passage" id="qpassage"></p>
-    <p class="stem" id="qstem"></p>
-    <ul class="choices" id="qchoices"></ul>
-    <p class="msg" id="msg" role="status" aria-live="polite"></p>
+<header class="bar on-maroon" id="bar" aria-hidden="true"><div class="wrap"><a href="#top" tabindex="-1">Daily Strike</a><span class="board" id="mini"></span></div></header>
+<main id="top">
+  <section class="band on-maroon" id="intro" aria-labelledby="h1">
+    <div class="wrap">
+      <div class="top sc"><a href="https://scoresamurai.com/">Score Samurai</a><span id="dateline"></span></div>
+      <h1 id="h1">Daily Strike</h1>
+      <p class="lede">One SAT question a day, the same one for everyone.</p>
+      <p class="how">Pick an answer. A wrong pick earns a coloured tile and you pick again.</p>
+      <div class="board" id="board" role="img" aria-label="Four empty tiles, one for each pick"></div>
+      <p class="me" id="me" hidden></p>
+    </div>
   </section>
 
   <section class="result" id="result" aria-labelledby="rtitle" hidden>
-    <div class="r-hero">
-      <div class="r-art"><img id="rart" src="warrior-strike.webp" width="778" height="800" alt="The Score Samurai Warrior in a strike pose" loading="lazy" decoding="async"></div>
-      <p class="r-kicker">Daily Strike</p>
-      <h2 class="r-title" id="rtitle"></h2>
-      <p class="r-line" id="rline"></p>
+    <div class="stage">
+      <div class="wrap">
+        <div class="top sc"><a href="https://scoresamurai.com/">Score Samurai</a><span id="rdate"></span></div>
+      </div>
+      <img class="warrior" id="rart" src="warrior-strike.webp" width="778" height="800" alt="The Score Samurai Warrior in a strike pose" loading="lazy" decoding="async">
     </div>
-    <div class="r-grid" id="rgrid" role="img"></div>
-    <div class="share"><button type="button" class="btn" id="shareBtn">Share</button><span class="shared" id="shared" role="status" aria-live="polite"></span></div>
-    <ul class="legend" id="legend"></ul>
-    <div class="explain"><p id="explain"></p><p class="desmos" id="desmos" hidden></p></div>
-    <p class="diag">Want to know which traps cost you points on the real test? <a id="diagLink" href="https://scoresamurai.com/diagnostic/?utm_source=strike&amp;utm_medium=daily&amp;utm_campaign=strike">Get the free Diagnostic</a>.</p>
-    <p class="next" id="next"></p>
+    <div class="floor on-maroon">
+      <div class="wrap">
+        <h1 class="kicker sc">Daily Strike</h1>
+        <h2 class="rtitle" id="rtitle"></h2>
+        <p class="rline" id="rline"></p>
+        <div class="board" id="rboard" role="img"></div>
+        <div class="share"><button type="button" class="btn" id="shareBtn">Share</button><span class="shared" id="shared" role="status" aria-live="polite"></span></div>
+        <p class="next" id="next"></p>
+      </div>
+    </div>
   </section>
 
-  <section class="card empty" id="empty" hidden><p id="emptyText">Today's Strike is not ready yet. Check back tomorrow.</p></section>
-</div></main>
-<footer><div class="wrap">
-  <a href="https://scoresamurai.com/">Score Samurai</a>
-  <p>Score Samurai LLC, 971 US Highway 202N, Ste N, Branchburg, NJ 08876. Based in the New York Metropolitan Area. Nationwide over Zoom.</p>
-  <p><a href="https://scoresamurai.com/privacy/">Privacy</a></p>
-  <p>Score Samurai is not affiliated with or endorsed by College Board. SAT, PSAT and Digital SAT are College Board trademarks.</p>
-</div></footer>
+  <section class="sheet" aria-label="Today's question">
+    <div class="wrap">
+      <div class="after" id="after" hidden>
+        <h2 class="h" id="lgh">What caught you</h2>
+        <ul class="legend" id="legend"></ul>
+        <h2 class="h">The read</h2>
+        <p class="explain" id="explain"></p>
+        <p class="desmos" id="desmos" hidden></p>
+        <p class="diag">Want to know which traps cost you points on the real test? <a id="diagLink" href="https://scoresamurai.com/diagnostic/?utm_source=strike&amp;utm_medium=daily&amp;utm_campaign=strike">Get the free Diagnostic</a>.</p>
+      </div>
+      <article id="qcard" aria-labelledby="qtag" hidden>
+        <div class="qhead"><h2 class="h" id="qtag"></h2><span class="dn" id="qday"></span></div>
+        <div class="q" id="qbody"></div>
+        <p class="stem" id="qstem"></p>
+        <ul class="choices" id="qchoices"></ul>
+      </article>
+      <div class="empty" id="empty" hidden><h2 class="h">Daily Strike</h2><p id="emptyText">Today's Strike is not ready yet. Check back tomorrow.</p></div>
+      <p class="vh" id="msg" role="status" aria-live="polite"></p>
+    </div>
+  </section>
+</main>
+<footer class="sf" id="site-footer">
+<style>
+footer.sf{background:#1C0406;color:#F2EBDB;padding:56px 0 40px;margin:0;font-family:"DM Sans",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;font-size:16px;line-height:1.5;text-align:left}
+footer.sf *{box-sizing:border-box}
+footer.sf .sf-wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+footer.sf .sf-cols{display:grid;grid-template-columns:1fr;gap:28px}
+footer.sf a{color:#F2EBDB;text-decoration:none;min-height:44px;display:inline-flex;align-items:center;min-width:44px}
+footer.sf a:hover{text-decoration:underline}
+footer.sf a:focus-visible,footer.sf summary:focus-visible{outline:3px solid #C9A24A;outline-offset:2px}
+footer.sf .sf-brand{font-family:"Playfair Display",Georgia,serif;font-weight:600;font-size:22px;line-height:1.15}
+footer.sf .sf-tag{margin:0;color:#D9CDB8}
+footer.sf .sf-c1{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+footer.sf .sf-btn{background:#C9A24A;color:#1C0406;font-weight:700;border-radius:6px;padding:0 20px;min-height:48px;margin:6px 0 2px;white-space:nowrap}
+footer.sf li a{padding:6px 0;line-height:1.35}
+footer.sf .sf-btn:hover{background:#A8822F;text-decoration:none}
+footer.sf .sf-h{display:flex;align-items:center;min-height:44px;margin:0;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#D9CDB8;font-weight:400}
+footer.sf ul{list-style:none;margin:0;padding:0}
+footer.sf li{margin:0}
+footer.sf details summary{list-style:none;cursor:pointer;justify-content:space-between}
+footer.sf details summary::-webkit-details-marker{display:none}
+footer.sf details summary::after{content:"+";font-size:20px;color:#C9A24A;letter-spacing:0}
+footer.sf details[open] summary::after{content:"\2212"}
+footer.sf .sf-bar{margin-top:32px;padding-top:16px;border-top:1px solid rgba(242,235,219,.18);display:flex;flex-wrap:wrap;align-items:center;gap:0 10px;color:#D9CDB8;font-size:14px}
+footer.sf .sf-dot{color:#8C7F72}
+footer.sf .sf-cb{margin:8px 0 0;color:#B3A796;font-size:13px;max-width:44em}
+@media(min-width:900px){
+  footer.sf{padding:72px 0 48px}
+  footer.sf .sf-wrap{padding:0 48px}
+  footer.sf .sf-cols{grid-template-columns:1.5fr 1fr 1fr 1.6fr;gap:40px}
+  footer.sf details summary{cursor:default;pointer-events:none}
+  footer.sf details summary::after,footer.sf details[open] summary::after{content:none}
+}
+@media(max-width:899px){footer.sf{padding-bottom:112px}footer.sf .sf-dot2{display:none}footer.sf .sf-loc{flex-basis:100%}}
+</style>
+<div class="sf-wrap">
+  <div class="sf-cols">
+    <div class="sf-col sf-c1">
+      <a class="sf-brand" href="/">Score Samurai</a>
+      <p class="sf-tag">One-on-one SAT tutoring over Zoom.</p>
+      <a class="sf-btn js-tb" href="/#diagnostic">Get Your Free Dojo Diagnostic</a>
+      <a href="mailto:senseijay@scoresamurai.com">senseijay@scoresamurai.com</a>
+    </div>
+    <nav class="sf-col" aria-label="Score Samurai">
+      <p class="sf-h">Score Samurai</p>
+      <ul><li><a href="/#how">How it works</a></li><li><a href="/#plans">Plans</a></li><li><a href="/dojo/">The Dojo</a></li><li><a href="/sample/">Sample weekly update</a></li><li><a href="/#faq">Questions</a></li></ul>
+    </nav>
+    <nav class="sf-col" aria-label="Free tools">
+      <p class="sf-h">Free tools</p>
+      <ul><li><a href="/strike/" aria-current="page">Daily Strike</a></li><li><a href="/belt/">Which belt are you?</a></li><li><a href="/quiz/">Free SAT quiz</a></li><li><a href="/plan/">Done Date planner</a></li><li><a href="/dojo/#trapmap">The Trap Map</a></li></ul>
+    </nav>
+    <details class="sf-col sf-read" id="sfRead">
+      <summary class="sf-h">Read</summary>
+      <ul><li><a href="/sat-punctuation/">Why do I keep missing SAT punctuation questions</a></li><li><a href="/sat-vocabulary-in-context/">Why do I get SAT vocabulary in context questions wrong</a></li><li><a href="/sat-reading-answer-choices/">Why do the SAT reading answer choices all look correct</a></li><li><a href="/sat-math-wrong-answer/">Why do I solve SAT math correctly and still get it wrong</a></li><li><a href="/sat-inequality-tables/">Why do I miss SAT inequality questions with tables</a></li><li><a href="/sat-score-report/">How to read an SAT score report</a></li><li><a href="/is-1200-a-good-sat-score/">Is 1200 a good SAT score?</a></li></ul>
+    </details>
+  </div>
+  <div class="sf-bar"><a href="/privacy/">Privacy</a><span class="sf-dot" aria-hidden="true">&middot;</span><span>Score Samurai LLC, 971 US Highway 202N, Ste N, Branchburg, NJ 08876</span><span class="sf-dot sf-dot2" aria-hidden="true">&middot;</span><span class="sf-loc">Based in the New York Metropolitan Area. Nationwide over Zoom.</span></div>
+  <p class="sf-cb">Score Samurai is not affiliated with or endorsed by College Board. SAT, PSAT and Digital SAT are College Board trademarks.</p>
+</div>
+<script>(function(){var d=document.getElementById('sfRead');if(!d||!window.matchMedia)return;var m=window.matchMedia('(min-width:900px)');function s(){if(m.matches)d.open=true;}s();if(m.addEventListener)m.addEventListener('change',s);})();</script>
+<script>(function(){var K=["utm_source","utm_medium","utm_campaign","utm_content","utm_term","gclid","fbclid"];function cur(){var q=new URLSearchParams(location.search),o={},n=0;K.forEach(function(k){var v=q.get(k);if(v){o[k]=v.slice(0,200);n++;}});return n?o:null;}try{var c=cur();if(c&&!localStorage.getItem("ss_attr")){c.first_page=location.pathname;c.first_at=new Date().toISOString();localStorage.setItem("ss_attr",JSON.stringify(c));}}catch(e){}window.ssAttr=function(){var s=null,o={};try{s=JSON.parse(localStorage.getItem("ss_attr")||"null");}catch(e){}var c=cur()||{};K.forEach(function(k){var v=(s&&s[k])||c[k];if(v)o[k]=v;});return o;};})();</script>
+</footer>
 <script src="strike.js" defer></script>
 </body>
 </html>
