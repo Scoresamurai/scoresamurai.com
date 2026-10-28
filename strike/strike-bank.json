@@ -1,0 +1,60 @@
+{
+  "version": "placeholder-2026-10-28",
+  "placeholder": true,
+  "note": "PLACEHOLDER BANK. Four Trap Map questions already on the site (trap.js, Sensei-solved). Labels marked placeholder are not Codex names. Replace this whole file with Room 4's audited strike-bank.json in the schema in README.md.",
+  "start": "2026-10-28",
+  "labels": {
+    "half-finished": { "name": "The Half-Finished Move", "tile": "orange" },
+    "out-of-order": { "name": "Steps Out of Order (placeholder label)", "tile": "brown" },
+    "different-question": { "name": "The Answer to a Different Question", "tile": "yellow" },
+    "unsupported": { "name": "The Unsupported Claim", "tile": "purple" },
+    "familiar-meaning": { "name": "The Familiar Meaning Ambush", "tile": "blue" },
+    "region-eyeballed": { "name": "The Region Has to Be Checked, Not Eyeballed", "tile": "red" }
+  },
+  "days": [
+    {
+      "id": "PH-TRAPMAP-4",
+      "section": "Math",
+      "passage": "If 3(x − 4) = 2x + 5, what is the value of 2x − 3?",
+      "stem": "",
+      "choices": ["14", "17", "31", "34"],
+      "key": 2,
+      "labels": ["out-of-order", "half-finished", null, "half-finished"],
+      "explain": "Expand to get 3x − 12 = 2x + 5, so x = 17. The trap is stopping there. The question asks for 2x − 3, so finish the move: 2 times 17 is 34, and 34 minus 3 is 31.",
+      "desmos": "Graph y = 3(x − 4) and y = 2x + 5. They cross at x = 17. Then finish by hand: 2(17) − 3."
+    },
+    {
+      "id": "PH-TRAPMAP-3",
+      "section": "Reading and Writing",
+      "passage": "Urban beekeepers in Chicago have reported that rooftop hives produce more honey per colony than hives in the farmland outside the city. Entomologist Dana Whitfield attributes the difference to the city's ornamental plantings, which bloom in staggered waves from March through October and give urban bees a longer foraging season than single-crop fields provide. She cautions, though, that her team measured only honey yield and did not follow the colonies through the winter.",
+      "stem": "According to the text, what does Whitfield identify as the cause of the difference in honey production?",
+      "choices": ["Rooftop hives produce more honey per colony than farmland hives.", "Ornamental plantings extend the foraging season for urban bees.", "Her team did not follow the colonies through the winter.", "Farmland outside the city supports larger colonies."],
+      "key": 1,
+      "labels": ["different-question", null, "different-question", "unsupported"],
+      "explain": "Three of these choices are true, and that is the trick. The question asks for the cause Whitfield gives. She points to the plantings that bloom from March to October. The other true choices are the result and her warning.",
+      "desmos": ""
+    },
+    {
+      "id": "PH-TRAPMAP-5",
+      "section": "Math",
+      "passage": "Which table gives three values of x and their corresponding values of y that all satisfy the inequality y > 2x − 5?",
+      "stem": "",
+      "choices": ["x: 0, 2, 4    y: 0, 1, 3", "x: 0, 1, 3    y: 0, −2, 0", "x: 0, 2, 4    y: −6, −2, 2", "x: 0, 2, 4    y: 0, 1, 5"],
+      "key": 3,
+      "labels": ["region-eyeballed", "region-eyeballed", "region-eyeballed", null],
+      "explain": "Put each row into y > 2x − 5. A point on the line fails, because the sign is strict. Only one table passes on every row. Check the last row first, since that is where the bad tables break.",
+      "desmos": "Type y > 2x − 5, then add each table as points. Every point has to sit in the shaded part, not on the line."
+    },
+    {
+      "id": "PH-TRAPMAP-2",
+      "section": "Reading and Writing",
+      "passage": "Early reviews of the new bridge praised its elegance, but the chief engineer's own assessment was more qualified: the span would hold, she wrote, provided the river never rose past the flood levels recorded in the previous century.",
+      "stem": "As used in the text, what does the word “qualified” most nearly mean?",
+      "choices": ["certified", "conditional", "enthusiastic", "technical"],
+      "key": 1,
+      "labels": ["familiar-meaning", null, "unsupported", "unsupported"],
+      "explain": "Qualified has a well-known meaning, but this sentence uses a different one. The engineer says the bridge will hold only if the river stays below old flood levels. That is a condition. Here the word means it comes with a condition.",
+      "desmos": ""
+    }
+  ]
+}

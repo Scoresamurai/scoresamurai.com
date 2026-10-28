@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daily Strike | Score Samurai</title>
+<meta name="description" content="One SAT question a day, the same one for everyone. It takes under a minute, and no account is needed.">
+<link rel="canonical" href="https://scoresamurai.com/strike/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Score Samurai">
+<meta property="og:title" content="Daily Strike">
+<meta property="og:description" content="One SAT question a day, the same one for everyone.">
+<meta property="og:url" content="https://scoresamurai.com/strike/">
+<meta property="og:image" content="https://scoresamurai.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#7A0B10">
+<link rel="icon" href="../warrior.png">
+<link rel="preload" href="../fonts/dm-sans-400-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/playfair-display-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="strike-bank.json" as="fetch" type="application/json" crossorigin>
+<style>
+@font-face{font-family:"Playfair Display";font-weight:600;font-display:swap;src:url(../fonts/playfair-display-600.woff2) format("woff2")}
+@font-face{font-family:"Playfair Display SC";font-weight:400;font-display:swap;src:url(../fonts/playfair-display-sc-400.woff2) format("woff2")}
+@font-face{font-family:"DM Sans";font-weight:400 700;font-display:swap;src:url(../fonts/dm-sans-400-700.woff2) format("woff2")}
+:root{--maroon:#7A0B10;--maroon-deep:#5E080C;--cream:#F2EBDB;--cream-deep:#E7DEC8;--gold:#C9A24A;--gold-deep:#A8822F;--ink:#1C0406;--ink-soft:#5A4D46;--line:#D6CBB3;--white:#FFFFFF;
+--t-orange:#D9772B;--t-yellow:#E3B53B;--t-purple:#7E57A8;--t-blue:#3C6FB0;--t-red:#C23B32;--t-brown:#8A5A3B;--t-green:#3F8A4F;
+--head:"Playfair Display",Georgia,"Times New Roman",serif;--sc:"Playfair Display SC",Georgia,serif;--body:"DM Sans",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--maroon)}
+button{font-family:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.wrap{max-width:560px;margin:0 auto;padding:0 16px}
+.hdr{background:var(--maroon);color:var(--cream)}
+.hdr .wrap{display:flex;align-items:center;justify-content:space-between;min-height:56px;gap:12px}
+.hdr a{color:var(--cream);text-decoration:none;font-family:var(--sc);font-size:16px;letter-spacing:.08em;min-height:44px;display:inline-flex;align-items:center}
+.hdr .day{font-size:14px;color:#E9DCC0;font-variant-numeric:tabular-nums}
+main{padding:20px 0 40px}
+h1{font-family:var(--head);font-weight:600;font-size:32px;line-height:1.1;margin:0}
+.lede{margin:6px 0 0;color:var(--ink-soft);font-size:16px}
+.me{margin:14px 0 0;display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;font-size:15px;color:var(--ink-soft)}
+.me[hidden]{display:none}
+.chip{display:inline-flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--line);border-radius:999px;padding:4px 12px;min-height:32px}
+.grid{display:inline-flex;gap:4px;vertical-align:middle}
+.tile{width:18px;height:18px;border-radius:4px;display:inline-block}
+.t-orange{background:var(--t-orange)}.t-yellow{background:var(--t-yellow)}.t-purple{background:var(--t-purple)}.t-blue{background:var(--t-blue)}.t-red{background:var(--t-red)}.t-brown{background:var(--t-brown)}.t-green{background:var(--t-green)}
+.note{margin:16px 0 0;background:var(--white);border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:8px;padding:12px 14px;font-size:15px}
+.note button{margin-top:8px;background:none;border:0;color:var(--maroon);font-weight:700;font-size:15px;padding:0;min-height:44px;cursor:pointer}
+.card{margin:18px 0 0;background:var(--white);border:1px solid var(--line);border-radius:12px;padding:18px 16px}
+.tag{display:inline-block;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--maroon);font-weight:700}
+.passage{margin:10px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:17px;line-height:1.6}
+.stem{margin:12px 0 0;font-weight:700}
+.choices{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-direction:column;gap:10px}
+.choice{width:100%;display:flex;align-items:flex-start;gap:12px;text-align:left;background:var(--white);border:1.5px solid var(--line);border-radius:10px;padding:12px;min-height:52px;font-size:16px;line-height:1.4;color:var(--ink);cursor:pointer}
+.choice:hover{border-color:var(--maroon)}
+.choice .ltr{flex:none;width:28px;height:28px;border-radius:50%;border:1.5px solid var(--ink);display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:14px}
+.choice[disabled]{cursor:default}
+.choice.caught{opacity:.55;text-decoration:line-through;text-decoration-thickness:1.5px}
+.choice.caught .ltr{border-color:transparent;color:var(--white)}
+.choice.caught .ltr.t-orange,.choice.caught .ltr.t-yellow{color:var(--ink)}
+.choice.won{border-color:var(--t-green);background:#EEF6EF}
+.choice.won .ltr{background:var(--t-green);border-color:var(--t-green);color:var(--white)}
+.msg{min-height:24px;margin:12px 0 0;font-size:15px;color:var(--ink-soft)}
+.result{margin:18px 0 0;background:var(--maroon);color:var(--cream);border-radius:14px;padding:20px 16px;display:grid;gap:14px}
+.result[hidden]{display:none}
+.r-top{display:flex;align-items:center;gap:14px}
+.r-top img{width:76px;height:76px;flex:none}
+.r-title{font-family:var(--head);font-size:26px;line-height:1.1;margin:0}
+.r-sub{margin:2px 0 0;color:#E9DCC0;font-size:15px}
+.r-grid{display:flex;gap:8px}
+.r-grid .tile{width:44px;height:44px;border-radius:8px}
+.legend{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:15px}
+.legend li{display:flex;align-items:center;gap:10px}
+.legend .tile{width:16px;height:16px;flex:none}
+.share{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:8px;border:0;background:var(--gold);color:var(--ink);font-weight:700;font-size:16px;cursor:pointer;text-decoration:none}
+.btn:hover{background:var(--gold-deep)}
+.shared{font-size:14px;color:#E9DCC0}
+.explain{background:var(--white);color:var(--ink);border-radius:10px;padding:14px}
+.explain p{margin:0}
+.desmos{margin:10px 0 0 !important;font-size:15px;color:var(--ink-soft)}
+.desmos b{color:var(--ink)}
+.diag{margin:0;font-size:16px}
+.diag a{color:var(--gold);font-weight:700}
+.next{margin:0;font-size:14px;color:#E9DCC0;font-variant-numeric:tabular-nums}
+.empty{margin:18px 0 0}
+.empty[hidden]{display:none}
+footer{background:#1C0406;color:#F2EBDB;padding:32px 0 40px;font-size:14px;line-height:1.5}
+footer a{color:#F2EBDB;min-height:44px;display:inline-flex;align-items:center}
+footer p{margin:6px 0 0;color:#D9CDB8}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media(min-width:900px){main{padding:40px 0 64px}h1{font-size:40px}}
+</style>
+</head>
+<body>
+<header class="hdr"><div class="wrap"><a href="https://scoresamurai.com/">Score Samurai</a><span class="day" id="hdrDay"></span></div></header>
+<main><div class="wrap">
+  <h1>Daily Strike</h1>
+  <p class="lede">One SAT question a day, the same one for everyone. It takes under a minute.</p>
+  <p class="me" id="me" hidden></p>
+  <div class="note" id="firstNote" hidden><span>Pick an answer. If a trap catches you, it gets a coloured tile and you pick again. Your grid shows the traps, never the answer.</span><br><button type="button" id="gotIt">Got it</button></div>
+
+  <section class="card" id="qcard" aria-labelledby="qtag" hidden>
+    <span class="tag" id="qtag"></span>
+    <p class="passage" id="qpassage"></p>
+    <p class="stem" id="qstem"></p>
+    <ul class="choices" id="qchoices"></ul>
+    <p class="msg" id="msg" role="status" aria-live="polite"></p>
+  </section>
+
+  <section class="result" id="result" aria-labelledby="rtitle" hidden>
+    <div class="r-top">
+      <img src="../warrior.png" width="76" height="76" alt="The Score Samurai Warrior">
+      <div><p class="r-title" id="rtitle"></p><p class="r-sub" id="rsub"></p></div>
+    </div>
+    <div class="r-grid" id="rgrid" role="img"></div>
+    <ul class="legend" id="legend"></ul>
+    <div class="share"><button type="button" class="btn" id="shareBtn">Share</button><span class="shared" id="shared" role="status" aria-live="polite"></span></div>
+    <div class="explain"><p id="explain"></p><p class="desmos" id="desmos" hidden></p></div>
+    <p class="diag">Want to know which traps cost you points on the real test? <a id="diagLink" href="https://scoresamurai.com/diagnostic/?utm_source=strike&amp;utm_medium=daily&amp;utm_campaign=strike">Get the free Diagnostic</a>.</p>
+    <p class="next" id="next"></p>
+  </section>
+
+  <section class="card empty" id="empty" hidden><p id="emptyText">Today's Strike is not ready yet. Check back tomorrow.</p></section>
+</div></main>
+<footer><div class="wrap">
+  <a href="https://scoresamurai.com/">Score Samurai</a>
+  <p>Score Samurai LLC, 971 US Highway 202N, Ste N, Branchburg, NJ 08876. Based in the New York Metropolitan Area. Nationwide over Zoom.</p>
+  <p><a href="https://scoresamurai.com/privacy/">Privacy</a></p>
+  <p>Score Samurai is not affiliated with or endorsed by College Board. SAT, PSAT and Digital SAT are College Board trademarks.</p>
+</div></footer>
+<script src="strike.js" defer></script>
+</body>
+</html>
