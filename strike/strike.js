@@ -53,9 +53,20 @@
   var today = easternDate();
   var state = load();
   var isNew = !state;
-  if (!state) state = { first: today, note: false, d7: false, plays: {} };
+  if (!state) state = { first: today, d7: false, plays: {} };
 
   var bank, item, dayNum, labels;
+
+  /* the plain one-line reading of a wrong pick; never a Codex name */
+  function readOf(i) {
+    var r = item.reads && item.reads[i];
+    return (typeof r === "string" && r) ? r : "A trap caught that one.";
+  }
+  var warriorImg = null;
+  function warrior() {
+    if (!warriorImg) { warriorImg = new Image(); warriorImg.decoding = "async"; warriorImg.src = "warrior-strike.webp"; }
+    return warriorImg;
+  }
 
   function tileOf(i) {
     if (i === item.key) return "green";
@@ -120,32 +131,31 @@
   function pick(i) {
     var p = playOf();
     if (p.done || p.picks.indexOf(i) >= 0) return;
-    if (!p.picks.length) ev("strike_play", { strike_day: dayNum, section: item.section });
+    if (!p.picks.length) { ev("strike_play", { strike_day: dayNum, section: item.section }); warrior(); }
     p.picks.push(i); p.tiles.push(tileOf(i));
     if (i === item.key) {
-      p.done = true; p.at = Date.now(); state.note = true; $("firstNote").hidden = true; save(state);
+      p.done = true; p.at = Date.now(); save(state);
       paintPicks(p);
       $("msg").textContent = "Struck.";
       ev("strike_complete", { strike_day: dayNum, tries: p.picks.length, section: item.section });
       renderResult(p, true);
     } else {
       save(state); paintPicks(p);
-      var l = labels[item.labels[i]];
-      $("msg").textContent = (l ? l.name + " caught that one." : "A trap caught that one.") + " Pick again.";
+      $("msg").textContent = readOf(i) + " Pick again.";
     }
   }
 
   function renderResult(p, fresh) {
     var tries = p.picks.length;
-    $("rtitle").textContent = "Day " + dayNum + " struck";
-    $("rsub").textContent = tries === 1 ? "Clean, first pick." : "Struck on pick " + tries + ".";
+    $("rtitle").textContent = "Day " + dayNum;
+    $("rline").textContent = "Struck on pick " + tries;
     var g = $("rgrid"); g.innerHTML = "";
     p.tiles.forEach(function (t) { var s = document.createElement("span"); s.className = "tile t-" + t; g.appendChild(s); });
     g.setAttribute("aria-label", "Your grid: " + tries + (tries === 1 ? " pick" : " picks") + ", the last one struck");
     var lg = $("legend"); lg.innerHTML = ""; var seen = {};
     p.picks.forEach(function (i) {
       if (i === item.key) return;
-      var l = labels[item.labels[i]]; var name = l ? l.name : "Unnamed trap";
+      var name = readOf(i);
       if (seen[name]) return; seen[name] = 1;
       var li = document.createElement("li"); var s = document.createElement("span"); s.className = "tile t-" + tileOf(i);
       li.appendChild(s); li.appendChild(document.createTextNode(name)); lg.appendChild(li);
@@ -182,27 +192,33 @@
     });
   }
   function rr(ctx, x, y, w, h, r) { ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r); ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath(); }
+  /* The share image is the result card, square: the Warrior, the tiles, "Daily Strike, Day N", the pick line and the
+     URL. No letter, no choice text, no answer, no trap name. The Warrior is drawn below its own pixel size, never up. */
   function image(p) {
     return new Promise(function (res) {
-      var c = document.createElement("canvas"); c.width = 1080; c.height = 1080; var x = c.getContext("2d");
-      var w = new Image(); w.src = "../warrior.png";
+      var S = 1080, c = document.createElement("canvas"); c.width = S; c.height = S; var x = c.getContext("2d");
+      x.imageSmoothingEnabled = true; x.imageSmoothingQuality = "high";
+      var w = warrior();
       var draw = function () {
-        x.fillStyle = "#7A0B10"; x.fillRect(0, 0, 1080, 1080);
-        x.fillStyle = "#C9A24A"; x.fillRect(96, 96, 88, 4);
-        x.fillStyle = "#F2EBDB"; x.font = '600 96px "Playfair Display", Georgia, serif'; x.textBaseline = "alphabetic";
-        x.fillText("Daily Strike", 96, 232);
-        x.font = '400 56px "Playfair Display SC", Georgia, serif'; x.fillStyle = "#C9A24A";
-        x.fillText("Day " + dayNum, 96, 312);
-        var n = p.tiles.length, size = 132, gap = 24, tw = n * size + (n - 1) * gap, x0 = 96;
-        p.tiles.forEach(function (t, i) { x.fillStyle = HEX[t] || HEX.brown; rr(x, x0 + i * (size + gap), 420, size, size, 18); x.fill(); });
-        x.fillStyle = "#F2EBDB"; x.font = '400 40px "DM Sans", system-ui, sans-serif';
-        x.fillText(n === 1 ? "Struck on the first pick." : "Struck on pick " + n + ".", 96, 650);
-        if (w.complete && w.naturalWidth) x.drawImage(w, 690, 640, 300, 300);
+        /* the card, stacked as on the page: Warrior, "Daily Strike, Day N", "Struck on pick N", tiles, URL, all centred */
+        x.fillStyle = "#7A0B10"; x.fillRect(0, 0, S, S);
+        var wh = 460, ww = w.naturalWidth ? Math.round(w.naturalWidth * wh / w.naturalHeight) : 0, wx = Math.round((S - ww) / 2), wy = 48;
+        var g = x.createRadialGradient(S / 2, wy + wh / 2, 30, S / 2, wy + wh / 2, wh * 0.6);
+        g.addColorStop(0, "rgba(242,235,219,0.30)"); g.addColorStop(0.6, "rgba(242,235,219,0.10)"); g.addColorStop(1, "rgba(242,235,219,0)");
+        x.fillStyle = g; x.fillRect(0, 0, S, wy + wh + 40);
+        if (ww) x.drawImage(w, wx, wy, ww, wh);
+        x.textAlign = "center"; x.textBaseline = "alphabetic";
+        x.fillStyle = "#F2EBDB"; x.font = '600 76px "Playfair Display", Georgia, serif';
+        x.fillText("Daily Strike, Day " + dayNum, S / 2, 618);
+        x.fillStyle = "#C9A24A"; x.font = '600 56px "Playfair Display", Georgia, serif';
+        x.fillText("Struck on pick " + p.tiles.length, S / 2, 700);
+        var n = p.tiles.length, size = 132, gap = 20, tw = n * size + (n - 1) * gap, tx = Math.round((S - tw) / 2);
+        p.tiles.forEach(function (t, i) { x.fillStyle = HEX[t] || HEX.brown; rr(x, tx + i * (size + gap), 752, size, size, 20); x.fill(); });
         x.fillStyle = "#C9A24A"; x.font = '700 44px "DM Sans", system-ui, sans-serif';
-        x.fillText("scoresamurai.com/strike", 96, 940);
+        x.fillText("scoresamurai.com/strike", S / 2, 1006);
         c.toBlob(function (b) { res(b); }, "image/png");
       };
-      if (w.complete) draw(); else { w.onload = draw; w.onerror = draw; }
+      if (w.complete && w.naturalWidth) draw(); else { w.addEventListener("load", draw, { once: true }); w.addEventListener("error", draw, { once: true }); }
     });
   }
   function saveImage(blob) {
@@ -235,14 +251,12 @@
     renderMe();
 
     if (!item) { $("hdrDay").textContent = ""; $("empty").hidden = false; return; }
-    if (!state.note) { $("firstNote").hidden = false; }
     renderQuestion();
     var p = state.plays[today];
     if (p && p.id !== item.id) { delete state.plays[today]; p = null; save(state); }
     if (p) { paintPicks(p); if (p.done) renderResult(p, false); }
   }
 
-  $("gotIt").addEventListener("click", function () { state.note = true; save(state); $("firstNote").hidden = true; });
   $("shareBtn").addEventListener("click", share);
   $("diagLink").addEventListener("click", function () { ev("strike_diagnostic_click", { strike_day: dayNum }); });
 

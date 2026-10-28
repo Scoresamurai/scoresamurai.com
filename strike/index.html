@@ -40,14 +40,13 @@ button{font-family:inherit}
 main{padding:20px 0 40px}
 h1{font-family:var(--head);font-weight:600;font-size:32px;line-height:1.1;margin:0}
 .lede{margin:6px 0 0;color:var(--ink-soft);font-size:16px}
+.how{margin:8px 0 0;font-size:15px;color:var(--ink)}
 .me{margin:14px 0 0;display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;font-size:15px;color:var(--ink-soft)}
 .me[hidden]{display:none}
 .chip{display:inline-flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--line);border-radius:999px;padding:4px 12px;min-height:32px}
 .grid{display:inline-flex;gap:4px;vertical-align:middle}
 .tile{width:18px;height:18px;border-radius:4px;display:inline-block}
 .t-orange{background:var(--t-orange)}.t-yellow{background:var(--t-yellow)}.t-purple{background:var(--t-purple)}.t-blue{background:var(--t-blue)}.t-red{background:var(--t-red)}.t-brown{background:var(--t-brown)}.t-green{background:var(--t-green)}
-.note{margin:16px 0 0;background:var(--white);border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:8px;padding:12px 14px;font-size:15px}
-.note button{margin-top:8px;background:none;border:0;color:var(--maroon);font-weight:700;font-size:15px;padding:0;min-height:44px;cursor:pointer}
 .card{margin:18px 0 0;background:var(--white);border:1px solid var(--line);border-radius:12px;padding:18px 16px}
 .tag{display:inline-block;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--maroon);font-weight:700}
 .passage{margin:10px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:17px;line-height:1.6}
@@ -63,21 +62,25 @@ h1{font-family:var(--head);font-weight:600;font-size:32px;line-height:1.1;margin
 .choice.won{border-color:var(--t-green);background:#EEF6EF}
 .choice.won .ltr{background:var(--t-green);border-color:var(--t-green);color:var(--white)}
 .msg{min-height:24px;margin:12px 0 0;font-size:15px;color:var(--ink-soft)}
-.result{margin:18px 0 0;background:var(--maroon);color:var(--cream);border-radius:14px;padding:20px 16px;display:grid;gap:14px}
+/* the result card */
+.result{margin:18px 0 0;background:var(--maroon);color:var(--cream);border-radius:16px;padding:20px 16px 22px;display:grid;gap:18px;overflow:hidden}
 .result[hidden]{display:none}
-.r-top{display:flex;align-items:center;gap:14px}
-.r-top img{width:76px;height:76px;flex:none}
-.r-title{font-family:var(--head);font-size:26px;line-height:1.1;margin:0}
-.r-sub{margin:2px 0 0;color:#E9DCC0;font-size:15px}
-.r-grid{display:flex;gap:8px}
-.r-grid .tile{width:44px;height:44px;border-radius:8px}
-.legend{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:15px}
-.legend li{display:flex;align-items:center;gap:10px}
-.legend .tile{width:16px;height:16px;flex:none}
-.share{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:8px;border:0;background:var(--gold);color:var(--ink);font-weight:700;font-size:16px;cursor:pointer;text-decoration:none}
+.r-hero{display:grid;justify-items:center;text-align:center;gap:6px}
+.r-art{width:100%;display:flex;justify-content:center;background:radial-gradient(closest-side,rgba(242,235,219,.30),rgba(242,235,219,.10) 60%,rgba(242,235,219,0) 100%)}
+.r-art img{width:auto;height:260px}
+.r-kicker{margin:0;font-family:var(--sc);font-size:15px;letter-spacing:.12em;color:#E9DCC0}
+.r-title{margin:0;font-family:var(--head);font-weight:600;font-size:40px;line-height:1.05;color:var(--cream)}
+.r-line{margin:0;font-family:var(--head);font-weight:600;font-size:26px;line-height:1.15;color:var(--gold)}
+.r-grid{display:flex;justify-content:center;gap:8px}
+.r-grid .tile{flex:0 1 88px;min-width:0;width:auto;height:auto;aspect-ratio:1;border-radius:14px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.share{display:grid;justify-items:center;gap:8px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;min-width:200px;padding:0 28px;border-radius:10px;border:0;background:var(--gold);color:var(--ink);font-weight:700;font-size:17px;cursor:pointer;text-decoration:none}
 .btn:hover{background:var(--gold-deep)}
-.shared{font-size:14px;color:#E9DCC0}
+.shared{font-size:14px;color:#E9DCC0;min-height:20px}
+.legend{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:15px}
+.legend[hidden]{display:none}
+.legend li{display:flex;align-items:flex-start;gap:10px}
+.legend .tile{width:16px;height:16px;flex:none;margin-top:4px}
 .explain{background:var(--white);color:var(--ink);border-radius:10px;padding:14px}
 .explain p{margin:0}
 .desmos{margin:10px 0 0 !important;font-size:15px;color:var(--ink-soft)}
@@ -90,8 +93,7 @@ h1{font-family:var(--head);font-weight:600;font-size:32px;line-height:1.1;margin
 footer{background:#1C0406;color:#F2EBDB;padding:32px 0 40px;font-size:14px;line-height:1.5}
 footer a{color:#F2EBDB;min-height:44px;display:inline-flex;align-items:center}
 footer p{margin:6px 0 0;color:#D9CDB8}
-.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-@media(min-width:900px){main{padding:40px 0 64px}h1{font-size:40px}}
+@media(min-width:900px){main{padding:40px 0 64px}h1{font-size:40px}.r-art img{height:300px}.r-title{font-size:44px}}
 </style>
 </head>
 <body>
@@ -99,8 +101,8 @@ footer p{margin:6px 0 0;color:#D9CDB8}
 <main><div class="wrap">
   <h1>Daily Strike</h1>
   <p class="lede">One SAT question a day, the same one for everyone. It takes under a minute.</p>
+  <p class="how">Pick an answer. A wrong pick earns a coloured tile and you pick again.</p>
   <p class="me" id="me" hidden></p>
-  <div class="note" id="firstNote" hidden><span>Pick an answer. If a trap catches you, it gets a coloured tile and you pick again. Your grid shows the traps, never the answer.</span><br><button type="button" id="gotIt">Got it</button></div>
 
   <section class="card" id="qcard" aria-labelledby="qtag" hidden>
     <span class="tag" id="qtag"></span>
@@ -111,13 +113,15 @@ footer p{margin:6px 0 0;color:#D9CDB8}
   </section>
 
   <section class="result" id="result" aria-labelledby="rtitle" hidden>
-    <div class="r-top">
-      <img src="../warrior.png" width="76" height="76" alt="The Score Samurai Warrior">
-      <div><p class="r-title" id="rtitle"></p><p class="r-sub" id="rsub"></p></div>
+    <div class="r-hero">
+      <div class="r-art"><img id="rart" src="warrior-strike.webp" width="778" height="800" alt="The Score Samurai Warrior in a strike pose" loading="lazy" decoding="async"></div>
+      <p class="r-kicker">Daily Strike</p>
+      <h2 class="r-title" id="rtitle"></h2>
+      <p class="r-line" id="rline"></p>
     </div>
     <div class="r-grid" id="rgrid" role="img"></div>
-    <ul class="legend" id="legend"></ul>
     <div class="share"><button type="button" class="btn" id="shareBtn">Share</button><span class="shared" id="shared" role="status" aria-live="polite"></span></div>
+    <ul class="legend" id="legend"></ul>
     <div class="explain"><p id="explain"></p><p class="desmos" id="desmos" hidden></p></div>
     <p class="diag">Want to know which traps cost you points on the real test? <a id="diagLink" href="https://scoresamurai.com/diagnostic/?utm_source=strike&amp;utm_medium=daily&amp;utm_campaign=strike">Get the free Diagnostic</a>.</p>
     <p class="next" id="next"></p>
