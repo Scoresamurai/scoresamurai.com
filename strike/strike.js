@@ -1,8 +1,8 @@
 /* Score Samurai: the Daily Strike.
    One question per Eastern calendar date, the same for everyone, keyed by the bank's start date.
    No account: one localStorage object holds the player's days. No hearts, no streak penalty, no badges,
-   no leaderboard. The grid, the share text and the share image never show a letter or the answer, and no
-   Codex name is shown anywhere: a wrong pick shows its plain read line and a tile in its family's colour.
+   no leaderboard. The board, the share text and the share image never show a letter or the answer, and no
+   Codex name is shown anywhere: a wrong pick turns its card over to a plain read line in its family's colour.
    Questions come only from strike-bank.json (audited; see README.md for the schema). */
 (function () {
   "use strict";
@@ -13,11 +13,12 @@
   var EMOJI = { orange: "🟧", yellow: "🟨", purple: "🟪", blue: "🟦", red: "🟥", brown: "🟫", green: "🟩" };
   var HEX = { orange: "#E07B39", yellow: "#E3B53B", purple: "#8F6BBF", blue: "#5B8BD0", red: "#D9534A", brown: "#A87452", green: "#3F8A4F" };
   var LETTERS = ["A", "B", "C", "D"];
-  var MAROON = "#7A0B10", CREAM = "#F2EBDB", GOLD = "#C9A24A", INK2 = "#5A4D46";
+  var MAROON = "#7A0B10", MAROON2 = "#5E080C", WELL = "#4A0509", CREAM = "#F2EBDB", GOLD = "#C9A24A", INK2 = "#5A4D46";
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   function $(id) { return document.getElementById(id); }
   function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  function wait(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
 
   /* ---------- measurement: GA4 on the live domain only ---------- */
   window.__strikeEvents = [];
@@ -87,19 +88,20 @@
     return (l && HEX[l.tile]) ? l.tile : "brown";
   }
 
+  /* the strike pose, at 800 px for the share image; the page's own two poses load through srcset */
   var warriorImg = null;
   function warrior() {
-    if (!warriorImg) { warriorImg = new Image(); warriorImg.decoding = "async"; warriorImg.src = "warrior-strike.webp"; }
+    if (!warriorImg) {
+      warriorImg = new Image(); warriorImg.decoding = "async"; warriorImg.src = "warrior-strike.webp";
+      var s = $("wStrike"); if (s) { s.loading = "eager"; if (s.decode) s.decode().catch(function () {}); }
+    }
     return warriorImg;
   }
 
-  /* ---------- the board: four slots, one per pick ---------- */
+  /* ---------- the board: four slots, one per pick, one object from the first look to the result ---------- */
   function fillBoard(box, tiles) {
     box.innerHTML = "";
-    for (var i = 0; i < SLOTS; i++) {
-      var s = el("span", "s" + (tiles[i] ? " t-" + tiles[i] : ""));
-      box.appendChild(s);
-    }
+    for (var i = 0; i < SLOTS; i++) box.appendChild(el("span", "s" + (tiles[i] ? " t-" + tiles[i] : "")));
   }
   function boardLabel(tiles, done) {
     var caught = tiles.filter(function (t) { return t !== "green"; }).length;
@@ -107,13 +109,14 @@
     if (!tiles.length) return "Four empty tiles, one for each pick";
     return "Your picks so far: " + caught + " caught by a trap";
   }
-  /* a tile turns over on its edge, takes its colour, and comes back: no bounce */
-  function flip(node, apply) {
+  /* a tile or a card turns over on its edge, takes its new face, and comes back: no bounce */
+  function flip(node, apply, axis) {
+    var r = axis || "X";
     if (reduce || !node.animate) { apply(); return Promise.resolve(); }
-    var a = node.animate([{ transform: "rotateX(0deg)" }, { transform: "rotateX(90deg)" }], { duration: 150, easing: "ease-in", fill: "forwards" });
+    var a = node.animate([{ transform: "rotate" + r + "(0deg)" }, { transform: "rotate" + r + "(90deg)" }], { duration: 150, easing: "ease-in", fill: "forwards" });
     return a.finished.then(function () {
       apply();
-      var b = node.animate([{ transform: "rotateX(90deg)" }, { transform: "rotateX(0deg)" }], { duration: 170, easing: "ease-out" });
+      var b = node.animate([{ transform: "rotate" + r + "(-90deg)" }, { transform: "rotate" + r + "(0deg)" }], { duration: 180, easing: "ease-out" });
       a.cancel();
       return b.finished;
     }, function () { apply(); });
@@ -165,6 +168,11 @@
     }
     box.appendChild(para(item.passage));
   }
+  function front(b, i) {
+    b.innerHTML = "";
+    var l = el("span", "l", LETTERS[i]); l.setAttribute("aria-hidden", "true");
+    b.appendChild(l); b.appendChild(rich(el("span", "x"), item.choices[i]));
+  }
   function renderQuestion() {
     $("qtag").textContent = item.section;
     $("qday").textContent = "Day " + dayNum;
@@ -174,38 +182,39 @@
     item.choices.forEach(function (c, i) {
       var li = el("li");
       var b = el("button", "choice"); b.type = "button"; b.id = "c" + i;
-      var l = el("span", "l", LETTERS[i]); l.setAttribute("aria-hidden", "true");
-      var x = rich(el("span", "x"), c);
-      b.appendChild(l); b.appendChild(x);
-      b.setAttribute("aria-label", LETTERS[i] + ". " + x.textContent);
+      front(b, i);
+      b.setAttribute("aria-label", LETTERS[i] + ". " + b.querySelector(".x").textContent);
       b.addEventListener("click", function () { pick(i); });
-      var r = el("p", "read"); r.id = "r" + i; r.hidden = true;
-      li.appendChild(b); li.appendChild(r); box.appendChild(li);
+      li.appendChild(b); box.appendChild(li);
     });
     $("qcard").hidden = false;
   }
 
   function playOf() { return state.plays[today] || (state.plays[today] = { n: dayNum, id: item.id, picks: [], tiles: [], done: false }); }
 
-  function markChoice(i, done) {
+  /* the card's other side: a caught card shows only its plain line in the trap colour; the struck card turns green */
+  function turnCard(i, done) {
     var b = $("c" + i); if (!b) return;
-    var l = b.querySelector(".l");
+    var choiceText = (function () { var t = el("span"); rich(t, item.choices[i]); return t.textContent; })();
     if (i === item.key) {
-      b.classList.add("won"); b.setAttribute("aria-label", LETTERS[i] + ", struck. " + b.querySelector(".x").textContent);
-    } else {
-      b.classList.add("caught"); l.className = "l t-" + tileOf(i); b.disabled = true;
-      b.setAttribute("aria-label", LETTERS[i] + ", caught by a trap. " + b.querySelector(".x").textContent);
-      var r = $("r" + i); r.innerHTML = ""; rich(r, readOf(i));
-      if (!done) { r.appendChild(document.createTextNode(" ")); r.appendChild(el("b", null, "Pick again.")); }
-      r.hidden = false; b.setAttribute("aria-describedby", "r" + i);
+      front(b, i); b.className = "choice won"; b.disabled = true;
+      b.setAttribute("aria-label", LETTERS[i] + ", struck. " + choiceText);
+      return;
     }
+    b.innerHTML = "";
+    var l = el("span", "l", LETTERS[i]); l.setAttribute("aria-hidden", "true");
+    var x = rich(el("span", "x rd"), readOf(i));
+    if (!done) { x.appendChild(document.createTextNode(" ")); x.appendChild(el("b", null, "Pick again.")); }
+    b.appendChild(l); b.appendChild(x);
+    b.className = "choice caught t-" + tileOf(i); b.disabled = true;
+    b.setAttribute("aria-label", LETTERS[i] + ", " + choiceText + ". Caught by a trap: " + readOf(i));
   }
   function lockAll() {
     Array.prototype.forEach.call(document.querySelectorAll(".choice"), function (b) { b.disabled = true; });
-    Array.prototype.forEach.call(document.querySelectorAll(".read b"), function (x) { x.remove(); });
+    Array.prototype.forEach.call(document.querySelectorAll(".choice .rd b"), function (x) { var p = x.previousSibling; if (p && p.nodeType === 3 && p.nodeValue === " ") p.remove(); x.remove(); });
   }
   function paintAll(p) {
-    p.picks.forEach(function (i) { markChoice(i, p.done); });
+    p.picks.forEach(function (i) { turnCard(i, p.done); });
     if (p.done) lockAll();
     fillBoard($("board"), p.tiles); fillBoard($("mini"), p.tiles);
     $("board").setAttribute("aria-label", boardLabel(p.tiles, p.done));
@@ -218,34 +227,71 @@
     p.picks.push(i); p.tiles.push(tileOf(i));
     var n = p.tiles.length - 1, t = p.tiles[n];
     var slots = [$("board").children[n], $("mini").children[n]];
-    var b = $("c" + i), l = b.querySelector(".l");
+    var b = $("c" + i);
+    b.disabled = true;
+    var turns = [
+      flip(b, function () { turnCard(i, i === item.key); }, "Y"),
+      flip(slots[0], function () { slots[0].className = "s t-" + t; }),
+      flip(slots[1], function () { slots[1].className = "s t-" + t; })
+    ];
+    $("board").setAttribute("aria-label", boardLabel(p.tiles, i === item.key));
     if (i === item.key) {
       p.done = true; p.at = Date.now(); save(state);
       ev("strike_complete", { strike_day: dayNum, tries: p.picks.length, section: item.section });
       $("msg").textContent = "Struck on pick " + p.picks.length + ".";
       lockAll();
-      Promise.all([
-        flip(l, function () { markChoice(i, true); }),
-        flip(slots[0], function () { slots[0].className = "s t-" + t; }),
-        flip(slots[1], function () { slots[1].className = "s t-" + t; })
-      ]).then(function () { setTimeout(function () { showResult(p, true); }, reduce ? 0 : 260); });
+      Promise.all(turns).then(function () { return toTop(); }).then(strike).then(function () { showResult(p, true); });
     } else {
       save(state);
-      b.disabled = true;
-      flip(l, function () { markChoice(i, false); });
-      slots.forEach(function (s) { flip(s, function () { s.className = "s t-" + t; }); });
-      $("board").setAttribute("aria-label", boardLabel(p.tiles, false));
       $("msg").textContent = "Caught. " + readOf(i) + " Pick again.";
     }
   }
 
-  /* ---------- the result: the Warrior on his stage, the day and the pick on the floor ---------- */
+  /* ---------- the strike: scroll back to the Warrior, then one slash and the pose swap, under half a second ---------- */
+  function toTop() {
+    if (window.scrollY < 4) return Promise.resolve();
+    window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+    if (reduce) return Promise.resolve();
+    return new Promise(function (res) {
+      var t0 = Date.now();
+      (function check() { if (window.scrollY < 4 || Date.now() - t0 > 700) res(); else requestAnimationFrame(check); })();
+    });
+  }
+  function pose(strikeOn) { if (strikeOn) $("wStrike").loading = "eager"; $("wGuard").hidden = strikeOn; $("wStrike").hidden = !strikeOn; }
+  /* the strike pose is fetched once the page has loaded, so it never slows the first look */
+  window.addEventListener("load", function () { setTimeout(function () { var s = $("wStrike"); if (s) s.loading = "eager"; }, 0); });
+  function strikeReady() {
+    var s = $("wStrike"); s.loading = "eager";
+    if (s.complete && s.naturalWidth) return Promise.resolve();
+    return Promise.race([new Promise(function (r) { s.addEventListener("load", r, { once: true }); s.addEventListener("error", r, { once: true }); }), wait(800)]);
+  }
+  function strike() {
+    return strikeReady().then(strikeNow);
+  }
+  function strikeNow() {
+    var sl = $("slash");
+    if (reduce || !sl.animate) { pose(true); return Promise.resolve(); }
+    var a = sl.animate([
+      { opacity: 0, transform: "rotate(-18deg) scaleX(0)" },
+      { opacity: 1, transform: "rotate(-18deg) scaleX(1)", offset: 0.55 },
+      { opacity: 0, transform: "rotate(-18deg) scaleX(1)" }
+    ], { duration: 300, easing: "ease-out" });
+    setTimeout(function () { pose(true); }, 90);
+    return a.finished.catch(function () {}).then(function () { return wait(60); });
+  }
+
+  /* ---------- the result: the same hero, the day and the pick, the same board, Share ---------- */
   function showResult(p, fresh) {
     var tries = p.picks.length;
-    $("rtitle").textContent = "Day " + dayNum;
-    $("rline").textContent = "Struck on pick " + tries;
-    fillBoard($("rboard"), p.tiles);
-    $("rboard").setAttribute("aria-label", boardLabel(p.tiles, true));
+    pose(true);
+    $("hero").classList.add("struck");
+    $("line").hidden = true;
+    $("rtitle").textContent = "Day " + dayNum; $("rtitle").hidden = false;
+    $("rline").textContent = "Struck on pick " + tries; $("rline").hidden = false;
+    fillBoard($("board"), p.tiles); fillBoard($("mini"), p.tiles);
+    $("board").setAttribute("aria-label", boardLabel(p.tiles, true));
+    $("me").hidden = true;
+    $("sharewrap").hidden = false;
     var lg = $("legend"); lg.innerHTML = ""; var seen = {};
     p.picks.forEach(function (i) {
       if (i === item.key) return;
@@ -262,30 +308,21 @@
       d.appendChild(el("b", null, (m ? m[1] : "Desmos") + ":")); d.appendChild(document.createTextNode(" "));
       rich(d, m ? txt.slice(m[0].length) : txt); d.hidden = false;
     } else d.hidden = true;
-    $("diagLink").href = "https://scoresamurai.com/diagnostic/?utm_source=strike&utm_medium=daily&utm_campaign=strike&utm_content=day" + dayNum;
     $("after").hidden = false;
-    $("intro").hidden = true;
-    var r = $("result"); r.hidden = false;
-    if (fresh && !reduce) { r.classList.remove("settle"); void r.offsetWidth; r.classList.add("settle"); }
-    tick();
-    watchBar($("rboard"));
-    if (fresh) window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+    if (fresh && !reduce) [$("copy"), $("after")].forEach(function (n) { n.classList.remove("settle"); void n.offsetWidth; n.classList.add("settle"); });
   }
 
   function tick() {
     var p = easternParts(new Date()), left = 86400 - (+p.hour * 3600 + +p.minute * 60 + +p.second);
     var h = Math.floor(left / 3600), m = Math.floor((left % 3600) / 60);
-    $("next").textContent = "Next Strike in " + h + " h " + m + " min, at midnight Eastern.";
+    $("next").textContent = "Next Strike in " + h + " h " + m + " min";
   }
-  setInterval(function () { if (!$("result").hidden) tick(); }, 30000);
+  tick(); setInterval(tick, 30000);
 
   /* ---------- the compact bar: shows the board once the big one scrolls away ---------- */
-  var io = null;
   function watchBar(target) {
     if (!("IntersectionObserver" in window)) return;
-    if (io) io.disconnect();
-    io = new IntersectionObserver(function (es) { es.forEach(function (x) { $("bar").classList.toggle("show", !x.isIntersecting && x.boundingClientRect.top < 0); }); });
-    io.observe(target);
+    new IntersectionObserver(function (es) { es.forEach(function (x) { $("bar").classList.toggle("show", !x.isIntersecting && x.boundingClientRect.top < 0); }); }).observe(target);
   }
 
   function renderMe() {
@@ -319,8 +356,9 @@
     var px = cx - w / 2; x.textAlign = "left";
     for (i = 0; i < text.length; i++) { x.fillText(text[i], px, y); px += ws[i] + track; }
   }
+  function rrect(x, px, py, w, h, r) { x.beginPath(); x.moveTo(px + r, py); x.arcTo(px + w, py, px + w, py + h, r); x.arcTo(px + w, py + h, px, py + h, r); x.arcTo(px, py + h, px, py, r); x.arcTo(px, py, px + w, py, r); x.closePath(); }
   /* The share image is the result card, square: the Warrior standing on the maroon floor, "Daily Strike, Day N",
-     the pick line, the four tiles and the URL. No letter, no choice text, no answer, no trap name.
+     the pick line, the board and the URL. No letter, no choice text, no answer, no trap name.
      The Warrior is drawn at 510 px from its 800 px source, never up. */
   /* Playfair's default figures are old-style, and a canvas cannot ask for lining ones, so the share image uses a
      small cut of the same face whose digits are its own lining figures (strike-lining.woff2, built from playfair-display-600). */
@@ -331,6 +369,28 @@
     return liningFace;
   }
   var HEAD = '"Strike Lining", "Playfair Display", Georgia, serif';
+  function drawBoard(x, tiles, S) {
+    var size = 116, gap = 20, pad = 18, bw = SLOTS * size + (SLOTS - 1) * gap + pad * 2, bh = size + pad * 2, bx = Math.round((S - bw) / 2), by = 818;
+    rrect(x, bx, by, bw, bh, 14); x.fillStyle = MAROON2; x.fill();
+    x.save(); rrect(x, bx, by, bw, bh, 14); x.clip();
+    var g = x.createLinearGradient(0, by, 0, by + 14); g.addColorStop(0, "rgba(0,0,0,0.45)"); g.addColorStop(1, "rgba(0,0,0,0)"); x.fillStyle = g; x.fillRect(bx, by, bw, 14);
+    x.restore();
+    rrect(x, bx + 1, by + 1, bw - 2, bh - 2, 13); x.strokeStyle = "rgba(201,162,74,0.75)"; x.lineWidth = 2; x.stroke();
+    for (var i = 0; i < SLOTS; i++) {
+      var px = bx + pad + i * (size + gap), py = by + pad, t = tiles[i];
+      x.save(); rrect(x, px, py, size, size, 9); x.clip();
+      if (t) {
+        x.fillStyle = HEX[t] || HEX.brown; x.fillRect(px, py, size, size);
+        x.fillStyle = "rgba(255,255,255,0.28)"; x.fillRect(px, py, size, 6);
+        x.fillStyle = "rgba(0,0,0,0.22)"; x.fillRect(px, py + size - 8, size, 8);
+      } else {
+        x.fillStyle = WELL; x.fillRect(px, py, size, size);
+        var s = x.createLinearGradient(0, py, 0, py + 16); s.addColorStop(0, "rgba(0,0,0,0.5)"); s.addColorStop(1, "rgba(0,0,0,0)"); x.fillStyle = s; x.fillRect(px, py, size, 16);
+      }
+      x.restore();
+      rrect(x, px + 1, py + 1, size - 2, size - 2, 8); x.strokeStyle = t ? "rgba(201,162,74,0.9)" : "rgba(201,162,74,0.45)"; x.lineWidth = 2; x.stroke();
+    }
+  }
   function image(p) {
     var S = 1080, c = document.createElement("canvas"); c.width = S; c.height = S; var x = c.getContext("2d");
     x.imageSmoothingEnabled = true; x.imageSmoothingQuality = "high";
@@ -353,14 +413,9 @@
         x.fillStyle = CREAM; x.fillText(head, S / 2, 708);
         x.fillStyle = GOLD; x.font = "600 48px " + HEAD;
         x.fillText("Struck on pick " + p.tiles.length, S / 2, 784);
-        var size = 128, gap = 22, tw = SLOTS * size + (SLOTS - 1) * gap, tx = Math.round((S - tw) / 2), ty = 828;
-        for (var i = 0; i < SLOTS; i++) {
-          var px = tx + i * (size + gap), t = p.tiles[i];
-          if (t) { x.fillStyle = HEX[t] || HEX.brown; x.fillRect(px, ty, size, size); x.strokeStyle = CREAM; x.lineWidth = 5; x.strokeRect(px + 2.5, ty + 2.5, size - 5, size - 5); }
-          else { x.strokeStyle = "rgba(242,235,219,0.55)"; x.lineWidth = 4; x.strokeRect(px + 2, ty + 2, size - 4, size - 4); }
-        }
-        x.fillStyle = GOLD; x.font = '30px "Playfair Display SC", Georgia, serif';
-        spaced(x, "scoresamurai.com/strike", S / 2, 1022, 3);
+        drawBoard(x, p.tiles, S);
+        x.fillStyle = GOLD; x.font = '28px "Playfair Display SC", Georgia, serif';
+        spaced(x, "scoresamurai.com/strike", S / 2, 1036, 3);
         c.toBlob(function (b) { res(b); }, "image/png");
       });
     });
@@ -400,18 +455,18 @@
 
     fillBoard($("board"), []); fillBoard($("mini"), []);
     if (!item) {
-      $("board").hidden = true; document.querySelector(".how").hidden = true;
+      $("board").hidden = true;
       if (dayNum < 1) $("emptyText").textContent = "The first Daily Strike opens on " + fmt(b.start, { weekday: "long", month: "long", day: "numeric" }) + ".";
       $("empty").hidden = false; renderMe(); return;
     }
     $("dateline").textContent = "Day " + dayNum + " · " + fmt(today, { weekday: "short", month: "short", day: "numeric" });
-    $("rdate").textContent = fmt(today, { weekday: "short", month: "short", day: "numeric" });
+    $("diagLink").href = "https://scoresamurai.com/diagnostic/?utm_source=strike&utm_medium=daily&utm_campaign=strike&utm_content=day" + dayNum;
     renderMe();
     renderQuestion();
+    watchBar($("board"));
     var p = state.plays[today];
     if (p && p.id !== item.id) { delete state.plays[today]; p = null; save(state); }
-    if (p) { paintAll(p); if (p.done) { showResult(p, false); return; } }
-    watchBar($("board"));
+    if (p) { paintAll(p); if (p.done) showResult(p, false); }
   }
 
   $("shareBtn").addEventListener("click", share);
