@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daily Strike | Score Samurai</title>
+<meta name="description" content="One SAT question a day, the same one for everyone. It takes under a minute, and no account is needed.">
+<link rel="canonical" href="https://scoresamurai.com/strike/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Score Samurai">
+<meta property="og:title" content="Daily Strike">
+<meta property="og:description" content="One SAT question a day, the same one for everyone.">
+<meta property="og:url" content="https://scoresamurai.com/strike/">
+<meta property="og:image" content="https://scoresamurai.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#7A0B10">
+<link rel="icon" href="../warrior.png">
+<link rel="preload" href="../fonts/playfair-display-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/dm-sans-400-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="strike-bank.json" as="fetch" type="application/json" crossorigin>
+<style>
+@font-face{font-family:"Playfair Display";font-weight:600;font-display:swap;src:url(../fonts/playfair-display-600.woff2) format("woff2")}
+@font-face{font-family:"Playfair Display SC";font-weight:400;font-display:swap;src:url(../fonts/playfair-display-sc-400.woff2) format("woff2")}
+@font-face{font-family:"DM Sans";font-weight:400 700;font-display:swap;src:url(../fonts/dm-sans-400-700.woff2) format("woff2")}
+@font-face{font-family:"DM Sans";font-weight:400 700;font-display:swap;src:url(dm-sans-math.woff2) format("woff2");unicode-range:U+2264-2265}
+:root{--maroon:#7A0B10;--maroon-2:#5E080C;--well:#4A0509;--cream:#F2EBDB;--card:#FBF8F0;--edge:#D9CCAF;--cream-2:#E9DCC0;--gold:#C9A24A;--ink:#1C0406;--ink-2:#5A4D46;--white:#FFFFFF;--rule:#DCCFB4;
+--t-orange:#E07B39;--t-yellow:#E3B53B;--t-purple:#8F6BBF;--t-blue:#5B8BD0;--t-red:#D9534A;--t-brown:#A87452;--t-green:#3F8A4F;
+--head:"Playfair Display",Georgia,"Times New Roman",serif;--sc:"Playfair Display SC",Georgia,serif;--body:"DM Sans",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+--goldline:rgba(201,162,74,.65);--ease:cubic-bezier(.2,.7,.2,1)}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;background:var(--maroon)}
+body{margin:0;background:var(--maroon);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--maroon)}
+button{font-family:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--maroon);outline-offset:2px}
+.on-maroon :focus-visible{outline-color:var(--gold)}
+.sc{font-family:var(--sc);letter-spacing:.14em}
+.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+[hidden]{display:none!important}
+.stage{max-width:640px;margin:0 auto}
+/* tiles */
+.t-orange{background:var(--t-orange)}.t-yellow{background:var(--t-yellow)}.t-purple{background:var(--t-purple)}.t-blue{background:var(--t-blue)}.t-red{background:var(--t-red)}.t-brown{background:var(--t-brown)}.t-green{background:var(--t-green)}
+/* the board: one object from the first look to the result */
+.board{display:flex;gap:10px;padding:10px;background:var(--maroon-2);border:1px solid var(--goldline);border-radius:8px;box-shadow:inset 0 2px 6px rgba(0,0,0,.45);width:max-content;max-width:100%;perspective:700px}
+.board .s{flex:none;width:min(62px,calc((100vw - 92px) / 4));aspect-ratio:1;border-radius:5px;background:var(--well);border:1px solid rgba(201,162,74,.45);box-shadow:inset 0 3px 6px rgba(0,0,0,.5)}
+.board .s.t-orange{background:var(--t-orange)}.board .s.t-yellow{background:var(--t-yellow)}.board .s.t-purple{background:var(--t-purple)}.board .s.t-blue{background:var(--t-blue)}.board .s.t-red{background:var(--t-red)}.board .s.t-brown{background:var(--t-brown)}.board .s.t-green{background:var(--t-green)}
+.board .s[class*="t-"]{border-color:rgba(201,162,74,.9);box-shadow:inset 0 3px 0 rgba(255,255,255,.28),inset 0 -4px 0 rgba(0,0,0,.22),0 2px 0 rgba(0,0,0,.35)}
+/* the compact bar that follows the page down */
+.bar{position:fixed;top:0;left:0;right:0;z-index:20;background:var(--maroon);color:var(--cream);transform:translateY(-100%);transition:transform .22s var(--ease);visibility:hidden;box-shadow:0 2px 0 rgba(0,0,0,.2)}
+.bar.show{transform:none;visibility:visible}
+.bar .in{max-width:640px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;min-height:56px;gap:12px}
+.bar a{color:var(--cream);text-decoration:none;font-family:var(--head);font-weight:600;font-size:22px;line-height:1;min-height:44px;display:inline-flex;align-items:center}
+.bar .board{gap:5px;padding:4px;border-radius:5px}
+.bar .board .s{width:22px;border-radius:3px}
+/* the hero: the Warrior on the band, the title, the board */
+.hero{color:var(--cream);padding:0 20px 26px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:12px;color:var(--cream-2)}
+.top a{color:var(--cream-2);text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
+.top a:hover{color:var(--cream)}
+.hero-grid{display:flex;flex-direction:column;align-items:center;text-align:center}
+.art{position:relative;height:190px;width:100%;display:flex;justify-content:center;align-items:flex-end}
+.art .w{height:190px;width:auto}
+.slash{position:absolute;left:14%;right:14%;top:60%;height:3px;border-radius:2px;background:var(--cream);box-shadow:0 0 0 1px rgba(201,162,74,.7);transform:rotate(-18deg) scaleX(0);transform-origin:0 50%;opacity:0;pointer-events:none}
+.copy{display:flex;flex-direction:column;align-items:center;width:100%}
+h1{margin:12px 0 0;font-family:var(--head);font-weight:600;font-size:42px;line-height:1;letter-spacing:-.005em}
+.line{margin:10px 0 0;max-width:330px;font-size:14.5px;line-height:1.45;color:var(--cream-2)}
+.rtitle{margin:6px 0 0;font-family:var(--head);font-weight:600;font-size:56px;line-height:1;font-variant-numeric:lining-nums}
+.rline{margin:6px 0 0;font-family:var(--head);font-weight:600;font-size:25px;line-height:1.2;color:var(--gold);font-variant-numeric:lining-nums}
+.hero .board{margin-top:18px}
+.struck h1{margin-top:12px;font-family:var(--sc);font-weight:400;font-size:13px;line-height:1.4;letter-spacing:.24em;color:var(--gold)}
+.me{margin:14px 0 0;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:6px 16px;font-size:14px;color:var(--cream-2)}
+.me .board{display:inline-flex;margin:0;gap:3px;padding:3px;border-radius:4px;vertical-align:-2px}
+.me .board .s{width:12px;border-radius:2px}
+.me .yd{display:inline-flex;align-items:center;gap:8px}
+.share{margin-top:20px;display:grid;justify-items:center;gap:8px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;min-width:240px;padding:0 28px;border:0;border-radius:6px;background:var(--gold);color:var(--ink);font-weight:700;font-size:17px;letter-spacing:.01em;cursor:pointer;box-shadow:inset 0 -3px 0 rgba(0,0,0,.18)}
+.btn:hover{background:#D8B25A}
+.btn:active{translate:0 1px;box-shadow:inset 0 -1px 0 rgba(0,0,0,.18)}
+.shared{min-height:20px;font-size:14px;color:var(--cream-2)}
+.settle{animation:settle .34s var(--ease) both}
+@keyframes settle{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+/* the sheet: cream, the question as cards, the read after the strike */
+.sheet{background:var(--cream);padding:24px 20px 28px}
+.after{padding-bottom:22px;margin-bottom:22px;border-bottom:1px solid var(--rule)}
+.h{margin:0;font-family:var(--sc);font-weight:400;font-size:13px;letter-spacing:.16em;color:var(--maroon)}
+.legend{list-style:none;margin:10px 0 20px;padding:0;display:grid;gap:10px;font-size:16px;line-height:1.5}
+.legend li{display:flex;gap:12px;align-items:flex-start}
+.legend .s{flex:none;width:14px;height:14px;margin-top:5px;border-radius:3px}
+.explain{margin:10px 0 0;font-size:16px;line-height:1.6}
+.desmos{margin:12px 0 0;font-size:15px;line-height:1.55;color:var(--ink-2)}
+.desmos b{color:var(--ink)}
+.qhead{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.qhead .dn{font-family:var(--head);font-weight:600;font-size:15px;font-variant-numeric:lining-nums}
+.q{margin-top:10px;font-size:17px;line-height:1.6}
+.q p{margin:0}
+.q p + p,.q p + ul,.q ul + p,.q figure + p,.q .disp + p{margin-top:12px}
+.q ul.notes{margin:10px 0 0;padding:0 0 0 1.1em}
+.q ul.notes li{margin:6px 0 0;padding-left:.2em}
+.q ul.notes li::marker{color:var(--maroon)}
+.q .disp{margin:6px 0 0;padding:12px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);display:grid;gap:4px;justify-items:center;font-size:19px;font-variant-numeric:lining-nums}
+.q figure{margin:2px 0 0}
+.q figcaption{font-weight:700;font-size:15px;line-height:1.4;margin-bottom:8px}
+.q .tbl{overflow-x:auto;background:var(--card);border:1px solid var(--edge);border-radius:8px;padding:4px 12px}
+.q table{border-collapse:collapse;width:100%;font-size:16px;font-variant-numeric:tabular-nums lining-nums}
+.q th,.q td{padding:8px 10px;text-align:right;border-bottom:1px solid var(--rule)}
+.q tbody tr:last-child th,.q tbody tr:last-child td{border-bottom:0}
+.q th:first-child,.q td:first-child{text-align:left;padding-left:0}
+.q th:last-child,.q td:last-child{padding-right:0}
+.q thead th{font-weight:700;border-bottom:1.5px solid var(--ink);font-size:14px}
+sup{font-size:.68em;line-height:0;vertical-align:.42em}
+.stem{margin:16px 0 0;font-weight:700;font-size:16px;line-height:1.45}
+/* the choices: cards you press; a wrong one turns over to its plain line */
+.choices{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:12px;perspective:900px}
+.choice{width:100%;display:flex;gap:14px;align-items:flex-start;text-align:left;background:var(--card);border:1px solid var(--edge);border-bottom-width:3px;border-radius:10px;box-shadow:0 6px 14px rgba(28,4,6,.07);padding:12px 16px 12px 12px;min-height:60px;font-size:16px;line-height:1.45;cursor:pointer;transition:translate .08s ease-out,box-shadow .08s ease-out,border-color .12s}
+.choice .l{flex:none;width:34px;height:34px;border-radius:50%;border:2px solid var(--gold);background:var(--white);display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:15px}
+.choice .x{padding-top:5px}
+.choice:not([disabled]):hover{border-color:var(--gold)}
+.choice:not([disabled]):active{translate:0 2px;border-bottom-width:1px;margin-bottom:2px;box-shadow:0 2px 4px rgba(28,4,6,.08)}
+.choice[disabled]{cursor:default}
+.choice.caught{border-color:rgba(28,4,6,.25);box-shadow:0 4px 10px rgba(28,4,6,.08)}
+.choice.caught .l,.choice.won .l{border-color:var(--ink);background:transparent}
+.choice.won{background:var(--t-green);border-color:rgba(28,4,6,.25)}
+.choice.won .x{font-weight:700}
+.choice.caught.t-orange{background:var(--t-orange)}.choice.caught.t-yellow{background:var(--t-yellow)}.choice.caught.t-purple{background:var(--t-purple)}.choice.caught.t-blue{background:var(--t-blue)}.choice.caught.t-red{background:var(--t-red)}.choice.caught.t-brown{background:var(--t-brown)}
+.empty p{margin:10px 0 0;font-size:17px}
+/* before the bank's first day: the same stage, the board empty, the countdown in the footer line */
+.pre .rline{font-size:22px}
+.pre .foot{border-top:0}
+/* the footer: one line inside the stage */
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:4px 16px;background:var(--cream);border-top:1px solid var(--rule);padding:12px 20px 16px;font-size:14px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.foot a{font-weight:700;min-height:44px;display:inline-flex;align-items:center}
+.legal{max-width:640px;margin:0 auto;padding:14px 20px 26px;font-size:12px;line-height:1.5;color:var(--cream-2);text-align:center}
+.legal a{color:var(--cream-2)}
+@media(min-width:720px){
+  .stage{padding-top:0}
+  .hero{padding:0 24px 30px}
+  .hero-grid{flex-direction:row-reverse;align-items:flex-end;justify-content:space-between;text-align:left;gap:12px}
+  .art{width:auto;height:262px;flex:none}
+  .art .w{height:262px}
+  .copy{align-items:flex-start;padding-bottom:4px;min-width:0}
+  h1{font-size:58px;margin-top:4px}
+  .line{font-size:16px;max-width:340px}
+  .rtitle{font-size:68px}
+  .rline{font-size:28px}
+  #board .s{width:68px;border-radius:6px}
+  .me,.share{justify-content:flex-start;justify-items:start}
+  .sheet{border-radius:12px 12px 0 0;padding:28px 32px 32px}
+  .foot{border-radius:0 0 12px 12px;padding:12px 32px 16px}
+  .pre .rline{font-size:26px}
+  .pre .foot{border-radius:12px}
+}
+@media(prefers-reduced-motion:reduce){.settle{animation:none}.bar{transition:none}.choice{transition:none}}
+</style>
+</head>
+<body>
+<header class="bar on-maroon" id="bar" aria-hidden="true"><div class="in"><a href="#top" tabindex="-1">Daily Strike</a><span class="board" id="mini"></span></div></header>
+<main id="top">
+  <div class="stage">
+    <section class="hero on-maroon" id="hero" aria-labelledby="h1">
+      <div class="top sc"><a href="https://scoresamurai.com/">Score Samurai</a><span id="dateline"></span></div>
+      <div class="hero-grid">
+        <div class="art" id="art">
+          <img class="w" id="wGuard" src="warrior-guard-400.webp" srcset="warrior-guard-400.webp 288w, warrior-guard-600.webp 432w" sizes="(min-width: 720px) 189px, 137px" width="288" height="400" alt="The Score Samurai Warrior, sword raised and ready" fetchpriority="high" decoding="async">
+          <img class="w" id="wStrike" hidden src="warrior-strike-400.webp" srcset="warrior-strike-400.webp 389w, warrior-strike-600.webp 584w" sizes="(min-width: 720px) 255px, 185px" width="389" height="400" alt="The Score Samurai Warrior in a strike pose" loading="lazy" decoding="async">
+          <span class="slash" id="slash" aria-hidden="true"></span>
+        </div>
+        <div class="copy" id="copy">
+          <h1 id="h1">Daily Strike</h1>
+          <p class="line" id="line">One SAT question a day. Wrong picks earn tiles. Same question for everyone.</p>
+          <h2 class="rtitle" id="rtitle" hidden></h2>
+          <p class="rline" id="rline" hidden></p>
+          <div class="board" id="board" role="img" aria-label="Four empty tiles, one for each pick"></div>
+          <p class="me" id="me" hidden></p>
+          <div class="share" id="sharewrap" hidden><button type="button" class="btn" id="shareBtn">Share</button><span class="shared" id="shared" role="status" aria-live="polite"></span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sheet" id="sheet" aria-label="Today's question">
+      <div class="after" id="after" hidden>
+        <h2 class="h" id="lgh">What caught you</h2>
+        <ul class="legend" id="legend"></ul>
+        <h2 class="h">The read</h2>
+        <p class="explain" id="explain"></p>
+        <p class="desmos" id="desmos" hidden></p>
+      </div>
+      <article id="qcard" aria-labelledby="qtag" hidden>
+        <div class="qhead"><h2 class="h" id="qtag"></h2><span class="dn" id="qday"></span></div>
+        <div class="q" id="qbody"></div>
+        <p class="stem" id="qstem"></p>
+        <ul class="choices" id="qchoices"></ul>
+      </article>
+      <div class="empty" id="empty" hidden><h2 class="h">Daily Strike</h2><p id="emptyText">Today's Strike is not ready yet. Check back tomorrow.</p></div>
+      <p class="vh" id="msg" role="status" aria-live="polite"></p>
+    </section>
+
+    <footer class="foot"><span id="next"></span><a id="diagLink" href="https://scoresamurai.com/diagnostic/?utm_source=strike&amp;utm_medium=daily&amp;utm_campaign=strike">Get the free Diagnostic</a></footer>
+  </div>
+  <p class="legal"><a href="https://scoresamurai.com/">Score Samurai</a> · <a href="https://scoresamurai.com/privacy/">Privacy</a> · Score Samurai is not affiliated with or endorsed by College Board. SAT, PSAT and Digital SAT are College Board trademarks.</p>
+</main>
+<script src="strike.js" defer></script>
+<script>(function(){var K=["utm_source","utm_medium","utm_campaign","utm_content","utm_term","gclid","fbclid"];function cur(){var q=new URLSearchParams(location.search),o={},n=0;K.forEach(function(k){var v=q.get(k);if(v){o[k]=v.slice(0,200);n++;}});return n?o:null;}try{var c=cur();if(c&&!localStorage.getItem("ss_attr")){c.first_page=location.pathname;c.first_at=new Date().toISOString();localStorage.setItem("ss_attr",JSON.stringify(c));}}catch(e){}window.ssAttr=function(){var s=null,o={};try{s=JSON.parse(localStorage.getItem("ss_attr")||"null");}catch(e){}var c=cur()||{};K.forEach(function(k){var v=(s&&s[k])||c[k];if(v)o[k]=v;});return o;};})();</script>
+</body>
+</html>
