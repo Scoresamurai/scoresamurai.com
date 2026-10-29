@@ -55,7 +55,7 @@ One SAT question per Eastern calendar date, the same for everyone, no account. B
 - Green is reserved for the struck tile and is never a label colour.
 - Superscript digits (², ³, ⁴, ⁷ and the rest) are set as real digits raised in DM Sans, so every glyph comes from the house face.
 - Every question must be VERIFIED in the Original Problem Bank (standing rule 3) before it enters this file.
-- Before the start date the page says when the first Strike opens; after the last day it says the Strike is not ready.
+- Before the start date the page keeps the same stage (STRIKELIVE, Oct 29 2026; canvas board "C2 · Before Nov 17"): the Warrior in ready pose, the board empty, "First Strike lands" and the start date in gold, and the footer line counting down to midnight Eastern on the start date ("First Strike in D d H h", then "H h M min" on the last day). The sheet is hidden. When the countdown runs out the page reloads itself into Day 1. After the last day the page says the Strike is not ready.
 
 ## Previews
 On any host other than scoresamurai.com, ?day=N (1 to 60) opens day N of the bank. The live site ignores it.

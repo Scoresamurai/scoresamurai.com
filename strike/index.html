@@ -124,6 +124,9 @@ sup{font-size:.68em;line-height:0;vertical-align:.42em}
 .choice.won .x{font-weight:700}
 .choice.caught.t-orange{background:var(--t-orange)}.choice.caught.t-yellow{background:var(--t-yellow)}.choice.caught.t-purple{background:var(--t-purple)}.choice.caught.t-blue{background:var(--t-blue)}.choice.caught.t-red{background:var(--t-red)}.choice.caught.t-brown{background:var(--t-brown)}
 .empty p{margin:10px 0 0;font-size:17px}
+/* before the bank's first day: the same stage, the board empty, the countdown in the footer line */
+.pre .rline{font-size:22px}
+.pre .foot{border-top:0}
 /* the footer: one line inside the stage */
 .foot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:4px 16px;background:var(--cream);border-top:1px solid var(--rule);padding:12px 20px 16px;font-size:14px;color:var(--ink-2);font-variant-numeric:tabular-nums}
 .foot a{font-weight:700;min-height:44px;display:inline-flex;align-items:center}
@@ -144,6 +147,8 @@ sup{font-size:.68em;line-height:0;vertical-align:.42em}
   .me,.share{justify-content:flex-start;justify-items:start}
   .sheet{border-radius:12px 12px 0 0;padding:28px 32px 32px}
   .foot{border-radius:0 0 12px 12px;padding:12px 32px 16px}
+  .pre .rline{font-size:26px}
+  .pre .foot{border-radius:12px}
 }
 @media(prefers-reduced-motion:reduce){.settle{animation:none}.bar{transition:none}.choice{transition:none}}
 </style>
@@ -172,7 +177,7 @@ sup{font-size:.68em;line-height:0;vertical-align:.42em}
       </div>
     </section>
 
-    <section class="sheet" aria-label="Today's question">
+    <section class="sheet" id="sheet" aria-label="Today's question">
       <div class="after" id="after" hidden>
         <h2 class="h" id="lgh">What caught you</h2>
         <ul class="legend" id="legend"></ul>

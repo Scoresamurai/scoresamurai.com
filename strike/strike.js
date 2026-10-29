@@ -312,12 +312,18 @@
     if (fresh && !reduce) [$("copy"), $("after")].forEach(function (n) { n.classList.remove("settle"); void n.offsetWidth; n.classList.add("settle"); });
   }
 
+  var opensOn = null; /* set before the bank's first day: the countdown runs to it */
   function tick() {
-    var p = easternParts(new Date()), left = 86400 - (+p.hour * 3600 + +p.minute * 60 + +p.second);
-    var h = Math.floor(left / 3600), m = Math.floor((left % 3600) / 60);
-    $("next").textContent = "Next Strike in " + h + " h " + m + " min";
+    var now = new Date(), p = easternParts(now), left = 86400 - (+p.hour * 3600 + +p.minute * 60 + +p.second);
+    if (opensOn) {
+      var ahead = daysBetween(easternDate(now), opensOn) - 1;
+      if (ahead < 0) { location.reload(); return; }
+      left += ahead * 86400;
+    }
+    var d = Math.floor(left / 86400), h = Math.floor((left % 86400) / 3600), m = Math.floor((left % 3600) / 60);
+    $("next").textContent = (opensOn ? "First Strike in " : "Next Strike in ") + (d ? d + " d " + h + " h" : h + " h " + m + " min");
   }
-  tick(); setInterval(tick, 30000);
+  setInterval(tick, 30000); /* first tick runs once the bank is in, so the line never shows the wrong countdown */
 
   /* ---------- the compact bar: shows the board once the big one scrolls away ---------- */
   function watchBar(target) {
@@ -454,9 +460,19 @@
     save(state);
 
     fillBoard($("board"), []); fillBoard($("mini"), []);
+    tick();
+    if (!item && dayNum < 1) {
+      /* before the bank's first day: the Warrior, the empty board, the opening date, and the countdown in the footer line */
+      opensOn = b.start; tick();
+      $("hero").classList.add("pre"); document.querySelector(".stage").classList.add("pre");
+      $("dateline").textContent = fmt(today, { weekday: "short", month: "short", day: "numeric" });
+      $("rline").textContent = "First Strike lands " + fmt(b.start, { weekday: "long", month: "long", day: "numeric" });
+      $("rline").hidden = false;
+      $("sheet").hidden = true;
+      renderMe(); return;
+    }
     if (!item) {
       $("board").hidden = true;
-      if (dayNum < 1) $("emptyText").textContent = "The first Daily Strike opens on " + fmt(b.start, { weekday: "long", month: "long", day: "numeric" }) + ".";
       $("empty").hidden = false; renderMe(); return;
     }
     $("dateline").textContent = "Day " + dayNum + " · " + fmt(today, { weekday: "short", month: "short", day: "numeric" });
@@ -472,5 +488,5 @@
   $("shareBtn").addEventListener("click", share);
   $("diagLink").addEventListener("click", function () { ev("strike_diagnostic_click", { strike_day: dayNum }); });
 
-  fetch("strike-bank.json", { credentials: "same-origin" }).then(function (r) { return r.json(); }).then(start).catch(function () { $("empty").hidden = false; });
+  fetch("strike-bank.json", { credentials: "same-origin" }).then(function (r) { return r.json(); }).then(start).catch(function () { $("empty").hidden = false; tick(); });
 })();
