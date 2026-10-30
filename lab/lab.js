@@ -1,4 +1,4 @@
-/* Score Samurai: Dojo Score Lab v2 (branch preview-lab, Oct 14 2026).
+/* Score Samurai: Score Lab v2 (branch preview-lab, Oct 14 2026).
    Reads /lab/curve.json (the conversion table, its route bands and its range rule), and /scores/ipeds-sat-2024.json when the college box is used.
    Every number the page shows is traced in the SOURCE LINES comment at the top of lab/index.html.
    Nothing is stored in the browser. Nothing is sent anywhere unless the student asks for the scorecard by email. */

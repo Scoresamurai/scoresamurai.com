@@ -286,7 +286,7 @@
     pose(true);
     $("hero").classList.add("struck");
     $("line").hidden = true;
-    $("rtitle").textContent = "Day " + dayNum; $("rtitle").hidden = false;
+    $("rtitle").textContent = "Day " + dayNum; $("rtitle").hidden = false; $("bline").hidden = false;
     $("rline").textContent = "Struck on pick " + tries; $("rline").hidden = false;
     fillBoard($("board"), p.tiles); fillBoard($("mini"), p.tiles);
     $("board").setAttribute("aria-label", boardLabel(p.tiles, true));
@@ -360,7 +360,9 @@
     var w = 0, i, ws = [];
     for (i = 0; i < text.length; i++) { ws.push(x.measureText(text[i]).width); w += ws[i] + (i < text.length - 1 ? track : 0); }
     var px = cx - w / 2; x.textAlign = "left";
+    var left = px;
     for (i = 0; i < text.length; i++) { x.fillText(text[i], px, y); px += ws[i] + track; }
+    return [left, w];
   }
   function rrect(x, px, py, w, h, r) { x.beginPath(); x.moveTo(px + r, py); x.arcTo(px + w, py, px + w, py + h, r); x.arcTo(px + w, py + h, px, py + h, r); x.arcTo(px, py + h, px, py, r); x.arcTo(px, py, px + w, py, r); x.closePath(); }
   /* The share image is the result card, square: the Warrior standing on the maroon floor, "Daily Strike, Day N",
@@ -376,7 +378,7 @@
   }
   var HEAD = '"Strike Lining", "Playfair Display", Georgia, serif';
   function drawBoard(x, tiles, S) {
-    var size = 116, gap = 20, pad = 18, bw = SLOTS * size + (SLOTS - 1) * gap + pad * 2, bh = size + pad * 2, bx = Math.round((S - bw) / 2), by = 818;
+    var size = 116, gap = 20, pad = 18, bw = SLOTS * size + (SLOTS - 1) * gap + pad * 2, bh = size + pad * 2, bx = Math.round((S - bw) / 2), by = 830;
     rrect(x, bx, by, bw, bh, 14); x.fillStyle = MAROON2; x.fill();
     x.save(); rrect(x, bx, by, bw, bh, 14); x.clip();
     var g = x.createLinearGradient(0, by, 0, by + 14); g.addColorStop(0, "rgba(0,0,0,0.45)"); g.addColorStop(1, "rgba(0,0,0,0)"); x.fillStyle = g; x.fillRect(bx, by, bw, 14);
@@ -410,18 +412,22 @@
         x.fillStyle = MAROON; x.fillRect(0, FLOOR, S, S - FLOOR);
         x.textBaseline = "alphabetic";
         x.fillStyle = INK2; x.font = '28px "Playfair Display SC", Georgia, serif';
-        spaced(x, "Score Samurai", S / 2, 82, 6);
+        var wm = spaced(x, "SCORE SAMURAI", S / 2, 82, 6);
+        /* the belt line: gold, 5 percent of the cap height thick, 47 percent of it under the baseline, the width of the word */
+        x.fillStyle = GOLD; x.fillRect(Math.round(wm[0]), 82 + 9, Math.round(wm[1]), 2);
         if (w.naturalWidth) { var wh = 510, ww = Math.round(w.naturalWidth * wh / w.naturalHeight); x.drawImage(w, Math.round((S - ww) / 2), 104, ww, wh); }
         x.textAlign = "center";
         var head = "Daily Strike, Day " + dayNum, fs = 80;
         x.font = "600 " + fs + "px " + HEAD;
         while (x.measureText(head).width > 960 && fs > 56) { fs -= 2; x.font = "600 " + fs + "px " + HEAD; }
-        x.fillStyle = CREAM; x.fillText(head, S / 2, 708);
-        x.fillStyle = GOLD; x.font = "600 48px " + HEAD;
-        x.fillText("Struck on pick " + p.tiles.length, S / 2, 784);
+        x.fillStyle = CREAM; x.fillText(head, S / 2, 696);
+        x.fillStyle = "#E9DCC0"; x.font = "italic 600 30px \"Playfair Display\", Georgia, serif";
+        x.fillText("The SAT is a discipline. Master it in The Dojo.", S / 2, 746);
+        x.fillStyle = GOLD; x.font = "600 42px " + HEAD;
+        x.fillText("Struck on pick " + p.tiles.length, S / 2, 800);
         drawBoard(x, p.tiles, S);
         x.fillStyle = GOLD; x.font = '28px "Playfair Display SC", Georgia, serif';
-        spaced(x, "scoresamurai.com/strike", S / 2, 1036, 3);
+        spaced(x, "scoresamurai.com/strike", S / 2, 1042, 3);
         c.toBlob(function (b) { res(b); }, "image/png");
       });
     });

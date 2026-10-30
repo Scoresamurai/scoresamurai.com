@@ -1,5 +1,5 @@
 /**
- * Score Samurai: Dojo Diagnostic intake endpoint. DEPLOYED v8 Oct 22 2026 (optcall), same deployment and /exec URL.
+ * Score Samurai: Diagnostic intake endpoint. DEPLOYED v8 Oct 22 2026 (optcall), same deployment and /exec URL.
  * Deploy as a Web App from senseijay@scoresamurai.com: Execute as Me, Who has access: Anyone.
  * Paste the deployment URL into diag.js ENDPOINT and the copy inside index.html.
  *
@@ -51,7 +51,7 @@ function doPost(e) {
     MailApp.sendEmail({
       to: data.student_email,
       replyTo: SENSEI,
-      subject: "Your Dojo Diagnostic is on its way",
+      subject: "Your Diagnostic is on its way",
       body: studentBody_(data),
       name: FROM_NAME
     });
@@ -59,7 +59,7 @@ function doPost(e) {
   MailApp.sendEmail({
     to: data.parent_email,
     replyTo: SENSEI,
-    subject: "Your Dojo Diagnostic is on its way",
+    subject: "Your Diagnostic is on its way",
     body: parentBody_(data),
     name: FROM_NAME
   });
@@ -69,7 +69,7 @@ function doPost(e) {
 
 function studentBody_(d) {
   return "Hi " + d.student_first + ",\n\n" +
-    "Your Dojo Diagnostic is on its way. I read every one personally and write back within 24 hours, to this address and to " + d.parent_email + ".\n\n" +
+    "Your Diagnostic is on its way. I read every one personally and write back within 24 hours, to this address and to " + d.parent_email + ".\n\n" +
     "If you have a recent Bluebook practice test, reply to this email with a screenshot of the results page, or the questions you missed, and the read gets sharper.\n\n" +
     "If you'd like to talk it through, you can book an optional 15-minute Zoom with me here: " + BOOK + ". Your written Diagnostic is on its way within 24 hours either way.\n\n" +
     "Sensei Jay\nScore Samurai\nscoresamurai.com";
@@ -80,7 +80,7 @@ function parentBody_(d) {
   var s = String(d.student_first || "").trim() || "your student";
   var hi = String(d.parent_first || "").trim();
   return (hi ? "Hello " + hi + "," : "Hello,") + "\n\n" +
-    (d.role === "parent" ? "Thank you for requesting a Dojo Diagnostic for " + s + "." : s + " has requested a Dojo Diagnostic and listed you as the parent to copy.") +
+    (d.role === "parent" ? "Thank you for requesting a Diagnostic for " + s + "." : s + " has requested a Diagnostic and listed you as the parent to copy.") +
     " I read every request myself, and the written Diagnostic will reach you and " + s + " within 24 hours.\n\n" +
     "It shows where " + s + "'s score stands, where it needs to be and what to fix first.\n\n" +
     "If " + s + " has taken a recent practice test in Bluebook, the College Board's testing app, a screenshot of the results page makes the read sharper. Reply to this email with it.\n\n" +

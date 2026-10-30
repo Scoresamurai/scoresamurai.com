@@ -1,5 +1,5 @@
 {
- "name": "Dojo Score Lab conversion table",
+ "name": "Score Lab conversion table",
  "version": "v2, Oct 14 2026",
  "status": "UNCALIBRATED ESTIMATE. College Board publishes no raw-to-scale table for the digital SAT and scores with Item Response Theory, so the same number right can earn different scores. Every point below is a published example, a scale end, or the route offset below. The page never shows a single number alone: every section and total is shown with the range set in 'range'. Replace with logged pairs (Bluebook module counts, Bluebook score, real score) as students come through.",
  "how_the_page_uses_it": "For each section the page adds Module 1 and Module 2 correct and reads the scaled score by straight-line interpolation on the route's table. If Module 1 is in the 'either' band, it reads both routes and the range covers both. Each route estimate is rounded to the nearest 10 and clamped to the section scale. Then the range in 'range' is applied.",

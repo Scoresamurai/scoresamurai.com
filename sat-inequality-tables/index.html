@@ -68,7 +68,7 @@ new MutationObserver(scan).observe(document.documentElement, { childList: true, 
 <link rel="stylesheet" href="/site.css">
 </head>
 <body>
-<header class="hdr"><div class="wrap"><a class="brand" href="/"><img src="/warrior.png" alt="Score Samurai"><span>Score Samurai</span></a><a class="hdr-cta js-tb" href="/diagnostic/">Free Dojo Diagnostic</a></div></header>
+<header class="hdr"><div class="wrap"><a class="brand" href="/"><img src="/warrior.png" alt="Score Samurai"><span>Score Samurai</span></a><a class="hdr-cta js-tb" href="/diagnostic/">Free Diagnostic</a></div></header>
 
 <main>
 <section>
@@ -107,7 +107,7 @@ new MutationObserver(scan).observe(document.documentElement, { childList: true, 
 
 <section class="band-maroon closing">
   <div class="wrap stack" style="gap:18px;align-items:center;text-align:center">
-    <h2>Start with the free Dojo Diagnostic.</h2>
+    <h2>Start with the free Diagnostic.</h2>
     <p style="font-size:18px;max-width:680px">One short form. Within 24 hours you get it in writing: where the score stands and what to fix first.</p>
   </div>
 </section>
@@ -115,6 +115,7 @@ new MutationObserver(scan).observe(document.documentElement, { childList: true, 
 
 <footer class="sf" id="site-footer">
 <style>
+@font-face{font-family:"Playfair Display SC";font-weight:400;font-display:swap;src:url(/fonts/playfair-display-sc-400.woff2) format("woff2")}
 @font-face{font-family:"Playfair Display";font-weight:600;font-display:swap;src:url(/fonts/playfair-display-600.woff2) format("woff2")}
 @font-face{font-family:"DM Sans";font-weight:400 700;font-display:swap;src:url(/fonts/dm-sans-400-700.woff2) format("woff2")}
 footer.sf{background:#1C0406;color:#F2EBDB;padding:56px 0 40px;margin:0;font-family:"DM Sans",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;font-size:16px;line-height:1.5;text-align:left}
@@ -124,7 +125,7 @@ footer.sf .sf-cols{display:grid;grid-template-columns:1fr;gap:28px}
 footer.sf a{color:#F2EBDB;text-decoration:none;min-height:44px;display:inline-flex;align-items:center;min-width:44px}
 footer.sf a:hover{text-decoration:underline}
 footer.sf a:focus-visible,footer.sf summary:focus-visible{outline:3px solid #C9A24A;outline-offset:2px}
-footer.sf .sf-brand{font-family:"Playfair Display",Georgia,serif;font-weight:600;font-size:22px;line-height:1.15}
+footer.sf .sf-brand{font-family:"Playfair Display SC","Playfair Display",Georgia,serif;font-weight:400;font-size:20px;line-height:1}footer.sf .sf-wm{display:inline-block;line-height:1}footer.sf .sf-wm b{display:block;font-weight:400;letter-spacing:.14em;margin-right:-.14em}footer.sf .sf-wm i{display:block;height:1px;margin-top:.25em;background:#C9A24A}footer.sf .sf-brand:hover{text-decoration:none}
 footer.sf .sf-tag{margin:0;color:#D9CDB8}
 footer.sf .sf-c1{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
 footer.sf .sf-btn{background:#C9A24A;color:#1C0406;font-weight:700;border-radius:6px;padding:0 20px;min-height:48px;margin:6px 0 2px;white-space:nowrap}
@@ -152,9 +153,9 @@ footer.sf .sf-cb{margin:8px 0 0;color:#B3A796;font-size:13px;max-width:44em}
 <div class="sf-wrap">
   <div class="sf-cols">
     <div class="sf-col sf-c1">
-      <a class="sf-brand" href="/">Score Samurai</a>
-      <p class="sf-tag">One-on-one SAT tutoring over Zoom.</p>
-      <a class="sf-btn js-tb" href="/#diagnostic">Get Your Free Dojo Diagnostic</a>
+      <a class="sf-brand" href="/" aria-label="Score Samurai, home"><span class="sf-wm" aria-hidden="true"><b>SCORE SAMURAI</b><i></i></span></a>
+      <p class="sf-tag">The SAT is a discipline. Master it in The Dojo.</p>
+      <a class="sf-btn js-tb" href="/#diagnostic">Get Your Free Diagnostic</a>
       <a href="mailto:senseijay@scoresamurai.com">senseijay@scoresamurai.com</a>
     </div>
     <nav class="sf-col" aria-label="Score Samurai">

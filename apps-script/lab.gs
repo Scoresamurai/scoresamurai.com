@@ -1,5 +1,5 @@
 /**
- * Dojo Score Lab capture: add-on for the Diagnostic intake Web App (apps-script/Code.gs). DEPLOYED v5 Oct 20 (sitepro).
+ * Score Lab capture: add-on for the Diagnostic intake Web App (apps-script/Code.gs). DEPLOYED v5 Oct 20 (sitepro).
  * v2, branch preview-lab, Oct 14 2026 (labpress). Replaces the Oct 12 draft.
  *
  * Turn it on, in this order, only after Sensei's "go":
@@ -35,12 +35,12 @@ function lab_(d) {
   var sent = [];
 
   MailApp.sendEmail({ to: d.lab_email, replyTo: SENSEI, name: FROM_NAME,
-    subject: "Your Dojo Score Lab scorecard", body: labStudentBody_(d, first) });
+    subject: "Your Score Lab scorecard", body: labStudentBody_(d, first) });
   sent.push("student");
 
   if (okMail(d.lab_parent_email)) {
     MailApp.sendEmail({ to: d.lab_parent_email, replyTo: SENSEI, name: FROM_NAME,
-      subject: (first ? first + "'s" : "An") + " SAT scorecard from the Dojo Score Lab", body: labParentBody_(d, first) });
+      subject: (first ? first + "'s" : "An") + " SAT scorecard from the Score Lab", body: labParentBody_(d, first) });
     sent.push("parent");
   }
   var row = LAB_HEAD.map(function (k) {
@@ -74,7 +74,7 @@ function labStudentBody_(d, first) {
   return [
     "Hi " + (first || "there") + ",",
     "",
-    "Here is your scorecard from the Dojo Score Lab.",
+    "Here is your scorecard from the Score Lab.",
     ""
   ].concat(labLines_(d)).concat([
     "",
@@ -85,7 +85,7 @@ function labStudentBody_(d, first) {
     "",
     "These are estimates from practice-test inputs, not official scores. Even a real score can move about 40 points on a retake.",
     "",
-    "Want the full read? The Dojo Diagnostic is free and written. Sensei Jay reads the questions you missed and writes back within 24 hours. Start it here: " + LAB_DIAG,
+    "Want the full read? The Diagnostic is free and written. Sensei Jay reads the questions you missed and writes back within 24 hours. Start it here: " + LAB_DIAG,
     "",
     "Sensei Jay",
     "Score Samurai LLC",
@@ -98,7 +98,7 @@ function labParentBody_(d, first) {
   return [
     "Hello,",
     "",
-    (first || "A student") + " asked us to send you this copy of a scorecard from the Dojo Score Lab on scoresamurai.com. This is the only email you will get from us unless you write back.",
+    (first || "A student") + " asked us to send you this copy of a scorecard from the Score Lab on scoresamurai.com. This is the only email you will get from us unless you write back.",
     ""
   ].concat(labLines_(d)).concat([
     "",
@@ -107,7 +107,7 @@ function labParentBody_(d, first) {
     "Patterns marked as costing points: " + (d.traps || "none marked") + ".",
     d.school ? "College check, " + d.school + ": " + d.verdict + "." : "",
     "",
-    "If you want the full read, the Dojo Diagnostic is free and written. Sensei Jay reads the missed questions himself and replies within 24 hours: " + LAB_DIAG,
+    "If you want the full read, the Diagnostic is free and written. Sensei Jay reads the missed questions himself and replies within 24 hours: " + LAB_DIAG,
     "",
     "Sensei Jay",
     "Score Samurai LLC",
