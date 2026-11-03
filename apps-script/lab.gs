@@ -29,8 +29,11 @@ var LAB_DIAG = "https://scoresamurai.com/diagnostic/";
 var LAB_ROUTE = { harder: "harder", easier: "easier", either: "could be either" };
 
 function lab_(d) {
-  var okMail = function (a) { return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(String(a || "").trim()); };
-  if (!okMail(d.lab_email) || !d.total_range) return { ok: false, error: "missing" };
+  if (!okMail_(d.lab_email) || !d.total_range) return { ok: false, error: "missing" };
+  d.lab_email = String(d.lab_email).trim();
+  var parentOk = okMail_(d.lab_parent_email);
+  if (parentOk) d.lab_parent_email = String(d.lab_parent_email).trim();
+  if (!allow_(parentOk ? [d.lab_email, d.lab_parent_email] : [d.lab_email])) return { ok: false, error: "rate" };
   var first = String(d.lab_first || "").trim().slice(0, 40);
   var sent = [];
 
@@ -38,7 +41,7 @@ function lab_(d) {
     subject: "Your Score Lab scorecard", body: labStudentBody_(d, first) });
   sent.push("student");
 
-  if (okMail(d.lab_parent_email)) {
+  if (parentOk) {
     MailApp.sendEmail({ to: d.lab_parent_email, replyTo: SENSEI, name: FROM_NAME,
       subject: (first ? first + "'s" : "An") + " SAT scorecard from the Score Lab", body: labParentBody_(d, first) });
     sent.push("parent");
@@ -46,7 +49,7 @@ function lab_(d) {
   var row = LAB_HEAD.map(function (k) {
     if (k === "received_at") return new Date();
     if (k === "emails") return sent.join(", ");
-    return String(d[k] == null ? "" : d[k]).slice(0, 300);
+    return cell_(String(d[k] == null ? "" : d[k]).slice(0, 300));
   });
   labTab_().appendRow(row);
   return { ok: true };
