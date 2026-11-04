@@ -362,5 +362,7 @@
     }).catch(function () { errorScreen(function () { location.reload(); }); });
   }
 
+  // A sign-in link opened in a tab that already shows this page changes only the fragment; handle it too.
+  window.addEventListener('hashchange', function () { if (/(?:^#|&)t=/.test(location.hash)) start(); });
   start();
 })();
