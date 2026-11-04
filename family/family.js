@@ -77,6 +77,7 @@
 
   function signInScreen(notice) {
     who.hidden = true;
+    document.title = 'The Dojo | Score Samurai';
     var input = el('input', { type: 'email', id: 'email', name: 'email', autocomplete: 'email', required: true, inputmode: 'email', spellcheck: 'false' });
     var btn = el('button', { type: 'submit', class: 'act primary', text: 'Send my link' });
     var form = el('form', { class: 'signin', novalidate: true, on: { submit: function (e) {
