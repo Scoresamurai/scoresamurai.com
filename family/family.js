@@ -158,7 +158,9 @@
 
   function topSection(d) {
     var lede = [];
-    if (d.plan.name) lede.push(d.plan.name + ' Plan' + (d.plan.sessions ? ', ' + d.plan.sessions + ' sessions' : '') + '.');
+    var tu = Number(d.plan.topUps) || 0;
+    if (d.plan.name) lede.push(d.plan.name + ' Plan' + (d.plan.sessions ? ', ' + d.plan.sessions + ' sessions' : '') +
+      (tu ? ', plus ' + tu + ' Top-Up ' + plural(tu, 'Session', 'Sessions') : '') + '.');
     if (d.plan.startedLabel) lede.push('Started ' + d.plan.startedLabel + '.');
     if (d.plan.testDateLabel) lede.push('Test date: ' + d.plan.testDateLabel + '.');
     var belt = null;
@@ -175,7 +177,7 @@
     return el('section', { class: 'top' }, [
       el('div', null, [
         el('p', { class: 'eyebrow', text: 'The Dojo' }),
-        el('h1', { text: d.student + "'s Dojo" }),
+        el('h1', { text: d.role === 'student' ? 'Your Dojo' : d.student + "'s Dojo" }),
         lede.length ? el('p', { class: 'lede', text: lede.join(' ') }) : null
       ]),
       belt
@@ -326,17 +328,23 @@
         msg.hidden = false;
       });
     });
-    rows.push(el('div', { class: 'row' }, [
-      el('div', null, [el('div', { class: 'd', text: 'Top-Up Sessions, $250 each' }),
-        el('div', { class: 's', text: 'Offered at session 8 if ' + d.student + ' wants more time' + (d.plan.testDateLabel ? ' before ' + d.plan.testDateLabel : '') + '.' })]),
-      b.portal ? portalBtn : null
-    ]));
-    return el('section', null, [el('h2', { text: 'Billing' }), el('div', { class: 'list' }, rows), msg]);
+    var tail = null;
+    if (d.sessions.used >= 7) {
+      // The Top-Up offer shows once 7 sessions are used, just before the session 8 conversation (Sensei, Nov 4 2026).
+      rows.push(el('div', { class: 'row' }, [
+        el('div', null, [el('div', { class: 'd', text: 'Top-Up Sessions, $250 each' }),
+          el('div', { class: 's', text: 'Offered at session 8 if ' + d.student + ' wants more time' + (d.plan.testDateLabel ? ' before ' + d.plan.testDateLabel : '') + '.' })]),
+        b.portal ? portalBtn : null
+      ]));
+    } else if (b.portal) {
+      tail = el('p', { class: 'more' }, [portalBtn]);
+    }
+    return el('section', null, [el('h2', { text: 'Billing' }), el('div', { class: 'list' }, rows), tail, msg]);
   }
 
   function render(d, s) {
     header(d);
-    document.title = d.student + "'s Dojo | Score Samurai";
+    document.title = (d.role === 'student' ? 'Your Dojo' : d.student + "'s Dojo") + ' | Score Samurai';
     show([
       topSection(d),
       sessionsSection(d),
