@@ -80,6 +80,7 @@ new MutationObserver(scan).observe(document.documentElement, { childList: true, 
 .field .hint{font-size:13px;color:var(--muted)}
 .field input,.field select,.field textarea{height:48px;padding:0 14px;border:1px solid #C9BFA8;border-radius:8px;font-size:16px;font-family:inherit;background:#fff;color:var(--ink);width:100%}
 .field textarea{height:auto;min-height:96px;padding:12px 14px;resize:vertical}
+.field input[type=file]{height:auto;padding:10px 12px}
 .field input:focus,.field select:focus,.field textarea:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:var(--gold)}
 .field.err input,.field.err select,.field.err textarea{border-color:var(--maroon)}
 .errmsg{font-size:13px;color:var(--maroon);display:none}
@@ -103,7 +104,7 @@ footer .fine{display:flex;flex-direction:column;gap:6px;max-width:440px}
 </style>
 </head>
 <body>
-<header class="hdr"><div class="wrap"><a class="brand" href="/"><img src="/warrior.png" alt="Score Samurai"><span>Score Samurai</span></a></div></header>
+<header class="hdr"><div class="wrap"><a class="brand" href="/"><img src="/warrior.png" alt=""><span>Score Samurai</span></a></div></header>
 
 <main>
 <section>
@@ -141,6 +142,20 @@ footer .fine{display:flex;flex-direction:column;gap:6px;max-width:440px}
         <div class="row2">
           <div class="field"><label for="math">Math section score</label><input id="math" name="math_score" placeholder="or N/A" required><span class="errmsg">A score, or N/A.</span></div>
           <div class="field"><label for="rw">Reading and Writing section score</label><input id="rw" name="rw_score" placeholder="or N/A" required><span class="errmsg">A score, or N/A.</span></div>
+        </div>
+        <!-- Optional practice-test block (ENGINE2, Nov 4 2026, INTAKE-SPEC.md fields 18 to 23). Fields 19 to 23 show only for a Bluebook practice test. -->
+        <div class="field"><label for="ptest">Which Bluebook practice test was it? <span class="hint">(optional)</span></label><select id="ptest" name="practice_test"><option value="">Choose</option><option>Practice Test 4</option><option>Practice Test 5</option><option>Practice Test 6</option><option>Practice Test 7</option><option>Practice Test 8</option><option>Practice Test 9</option><option>Practice Test 10</option><option>Practice Test 11</option><option>An official SAT or PSAT</option><option>Another test</option><option>I haven&rsquo;t taken one yet</option></select></div>
+        <div id="missBlock" class="stack hidden" style="gap:16px">
+          <p class="hint" id="missHint" style="margin:0;font-size:13px;color:var(--muted)">The numbers Bluebook shows, like 3, 9, 14. Add the right answer if you can, like 3B.</p>
+          <div class="row2">
+            <div class="field"><label for="mrw1">Reading and Writing, Module 1: the questions you missed</label><input id="mrw1" name="missed_rw_m1" aria-describedby="missHint" autocomplete="off"></div>
+            <div class="field"><label for="mrw2">Reading and Writing, Module 2: the questions you missed</label><input id="mrw2" name="missed_rw_m2" aria-describedby="missHint" autocomplete="off"></div>
+          </div>
+          <div class="row2">
+            <div class="field"><label for="mm1">Math, Module 1: the questions you missed</label><input id="mm1" name="missed_math_m1" aria-describedby="missHint" autocomplete="off"></div>
+            <div class="field"><label for="mm2">Math, Module 2: the questions you missed</label><input id="mm2" name="missed_math_m2" aria-describedby="missHint" autocomplete="off"></div>
+          </div>
+          <div class="field" id="fShots"><label for="shots">Or upload screenshots of the review screen</label><input id="shots" name="review_shots" type="file" accept="image/*" multiple aria-describedby="shotsHint"><span class="hint" id="shotsHint">Up to 4 images.</span><span class="errmsg" id="shotsErr">Up to 4 images, please.</span></div>
         </div>
         <div class="field"><label for="target">Target SAT score</label><input id="target" name="target_score" required><span class="errmsg">The number you are aiming at.</span></div>
         <div class="field"><label for="colleges">Top target colleges <span class="hint">(up to 3, optional)</span></label><textarea id="colleges" name="target_colleges"></textarea></div>
