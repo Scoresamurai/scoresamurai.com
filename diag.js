@@ -1,5 +1,8 @@
 /* Score Samurai: the three-screen Diagnostic form. Seventeen fields, same as the TutorBird intake,
-   posted to the Apps Script endpoint (apps-script/Code.gs). Set ENDPOINT before deploy. */
+   posted to the Apps Script endpoint (apps-script/Code.gs). Set ENDPOINT before deploy.
+   ENGINE2, Nov 4 2026 (INTAKE-SPEC.md): an optional practice-test block on screen 2. The miss fields and the
+   screenshot upload show only for a Bluebook practice test; screenshots are scaled to 1600 px on the long side
+   and sent as JPEG in a "shots" array inside the same text/plain POST. */
 (function () {
   var ENDPOINT = "https://script.google.com/macros/s/AKfycbwNXGTg_7VgI6U7ejrx6dM9QeX8ObhIZ7br0v9_R0IL8U0SfCiPjL6Mcpcv-fjUFgpdrg/exec";
   var form = document.getElementById("dx");
@@ -56,6 +59,54 @@
       if (h) { if (!h.hasAttribute("data-own")) h.setAttribute("data-own", h.textContent); h.textContent = parent ? "About the student" : h.getAttribute("data-own"); }
     });
   });
+  /* The practice-test block: fields 19 to 23 appear only when field 18 names a Bluebook practice test. */
+  var ptest = document.getElementById("ptest"), missBlock = document.getElementById("missBlock");
+  function bluebook() { return !!ptest && /^Practice Test \d+$/.test(ptest.value); }
+  if (ptest && missBlock) {
+    ptest.addEventListener("change", function () { missBlock.classList.toggle("hidden", !bluebook()); });
+  }
+  var MAX_SHOTS = 4, LONG_SIDE = 1600, MAX_SHOT_BYTES = 6 * 1024 * 1024;
+  var shotsIn = document.getElementById("shots");
+  if (shotsIn) shotsIn.addEventListener("change", function () {
+    document.getElementById("fShots").classList.toggle("err", shotsIn.files.length > MAX_SHOTS);
+  });
+
+  /* One image to {name, type, data}: drawn to a canvas no more than LONG_SIDE px on its long side. PNG first, since a
+     screenshot is text and JPEG blur costs the review reader rows (pre-launch test 3, Nov 4 2026); JPEG at q when the
+     PNG is too big. */
+  function shrink(file, q) {
+    return new Promise(function (resolve, reject) {
+      var url = URL.createObjectURL(file), img = new Image();
+      img.onload = function () {
+        var k = Math.min(1, LONG_SIDE / Math.max(img.naturalWidth, img.naturalHeight));
+        var c = document.createElement("canvas");
+        c.width = Math.max(1, Math.round(img.naturalWidth * k)); c.height = Math.max(1, Math.round(img.naturalHeight * k));
+        var g = c.getContext("2d"); g.fillStyle = "#fff"; g.fillRect(0, 0, c.width, c.height);
+        g.drawImage(img, 0, 0, c.width, c.height);
+        URL.revokeObjectURL(url);
+        var name = String(file.name || "screenshot").slice(0, 80);
+        var png = c.toDataURL("image/png").split(",")[1];
+        if (png.length <= MAX_SHOT_BYTES / MAX_SHOTS) return resolve({ name: name, type: "image/png", data: png });
+        resolve({ name: name, type: "image/jpeg", data: c.toDataURL("image/jpeg", q).split(",")[1] });
+      };
+      img.onerror = function () { URL.revokeObjectURL(url); reject(new Error("image")); };
+      img.src = url;
+    });
+  }
+  function readShots() {
+    if (!bluebook() || !shotsIn || !shotsIn.files.length) return Promise.resolve([]);
+    var files = Array.prototype.slice.call(shotsIn.files, 0, MAX_SHOTS);
+    function at(q) {
+      return Promise.all(files.map(function (f) { return shrink(f, q); })).then(function (list) {
+        var bytes = list.reduce(function (n, s) { return n + s.data.length; }, 0);
+        if (bytes <= MAX_SHOT_BYTES) return list;
+        if (q > 0.6) return at(q - 0.15);
+        throw new Error("size");
+      });
+    }
+    return at(0.92);
+  }
+
   form.addEventListener("keydown", function (e) {
     if (e.key !== "Enter" || e.isComposing) return;
     var t = e.target;
@@ -71,14 +122,24 @@
     var status = document.getElementById("status");
     btn.disabled = true; btn.textContent = "Sending";
     status.textContent = "";
+    if (shotsIn && shotsIn.files.length > MAX_SHOTS && bluebook()) {
+      document.getElementById("fShots").classList.add("err"); shotsIn.focus(); return;
+    }
     var data = {};
-    new FormData(form).forEach(function (v, k) { data[k] = String(v).trim(); });
+    new FormData(form).forEach(function (v, k) { if (typeof v === "string") data[k] = v.trim(); });
+    if (!bluebook()) ["missed_rw_m1", "missed_rw_m2", "missed_math_m1", "missed_math_m2"].forEach(function (k) { delete data[k]; });
+    if (!data.practice_test) delete data.practice_test;
+    ["missed_rw_m1", "missed_rw_m2", "missed_math_m1", "missed_math_m2"].forEach(function (k) { if (data[k] === "") delete data[k]; });
     data.page = location.href; data.submitted_at = new Date().toISOString();
     var attr = window.ssAttr ? window.ssAttr() : {};
     Object.keys(attr).forEach(function (k) { data[k] = attr[k]; });
 
     /* The reply is read: "Sent" and the GA4 submit event happen only when the script answers ok:true. */
-    fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(data) })
+    readShots()
+      .then(function (shots) {
+        if (shots.length) data.shots = shots;
+        return fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(data) });
+      })
       .then(function (r) { return r.json(); })
       .then(function (j) {
         if (!j || j.ok !== true) throw new Error("not ok");
