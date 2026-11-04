@@ -1,0 +1,198 @@
+{
+ "version": "strikemoves-2026-11-04-strikebest",
+ "note": "One plain line per tile family id in strike-bank.json: the move, then the fix. Shown only to the player, on this device, after seven Strikes. No Codex name.",
+ "moves": {
+  "s01": {
+   "move": "Keeping the same sign after dividing by a negative.",
+   "fix": "A negative flips the sign. Test one number to be sure."
+  },
+  "s02": {
+   "move": "Doing a step to part of an expression instead of all of it.",
+   "fix": "Whatever you do to one term, do to every term on both sides."
+  },
+  "s03": {
+   "move": "Picking an answer that claims more than the text can back.",
+   "fix": "Words like prove, always and cause need strong proof. A careful text usually says suggest or may."
+  },
+  "s04": {
+   "move": "Picking the answer that repeats the text's words.",
+   "fix": "Matching words is not matching meaning. Check what the choice actually claims."
+  },
+  "s05": {
+   "move": "Answering a question the test didn't ask.",
+   "fix": "Before you pick, reread the last line of the question and check the choice answers that line."
+  },
+  "s06": {
+   "move": "Reading a point on the line as the y-intercept.",
+   "fix": "The y-intercept is the y-value at x = 0. Find the slope, then use one point to get b."
+  },
+  "s07": {
+   "move": "Picking a transition word before naming how the two ideas connect.",
+   "fix": "Say the link in plain words first, like but, so or also, then find the word that means that."
+  },
+  "s08": {
+   "move": "Joining two full sentences with only a comma.",
+   "fix": "If both halves can stand alone, they need a period, a semicolon, or a comma plus and, but or so."
+  },
+  "s09": {
+   "move": "Dropping a minus sign when moving or subtracting a term.",
+   "fix": "Taking away a negative adds. Carry every sign with its number."
+  },
+  "s10": {
+   "move": "Putting commas around words the sentence needs.",
+   "fix": "If the sentence loses its meaning without the words, leave the commas out."
+  },
+  "s11": {
+   "move": "Putting a colon after words that aren't a full sentence.",
+   "fix": "A colon needs a complete sentence before it."
+  },
+  "s12": {
+   "move": "Stopping one step early.",
+   "fix": "Check what the question asks for. Solving for x is often step one, not the answer."
+  },
+  "s13": {
+   "move": "Missing the second solution.",
+   "fix": "An absolute value or a square can hide two answers. Spot the shape before you solve."
+  },
+  "s14": {
+   "move": "Matching a verb or pronoun to the nearest noun.",
+   "fix": "Find the real subject. Skip the words in between and match to that."
+  },
+  "s15": {
+   "move": "Picking a verb tense the sentence's time words don't allow.",
+   "fix": "Find the time clue, like last spring or by then, and match the tense to it."
+  },
+  "s16": {
+   "move": "Reading off the angle that's given instead of the one asked for.",
+   "fix": "Write each angle you know on the figure, then step from it to the one asked for."
+  },
+  "s17": {
+   "move": "Using a word's everyday meaning when the text uses another one.",
+   "fix": "Hide the word, read the sentence, and pick the meaning the sentence needs."
+  },
+  "s18": {
+   "move": "Reading the wrong row or column of a table.",
+   "fix": "Put a finger on the row and the column the question names, and read where they meet."
+  },
+  "s19": {
+   "move": "Letting a rise and a drop of the same size cancel.",
+   "fix": "Each change works on a new number, so run them one at a time."
+  },
+  "s20": {
+   "move": "Picking a sentence that tells the reader what they already know.",
+   "fix": "Check who the writer is talking to and what that reader still needs."
+  },
+  "s21": {
+   "move": "Picking a true sentence that doesn't do the job the question asks for.",
+   "fix": "Read the goal in the question first, then pick the choice that meets it."
+  },
+  "s22": {
+   "move": "Guessing how many times two graphs meet.",
+   "fix": "Graph both and count the points where they cross."
+  },
+  "s23": {
+   "move": "Adding punctuation where none belongs.",
+   "fix": "If the words run as one sentence, no mark is often right."
+  },
+  "s24": {
+   "move": "Reading something from a chart that it doesn't show.",
+   "fix": "Name what the chart shows, like a median or a count, and stop there."
+  },
+  "s25": {
+   "move": "Picking an idea the passage already ruled out.",
+   "fix": "Cross out each choice the evidence knocks down. Pick what's left."
+  },
+  "s26": {
+   "move": "Pairing numbers in the wrong order.",
+   "fix": "Line up x with x and y with y before you compare."
+  },
+  "s27": {
+   "move": "Picking a purpose the text never takes on.",
+   "fix": "Say what the text does in one line, then match that."
+  },
+  "s28": {
+   "move": "Mixing up what each number in an equation stands for.",
+   "fix": "Ask what changes with x and what stays fixed. The number next to x is the rate."
+  },
+  "s29": {
+   "move": "Picking a choice that is only half right.",
+   "fix": "Every part of a choice has to hold up. One wrong half sinks it."
+  },
+  "s30": {
+   "move": "Starting to solve before naming the unknowns.",
+   "fix": "Write what each letter stands for first, then build the equation."
+  },
+  "s31": {
+   "move": "Picking evidence on the right topic that doesn't prove the claim.",
+   "fix": "Ask whether the finding shows the exact claim, not just the subject."
+  },
+  "s32": {
+   "move": "Treating growth that multiplies as growth that adds.",
+   "fix": "Doubling three times is times 2, times 2, times 2."
+  },
+  "s33": {
+   "move": "Picking a word that sounds right but runs against the clue.",
+   "fix": "Find the clue in the sentence, predict a word, then match."
+  },
+  "s34": {
+   "move": "Moving a graph the wrong way.",
+   "fix": "Inside the parentheses it flips: x minus 5 moves right, x plus 5 moves left."
+  },
+  "s35": {
+   "move": "Putting a question mark on a sentence that only reports a question.",
+   "fix": "If the sentence tells about a question rather than asking it, end with a period."
+  },
+  "s36": {
+   "move": "Dividing by the wrong total.",
+   "fix": "Find the group the question picks from. That group goes on the bottom."
+  },
+  "s37": {
+   "move": "Using one rate for everyone when the rate changes at a cutoff.",
+   "fix": "Split at the cutoff and work out each part on its own."
+  },
+  "s38": {
+   "move": "Giving a claim to the wrong person in the text.",
+   "fix": "Mark who says what, then match the claim to its owner."
+  },
+  "s39": {
+   "move": "Adding numbers that should multiply.",
+   "fix": "With exponents, the numbers in front multiply and the powers add."
+  },
+  "s40": {
+   "move": "Mixing up the sine and cosine of the two acute angles.",
+   "fix": "The sine of one acute angle is the cosine of the other. The numbers stay the same."
+  },
+  "s41": {
+   "move": "Picking a sentence with no real verb for its subject.",
+   "fix": "Find the subject, then check it has its own verb."
+  },
+  "s42": {
+   "move": "Picking any value in a range when the question wants one number.",
+   "fix": "Check whether the question wants one exact value or anything in the range."
+  },
+  "s43": {
+   "move": "Scaling area by the same factor as the sides.",
+   "fix": "Area scales by the square. Triple the sides and the area grows 9 times."
+  },
+  "s44": {
+   "move": "Averaging two means as if the groups were the same size.",
+   "fix": "Weight each mean by the size of its group."
+  },
+  "s45": {
+   "move": "Expecting the median to move when one extreme value changes.",
+   "fix": "An extreme value pulls the mean. The median moves only if the middle moves."
+  },
+  "s46": {
+   "move": "Mixing up no solution and infinitely many.",
+   "fix": "Same x terms and same constants: infinitely many. Same x terms, new constants: none."
+  },
+  "s47": {
+   "move": "Undoing steps in the wrong order when isolating a letter.",
+   "fix": "Undo the outermost step first. Clear the fraction before you move terms."
+  },
+  "s48": {
+   "move": "Missing a small word like some or most.",
+   "fix": "Underline the qualifier and make sure the choice keeps it."
+  }
+ }
+}

@@ -1,7 +1,7 @@
 /* Score Samurai: the Daily Strike.
    One question per Eastern calendar date, the same for everyone, keyed by the bank's start date.
-   No account: one localStorage object holds the player's days. No hearts, no streak penalty, no badges,
-   no leaderboard. The board, the share text and the share image never show a letter or the answer, and no
+   No account: one localStorage object holds the player's days. A quiet count of days in a row (no grace day,
+   no pressure line, archive replays never touch it); no hearts, no badges, no leaderboard. The board, the share text and the share image never show a letter or the answer, and no
    Codex name is shown anywhere: a wrong pick turns its card over to a plain read line in its family's colour.
    Questions come only from strike-bank.json (audited; see README.md for the schema). */
 (function () {
@@ -14,6 +14,8 @@
   var HEX = { orange: "#E07B39", yellow: "#E3B53B", purple: "#8F6BBF", blue: "#5B8BD0", red: "#D9534A", brown: "#A87452", green: "#3F8A4F" };
   var LETTERS = ["A", "B", "C", "D"];
   var MAROON = "#7A0B10", MAROON2 = "#5E080C", WELL = "#4A0509", CREAM = "#F2EBDB", GOLD = "#C9A24A", INK2 = "#5A4D46";
+  var KIT_FORM = "10043240"; /* Kit form "Daily Strike": tomorrow's Strike by email */
+  var READ_AFTER = 7;        /* the private read opens after this many finished Strikes on this device */
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   function $(id) { return document.getElementById(id); }
@@ -56,14 +58,30 @@
   }
   function save(s) { try { localStorage.setItem(KEY, JSON.stringify(s)); } catch (e) {} }
   function daysPlayed(s) { var n = 0; for (var k in s.plays) if (s.plays[k].done) n++; return n; }
+  /* days in a row: finished daily Strikes on consecutive Eastern dates, ending today, or yesterday if today is not
+     played yet. A missed day ends it. No grace day. Archive replays are not in s.plays, so they never count. */
+  function streakOf(s, upto) {
+    var d = upto, n = 0;
+    if (!(s.plays[d] && s.plays[d].done)) d = addDays(d, -1);
+    while (s.plays[d] && s.plays[d].done) { n++; d = addDays(d, -1); }
+    return n;
+  }
+  function tallyText() {
+    var played = daysPlayed(state), run = streakOf(state, today), out = [];
+    if (played) out.push(played === 1 ? "1 day played" : played + " days played");
+    if (run >= 2) out.push(run + " days in a row");
+    return out.join(" · ");
+  }
 
   var realToday = easternDate();
   var today = realToday;
   var state = load();
   var isNew = !state;
   if (!state) state = { first: realToday, d7: false, plays: {} };
+  if (!state.arch) state.arch = {}; /* archive replays: kept apart from plays, so they never touch the count of days in a row */
 
   var bank, item, dayNum, labels;
+  var mode = "daily", cur = null, todayNum = 0, todayItem = null; /* cur: the Eastern date of the question on the page */
 
   /* ---------- text: superscript digits are set as real digits, raised, so every glyph comes from the house face ---------- */
   var SUP = { "⁰": "0", "¹": "1", "²": "2", "³": "3", "⁴": "4", "⁵": "5", "⁶": "6", "⁷": "7", "⁸": "8", "⁹": "9" };
@@ -113,13 +131,17 @@
   function flip(node, apply, axis) {
     var r = axis || "X";
     if (reduce || !node.animate) { apply(); return Promise.resolve(); }
+    var applied = false;
+    function once() { if (!applied) { applied = true; apply(); } }
     var a = node.animate([{ transform: "rotate" + r + "(0deg)" }, { transform: "rotate" + r + "(90deg)" }], { duration: 150, easing: "ease-in", fill: "forwards" });
-    return a.finished.then(function () {
-      apply();
+    var turn = a.finished.then(function () {
+      once();
       var b = node.animate([{ transform: "rotate" + r + "(-90deg)" }, { transform: "rotate" + r + "(0deg)" }], { duration: 180, easing: "ease-out" });
       a.cancel();
       return b.finished;
-    }, function () { apply(); });
+    }, once);
+    /* a page in a background tab holds its animations; the tile still takes its colour and the result still comes */
+    return Promise.race([turn, wait(700).then(function () { once(); a.cancel(); })]);
   }
 
   /* ---------- the question ---------- */
@@ -190,7 +212,9 @@
     $("qcard").hidden = false;
   }
 
-  function playOf() { return state.plays[today] || (state.plays[today] = { n: dayNum, id: item.id, picks: [], tiles: [], done: false }); }
+  function store() { return mode === "archive" ? state.arch : state.plays; }
+  function playOf() { var st = store(); return st[cur] || (st[cur] = { n: dayNum, id: item.id, picks: [], tiles: [], done: false }); }
+  function curPlay() { return store()[cur]; }
 
   /* the card's other side: a caught card shows only its plain line in the trap colour; the struck card turns green */
   function turnCard(i, done) {
@@ -223,7 +247,11 @@
   function pick(i) {
     var p = playOf();
     if (p.done || p.picks.indexOf(i) >= 0) return;
-    if (!p.picks.length) { ev("strike_play", { strike_day: dayNum, section: item.section }); warrior(); }
+    if (!p.picks.length) {
+      if (mode === "archive") ev("strike_archive_play", { strike_day: dayNum, days_back: todayNum - dayNum, section: item.section });
+      else ev("strike_play", { strike_day: dayNum, section: item.section });
+      warrior();
+    }
     p.picks.push(i); p.tiles.push(tileOf(i));
     var n = p.tiles.length - 1, t = p.tiles[n];
     var slots = [$("board").children[n], $("mini").children[n]];
@@ -237,7 +265,11 @@
     $("board").setAttribute("aria-label", boardLabel(p.tiles, i === item.key));
     if (i === item.key) {
       p.done = true; p.at = Date.now(); save(state);
-      ev("strike_complete", { strike_day: dayNum, tries: p.picks.length, section: item.section });
+      if (mode === "daily") {
+        ev("strike_complete", { strike_day: dayNum, tries: p.picks.length, section: item.section });
+        ev("strike_streak", { strike_day: dayNum, streak: streakOf(state, today), days_played: daysPlayed(state) });
+      }
+      prepareShare(p);
       $("msg").textContent = "Struck on pick " + p.picks.length + ".";
       lockAll();
       Promise.all(turns).then(function () { return toTop(); }).then(strike).then(function () { showResult(p, true); });
@@ -277,7 +309,7 @@
       { opacity: 0, transform: "rotate(-18deg) scaleX(1)" }
     ], { duration: 300, easing: "ease-out" });
     setTimeout(function () { pose(true); }, 90);
-    return a.finished.catch(function () {}).then(function () { return wait(60); });
+    return Promise.race([a.finished.catch(function () {}), wait(600)]).then(function () { pose(true); return wait(60); });
   }
 
   /* ---------- the result: the same hero, the day and the pick, the same board, Share ---------- */
@@ -291,7 +323,10 @@
     fillBoard($("board"), p.tiles); fillBoard($("mini"), p.tiles);
     $("board").setAttribute("aria-label", boardLabel(p.tiles, true));
     $("me").hidden = true;
+    var tl = mode === "daily" ? tallyText() : "Replay. Your count of days in a row is untouched.";
+    $("tally").textContent = tl; $("tally").hidden = !tl;
     $("sharewrap").hidden = false;
+    prepareShare(p);
     var lg = $("legend"); lg.innerHTML = ""; var seen = {};
     p.picks.forEach(function (i) {
       if (i === item.key) return;
@@ -309,6 +344,8 @@
       rich(d, m ? txt.slice(m[0].length) : txt); d.hidden = false;
     } else d.hidden = true;
     $("after").hidden = false;
+    renderRead();
+    showMail();
     if (fresh && !reduce) [$("copy"), $("after")].forEach(function (n) { n.classList.remove("settle"); void n.offsetWidth; n.classList.add("settle"); });
   }
 
@@ -332,16 +369,138 @@
   }
 
   function renderMe() {
-    var me = $("me"), played = daysPlayed(state), y = state.plays[addDays(today, -1)];
-    if (!played && !(y && y.done)) { me.hidden = true; return; }
-    me.innerHTML = "";
-    if (played) me.appendChild(el("span", null, played === 1 ? "1 day played" : played + " days played"));
-    if (y && y.done && y.tiles) {
-      var w = el("span", "yd"); w.appendChild(document.createTextNode("Yesterday"));
-      var g = el("span", "board"); g.setAttribute("role", "img"); g.setAttribute("aria-label", "Yesterday: struck on pick " + y.tiles.length);
-      fillBoard(g, y.tiles); w.appendChild(g); me.appendChild(w);
+    var me = $("me"), t = tallyText();
+    me.textContent = t; me.hidden = !t;
+  }
+
+  /* ---------- yesterday's question and its one-line read, under today's board ---------- */
+  function firstLine(text) {
+    var m = /^(.+?[.!?])(\s+(?=[A-Z“"(])|$)/.exec(String(text).trim());
+    return m ? m[1] : String(text).trim();
+  }
+  function renderYesterday() {
+    var box = $("yday");
+    if (mode !== "daily" || todayNum < 2 || !bank.days[todayNum - 2]) { box.hidden = true; return; }
+    var y = bank.days[todayNum - 2], yd = addDays(today, -1), mine = state.plays[yd];
+    $("ydn").textContent = "Day " + (todayNum - 1);
+    var yb = $("yboard");
+    if (mine && mine.done && mine.tiles && mine.id === y.id) { fillBoard(yb, mine.tiles); yb.setAttribute("aria-label", "Yesterday: struck on pick " + mine.tiles.length); yb.hidden = false; }
+    else yb.hidden = true;
+    var r = $("yread"); r.innerHTML = ""; rich(r, firstLine(y.explain));
+    var q = $("yq"); q.innerHTML = "";
+    q.appendChild(el("p", "ysec sc", y.section));
+    q.appendChild(para(y.passage));
+    if (y.stem) q.appendChild(para(y.stem, "ystem"));
+    var ol = el("ul", "ych");
+    y.choices.forEach(function (c, i) {
+      var li = el("li", i === y.key ? "ykey" : null);
+      li.appendChild(el("b", null, LETTERS[i] + ". ")); rich(li, c);
+      if (i === y.key) li.appendChild(el("span", "ytag", " The answer"));
+      ol.appendChild(li);
+    });
+    q.appendChild(ol);
+    box.hidden = false;
+  }
+
+  /* ---------- the private read: the move that costs this player most, after seven Strikes, on this device only ---------- */
+  var moves = null;
+  function loadMoves() {
+    if (!moves) moves = fetch("strike-moves.json", { credentials: "same-origin" }).then(function (r) { return r.json(); }).then(function (j) { return j.moves || {}; }).catch(function () { return {}; });
+    return moves;
+  }
+  function finished() {
+    var out = [];
+    [state.plays, state.arch].forEach(function (st) {
+      for (var d in st) {
+        var p = st[d]; if (!p.done) continue;
+        var it = bank.days[p.n - 1]; if (!it || it.id !== p.id) continue;
+        out.push({ at: p.at || 0, it: it, p: p });
+      }
+    });
+    return out;
+  }
+  function renderRead() {
+    var box = $("myread"), all = finished();
+    $("mvdiag").href = "https://scoresamurai.com/diagnostic/?utm_source=strike&utm_medium=daily&utm_campaign=strike&utm_content=read";
+    if (all.length < READ_AFTER) {
+      $("mv").textContent = "Opens after " + READ_AFTER + " Strikes on this device. So far: " + all.length + ".";
+      $("mvm").hidden = true; box.hidden = false; return;
     }
-    me.hidden = false;
+    var count = {}, last = {};
+    all.forEach(function (x) {
+      x.p.picks.forEach(function (i) {
+        var l = x.it.labels[i]; if (!l) return;
+        count[l] = (count[l] || 0) + 1; if (!last[l] || x.at > last[l]) last[l] = x.at;
+      });
+    });
+    var top = null;
+    for (var l in count) if (!top || count[l] > count[top] || (count[l] === count[top] && last[l] > last[top])) top = l;
+    loadMoves().then(function (m) {
+      var mv = $("mv"); mv.innerHTML = "";
+      if (!top || !m[top]) { mv.textContent = "No move has caught you more than the others yet. Keep playing and it shows up here."; $("mvm").hidden = true; box.hidden = false; return; }
+      mv.appendChild(el("b", null, m[top].move)); mv.appendChild(document.createTextNode(" " + m[top].fix));
+      $("mvm").textContent = "It caught you " + (count[top] === 1 ? "once" : count[top] + " times") + " in " + all.length + " Strikes. Read as of " + fmt(realToday, { month: "short", day: "numeric" }) + ". Only you see this.";
+      $("mvm").hidden = false; box.hidden = false;
+    });
+  }
+
+  /* ---------- tomorrow's Strike by email, through the Kit form ---------- */
+  function showMail(pre) {
+    $("mailh").textContent = pre ? "The first Strike by email" : "Tomorrow's Strike by email";
+    $("mline").textContent = pre ? "One short email on " + fmt(bank.start, { month: "long", day: "numeric" }) + " when the first Strike is up, then one each morning. Unsubscribe in one click."
+                                 : "One short email each morning when the new Strike is up. Unsubscribe in one click.";
+    $("mail").hidden = false;
+  }
+  function mailSubmit(e) {
+    e.preventDefault();
+    var input = $("mailIn"), out = $("mailOut"), v = input.value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) { out.textContent = "That email address doesn't look right."; input.focus(); return; }
+    var f = new FormData(); f.append("email_address", v);
+    var btn = $("mailBtn"); btn.disabled = true; out.textContent = "Sending...";
+    fetch("https://app.kit.com/forms/" + KIT_FORM + "/subscriptions", { method: "POST", mode: "no-cors", body: f })
+      .then(function () { out.textContent = "Almost there. Check your inbox and tap Confirm."; $("mailForm").hidden = true; },
+            function () { out.textContent = "That didn't go through. Try again in a minute."; btn.disabled = false; });
+  }
+
+  /* ---------- the archive: replay any past day; replays live apart and never touch the count of days in a row ---------- */
+  function renderArchive() {
+    var box = $("arch"), list = $("alist");
+    if (todayNum < 2) { box.hidden = true; return; }
+    list.innerHTML = "";
+    for (var n = todayNum - 1; n >= 1; n--) {
+      var d = addDays(bank.start, n - 1), it = bank.days[n - 1];
+      if (!it) continue;
+      var li = el("li"), b = el("button", "aday"); b.type = "button";
+      b.appendChild(el("span", "an", "Day " + n));
+      b.appendChild(el("span", "ad", fmt(d, { weekday: "short", month: "short", day: "numeric" })));
+      var mine = state.plays[d], rep = state.arch[d], show = (mine && mine.done && mine.id === it.id) ? mine : (rep && rep.done && rep.id === it.id) ? rep : null;
+      if (show) { var g = el("span", "board"); fillBoard(g, show.tiles); g.setAttribute("aria-hidden", "true"); b.appendChild(g); }
+      b.setAttribute("aria-label", "Replay Day " + n + ", " + fmt(d, { weekday: "long", month: "long", day: "numeric" }) + (show ? ", played" : ""));
+      (function (k) { b.addEventListener("click", function () { replay(k); }); })(n);
+      li.appendChild(b); list.appendChild(li);
+    }
+    box.hidden = !list.children.length;
+    /* the newest fourteen first; the rest stay one tap away so the page never turns into a long list */
+    var more = $("amore"), extra = list.children.length - 14;
+    Array.prototype.forEach.call(list.children, function (li, i) { li.hidden = i >= 14; });
+    more.hidden = extra <= 0;
+    if (extra > 0) more.textContent = "Show all " + list.children.length + " days";
+  }
+  function replay(n) {
+    mode = "archive"; dayNum = n; cur = addDays(bank.start, n - 1); item = bank.days[n - 1];
+    delete state.arch[cur]; save(state);
+    shareFile = null; sharePending = null;
+    $("hero").classList.remove("struck"); pose(false);
+    ["rtitle", "bline", "rline", "tally", "sharewrap", "me", "yday", "after", "mail", "myread"].forEach(function (k) { $(k).hidden = true; });
+    $("line").hidden = false; $("shared").textContent = ""; $("mailForm").hidden = false;
+    $("dateline").textContent = "Replay · Day " + n + " · " + fmt(cur, { weekday: "short", month: "short", day: "numeric" });
+    $("abar").hidden = false; $("abarDay").textContent = "Day " + n;
+    $("diagLink").href = "https://scoresamurai.com/diagnostic/?utm_source=strike&utm_medium=daily&utm_campaign=strike&utm_content=day" + n;
+    fillBoard($("board"), []); fillBoard($("mini"), []);
+    $("board").setAttribute("aria-label", boardLabel([], false));
+    renderQuestion();
+    window.scrollTo({ top: 0, behavior: "auto" });
+    $("qtag").focus && $("qtag").setAttribute("tabindex", "-1");
   }
 
   /* ---------- share: text to the clipboard, a square image to the device ---------- */
@@ -437,15 +596,52 @@
     a.href = u; a.download = "daily-strike-" + dayNum + ".png"; document.body.appendChild(a); a.click(); a.remove();
     setTimeout(function () { URL.revokeObjectURL(u); }, 4000);
   }
+  /* The image is drawn as soon as the strike lands, so a tap on Share can open the phone's share sheet at once:
+     iOS only opens it from the tap itself, not after the page has waited on a drawing. */
+  var shareFile = null, sharePending = null;
+  function prepareShare(p) {
+    if (sharePending) return sharePending;
+    sharePending = image(p).then(function (b) {
+      if (b && window.File) { try { shareFile = new File([b], "daily-strike-" + dayNum + ".png", { type: "image/png" }); } catch (e) { shareFile = null; } }
+      return b;
+    }, function () { return null; });
+    return sharePending;
+  }
+  function canSheet() {
+    try { return !!(shareFile && navigator.share && navigator.canShare && navigator.canShare({ files: [shareFile] })); } catch (e) { return false; }
+  }
+  function sharedEv(p, method, copied, img) {
+    ev("strike_share", { strike_day: dayNum, tries: p.picks.length, method: method, copied: copied, image: img, archive: mode === "archive" });
+  }
   function share() {
-    var p = state.plays[today]; if (!p || !p.done) return;
-    var out = $("shared"); var ok = [];
-    copy(shareText(p)).then(function () { ok.push("copied"); }, function () {}).then(function () {
-      return image(p);
+    var p = curPlay(); if (!p || !p.done) return;
+    var out = $("shared"), text = shareText(p);
+    if (canSheet()) {
+      /* called straight from the tap, with the image already drawn */
+      navigator.share({ files: [shareFile], text: text, title: "Daily Strike " + dayNum }).then(function () {
+        out.textContent = "Shared."; sharedEv(p, "sheet", false, true);
+      }, function (e) {
+        if (e && e.name === "AbortError") { out.textContent = ""; return; }
+        fallback(p, text);
+      });
+      return;
+    }
+    fallback(p, text);
+  }
+  function fallback(p, text) {
+    var out = $("shared"), ok = [];
+    copy(text).then(function () { ok.push("copied"); }, function () {}).then(function () {
+      return shareFile || prepareShare(p);
     }).then(function (b) { if (b) { saveImage(b); ok.push("image"); } }, function () {}).then(function () {
       out.textContent = ok.indexOf("copied") >= 0 ? (ok.indexOf("image") >= 0 ? "Grid copied. Image saved." : "Grid copied.") : (ok.indexOf("image") >= 0 ? "Image saved." : "Copy did not work on this browser.");
-      ev("strike_share", { strike_day: dayNum, tries: p.picks.length, copied: ok.indexOf("copied") >= 0, image: ok.indexOf("image") >= 0 });
+      sharedEv(p, "download", ok.indexOf("copied") >= 0, ok.indexOf("image") >= 0);
     });
+  }
+  function copyResult() {
+    var p = curPlay(); if (!p || !p.done) return;
+    var out = $("shared");
+    copy(shareText(p)).then(function () { out.textContent = "Result copied."; sharedEv(p, "copy", true, false); },
+                           function () { out.textContent = "Copy did not work on this browser."; });
   }
 
   /* ---------- start ---------- */
@@ -475,7 +671,7 @@
       $("rline").textContent = "First Strike lands " + fmt(b.start, { weekday: "long", month: "long", day: "numeric" });
       $("rline").hidden = false;
       $("sheet").hidden = true;
-      renderMe(); return;
+      renderMe(); showMail(true); return;
     }
     if (!item) {
       $("board").hidden = true;
@@ -483,8 +679,11 @@
     }
     $("dateline").textContent = "Day " + dayNum + " · " + fmt(today, { weekday: "short", month: "short", day: "numeric" });
     $("diagLink").href = "https://scoresamurai.com/diagnostic/?utm_source=strike&utm_medium=daily&utm_campaign=strike&utm_content=day" + dayNum;
+    todayNum = dayNum; todayItem = item; cur = today;
     renderMe();
+    renderYesterday();
     renderQuestion();
+    renderArchive();
     watchBar($("board"));
     var p = state.plays[today];
     if (p && p.id !== item.id) { delete state.plays[today]; p = null; save(state); }
@@ -492,7 +691,12 @@
   }
 
   $("shareBtn").addEventListener("click", share);
-  $("diagLink").addEventListener("click", function () { ev("strike_diagnostic_click", { strike_day: dayNum }); });
+  $("copyBtn").addEventListener("click", copyResult);
+  $("backToday").addEventListener("click", function () { location.reload(); });
+  $("amore").addEventListener("click", function () { Array.prototype.forEach.call($("alist").children, function (li) { li.hidden = false; }); $("amore").hidden = true; });
+  $("mailForm").addEventListener("submit", mailSubmit);
+  $("diagLink").addEventListener("click", function () { ev("strike_diagnostic_click", { strike_day: dayNum, place: "footer" }); });
+  $("mvdiag").addEventListener("click", function () { ev("strike_diagnostic_click", { strike_day: dayNum, place: "read" }); });
 
   fetch("strike-bank.json", { credentials: "same-origin" }).then(function (r) { return r.json(); }).then(start).catch(function () { $("empty").hidden = false; tick(); });
 })();
