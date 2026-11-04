@@ -131,13 +131,17 @@
   function flip(node, apply, axis) {
     var r = axis || "X";
     if (reduce || !node.animate) { apply(); return Promise.resolve(); }
+    var applied = false;
+    function once() { if (!applied) { applied = true; apply(); } }
     var a = node.animate([{ transform: "rotate" + r + "(0deg)" }, { transform: "rotate" + r + "(90deg)" }], { duration: 150, easing: "ease-in", fill: "forwards" });
-    return a.finished.then(function () {
-      apply();
+    var turn = a.finished.then(function () {
+      once();
       var b = node.animate([{ transform: "rotate" + r + "(-90deg)" }, { transform: "rotate" + r + "(0deg)" }], { duration: 180, easing: "ease-out" });
       a.cancel();
       return b.finished;
-    }, function () { apply(); });
+    }, once);
+    /* a page in a background tab holds its animations; the tile still takes its colour and the result still comes */
+    return Promise.race([turn, wait(700).then(function () { once(); a.cancel(); })]);
   }
 
   /* ---------- the question ---------- */
@@ -305,7 +309,7 @@
       { opacity: 0, transform: "rotate(-18deg) scaleX(1)" }
     ], { duration: 300, easing: "ease-out" });
     setTimeout(function () { pose(true); }, 90);
-    return a.finished.catch(function () {}).then(function () { return wait(60); });
+    return Promise.race([a.finished.catch(function () {}), wait(600)]).then(function () { pose(true); return wait(60); });
   }
 
   /* ---------- the result: the same hero, the day and the pick, the same board, Share ---------- */
