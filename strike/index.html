@@ -8,11 +8,18 @@
 <link rel="canonical" href="https://scoresamurai.com/strike/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Score Samurai">
-<meta property="og:title" content="Daily Strike">
-<meta property="og:description" content="One SAT question a day, the same one for everyone.">
+<meta property="og:title" content="Daily Strike | Score Samurai">
+<meta property="og:description" content="One SAT question a day, the same one for everyone. Under a minute, no account.">
 <meta property="og:url" content="https://scoresamurai.com/strike/">
-<meta property="og:image" content="https://scoresamurai.com/og.png">
+<meta property="og:image" content="https://scoresamurai.com/strike/og-strike.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Score Samurai Warrior beside the words Daily Strike, one SAT question a day">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Daily Strike | Score Samurai">
+<meta name="twitter:description" content="One SAT question a day, the same one for everyone. Under a minute, no account.">
+<meta name="twitter:image" content="https://scoresamurai.com/strike/og-strike.png">
 <meta name="theme-color" content="#7A0B10">
 <link rel="icon" href="../warrior.png">
 <link rel="preload" href="../fonts/playfair-display-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -66,6 +73,7 @@ button{font-family:inherit;color:inherit}
 h1{margin:12px 0 0;font-family:var(--head);font-weight:600;font-size:42px;line-height:1;letter-spacing:-.005em}
 .line{margin:10px 0 0;max-width:330px;font-size:14.5px;line-height:1.45;color:var(--cream-2)}
 .rtitle{margin:6px 0 0;font-family:var(--head);font-weight:600;font-size:56px;line-height:1;font-variant-numeric:lining-nums}
+.bline{margin:8px 0 0;font-family:var(--head);font-style:italic;font-weight:600;font-size:15px;line-height:1.35;color:var(--cream-2)}
 .rline{margin:6px 0 0;font-family:var(--head);font-weight:600;font-size:25px;line-height:1.2;color:var(--gold);font-variant-numeric:lining-nums}
 .hero .board{margin-top:18px}
 .struck h1{margin-top:12px;font-family:var(--sc);font-weight:400;font-size:13px;line-height:1.4;letter-spacing:.24em;color:var(--gold)}
@@ -132,7 +140,59 @@ sup{font-size:.68em;line-height:0;vertical-align:.42em}
 .foot a{font-weight:700;min-height:44px;display:inline-flex;align-items:center}
 .legal{max-width:640px;margin:0 auto;padding:14px 20px 26px;font-size:12px;line-height:1.5;color:var(--cream-2);text-align:center}
 .legal a{color:var(--cream-2)}
+/* the count of days played and in a row: quiet, one line */
+.tally{margin:12px 0 0;font-size:14px;color:var(--cream-2);font-variant-numeric:lining-nums}
+.lnk{margin:0;padding:0 8px;min-height:44px;border:0;background:none;color:var(--cream);font-size:15px;font-weight:700;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.lnk:hover{color:var(--white)}
+/* yesterday, under today's board */
+.yday{margin:18px 0 0;width:100%;max-width:420px;padding:12px 14px;border:1px solid var(--goldline);border-radius:8px;background:rgba(0,0,0,.14);text-align:left;font-size:15px;line-height:1.5;color:var(--cream)}
+.yday .yk{margin:0;display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:12px;letter-spacing:.16em;color:var(--gold)}
+.yday .board{margin:0;gap:3px;padding:3px;border-radius:4px}
+.yday .board .s{width:12px;border-radius:2px}
+.yday .yread{margin:6px 0 0}
+.yday details{margin:6px 0 0}
+.yday summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-weight:700;color:var(--cream-2);text-decoration:underline;text-underline-offset:3px}
+.yday #yq{margin:2px 0 4px;font-size:15px}
+.yday #yq p{margin:6px 0 0}
+.yday .ysec{font-size:12px;letter-spacing:.16em;color:var(--cream-2)}
+.yday .ystem{font-weight:700}
+.yday .ych{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:4px}
+.yday .ych li{padding:4px 8px;border-radius:5px}
+.yday .ych .ykey{background:var(--t-green);color:var(--ink)}
+.yday .ytag{font-weight:700}
+/* the private read */
+.myread{margin:22px 0 0;padding:16px;border:1px solid var(--edge);border-radius:10px;background:var(--card)}
+.myread .mv{margin:8px 0 0;font-size:16px;line-height:1.55}
+.myread .mvm{margin:8px 0 0;font-size:14px;color:var(--ink-2)}
+.myread .mvd{margin:10px 0 0;font-size:15px;line-height:1.5}
+.myread .mvd a{font-weight:700}
+/* replay banner and the archive */
+.abar{margin:0 0 16px;padding:10px 14px;border-radius:8px;background:var(--card);border:1px solid var(--edge);font-size:15px;line-height:1.5}
+.abar button{margin:0;padding:0;border:0;background:none;color:var(--maroon);font-weight:700;font-size:15px;text-decoration:underline;text-underline-offset:3px;cursor:pointer;min-height:44px}
+.arch{margin:28px 0 0;padding-top:20px;border-top:1px solid var(--rule)}
+.arch .anote{margin:6px 0 0;font-size:15px;color:var(--ink-2)}
+.alist{list-style:none;margin:12px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:8px}
+.aday{width:100%;min-height:64px;display:grid;justify-items:start;align-content:start;gap:2px;padding:8px 10px;text-align:left;background:var(--card);border:1px solid var(--edge);border-bottom-width:3px;border-radius:8px;cursor:pointer;font-size:14px}
+.aday:hover{border-color:var(--gold)}
+.aday .an{font-family:var(--head);font-weight:600;font-size:16px;font-variant-numeric:lining-nums}
+.aday .ad{color:var(--ink-2);font-size:14px}
+.amore{margin:12px 0 0;padding:0;min-height:44px;border:0;background:none;color:var(--maroon);font-weight:700;font-size:15px;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.aday .board{margin-top:4px;gap:3px;padding:3px;border-radius:4px}
+.aday .board .s{width:12px;border-radius:2px}
+/* tomorrow's Strike by email */
+.mail{background:var(--cream);padding:20px 20px 22px;border-top:1px solid var(--rule)}
+.mail .mline{margin:6px 0 0;font-size:15px;line-height:1.5;color:var(--ink-2)}
+.mail form{margin:12px 0 0;display:flex;flex-wrap:wrap;gap:10px}
+.mail input{flex:1 1 220px;min-height:48px;padding:0 14px;border:1px solid var(--edge);border-radius:6px;background:var(--white);font:inherit;font-size:16px;color:var(--ink)}
+.mail input:focus-visible{outline:3px solid var(--maroon);outline-offset:1px}
+.btn2{min-height:48px;padding:0 20px;border:0;border-radius:6px;background:var(--maroon);color:var(--cream);font-weight:700;font-size:16px;cursor:pointer}
+.btn2:hover{background:var(--maroon-2)}
+.btn2[disabled]{opacity:.6;cursor:default}
+.mail .mdone{margin:8px 0 0;min-height:22px;font-size:15px;color:var(--ink)}
+.pre .mail{border-top:0}
 @media(min-width:720px){
+  .yday{max-width:440px}
+  .mail{padding:22px 32px 24px}
   .stage{padding-top:0}
   .hero{padding:0 24px 30px}
   .hero-grid{flex-direction:row-reverse;align-items:flex-end;justify-content:space-between;text-align:left;gap:12px}
@@ -149,6 +209,8 @@ sup{font-size:.68em;line-height:0;vertical-align:.42em}
   .foot{border-radius:0 0 12px 12px;padding:12px 32px 16px}
   .pre .rline{font-size:26px}
   .pre .foot{border-radius:12px}
+  .pre .mail{border-radius:12px 12px 0 0}
+  .pre .mail:not([hidden]) + .foot{border-radius:0 0 12px 12px}
 }
 @media(prefers-reduced-motion:reduce){.settle{animation:none}.bar{transition:none}.choice{transition:none}}
 </style>
@@ -169,21 +231,35 @@ sup{font-size:.68em;line-height:0;vertical-align:.42em}
           <h1 id="h1">Daily Strike</h1>
           <p class="line" id="line">One SAT question a day. Wrong picks earn tiles. Same question for everyone.</p>
           <h2 class="rtitle" id="rtitle" hidden></h2>
+          <p class="bline" id="bline" hidden>The SAT is a discipline. Master it in The Dojo.</p>
           <p class="rline" id="rline" hidden></p>
           <div class="board" id="board" role="img" aria-label="Four empty tiles, one for each pick"></div>
           <p class="me" id="me" hidden></p>
-          <div class="share" id="sharewrap" hidden><button type="button" class="btn" id="shareBtn">Share</button><span class="shared" id="shared" role="status" aria-live="polite"></span></div>
+          <p class="tally" id="tally" hidden></p>
+          <div class="share" id="sharewrap" hidden><button type="button" class="btn" id="shareBtn">Share</button><button type="button" class="lnk" id="copyBtn">Copy result</button><span class="shared" id="shared" role="status" aria-live="polite"></span></div>
+          <div class="yday" id="yday" hidden>
+            <p class="yk sc"><span>Yesterday · <span id="ydn"></span></span><span class="board" id="yboard" role="img" hidden></span></p>
+            <p class="yread" id="yread"></p>
+            <details><summary>See yesterday's question</summary><div id="yq"></div></details>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="sheet" id="sheet" aria-label="Today's question">
+      <p class="abar" id="abar" hidden>Replay of <span id="abarDay"></span>. It doesn't touch your days in a row. <button type="button" id="backToday">Back to today</button></p>
       <div class="after" id="after" hidden>
         <h2 class="h" id="lgh">What caught you</h2>
         <ul class="legend" id="legend"></ul>
         <h2 class="h">The read</h2>
         <p class="explain" id="explain"></p>
         <p class="desmos" id="desmos" hidden></p>
+        <div class="myread" id="myread" hidden>
+          <h2 class="h">The move that costs you most</h2>
+          <p class="mv" id="mv"></p>
+          <p class="mvm" id="mvm" hidden></p>
+          <p class="mvd">The free Diagnostic finds every move like this one and the order to fix them. <a id="mvdiag" href="https://scoresamurai.com/diagnostic/?utm_source=strike&amp;utm_medium=daily&amp;utm_campaign=strike&amp;utm_content=read">Get the free Diagnostic</a></p>
+        </div>
       </div>
       <article id="qcard" aria-labelledby="qtag" hidden>
         <div class="qhead"><h2 class="h" id="qtag"></h2><span class="dn" id="qday"></span></div>
@@ -191,10 +267,26 @@ sup{font-size:.68em;line-height:0;vertical-align:.42em}
         <p class="stem" id="qstem"></p>
         <ul class="choices" id="qchoices"></ul>
       </article>
+      <section class="arch" id="arch" hidden aria-labelledby="archh">
+        <h2 class="h" id="archh">Past Strikes</h2>
+        <p class="anote">Replay any day. Replays don't touch your days in a row.</p>
+        <ul class="alist" id="alist"></ul>
+        <button type="button" class="amore" id="amore" hidden></button>
+      </section>
       <div class="empty" id="empty" hidden><h2 class="h">Daily Strike</h2><p id="emptyText">Today's Strike is not ready yet. Check back tomorrow.</p></div>
       <p class="vh" id="msg" role="status" aria-live="polite"></p>
     </section>
 
+    <section class="mail" id="mail" hidden aria-labelledby="mailh">
+      <h2 class="h" id="mailh">Tomorrow's Strike by email</h2>
+      <p class="mline" id="mline"></p>
+      <form id="mailForm" action="https://app.kit.com/forms/10043240/subscriptions" method="post" novalidate>
+        <label class="vh" for="mailIn">Email address</label>
+        <input id="mailIn" type="email" name="email_address" autocomplete="email" inputmode="email" placeholder="Email address" required>
+        <button class="btn2" id="mailBtn" type="submit">Send it to me</button>
+      </form>
+      <p class="mdone" id="mailOut" role="status" aria-live="polite"></p>
+    </section>
     <footer class="foot"><span id="next"></span><a id="diagLink" href="https://scoresamurai.com/diagnostic/?utm_source=strike&amp;utm_medium=daily&amp;utm_campaign=strike">Get the free Diagnostic</a></footer>
   </div>
   <p class="legal"><a href="https://scoresamurai.com/">Score Samurai</a> · <a href="https://scoresamurai.com/privacy/">Privacy</a> · Score Samurai is not affiliated with or endorsed by College Board. SAT, PSAT and Digital SAT are College Board trademarks.</p>

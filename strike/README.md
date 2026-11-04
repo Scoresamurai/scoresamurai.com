@@ -1,10 +1,12 @@
 # /strike/ : the Daily Strike
 
-One SAT question per Eastern calendar date, the same for everyone, no account. Built Oct 28 2026 (STRIKEPAGE), polished (STRIKEPOLISH) and redesigned (STRIKELOOK) on branch preview-strike. Not linked from any page and not in sitemap.xml until Sensei approves the merge.
+One SAT question per Eastern calendar date, the same for everyone, no account. Built Oct 28 2026 (STRIKEPAGE), polished (STRIKEPOLISH), redesigned (STRIKELOOK), live Oct 29 (STRIKELIVE), and given its season features Nov 4 2026 (STRIKEBEST): the share sheet, a quiet count of days in a row, yesterday under today's board, the private read after seven Strikes, the archive, tomorrow's Strike by email, and the Open Graph card.
 
 ## Files
 - index.html: the page, CSS inline, the one-line footer inside the stage and the site's attribution script. Relative paths only (../fonts, ../warrior.png, strike-bank.json), so the same files run on scoresamurai.com/strike/ and on a branch preview.
 - strike.js: day keying, local state, the board and its tile flip, the result card, share (text plus square PNG), measurement.
+- strike-moves.json: one plain line per tile family id (s01 to s48): the move, then the fix. Loaded only when a result shows, for the private read. No Codex name.
+- og-strike.png: the link preview, 1200 by 630: the Warrior in his strike pose, "Daily Strike", a board, scoresamurai.com/strike.
 - strike-bank.json: Room 4's launch bank (STRIKEBANK, Oct 28 2026), 60 days from Tue Nov 17 2026, wired in whole, with Sensei's ten approved line rewrites and neutral label ids (STRIKEPREP, Oct 28 2026). Its source is Content / Daily Strike / strike-bank.json.
 - warrior-guard-400.webp, warrior-guard-600.webp: the ready pose for the hero (Brand v3 / Warrior repair Oct 13 / warrior-guard-repaired.png, resized down, chosen by srcset so it is never enlarged).
 - warrior-strike-400.webp, warrior-strike-600.webp: the strike pose for the hero after the strike, the same way.
@@ -61,19 +63,30 @@ One SAT question per Eastern calendar date, the same for everyone, no account. B
 On any host other than scoresamurai.com, ?day=N (1 to 60) opens day N of the bank. The live site ignores it.
 
 ## The grid
-One tile per pick, in pick order, on a board of four. A wrong pick takes its family's colour; the struck pick is green. No letters, no choice text, so neither the grid, the share text nor the image shows the answer. No hearts, no streak, no badges, no leaderboard.
+One tile per pick, in pick order, on a board of four. A wrong pick takes its family's colour; the struck pick is green. No letters, no choice text, so neither the grid, the share text nor the image shows the answer. No hearts, no badges, no leaderboard.
+
+## STRIKEBEST (Nov 4 2026)
+- Days in a row: finished daily Strikes on consecutive Eastern dates, ending today or yesterday. A missed day ends it; there is no grace day. Shown as one quiet line ("9 days played · 9 days in a row", the count only from 2), never with a warning, a timer or a reward. Archive replays never touch it.
+- Yesterday: under today's board, yesterday's day number, the player's own board for it if played, the first sentence of its read, and a "See yesterday's question" fold with the question and its answer.
+- The read: after 7 finished Strikes on this device (daily and replays), the result shows "The move that costs you most": the tile family that caught the player most often (ties go to the most recent), its plain move and fix from strike-moves.json, how often it caught them, and the date. The Diagnostic line sits under it (utm_content=read). Before 7 it says how many are done. It never leaves the device.
+- Past Strikes: every day before today, newest first, fourteen shown and the rest one tap away. A replay starts fresh, is stored apart (ss_strike_v1.arch), never counts toward days in a row, and sends strike_archive_play instead of strike_play, strike_complete and strike_streak.
+- Tomorrow's Strike by email: one line, an email field and "Send it to me", posting to Kit form 10043240 (Daily Strike, double opt-in). Before the start date it reads "The first Strike by email". No other data leaves the page.
 
 ## Share
-Share copies three lines to the clipboard (the grid as coloured squares, "Daily Strike <day>", https://scoresamurai.com/strike/) and saves daily-strike-<day>.png: the result card, 1080 square. Cream above, the Warrior at 510 px from his 800 px source (never upscaled) standing on the maroon floor at y 600, "Score Samurai" in small caps at the top, "Daily Strike, Day N" and "Struck on pick N" in Playfair Display with lining figures, the board as on the page (the tray, four 116 px slots, raised tiles, gold hairlines), and scoresamurai.com/strike.
+The image is drawn the moment the strike lands, so a tap on Share opens the phone's share sheet at once with the image and the three lines (iOS opens the sheet only from the tap itself). Where there is no share sheet, Share falls back to the old way below. "Copy result" copies the three lines on its own.
+
+Before STRIKEBEST: Share copies three lines to the clipboard (the grid as coloured squares, "Daily Strike <day>", https://scoresamurai.com/strike/) and saves daily-strike-<day>.png: the result card, 1080 square. Cream above, the Warrior at 510 px from his 800 px source (never upscaled) standing on the maroon floor at y 600, "Score Samurai" in small caps at the top, "Daily Strike, Day N" and "Struck on pick N" in Playfair Display with lining figures, the board as on the page (the tray, four 116 px slots, raised tiles, gold hairlines), and scoresamurai.com/strike.
 
 ## Local state
-localStorage key ss_strike_v1: { first, d7, plays: { "YYYY-MM-DD": { n, id, picks, tiles, done, at } } }. Same day shows the finished card. A new day shows the days played (never a streak) and yesterday's grid.
+localStorage key ss_strike_v1: { first, d7, plays: { "YYYY-MM-DD": { n, id, picks, tiles, done, at } }, arch: { same shape, archive replays } }. Same day shows the finished card. A new day shows the days played, the days in a row, and yesterday.
 
 ## Measurement (GA4 G-LYZRWG13P3, live domain only; previews log to window.__strikeEvents)
 - strike_first_open, strike_open: every visit, with strike_day, days_played, days_since_first
 - strike_play: first pick of the day (plays)
 - strike_complete: struck, with tries (completions)
-- strike_share: with copied and image flags (shares)
+- strike_share: with method (sheet, copy, download), copied and image flags, and archive (shares)
+- strike_streak: on each finished daily Strike, with streak (days in a row, today included) and days_played
+- strike_archive_play: first pick of a replay, with strike_day and days_back
 - strike_return_d7: once per device, the first visit 7 or more days after the first (day-7 return = strike_return_d7 / strike_first_open for that week)
-- strike_diagnostic_click: the Diagnostic link, which also carries utm_source=strike&utm_medium=daily&utm_campaign=strike&utm_content=day<n>
+- strike_diagnostic_click: the Diagnostic link, with place (footer or read), which also carries utm_source=strike&utm_medium=daily&utm_campaign=strike&utm_content=day<n>
 Mark strike_complete and strike_share as key events in GA4 (the launch kit has the clicks); that is a settings change and Sensei's hand.
