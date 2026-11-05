@@ -82,7 +82,7 @@ new MutationObserver(scan).observe(document.documentElement, { childList: true, 
 .bl-grid{position:relative;z-index:1;display:grid;grid-template-columns:1fr;gap:28px;align-items:center}
 .bl-copy{display:flex;flex-direction:column;gap:14px}
 .bl-top .eyebrow{color:#C9A24A}
-.bl-top h1{color:#F8F3E7;font-size:clamp(36px,6vw,60px);line-height:1.02;font-weight:600}
+.bl-top h1{color:#F8F3E7;font-size:clamp(36px,4.6vw,52px);line-height:1.02;font-weight:600}
 .bl-brand{margin:0;font-family:"Playfair Display",Georgia,serif;font-style:italic;font-size:17px;color:#E9D9B6}
 .bl-sub{margin:0;font-size:17px;line-height:1.55;color:#E9D9B6;max-width:34em}
 .bl-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:4px}
@@ -152,10 +152,10 @@ new MutationObserver(scan).observe(document.documentElement, { childList: true, 
   <div class="wrap bl-grid">
     <div class="bl-copy">
       <div class="eyebrow">The Belt Ladder</div>
-      <h1 id="bl-h1">Know your belt. Know which points come next.</h1>
+      <h1 id="bl-h1">The SAT has five belts. You're already wearing one.</h1>
       <p class="bl-brand">The SAT is a discipline. Master it in The Dojo.</p>
       <p class="bl-sub">Five belts, each tied to a score band. Each belt is a set of moves the test uses to take points at that score. Close them, and the next belt is yours.</p>
-      <div class="bl-row" aria-hidden="true"><i style="background:#F7F2E6;outline:1px solid #B9AE96;outline-offset:-1px"></i><i style="background:#2E6B3A"></i><i style="background:#25457A"></i><i style="background:#7A4A2B"></i><i style="background:#141110;outline:1px solid #5A544E;outline-offset:-1px"></i><span>Five belts. One test.</span></div>
+      <div class="bl-row" aria-hidden="true"><i style="background:#f8f3e7"></i><i style="background:#2f8f4e"></i><i style="background:#1f4e9c"></i><i style="background:#6b3f23"></i><i style="background:#1f1512;outline:1px solid #c9a24a;outline-offset:-1px"></i><span>Five belts. One test.</span></div>
     </div>
     <div class="bl-war" aria-hidden="true"><img src="/strike/warrior-guard-400.webp" alt="" width="288" height="400" decoding="async"></div>
     <div class="bl-card" id="which">
@@ -251,7 +251,7 @@ new MutationObserver(scan).observe(document.documentElement, { childList: true, 
     </div>
 
     <div id="result" class="qcard result hidden" style="gap:18px">
-      <div class="eyebrow">Your belt today</div>
+      <div class="eyebrow">Your result</div>
       <h2 id="rbelt" style="font-size:clamp(30px,3.5vw,40px)"></h2>
       <div class="beltline" id="rline"></div>
       <p class="body" id="rsummary"></p>
