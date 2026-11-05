@@ -96,3 +96,9 @@ Mark strike_complete and strike_share as key events in GA4 (the launch kit has t
 - Day numbering, the 60-question bank and its order, the archive and the share card are unchanged. Day 1 is Nov 6 and Day 60 is Mon Jan 4 2027. Eastern date keying is unchanged; the flip still happens at midnight ET.
 - og-strike.png carries no date and is unchanged.
 
+
+## STRIKESWAP (Nov 5 2026)
+- Sensei's ruling: no Strike day runs within 14 days of another public use of the same question. After the move to Nov 6, eight days broke that rule, so each was swapped with a later day of the same section (Math with Math, Reading and Writing with Reading and Writing). The Strike day moved; no social post moved.
+- Swaps: Day 27 with Day 37, Day 2 with Day 50, Day 3 with Day 51, Day 4 with Day 60, Day 6 with Day 40, Day 12 with Day 58, Day 13 with Day 59, Day 26 with Day 54.
+- Each partner is the latest same-section day that clears the 14-day rule and keeps the bank's own rules (one pattern per 14 days, Hard days at least 4 apart, sections alternating).
+- The 60 questions, their labels, reads and explanations are unchanged; only their order moved. The start date, the archive and the share card are unchanged.
