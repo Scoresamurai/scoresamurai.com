@@ -1,7 +1,7 @@
 {
  "version": "strikebank-2026-10-28-strikeprep",
  "start": "2026-11-06",
- "note": "Daily Strike launch bank, 60 questions, Day 1 = Fri Nov 6 2026 (moved from Tue Nov 17 by STRIKENOW, Nov 5 2026), Math and Reading and Writing alternating. Every question VERIFIED in the Original Problem Bank (standing rule 3, STRIKEBANK Oct 28 2026); live-page solve pending. Label ids are neutral (s01 to s48) and only pick a tile colour; the master file maps them to the Codex and is not for the site.",
+ "note": "Daily Strike launch bank, 60 questions, Day 1 = Fri Nov 6 2026 (moved from Tue Nov 17 by STRIKENOW, Nov 5 2026; eight same-section day swaps by STRIKESWAP, Nov 5 2026, so no day runs within 14 days of another public use of its question), Math and Reading and Writing alternating. Every question VERIFIED in the Original Problem Bank (standing rule 3, STRIKEBANK Oct 28 2026); live-page solve pending. Label ids are neutral (s01 to s48) and only pick a tile colour; the master file maps them to the Codex and is not for the site.",
  "labels": {
   "s01": {
    "tile": "yellow"
@@ -177,84 +177,91 @@
    "desmos": "Desmos play: Technique 5, as a check. Type −6x + 18 ≥ 42 and each choice. Only x − 3 ≤ −7 shades the same region, x ≤ −4."
   },
   {
-   "id": "SS-W1027-10",
+   "id": "SS-OUT-R9",
    "section": "Reading and Writing",
-   "passage": "Ecologist Ruth Abara counted nesting songbirds in two city parks over three summers. In the park where native shrubs had been planted, nesting pairs roughly doubled; in the other park, the number barely changed. Because the two parks also differ in size and noise level, Abara's results most likely ______",
-   "stem": "Which choice most logically completes the text?",
+   "passage": "By the time the boat arrived, the hikers ______ at the dock for six hours.",
+   "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
    "choices": [
-    "prove that native shrubs cause songbirds to nest in city parks.",
-    "indicate that the number of songbirds across the city has doubled.",
-    "show that songbirds avoid parks that are large and noisy.",
-    "suggest that native shrubs may help songbirds, though other differences could explain the result."
+    "have waited",
+    "are waiting",
+    "had been waiting",
+    "wait"
    ],
-   "key": 3,
+   "key": 2,
    "labels": [
-    "s03",
-    "s04",
-    "s05",
-    null
+    "s15",
+    "s15",
+    null,
+    "s15"
    ],
    "reads": [
-    "Prove and cause claim too much. Counts from two parks that differ in other ways can't prove that.",
-    "It reuses doubled, but the doubling was in one park, not across the whole city.",
-    "The text never says which park is bigger or noisier, so this can't be drawn from it.",
-    null
+    "Have waited reaches up to now. By the time the boat arrived sets a point in the past.",
+    "Present tense doesn't fit a moment that's already in the past.",
+    null,
+    "Present tense again. The boat already arrived."
    ],
-   "explain": "Nesting doubled in the park with native shrubs, but the two parks also differ in size and noise. So the shrubs might explain the jump, or the other differences might. The right answer keeps both possibilities open.",
+   "explain": "“By the time the boat arrived” points to a moment in the past. The waiting started earlier and was still going on then. “Had been waiting” shows action that ran up to a past moment.",
    "desmos": ""
   },
   {
-   "id": "SS-W1103-06",
+   "id": "SS-STRIKE-02",
    "section": "Math",
-   "passage": "A line in the xy-plane passes through the points (2, 7) and (6, 19).",
-   "stem": "Which equation defines the line?",
+   "passage": "y = 0.5x²; y = 3x + 10. The graphs of the given equations in the xy-plane intersect at two points.",
+   "stem": "Which interval contains the greater of the two x-coordinates of those points?",
    "choices": [
-    "y = 3x + 1",
-    "y = 3x + 7",
-    "y = 4x − 1",
-    "y = (1/3)x + 19/3"
+    "Between 4 and 6",
+    "Between 6 and 8",
+    "Between 8 and 10",
+    "Between 16 and 18"
    ],
-   "key": 0,
+   "key": 2,
    "labels": [
+    "s02",
+    "s02",
     null,
-    "s06",
-    "s06",
-    "s06"
+    "s12"
    ],
    "reads": [
+    "Doubled only the 0.5x² side. That turns it into x² = 3x + 10, which gives 5.",
+    "Doubled 0.5x² and 3x but not the 10, which turns it into x² = 6x + 10.",
     null,
-    "Used 7 as the y-intercept. But 7 is the y-value at x = 2, not at x = 0.",
-    "Used the run, 6 − 2 = 4, as the slope. Slope is rise over run: 12 ÷ 4 = 3.",
-    "Flipped the slope to run over rise. Slope is rise over run: 12 ÷ 4 = 3."
+    "Used the quadratic formula but never divided by 2, which gives about 16.8 instead of 8.4."
    ],
-   "explain": "The slope is (19 − 7) ÷ (6 − 2) = 3. Put the point (2, 7) into y = 3x + b: 7 = 6 + b, so b = 1. The line is y = 3x + 1.",
-   "desmos": "Desmos play: Technique 4. Plot (2, 7) and (6, 19), then graph each choice. Only y = 3x + 1 passes through both points."
+   "explain": "The choices are ranges, so a rough value is enough. At x = 8 the curve gives 32 and the line gives 34. At x = 10 the curve gives 50 and the line gives 40. They cross in between.",
+   "desmos": "Desmos play: Technique 1. Type y = 0.5x² and y = 3x + 10 and click the right-hand crossing. It reads about (8.39, 35.2), between 8 and 10.",
+   "structured": {
+    "display": [
+     "y = 0.5x²",
+     "y = 3x + 10"
+    ],
+    "passage_body": "The graphs of the given equations in the xy-plane intersect at two points."
+   }
   },
   {
-   "id": "SS-W1027-02",
+   "id": "SS-STRIKE-09",
    "section": "Reading and Writing",
-   "passage": "Most riders welcomed the new ferry schedule. A few commuters still had ______ the first boat now leaves before most of them are awake.",
-   "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+   "passage": "A survey of 400 community gardeners in Ohio found that most of those who added compost to their beds reported larger tomato harvests the following season. Some gardeners who did not use compost also reported larger harvests, which the survey's authors attribute to an unusually wet summer.",
+   "stem": "Which choice is best supported by the text?",
    "choices": [
-    "complaints, though;",
-    "complaints; though,",
-    "complaints, though,",
-    "complaints though,"
+    "Most gardeners who did not use compost reported larger harvests.",
+    "Only gardeners who used compost reported larger tomato harvests.",
+    "Compost was the main reason tomato harvests grew across Ohio that year.",
+    "More than half of the gardeners who used compost said their tomato harvests grew."
    ],
-   "key": 0,
+   "key": 3,
    "labels": [
-    null,
-    "s07",
-    "s08",
-    "s08"
+    "s48",
+    "s48",
+    "s03",
+    null
    ],
    "reads": [
-    null,
-    "This moves though into the second sentence, where it would set the early boat against the complaints. That makes no sense.",
-    "Only commas sit between two full sentences here. That's a comma splice.",
-    "Only a comma comes before the second full sentence, so it's still a comma splice."
+    "The text says some of those gardeners did, not most.",
+    "Only doesn't fit. Some gardeners without compost also reported bigger harvests.",
+    "Main reason and across Ohio go further than a survey of 400 gardeners can show.",
+    null
    ],
-   "explain": "“A few commuters still had complaints, though” is a full sentence, and so is the part about the first boat. “Though” belongs with the complaints. A semicolon then separates the two sentences.",
+   "explain": "The text says most gardeners who used compost reported larger harvests, and most means more than half. The wrong choices add “only” or “main reason,” or put “most” on the wrong group.",
    "desmos": ""
   },
   {
@@ -285,30 +292,30 @@
    "desmos": "Desmos play: Technique 4. Pick x = 1. The original gives 14 − (−2) = 16, and only 3x + 13 also gives 16."
   },
   {
-   "id": "SS-W1027-14",
+   "id": "SS-QB-SATLYS-113",
    "section": "Reading and Writing",
-   "passage": "In 2019, marine ______ published a field guide to the tide pools of the northern coast, illustrated with her own watercolors.",
+   "passage": "After weeks of testing thread samples, textile conservator Imani Okafor traced the old quilt's colors to three plant ______ indigo, a deep blue; madder root, a brick red; and weld, a pale yellow.",
    "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
    "choices": [
-    "biologist, Talia Brooks,",
-    "biologist, Talia Brooks",
-    "biologist: Talia Brooks",
-    "biologist Talia Brooks"
+    "dyes,",
+    "dyes;",
+    "dyes",
+    "dyes:"
    ],
    "key": 3,
    "labels": [
-    "s10",
-    "s10",
+    "s11",
+    "s11",
     "s11",
     null
    ],
    "reads": [
-    "Paired commas mark the name as extra. But the name is needed to say who published the guide.",
-    "One comma cuts the title off from its name. The name is needed, so nothing goes between them.",
-    "A colon needs a full sentence before it, and In 2019, marine biologist isn't one.",
+    "A comma can't introduce a list after a full sentence. The list's own semicolons make it worse.",
+    "Copied the semicolons inside the list. A semicolon needs a full sentence after it.",
+    "With no mark, three plant dyes runs straight into indigo, as if they were one name.",
     null
    ],
-   "explain": "Without her name, the sentence can't tell you which biologist published the guide. Words you need to identify someone take no commas. So “marine biologist Talia Brooks” stays together.",
+   "explain": "The words before the blank already make a full sentence: Okafor traced the colors to three plant dyes. What follows names those dyes. A colon is the mark that introduces that list.",
    "desmos": ""
   },
   {
@@ -447,91 +454,64 @@
    "desmos": "By hand, Desmos adds nothing here. Choosing the starting value is the skill, and 3 ÷ 15 is quick."
   },
   {
-   "id": "SS-W1103-07",
+   "id": "SS-W1103-01",
    "section": "Reading and Writing",
-   "passage": "Average Daily Bike-Share Rides at Four Stations (weekday, weekend): Mill Street 410, 380; Lakefront 220, 540; Union Square 650, 300; Oak Park 190, 260. A city planner compared average daily rides at four bike-share stations in Avon Ridge. Weekend rides outnumbered weekday rides at only two of the stations. At the Oak Park station, for example, weekend rides ______",
-   "stem": "Which choice most effectively uses data from the table to complete the example?",
+   "passage": "Conductor Maren Hartwig expected the orchestra’s new series of experimental music to draw small, doubtful crowds. Instead, the series proved ______: every concert sold out, and the hall added two extra dates to meet demand.",
+   "stem": "Which choice completes the text with the most logical and precise word?",
    "choices": [
-    "were lower than weekday rides.",
-    "exceeded weekday rides by 70.",
-    "exceeded weekday rides by 320.",
-    "were about half of weekday rides."
+    "tolerable",
+    "controversial",
+    "permanent",
+    "popular"
    ],
-   "key": 1,
+   "key": 3,
    "labels": [
-    "s18",
-    null,
-    "s18",
-    "s18"
+    "s33",
+    "s33",
+    "s33",
+    null
    ],
    "reads": [
-    "Read the row backward. At Oak Park, 260 weekend rides is more than 190 weekday rides.",
-    null,
-    "320 is the Lakefront gap, 540 − 220. The sentence is about Oak Park.",
-    "About half fits Union Square, 300 against 650. Oak Park is a different row."
+    "Tolerable means people put up with it. Sold-out shows and extra dates mean much more than that.",
+    "Controversial means disputed. The text shows high demand, not a fight.",
+    "Nothing says the series will last. The text is about how big the crowds were.",
+    null
    ],
-   "explain": "Find the Oak Park row: 190 rides on weekdays and 260 on weekends. Weekend rides were higher by 260 − 190 = 70, which fits the claim the example is meant to support.",
-   "desmos": "",
-   "structured": {
-    "table": {
-     "title": "Average Daily Bike-Share Rides at Four Stations",
-     "columns": [
-      "Station",
-      "Weekday",
-      "Weekend"
-     ],
-     "rows": [
-      [
-       "Mill Street",
-       "410",
-       "380"
-      ],
-      [
-       "Lakefront",
-       "220",
-       "540"
-      ],
-      [
-       "Union Square",
-       "650",
-       "300"
-      ],
-      [
-       "Oak Park",
-       "190",
-       "260"
-      ]
-     ]
-    },
-    "passage_body": "A city planner compared average daily rides at four bike-share stations in Avon Ridge. Weekend rides outnumbered weekday rides at only two of the stations. At the Oak Park station, for example, weekend rides ______"
-   }
+   "explain": "The clue comes right after the blank: every concert sold out, and extra dates were added. Cover the choices and your own word is something like “a hit.” Popular matches it.",
+   "desmos": ""
   },
   {
-   "id": "SS-W1027-17",
+   "id": "SS-W1103-02",
    "section": "Math",
-   "passage": "The number of members in a hiking club increased by 20% from 2023 to 2024 and then decreased by 20% from 2024 to 2025.",
-   "stem": "The number of members in 2025 was what percent of the number of members in 2023?",
+   "passage": "Formula: A = (h/2)(b + c). The formula gives the area A of a trapezoid whose parallel sides have lengths b and c and whose height is h.",
+   "stem": "Which equation gives c in terms of A, h, and b?",
    "choices": [
-    "80%",
-    "96%",
-    "100%",
-    "120%"
+    "c = 2A/h − b",
+    "c = (2A − b)/h",
+    "c = A/(2h) − b",
+    "c = 2A/h + b"
    ],
-   "key": 1,
+   "key": 0,
    "labels": [
-    "s05",
     null,
-    "s19",
-    "s12"
+    "s47",
+    "s47",
+    "s09"
    ],
    "reads": [
-    "80% compares 2025 with 2024. The question compares 2025 with 2023.",
     null,
-    "Let +20% and −20% cancel. The drop is taken from a bigger number, so it removes more.",
-    "Stopped after the increase. The 2025 drop still has to happen."
+    "Subtracted b before clearing the h/2. But h/2 multiplies b too, so clear it first.",
+    "Divided by 2h. Undoing h/2 means multiplying by 2/h.",
+    "Cleared the h/2, then added b. Moving b across the equals sign makes it −b."
    ],
-   "explain": "Up 20% multiplies the members by 1.2. Down 20% multiplies them by 0.8. Together that's 1.2 × 0.8 = 0.96, so 2025 had 96% of the 2023 members.",
-   "desmos": "By hand, Desmos adds nothing here. Setting up 1.2 × 0.8 is the skill, and the multiplication is quick."
+   "explain": "Multiply both sides by 2/h to get 2A/h = b + c. Then subtract b from both sides. That leaves c = 2A/h − b.",
+   "desmos": "Desmos play: Technique 4. With h = 4, b = 3 and c = 5, the area is 16. Type each choice with A = 16, h = 4 and b = 3, and only 2A/h − b returns 5.",
+   "structured": {
+    "display": [
+     "A = (h/2)(b + c)"
+    ],
+    "passage_body": "The formula gives the area A of a trapezoid whose parallel sides have lengths b and c and whose height is h."
+   }
   },
   {
    "id": "SS-W1103-03",
@@ -882,58 +862,64 @@
    "desmos": "The setup is by hand. Desmos play as a check: Technique 4. Type y = 100 × 2^(x/2), add a table, and read x = 6. It shows y = 800."
   },
   {
-   "id": "SS-W1027-18",
+   "id": "SS-W1103-11",
    "section": "Reading and Writing",
-   "passage": "Unlike her talkative older brother, Priya was ______ at family dinners, often getting through an entire meal without saying a word.",
-   "stem": "Which choice completes the text with the most logical and precise word or phrase?",
+   "passage": "The old cannery on Pike Street that the two founders of the Larkspur Theater Company rented in 1991 was in rough shape: ______ had no seats, no stage lights, and a roof that leaked in every storm.",
+   "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
    "choices": [
-    "eloquent",
-    "attentive",
-    "reticent",
-    "impatient"
+    "they",
+    "she",
+    "it",
+    "them"
    ],
    "key": 2,
    "labels": [
-    "s33",
-    "s33",
+    "s14",
+    "s14",
     null,
-    "s33"
+    "s14"
    ],
    "reads": [
-    "Eloquent means good with words. Priya hardly speaks, so it's the opposite.",
-    "Attentive means paying attention. The text only says she didn't talk.",
+    "They points to the two founders, but the sentence is describing the cannery.",
+    "She is one person, and no single woman appears in the sentence.",
     null,
-    "Nothing in the text suggests impatience."
+    "Them can't be the subject of had, and the cannery is one thing."
    ],
-   "explain": "The sentence explains the blank: she got through whole meals without a word, unlike her talkative brother. Your own word is “quiet.” Reticent means quiet and holding back.",
+   "explain": "The part after the colon explains why the cannery was in rough shape. The cannery is the thing with no seats and a leaky roof. One building takes the pronoun “it.”",
    "desmos": ""
   },
   {
-   "id": "SS-BLK-03",
+   "id": "SS-BLK-01",
    "section": "Math",
-   "passage": "A data set of 40 points has the line of best fit y = 1.6x + 9. A researcher changes every y-value in the data set by multiplying it by 2.5 and then adding 4. The x-values do not change.",
-   "stem": "Which equation is the line of best fit for the new data set?",
+   "passage": "Equation: x² + y² + 8x − 12y = k. In the xy-plane, the graph of the given equation is a circle with radius 9, and k is a constant.",
+   "stem": "What is the value of k?",
    "choices": [
-    "y = 4x + 9",
-    "y = 4x + 26.5",
-    "y = 1.6x + 26.5",
-    "y = 4x + 22.5"
+    "−43",
+    "29",
+    "81",
+    "133"
    ],
    "key": 1,
    "labels": [
     "s12",
     null,
     "s12",
-    "s12"
+    "s09"
    ],
    "reads": [
-    "Stretched the slope but left the intercept at 9. The 9 gets multiplied and moved too.",
+    "Set k + 52 equal to the radius, 9. The equation needs the radius squared, 81.",
     null,
-    "Moved the line up but kept the slope. Multiplying every y by 2.5 makes the line 2.5 times as steep.",
-    "Multiplied by 2.5 but dropped the + 4 that lifts every point."
+    "Read k as the radius squared before completing the square. The 16 and the 36 still have to move across.",
+    "Subtracted 52 instead of adding it. Completing the square adds 16 and 36 to the right side."
    ],
-   "explain": "Every y on the line changes the same way, so the new line is y = 2.5(1.6x + 9) + 4. That's 4x + 22.5 + 4, which is y = 4x + 26.5.",
-   "desmos": "By hand: apply the change to the whole line, 2.5(1.6x + 9) + 4. Desmos check, Technique 6: table x1 = 0, 5, 10, 15 and y1 = 9, 17, 25, 33. Type y2 = 2.5y1 + 4 and run y2 ~ m x1 + b for m = 4 and b = 26.5."
+   "explain": "Add 16 and 36 to both sides to make two squares: (x + 4)² + (y − 6)² = k + 52. The right side must be the radius squared, 81. So k = 29.",
+   "desmos": "Desmos play: Technique 9. Type x² + y² + 8x − 12y = k with a slider for k. At k = 29 the circle is centered at (−4, 6) and reaches (5, 6), 9 units away.",
+   "structured": {
+    "display": [
+     "x² + y² + 8x − 12y = k"
+    ],
+    "passage_body": "In the xy-plane, the graph of the given equation is a circle with radius 9, and k is a constant."
+   }
   },
   {
    "id": "SS-OUT-R13",
@@ -1179,37 +1165,31 @@
    "desmos": ""
   },
   {
-   "id": "SS-BLK-01",
+   "id": "SS-BLK-03",
    "section": "Math",
-   "passage": "Equation: x² + y² + 8x − 12y = k. In the xy-plane, the graph of the given equation is a circle with radius 9, and k is a constant.",
-   "stem": "What is the value of k?",
+   "passage": "A data set of 40 points has the line of best fit y = 1.6x + 9. A researcher changes every y-value in the data set by multiplying it by 2.5 and then adding 4. The x-values do not change.",
+   "stem": "Which equation is the line of best fit for the new data set?",
    "choices": [
-    "−43",
-    "29",
-    "81",
-    "133"
+    "y = 4x + 9",
+    "y = 4x + 26.5",
+    "y = 1.6x + 26.5",
+    "y = 4x + 22.5"
    ],
    "key": 1,
    "labels": [
     "s12",
     null,
     "s12",
-    "s09"
+    "s12"
    ],
    "reads": [
-    "Set k + 52 equal to the radius, 9. The equation needs the radius squared, 81.",
+    "Stretched the slope but left the intercept at 9. The 9 gets multiplied and moved too.",
     null,
-    "Read k as the radius squared before completing the square. The 16 and the 36 still have to move across.",
-    "Subtracted 52 instead of adding it. Completing the square adds 16 and 36 to the right side."
+    "Moved the line up but kept the slope. Multiplying every y by 2.5 makes the line 2.5 times as steep.",
+    "Multiplied by 2.5 but dropped the + 4 that lifts every point."
    ],
-   "explain": "Add 16 and 36 to both sides to make two squares: (x + 4)² + (y − 6)² = k + 52. The right side must be the radius squared, 81. So k = 29.",
-   "desmos": "Desmos play: Technique 9. Type x² + y² + 8x − 12y = k with a slider for k. At k = 29 the circle is centered at (−4, 6) and reaches (5, 6), 9 units away.",
-   "structured": {
-    "display": [
-     "x² + y² + 8x − 12y = k"
-    ],
-    "passage_body": "In the xy-plane, the graph of the given equation is a circle with radius 9, and k is a constant."
-   }
+   "explain": "Every y on the line changes the same way, so the new line is y = 2.5(1.6x + 9) + 4. That's 4x + 22.5 + 4, which is y = 4x + 26.5.",
+   "desmos": "By hand: apply the change to the whole line, 2.5(1.6x + 9) + 4. Desmos check, Technique 6: table x1 = 0, 5, 10, 15 and y1 = 9, 17, 25, 33. Type y2 = 2.5y1 + 4 and run y2 ~ m x1 + b for m = 4 and b = 26.5."
   },
   {
    "id": "SS-QB-SATLYS-085",
@@ -1266,30 +1246,30 @@
    "desmos": "Desmos play: Technique 4. Pick x = 2. The original gives 16 × 48 = 768, and only 6x⁷ also gives 768."
   },
   {
-   "id": "SS-QB-SATLYS-113",
+   "id": "SS-W1027-14",
    "section": "Reading and Writing",
-   "passage": "After weeks of testing thread samples, textile conservator Imani Okafor traced the old quilt's colors to three plant ______ indigo, a deep blue; madder root, a brick red; and weld, a pale yellow.",
+   "passage": "In 2019, marine ______ published a field guide to the tide pools of the northern coast, illustrated with her own watercolors.",
    "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
    "choices": [
-    "dyes,",
-    "dyes;",
-    "dyes",
-    "dyes:"
+    "biologist, Talia Brooks,",
+    "biologist, Talia Brooks",
+    "biologist: Talia Brooks",
+    "biologist Talia Brooks"
    ],
    "key": 3,
    "labels": [
-    "s11",
-    "s11",
+    "s10",
+    "s10",
     "s11",
     null
    ],
    "reads": [
-    "A comma can't introduce a list after a full sentence. The list's own semicolons make it worse.",
-    "Copied the semicolons inside the list. A semicolon needs a full sentence after it.",
-    "With no mark, three plant dyes runs straight into indigo, as if they were one name.",
+    "Paired commas mark the name as extra. But the name is needed to say who published the guide.",
+    "One comma cuts the title off from its name. The name is needed, so nothing goes between them.",
+    "A colon needs a full sentence before it, and In 2019, marine biologist isn't one.",
     null
    ],
-   "explain": "The words before the blank already make a full sentence: Okafor traced the colors to three plant dyes. What follows names those dyes. A colon is the mark that introduces that list.",
+   "explain": "Without her name, the sentence can't tell you which biologist published the guide. Words you need to identify someone take no commas. So “marine biologist Talia Brooks” stays together.",
    "desmos": ""
   },
   {
@@ -1546,65 +1526,58 @@
    "desmos": "Desmos play: Technique 3. Type y = (x − 1)(x + 9) and click the gray vertex. It reads (−4, −25), so y = −25 touches the curve once."
   },
   {
-   "id": "SS-OUT-R9",
+   "id": "SS-W1027-10",
    "section": "Reading and Writing",
-   "passage": "By the time the boat arrived, the hikers ______ at the dock for six hours.",
-   "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+   "passage": "Ecologist Ruth Abara counted nesting songbirds in two city parks over three summers. In the park where native shrubs had been planted, nesting pairs roughly doubled; in the other park, the number barely changed. Because the two parks also differ in size and noise level, Abara's results most likely ______",
+   "stem": "Which choice most logically completes the text?",
    "choices": [
-    "have waited",
-    "are waiting",
-    "had been waiting",
-    "wait"
+    "prove that native shrubs cause songbirds to nest in city parks.",
+    "indicate that the number of songbirds across the city has doubled.",
+    "show that songbirds avoid parks that are large and noisy.",
+    "suggest that native shrubs may help songbirds, though other differences could explain the result."
    ],
-   "key": 2,
+   "key": 3,
    "labels": [
-    "s15",
-    "s15",
-    null,
-    "s15"
+    "s03",
+    "s04",
+    "s05",
+    null
    ],
    "reads": [
-    "Have waited reaches up to now. By the time the boat arrived sets a point in the past.",
-    "Present tense doesn't fit a moment that's already in the past.",
-    null,
-    "Present tense again. The boat already arrived."
+    "Prove and cause claim too much. Counts from two parks that differ in other ways can't prove that.",
+    "It reuses doubled, but the doubling was in one park, not across the whole city.",
+    "The text never says which park is bigger or noisier, so this can't be drawn from it.",
+    null
    ],
-   "explain": "“By the time the boat arrived” points to a moment in the past. The waiting started earlier and was still going on then. “Had been waiting” shows action that ran up to a past moment.",
+   "explain": "Nesting doubled in the park with native shrubs, but the two parks also differ in size and noise. So the shrubs might explain the jump, or the other differences might. The right answer keeps both possibilities open.",
    "desmos": ""
   },
   {
-   "id": "SS-STRIKE-02",
+   "id": "SS-W1103-06",
    "section": "Math",
-   "passage": "y = 0.5x²; y = 3x + 10. The graphs of the given equations in the xy-plane intersect at two points.",
-   "stem": "Which interval contains the greater of the two x-coordinates of those points?",
+   "passage": "A line in the xy-plane passes through the points (2, 7) and (6, 19).",
+   "stem": "Which equation defines the line?",
    "choices": [
-    "Between 4 and 6",
-    "Between 6 and 8",
-    "Between 8 and 10",
-    "Between 16 and 18"
+    "y = 3x + 1",
+    "y = 3x + 7",
+    "y = 4x − 1",
+    "y = (1/3)x + 19/3"
    ],
-   "key": 2,
+   "key": 0,
    "labels": [
-    "s02",
-    "s02",
     null,
-    "s12"
+    "s06",
+    "s06",
+    "s06"
    ],
    "reads": [
-    "Doubled only the 0.5x² side. That turns it into x² = 3x + 10, which gives 5.",
-    "Doubled 0.5x² and 3x but not the 10, which turns it into x² = 6x + 10.",
     null,
-    "Used the quadratic formula but never divided by 2, which gives about 16.8 instead of 8.4."
+    "Used 7 as the y-intercept. But 7 is the y-value at x = 2, not at x = 0.",
+    "Used the run, 6 − 2 = 4, as the slope. Slope is rise over run: 12 ÷ 4 = 3.",
+    "Flipped the slope to run over rise. Slope is rise over run: 12 ÷ 4 = 3."
    ],
-   "explain": "The choices are ranges, so a rough value is enough. At x = 8 the curve gives 32 and the line gives 34. At x = 10 the curve gives 50 and the line gives 40. They cross in between.",
-   "desmos": "Desmos play: Technique 1. Type y = 0.5x² and y = 3x + 10 and click the right-hand crossing. It reads about (8.39, 35.2), between 8 and 10.",
-   "structured": {
-    "display": [
-     "y = 0.5x²",
-     "y = 3x + 10"
-    ],
-    "passage_body": "The graphs of the given equations in the xy-plane intersect at two points."
-   }
+   "explain": "The slope is (19 − 7) ÷ (6 − 2) = 3. Put the point (2, 7) into y = 3x + b: 7 = 6 + b, so b = 1. The line is y = 3x + 1.",
+   "desmos": "Desmos play: Technique 4. Plot (2, 7) and (6, 19), then graph each choice. Only y = 3x + 1 passes through both points."
   },
   {
    "id": "SS-STRIKE-08",
@@ -1661,30 +1634,30 @@
    "desmos": "By hand, Desmos adds nothing here. Two totals and one division are the whole question."
   },
   {
-   "id": "SS-W1103-11",
+   "id": "SS-W1027-18",
    "section": "Reading and Writing",
-   "passage": "The old cannery on Pike Street that the two founders of the Larkspur Theater Company rented in 1991 was in rough shape: ______ had no seats, no stage lights, and a roof that leaked in every storm.",
-   "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+   "passage": "Unlike her talkative older brother, Priya was ______ at family dinners, often getting through an entire meal without saying a word.",
+   "stem": "Which choice completes the text with the most logical and precise word or phrase?",
    "choices": [
-    "they",
-    "she",
-    "it",
-    "them"
+    "eloquent",
+    "attentive",
+    "reticent",
+    "impatient"
    ],
    "key": 2,
    "labels": [
-    "s14",
-    "s14",
+    "s33",
+    "s33",
     null,
-    "s14"
+    "s33"
    ],
    "reads": [
-    "They points to the two founders, but the sentence is describing the cannery.",
-    "She is one person, and no single woman appears in the sentence.",
+    "Eloquent means good with words. Priya hardly speaks, so it's the opposite.",
+    "Attentive means paying attention. The text only says she didn't talk.",
     null,
-    "Them can't be the subject of had, and the cannery is one thing."
+    "Nothing in the text suggests impatience."
    ],
-   "explain": "The part after the colon explains why the cannery was in rough shape. The cannery is the thing with no seats and a leaky roof. One building takes the pronoun “it.”",
+   "explain": "The sentence explains the blank: she got through whole meals without a word, unlike her talkative brother. Your own word is “quiet.” Reticent means quiet and holding back.",
    "desmos": ""
   },
   {
@@ -1775,90 +1748,117 @@
    "desmos": "Desmos play: Technique 1. Type y = 3(2x + 1) and y = 6x + c with a slider for c. At c = 3 the two lines land on top of each other."
   },
   {
-   "id": "SS-W1103-01",
+   "id": "SS-W1103-07",
    "section": "Reading and Writing",
-   "passage": "Conductor Maren Hartwig expected the orchestra’s new series of experimental music to draw small, doubtful crowds. Instead, the series proved ______: every concert sold out, and the hall added two extra dates to meet demand.",
-   "stem": "Which choice completes the text with the most logical and precise word?",
+   "passage": "Average Daily Bike-Share Rides at Four Stations (weekday, weekend): Mill Street 410, 380; Lakefront 220, 540; Union Square 650, 300; Oak Park 190, 260. A city planner compared average daily rides at four bike-share stations in Avon Ridge. Weekend rides outnumbered weekday rides at only two of the stations. At the Oak Park station, for example, weekend rides ______",
+   "stem": "Which choice most effectively uses data from the table to complete the example?",
    "choices": [
-    "tolerable",
-    "controversial",
-    "permanent",
-    "popular"
+    "were lower than weekday rides.",
+    "exceeded weekday rides by 70.",
+    "exceeded weekday rides by 320.",
+    "were about half of weekday rides."
    ],
-   "key": 3,
+   "key": 1,
    "labels": [
-    "s33",
-    "s33",
-    "s33",
-    null
+    "s18",
+    null,
+    "s18",
+    "s18"
    ],
    "reads": [
-    "Tolerable means people put up with it. Sold-out shows and extra dates mean much more than that.",
-    "Controversial means disputed. The text shows high demand, not a fight.",
-    "Nothing says the series will last. The text is about how big the crowds were.",
-    null
+    "Read the row backward. At Oak Park, 260 weekend rides is more than 190 weekday rides.",
+    null,
+    "320 is the Lakefront gap, 540 − 220. The sentence is about Oak Park.",
+    "About half fits Union Square, 300 against 650. Oak Park is a different row."
    ],
-   "explain": "The clue comes right after the blank: every concert sold out, and extra dates were added. Cover the choices and your own word is something like “a hit.” Popular matches it.",
-   "desmos": ""
+   "explain": "Find the Oak Park row: 190 rides on weekdays and 260 on weekends. Weekend rides were higher by 260 − 190 = 70, which fits the claim the example is meant to support.",
+   "desmos": "",
+   "structured": {
+    "table": {
+     "title": "Average Daily Bike-Share Rides at Four Stations",
+     "columns": [
+      "Station",
+      "Weekday",
+      "Weekend"
+     ],
+     "rows": [
+      [
+       "Mill Street",
+       "410",
+       "380"
+      ],
+      [
+       "Lakefront",
+       "220",
+       "540"
+      ],
+      [
+       "Union Square",
+       "650",
+       "300"
+      ],
+      [
+       "Oak Park",
+       "190",
+       "260"
+      ]
+     ]
+    },
+    "passage_body": "A city planner compared average daily rides at four bike-share stations in Avon Ridge. Weekend rides outnumbered weekday rides at only two of the stations. At the Oak Park station, for example, weekend rides ______"
+   }
   },
   {
-   "id": "SS-W1103-02",
+   "id": "SS-W1027-17",
    "section": "Math",
-   "passage": "Formula: A = (h/2)(b + c). The formula gives the area A of a trapezoid whose parallel sides have lengths b and c and whose height is h.",
-   "stem": "Which equation gives c in terms of A, h, and b?",
+   "passage": "The number of members in a hiking club increased by 20% from 2023 to 2024 and then decreased by 20% from 2024 to 2025.",
+   "stem": "The number of members in 2025 was what percent of the number of members in 2023?",
    "choices": [
-    "c = 2A/h − b",
-    "c = (2A − b)/h",
-    "c = A/(2h) − b",
-    "c = 2A/h + b"
+    "80%",
+    "96%",
+    "100%",
+    "120%"
+   ],
+   "key": 1,
+   "labels": [
+    "s05",
+    null,
+    "s19",
+    "s12"
+   ],
+   "reads": [
+    "80% compares 2025 with 2024. The question compares 2025 with 2023.",
+    null,
+    "Let +20% and −20% cancel. The drop is taken from a bigger number, so it removes more.",
+    "Stopped after the increase. The 2025 drop still has to happen."
+   ],
+   "explain": "Up 20% multiplies the members by 1.2. Down 20% multiplies them by 0.8. Together that's 1.2 × 0.8 = 0.96, so 2025 had 96% of the 2023 members.",
+   "desmos": "By hand, Desmos adds nothing here. Setting up 1.2 × 0.8 is the skill, and the multiplication is quick."
+  },
+  {
+   "id": "SS-W1027-02",
+   "section": "Reading and Writing",
+   "passage": "Most riders welcomed the new ferry schedule. A few commuters still had ______ the first boat now leaves before most of them are awake.",
+   "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+   "choices": [
+    "complaints, though;",
+    "complaints; though,",
+    "complaints, though,",
+    "complaints though,"
    ],
    "key": 0,
    "labels": [
     null,
-    "s47",
-    "s47",
-    "s09"
+    "s07",
+    "s08",
+    "s08"
    ],
    "reads": [
     null,
-    "Subtracted b before clearing the h/2. But h/2 multiplies b too, so clear it first.",
-    "Divided by 2h. Undoing h/2 means multiplying by 2/h.",
-    "Cleared the h/2, then added b. Moving b across the equals sign makes it −b."
+    "This moves though into the second sentence, where it would set the early boat against the complaints. That makes no sense.",
+    "Only commas sit between two full sentences here. That's a comma splice.",
+    "Only a comma comes before the second full sentence, so it's still a comma splice."
    ],
-   "explain": "Multiply both sides by 2/h to get 2A/h = b + c. Then subtract b from both sides. That leaves c = 2A/h − b.",
-   "desmos": "Desmos play: Technique 4. With h = 4, b = 3 and c = 5, the area is 16. Type each choice with A = 16, h = 4 and b = 3, and only 2A/h − b returns 5.",
-   "structured": {
-    "display": [
-     "A = (h/2)(b + c)"
-    ],
-    "passage_body": "The formula gives the area A of a trapezoid whose parallel sides have lengths b and c and whose height is h."
-   }
-  },
-  {
-   "id": "SS-STRIKE-09",
-   "section": "Reading and Writing",
-   "passage": "A survey of 400 community gardeners in Ohio found that most of those who added compost to their beds reported larger tomato harvests the following season. Some gardeners who did not use compost also reported larger harvests, which the survey's authors attribute to an unusually wet summer.",
-   "stem": "Which choice is best supported by the text?",
-   "choices": [
-    "Most gardeners who did not use compost reported larger harvests.",
-    "Only gardeners who used compost reported larger tomato harvests.",
-    "Compost was the main reason tomato harvests grew across Ohio that year.",
-    "More than half of the gardeners who used compost said their tomato harvests grew."
-   ],
-   "key": 3,
-   "labels": [
-    "s48",
-    "s48",
-    "s03",
-    null
-   ],
-   "reads": [
-    "The text says some of those gardeners did, not most.",
-    "Only doesn't fit. Some gardeners without compost also reported bigger harvests.",
-    "Main reason and across Ohio go further than a survey of 400 gardeners can show.",
-    null
-   ],
-   "explain": "The text says most gardeners who used compost reported larger harvests, and most means more than half. The wrong choices add “only” or “main reason,” or put “most” on the wrong group.",
+   "explain": "“A few commuters still had complaints, though” is a full sentence, and so is the part about the first boat. “Though” belongs with the complaints. A semicolon then separates the two sentences.",
    "desmos": ""
   }
  ]
