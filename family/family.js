@@ -250,6 +250,28 @@
     return el('div', { class: 'belt ' + t.state }, [band, el('span', { class: 'n', text: t.belt }), s ? el('span', { class: 's', text: s }) : null]);
   }
 
+  // WALLCARD (Nov 5 2026): the belt-earned share card. wallcard.js draws it; nothing shows without a dated belt.
+  function shareButton(d, student) {
+    var W = window.ssWallCard;
+    if (!W || !W.pick(d)) return null;
+    var note = el('span', { class: 'note', role: 'status', 'aria-live': 'polite' });
+    var btn = el('button', { type: 'button', class: 'share', text: 'Share', disabled: true, 'aria-label': 'Share ' + W.pick(d).belt + ' Belt card' });
+    var wrap = el('div', { class: 'shr' }, [btn, note]);
+    var ready = null;
+    W.make(d, WARRIOR).then(function (p) {
+      if (!p) { wrap.hidden = true; return; }
+      ready = p; btn.disabled = false;
+    }).catch(function () { wrap.hidden = true; });
+    btn.addEventListener('click', function () {
+      if (!ready) return;
+      note.textContent = '';
+      W.share(ready, student ? 'student' : 'parent').then(function (r) {
+        note.textContent = r === 'copy' ? 'Card copied.' : r === 'download' ? 'Card saved.' : '';
+      });
+    });
+    return wrap;
+  }
+
   function wallSection(d, student) {
     var tiles = beltState(d);
     if (!tiles.length) return null;
@@ -260,11 +282,12 @@
       var up = tiles.filter(function (t) { return t.state === 'earned'; }).length;
       var togo = tiles.filter(function (t) { return t.state === 'next' || t.state === 'ahead'; }).length;
       var ttl = up ? word(up) + ' ' + plural(up, 'belt', 'belts') + ' up.' + (togo ? ' ' + word(togo) + ' to go.' : '') : '';
-      head = el('div', { class: 'hd' }, [el('div', { class: 't' }, [el('span', { class: 'eyebrow', text: 'The Wall' }), ttl ? el('span', { class: 'ttl', text: ttl }) : null])]);
+      head = el('div', { class: 'hd' }, [el('div', { class: 't' }, [el('span', { class: 'eyebrow', text: 'The Wall' }), ttl ? el('span', { class: 'ttl', text: ttl }) : null]), shareButton(d, true)]);
     } else {
       head = el('div', { class: 'hd' }, [
         el('div', { class: 't' }, [el('span', { class: 'eyebrow', text: 'The Wall' }), el('span', { class: 'ttl', text: 'Belts earned. Belts ahead.' })]),
-        el('span', { class: 'why', text: "A belt is earned each time a set of the test's moves stops working on " + d.student + '.' })
+        el('span', { class: 'why', text: "A belt is earned each time a set of the test's moves stops working on " + d.student + '.' }),
+        shareButton(d, false)
       ]);
     }
     var foot = null;
