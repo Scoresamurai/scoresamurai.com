@@ -94,7 +94,7 @@
     }
     el("quiz").classList.add("hidden");
     el("result").classList.remove("hidden");
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    var ck = document.getElementById("check"); if (ck && ck.scrollIntoView) { ck.scrollIntoView({ behavior: "smooth", block: "start" }); } else { window.scrollTo({ top: 0, behavior: "smooth" }); }
     if (window.gtag) { try { gtag("event", "belt_result", { correct: correct, traps: firing.join(",") }); } catch (e) {} }
   }
 
