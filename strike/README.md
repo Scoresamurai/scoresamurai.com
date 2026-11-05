@@ -7,7 +7,7 @@ One SAT question per Eastern calendar date, the same for everyone, no account. B
 - strike.js: day keying, local state, the board and its tile flip, the result card, share (text plus square PNG), measurement.
 - strike-moves.json: one plain line per tile family id (s01 to s48): the move, then the fix. Loaded only when a result shows, for the private read. No Codex name.
 - og-strike.png: the link preview, 1200 by 630: the Warrior in his strike pose, "Daily Strike", a board, scoresamurai.com/strike.
-- strike-bank.json: Room 4's launch bank (STRIKEBANK, Oct 28 2026), 60 days from Tue Nov 17 2026, wired in whole, with Sensei's ten approved line rewrites and neutral label ids (STRIKEPREP, Oct 28 2026). Its source is Content / Daily Strike / strike-bank.json.
+- strike-bank.json: Room 4's launch bank (STRIKEBANK, Oct 28 2026), 60 days from Fri Nov 6 2026 (Day 60 is Mon Jan 4 2027), wired in whole, with Sensei's ten approved line rewrites and neutral label ids (STRIKEPREP, Oct 28 2026). Its source is Content / Daily Strike / strike-bank.json.
 - warrior-guard-400.webp, warrior-guard-600.webp: the ready pose for the hero (Brand v3 / Warrior repair Oct 13 / warrior-guard-repaired.png, resized down, chosen by srcset so it is never enlarged).
 - warrior-strike-400.webp, warrior-strike-600.webp: the strike pose for the hero after the strike, the same way.
 - warrior-strike.webp: the strike pose at 778 by 800 for the share image (warrior-strike-repaired.png, resized).
@@ -57,7 +57,7 @@ One SAT question per Eastern calendar date, the same for everyone, no account. B
 - Green is reserved for the struck tile and is never a label colour.
 - Superscript digits (², ³, ⁴, ⁷ and the rest) are set as real digits raised in DM Sans, so every glyph comes from the house face.
 - Every question must be VERIFIED in the Original Problem Bank (standing rule 3) before it enters this file.
-- Before the start date the page keeps the same stage (STRIKELIVE, Oct 29 2026; canvas board "C2 · Before Nov 17"): the Warrior in ready pose, the board empty, "First Strike lands" and the start date in gold, and the footer line counting down to midnight Eastern on the start date ("First Strike in D d H h", then "H h M min" on the last day). The sheet is hidden. When the countdown runs out the page reloads itself into Day 1. After the last day the page says the Strike is not ready.
+- Before the start date the page keeps the same stage (STRIKELIVE, Oct 29 2026; canvas board "C2 · Before Nov 17"; the start date is Fri Nov 6 2026 since STRIKENOW): the Warrior in ready pose, the board empty, "First Strike lands" and the start date in gold, and the footer line counting down to midnight Eastern on the start date ("First Strike in D d H h", then "H h M min" on the last day). The sheet is hidden. When the countdown runs out the page reloads itself into Day 1. After the last day the page says the Strike is not ready.
 
 ## Previews
 On any host other than scoresamurai.com, ?day=N (1 to 60) opens day N of the bank. The live site ignores it.
@@ -90,3 +90,9 @@ localStorage key ss_strike_v1: { first, d7, plays: { "YYYY-MM-DD": { n, id, pick
 - strike_return_d7: once per device, the first visit 7 or more days after the first (day-7 return = strike_return_d7 / strike_first_open for that week)
 - strike_diagnostic_click: the Diagnostic link, with place (footer or read), which also carries utm_source=strike&utm_medium=daily&utm_campaign=strike&utm_content=day<n>
 Mark strike_complete and strike_share as key events in GA4 (the launch kit has the clicks); that is a settings change and Sensei's hand.
+
+## STRIKENOW (Nov 5 2026)
+- Sensei's order: the Daily Strike goes live Fri Nov 6 2026, not Tue Nov 17. strike-bank.json "start" is now 2026-11-06; strike.js and index.html read every date from it, so the gold line reads "First Strike lands Friday, November 6", the countdown runs to midnight Eastern on Nov 6, and the email line says November 6.
+- Day numbering, the 60-question bank and its order, the archive and the share card are unchanged. Day 1 is Nov 6 and Day 60 is Mon Jan 4 2027. Eastern date keying is unchanged; the flip still happens at midnight ET.
+- og-strike.png carries no date and is unchanged.
+

@@ -1,7 +1,7 @@
 {
  "version": "strikebank-2026-10-28-strikeprep",
- "start": "2026-11-17",
- "note": "Daily Strike launch bank, 60 questions, Day 1 = Tue Nov 17 2026, Math and Reading and Writing alternating. Every question VERIFIED in the Original Problem Bank (standing rule 3, STRIKEBANK Oct 28 2026); live-page solve pending. Label ids are neutral (s01 to s48) and only pick a tile colour; the master file maps them to the Codex and is not for the site.",
+ "start": "2026-11-06",
+ "note": "Daily Strike launch bank, 60 questions, Day 1 = Fri Nov 6 2026 (moved from Tue Nov 17 by STRIKENOW, Nov 5 2026), Math and Reading and Writing alternating. Every question VERIFIED in the Original Problem Bank (standing rule 3, STRIKEBANK Oct 28 2026); live-page solve pending. Label ids are neutral (s01 to s48) and only pick a tile colour; the master file maps them to the Codex and is not for the site.",
  "labels": {
   "s01": {
    "tile": "yellow"
