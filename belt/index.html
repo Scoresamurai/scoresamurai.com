@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Which belt are you? | Score Samurai</title>
-<meta name="description" content="Ten SAT questions, no clock. Find out which of the five Trap Map traps are already costing you points, and where you stand on the belt ladder.">
+<title>The Belt Ladder: which belt are you? | Score Samurai</title>
+<meta name="description" content="Five belts, each tied to an SAT score band. Type your score to see your belt, what it means, and which moves stop working there.">
 <link rel="canonical" href="https://scoresamurai.com/belt/">
 <link rel="icon" href="/warrior.png">
 <!-- Google tag (gtag.js) -->
@@ -74,17 +74,167 @@ new MutationObserver(scan).observe(document.documentElement, { childList: true, 
 .progress i{display:block;height:100%;background:var(--gold);width:0}
 .result .beltline{height:14px;border-radius:4px;border:1px solid #C9BFA8}
 .hidden{display:none}
+
+.dojo-floor{background-color:#6e0d12;background-image:repeating-linear-gradient(90deg,rgba(0,0,0,.10) 0 1px,transparent 1px 12px),repeating-linear-gradient(0deg,rgba(0,0,0,.08) 0 1px,transparent 1px 12px),radial-gradient(ellipse 70% 60% at 50% 45%,rgba(160,30,36,.9) 0%,rgba(92,10,14,1) 100%)}
+.bl-top{position:relative;color:#F2EBDB;padding:40px 0 44px;overflow:hidden}
+.bl-frame{position:absolute;inset:12px;border:1px solid rgba(201,162,74,.55);pointer-events:none}
+.bl-frame:before{content:"";position:absolute;inset:6px;border:1px solid rgba(201,162,74,.25)}
+.bl-grid{position:relative;z-index:1;display:grid;grid-template-columns:1fr;gap:28px;align-items:center}
+.bl-copy{display:flex;flex-direction:column;gap:14px}
+.bl-top .eyebrow{color:#C9A24A}
+.bl-top h1{color:#F8F3E7;font-size:clamp(36px,6vw,60px);line-height:1.02;font-weight:600}
+.bl-brand{margin:0;font-family:"Playfair Display",Georgia,serif;font-style:italic;font-size:17px;color:#E9D9B6}
+.bl-sub{margin:0;font-size:17px;line-height:1.55;color:#E9D9B6;max-width:34em}
+.bl-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:4px}
+.bl-row i{width:30px;height:7px;border-radius:2px;display:block}
+.bl-row span{flex-basis:100%;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#C9A24A;margin-top:2px}
+.bl-war{display:none}
+.bl-top .wrap{padding-left:32px;padding-right:32px}
+.bl-card{background:#F8F3E7;color:#1F1512;border-radius:10px;border-top:4px solid #C9A24A;box-shadow:0 30px 60px rgba(0,0,0,.45);padding:26px 22px 22px;display:flex;flex-direction:column;gap:12px}
+.bl-card h2{font-size:28px;line-height:1.1}
+.bl-card label{font-weight:700;font-size:14px}
+.bl-in{height:56px;padding:0 16px;font:inherit;font-size:22px;font-weight:700;letter-spacing:.04em;border:1.5px solid #CFC2A6;border-radius:6px;background:#FFFDF8;color:#1F1512;width:100%;box-sizing:border-box}
+.bl-in:focus{outline:3px solid #C9A24A;outline-offset:2px;border-color:#7A0B10}
+.bl-hint{margin:0;font-size:13px;color:#5C544C}
+.bl-out{min-height:84px;border-radius:8px;background:#fff;border:1px solid #E3D8C2;padding:12px 14px;display:flex;flex-direction:column;justify-content:center;gap:4px}
+.bl-out .ph{margin:0;color:#5C544C;font-size:15px}
+.bl-res{display:flex;align-items:center;gap:12px}
+.bl-res svg{width:60px;flex:none}
+.bl-res b{display:block;font-family:"Playfair Display",Georgia,serif;font-weight:600;font-size:24px;line-height:1.1}
+.bl-res span{display:block;font-size:15px;line-height:1.4;color:#2B2622;margin-top:2px}
+.bl-out a{font-weight:700;font-size:15px;min-height:44px;display:inline-flex;align-items:center}
+.bl-note{margin:0;font-size:13px;line-height:1.5;color:#5C544C}
+.bl-lad{padding:56px 0 24px}
+.bl-lad .head{display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+.bl-lad h2{font-size:clamp(28px,4vw,40px)}
+.bl-how{margin:0;max-width:40em;color:#2B2622}
+.bl-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr;gap:16px}
+.bl-belt{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;scroll-margin-top:84px;transition:box-shadow .2s}
+.bl-belt .bar{height:10px}
+.bl-belt .in{padding:20px 20px 22px;display:flex;flex-direction:column;gap:10px}
+.bl-belt .nm{display:flex;align-items:center;gap:14px}
+.bl-belt .nm svg{width:84px;flex:none}
+.bl-belt h3{font-size:26px}
+.bl-belt .bd{font-size:14px;font-weight:700;letter-spacing:.06em;color:#7A0B10}
+.bl-belt p{margin:0;color:#2B2622}
+.bl-belt h4{margin:6px 0 0;font-family:"Playfair Display SC",Georgia,serif;font-weight:400;font-size:13px;letter-spacing:.14em;text-transform:lowercase;color:#8C6A1F}
+.bl-belt ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px;color:#2B2622}
+.bl-belt.lit{box-shadow:0 0 0 3px #C9A24A}
+.bl-belt.lit .you{display:inline-block}
+.bl-belt .you{display:none;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:#C9A24A;color:#1C0406;border-radius:4px;padding:2px 8px;margin-left:auto}
+.bl-diag{margin-top:24px;background:#1C0406;color:#F2EBDB;border-radius:12px;padding:26px 22px;display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.bl-diag h2{color:#F8F3E7;font-size:28px}
+.bl-diag p{margin:0;color:#E9D9B6;max-width:36em}
+.bl-diag .btn{background:#C9A24A;color:#1C0406}
+.bl-diag .btn:hover{background:#A8822F}
+#check{scroll-margin-top:72px}
+.bl-quizlead{margin:32px auto 0;max-width:720px;text-align:center;font-weight:700;color:#7A0B10}
+@media(min-width:900px){
+ .bl-top{padding:56px 0 60px}
+ .bl-frame{inset:22px}
+ .bl-grid{grid-template-columns:220px minmax(0,1fr) 360px;grid-template-areas:"war copy card";gap:40px}
+ .bl-copy{grid-area:copy}.bl-war{grid-area:war}.bl-card{grid-area:card}
+ .bl-top .wrap{padding-left:56px;padding-right:56px}
+ .bl-war{display:block;align-self:end}
+ .bl-war img{width:220px;height:auto;display:block;filter:drop-shadow(0 28px 36px rgba(0,0,0,.5))}
+ .bl-list{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .bl-list li:last-child{grid-column:1/-1}
+}
+@media(prefers-reduced-motion:reduce){.bl-belt{transition:none}}
 </style>
 </head>
 <body>
 <header class="hdr"><div class="wrap"><a class="brand" href="/"><img src="/warrior.png" alt="Score Samurai"><span>Score Samurai</span></a><a class="hdr-cta js-tb" href="/#diagnostic">Free Diagnostic</a></div></header>
 
 <main>
-<section>
+<section class="bl-top dojo-floor" aria-labelledby="bl-h1">
+  <div class="bl-frame" aria-hidden="true"></div>
+  <div class="wrap bl-grid">
+    <div class="bl-copy">
+      <div class="eyebrow">The Belt Ladder</div>
+      <h1 id="bl-h1">Know your belt. Know which points come next.</h1>
+      <p class="bl-brand">The SAT is a discipline. Master it in The Dojo.</p>
+      <p class="bl-sub">Five belts, each tied to a score band. Each belt is a set of moves the test uses to take points at that score. Close them, and the next belt is yours.</p>
+      <div class="bl-row" aria-hidden="true"><i style="background:#F7F2E6;outline:1px solid #B9AE96;outline-offset:-1px"></i><i style="background:#2E6B3A"></i><i style="background:#25457A"></i><i style="background:#7A4A2B"></i><i style="background:#141110;outline:1px solid #5A544E;outline-offset:-1px"></i><span>Five belts. One test.</span></div>
+    </div>
+    <div class="bl-war" aria-hidden="true"><img src="/strike/warrior-guard-400.webp" alt="" width="288" height="400" decoding="async"></div>
+    <div class="bl-card" id="which">
+      <h2>Which belt are you?</h2>
+      <label for="blScore">Your SAT score</label>
+      <input class="bl-in" id="blScore" type="text" inputmode="numeric" autocomplete="off" maxlength="4" aria-describedby="blHint">
+      <p class="bl-hint" id="blHint">Any score from 400 to 1600.</p>
+      <div class="bl-out" id="blOut" role="status" aria-live="polite"><p class="ph">Type a score and your belt shows here.</p></div>
+      <p class="bl-note">Your score sets where you start. The belt says which moves to close first.</p>
+    </div>
+  </div>
+</section>
+<section class="bl-lad" aria-labelledby="bl-lh">
+  <div class="wrap">
+    <div class="head">
+      <div class="eyebrow">The five belts</div>
+      <h2 id="bl-lh">What each belt means, and what stops working there</h2>
+      <p class="bl-how">A move is closed when it stops costing you points. Close a belt&#x27;s moves and the next belt is earned. A belt shows what is closed. It never predicts a score.</p>
+    </div>
+    <ol class="bl-list">
+    <li class="bl-belt" id="belt-white">
+      <div class="bar" style="background:#F7F2E6;border-bottom:1px solid #B9AE96"></div>
+      <div class="in">
+        <div class="nm"><svg class="" viewBox="0 0 120 42" aria-hidden="true" focusable="false"><rect x="2" y="12" width="116" height="18" rx="3" fill="#F7F2E6" stroke="#B9AE96" stroke-width="2"/><path d="M52 12 L68 30 M68 12 L52 30" stroke="#B9AE96" stroke-width="3" stroke-linecap="round"/><rect x="54" y="8" width="12" height="26" rx="2" fill="#F7F2E6" stroke="#B9AE96" stroke-width="2"/></svg><div><h3>White</h3><div class="bd">Under 1100</div></div><span class="you">Your belt</span></div>
+        <p>The ground floor. The points here go to setup, not to hard content: reading what the question asks, saying what each number stands for, and tracking the right line.</p>
+        <h4>What stops working at this belt</h4>
+        <ul><li>Reading the answer choices before you know what the blank needs.</li><li>Starting the algebra before you&#x27;ve said what each number stands for.</li><li>Reading a number from the wrong row of a table.</li><li>Picking a sentence that&#x27;s fine but written for the wrong reader or the wrong goal.</li></ul>
+      </div>
+    </li>
+    <li class="bl-belt" id="belt-green">
+      <div class="bar" style="background:#2E6B3A"></div>
+      <div class="in">
+        <div class="nm"><svg class="" viewBox="0 0 120 42" aria-hidden="true" focusable="false"><rect x="2" y="12" width="116" height="18" rx="3" fill="#2E6B3A"/><path d="M52 12 L68 30 M68 12 L52 30" stroke="#1F4A28" stroke-width="3" stroke-linecap="round"/><rect x="54" y="8" width="12" height="26" rx="2" fill="#2E6B3A" stroke="#1F4A28" stroke-width="2"/></svg><div><h3>Green</h3><div class="bd">1100 to 1250</div></div><span class="you">Your belt</span></div>
+        <p>The trap belt. You know the content. The points go to answers that are built to look right.</p>
+        <h4>What stops working at this belt</h4>
+        <ul><li>Using the right method and stopping one step short of what was asked.</li><li>Picking a true answer to a question nobody asked.</li><li>Trusting the first meaning of a word when the test wants another one.</li><li>Joining two full sentences with a comma alone.</li><li>Judging a shaded graph by eye instead of testing a point.</li></ul>
+      </div>
+    </li>
+    <li class="bl-belt" id="belt-blue">
+      <div class="bar" style="background:#25457A"></div>
+      <div class="in">
+        <div class="nm"><svg class="" viewBox="0 0 120 42" aria-hidden="true" focusable="false"><rect x="2" y="12" width="116" height="18" rx="3" fill="#25457A"/><path d="M52 12 L68 30 M68 12 L52 30" stroke="#172E55" stroke-width="3" stroke-linecap="round"/><rect x="54" y="8" width="12" height="26" rx="2" fill="#25457A" stroke="#172E55" stroke-width="2"/></svg><div><h3>Blue</h3><div class="bd">1250 to 1350</div></div><span class="you">Your belt</span></div>
+        <p>The clock belt. You can solve almost everything. The points go to time, spent the long way when a faster read was sitting right there.</p>
+        <h4>What stops working at this belt</h4>
+        <ul><li>Solving a whole system when the slopes already gave the answer.</li><li>Working a question out by hand when Desmos would settle it in seconds.</li><li>Solving all the way through when an estimate would do.</li><li>Letting an answer the passage ruled out come back in new words.</li><li>Keeping a verb that sounds fine but breaks the time frame.</li></ul>
+      </div>
+    </li>
+    <li class="bl-belt" id="belt-brown">
+      <div class="bar" style="background:#7A4A2B"></div>
+      <div class="in">
+        <div class="nm"><svg class="" viewBox="0 0 120 42" aria-hidden="true" focusable="false"><rect x="2" y="12" width="116" height="18" rx="3" fill="#7A4A2B"/><path d="M52 12 L68 30 M68 12 L52 30" stroke="#54321C" stroke-width="3" stroke-linecap="round"/><rect x="54" y="8" width="12" height="26" rx="2" fill="#7A4A2B" stroke="#54321C" stroke-width="2"/></svg><div><h3>Brown</h3><div class="bd">1350 to 1450</div></div><span class="you">Your belt</span></div>
+        <p>The hard-module belt. These are the questions in the harder second module, where one small slip turns a right method into a wrong choice.</p>
+        <h4>What stops working at this belt</h4>
+        <ul><li>Treating a squared change as if it grew in a straight line.</li><li>Reading more into a chart than it shows.</li><li>Letting one extreme value fool you about an average.</li><li>Treating a trend line as if every point sat on it.</li><li>Putting commas around words the sentence can&#x27;t do without.</li><li>Picking a choice that&#x27;s only half right.</li></ul>
+      </div>
+    </li>
+    <li class="bl-belt" id="belt-black">
+      <div class="bar" style="background:#141110"></div>
+      <div class="in">
+        <div class="nm"><svg class="" viewBox="0 0 120 42" aria-hidden="true" focusable="false"><rect x="2" y="12" width="116" height="18" rx="3" fill="#141110"/><path d="M52 12 L68 30 M68 12 L52 30" stroke="#5A544E" stroke-width="3" stroke-linecap="round"/><rect x="54" y="8" width="12" height="26" rx="2" fill="#141110" stroke="#5A544E" stroke-width="2"/></svg><div><h3>Black</h3><div class="bd">1450 and up</div></div><span class="you">Your belt</span></div>
+        <p>The rare-question belt. Each of these shows up once or twice a test. At this score, they&#x27;re what is left.</p>
+        <h4>What stops working at this belt</h4>
+        <ul><li>Adding up growth rates that actually build on each other.</li><li>Shifting a graph the wrong way.</li><li>Taking the plain average of two averages when one group is bigger.</li><li>Picking a claim the text never makes.</li></ul>
+      </div>
+    </li>
+    </ol>
+    <div class="bl-diag">
+      <h2>Find the moves that cost you points</h2>
+      <p>The free Diagnostic reads your own misses. It names the moves behind them and the order to fix them.</p>
+      <a class="btn" id="blDiag" href="/diagnostic/?utm_source=site&amp;utm_medium=belt&amp;utm_campaign=belts">Get your free Diagnostic</a>
+    </div>
+    <p class="bl-quizlead">No score yet? Take the 10-question check below.</p>
+  </div>
+</section>
+<section id="check" style="padding-top:24px">
   <div class="wrap quiz stack" style="gap:20px">
     <div class="stack" style="gap:12px">
-      <div class="eyebrow">Which belt are you</div>
-      <h1 style="font-size:clamp(32px,4vw,44px)">Ten questions. No clock. One honest answer.</h1>
+      <div class="eyebrow">The 10-question check</div>
+      <h2 style="font-size:clamp(28px,4vw,40px)">Ten questions. No clock. One honest answer.</h2>
       <p class="body">Five Reading and Writing, five Math, each one built to carry one of the five Trap Map traps. Answer the way you would on test day. Then see which traps are already firing and where that leaves you.</p>
     </div>
     <div class="progress" aria-hidden="true"><i id="bar"></i></div>
@@ -182,6 +332,32 @@ footer.sf .sf-cb{margin:8px 0 0;color:#B3A796;font-size:13px;max-width:44em}
 <script>(function(){var d=document.getElementById('sfRead');if(!d||!window.matchMedia)return;var m=window.matchMedia('(min-width:900px)');function s(){if(m.matches)d.open=true;}s();if(m.addEventListener)m.addEventListener('change',s);})();</script>
 <script>(function(){var K=["utm_source","utm_medium","utm_campaign","utm_content","utm_term","gclid","fbclid"];function cur(){var q=new URLSearchParams(location.search),o={},n=0;K.forEach(function(k){var v=q.get(k);if(v){o[k]=v.slice(0,200);n++;}});return n?o:null;}try{var c=cur();if(c&&!localStorage.getItem("ss_attr")){c.first_page=location.pathname;c.first_at=new Date().toISOString();localStorage.setItem("ss_attr",JSON.stringify(c));}}catch(e){}window.ssAttr=function(){var s=null,o={};try{s=JSON.parse(localStorage.getItem("ss_attr")||"null");}catch(e){}var c=cur()||{};K.forEach(function(k){var v=(s&&s[k])||c[k];if(v)o[k]=v;});return o;};})();</script>
 </footer>
+<script>
+(function(){
+  var B=[{"k": "white", "name": "White", "f": 0, "text": "under 1100", "svg": "<svg class=\"\" viewBox=\"0 0 120 42\" aria-hidden=\"true\" focusable=\"false\"><rect x=\"2\" y=\"12\" width=\"116\" height=\"18\" rx=\"3\" fill=\"#F7F2E6\" stroke=\"#B9AE96\" stroke-width=\"2\"/><path d=\"M52 12 L68 30 M68 12 L52 30\" stroke=\"#B9AE96\" stroke-width=\"3\" stroke-linecap=\"round\"/><rect x=\"54\" y=\"8\" width=\"12\" height=\"26\" rx=\"2\" fill=\"#F7F2E6\" stroke=\"#B9AE96\" stroke-width=\"2\"/></svg>"}, {"k": "green", "name": "Green", "f": 1100, "text": "1100 to 1250", "svg": "<svg class=\"\" viewBox=\"0 0 120 42\" aria-hidden=\"true\" focusable=\"false\"><rect x=\"2\" y=\"12\" width=\"116\" height=\"18\" rx=\"3\" fill=\"#2E6B3A\"/><path d=\"M52 12 L68 30 M68 12 L52 30\" stroke=\"#1F4A28\" stroke-width=\"3\" stroke-linecap=\"round\"/><rect x=\"54\" y=\"8\" width=\"12\" height=\"26\" rx=\"2\" fill=\"#2E6B3A\" stroke=\"#1F4A28\" stroke-width=\"2\"/></svg>"}, {"k": "blue", "name": "Blue", "f": 1250, "text": "1250 to 1350", "svg": "<svg class=\"\" viewBox=\"0 0 120 42\" aria-hidden=\"true\" focusable=\"false\"><rect x=\"2\" y=\"12\" width=\"116\" height=\"18\" rx=\"3\" fill=\"#25457A\"/><path d=\"M52 12 L68 30 M68 12 L52 30\" stroke=\"#172E55\" stroke-width=\"3\" stroke-linecap=\"round\"/><rect x=\"54\" y=\"8\" width=\"12\" height=\"26\" rx=\"2\" fill=\"#25457A\" stroke=\"#172E55\" stroke-width=\"2\"/></svg>"}, {"k": "brown", "name": "Brown", "f": 1350, "text": "1350 to 1450", "svg": "<svg class=\"\" viewBox=\"0 0 120 42\" aria-hidden=\"true\" focusable=\"false\"><rect x=\"2\" y=\"12\" width=\"116\" height=\"18\" rx=\"3\" fill=\"#7A4A2B\"/><path d=\"M52 12 L68 30 M68 12 L52 30\" stroke=\"#54321C\" stroke-width=\"3\" stroke-linecap=\"round\"/><rect x=\"54\" y=\"8\" width=\"12\" height=\"26\" rx=\"2\" fill=\"#7A4A2B\" stroke=\"#54321C\" stroke-width=\"2\"/></svg>"}, {"k": "black", "name": "Black", "f": 1450, "text": "1450 and up", "svg": "<svg class=\"\" viewBox=\"0 0 120 42\" aria-hidden=\"true\" focusable=\"false\"><rect x=\"2\" y=\"12\" width=\"116\" height=\"18\" rx=\"3\" fill=\"#141110\"/><path d=\"M52 12 L68 30 M68 12 L52 30\" stroke=\"#5A544E\" stroke-width=\"3\" stroke-linecap=\"round\"/><rect x=\"54\" y=\"8\" width=\"12\" height=\"26\" rx=\"2\" fill=\"#141110\" stroke=\"#5A544E\" stroke-width=\"2\"/></svg>"}];
+  var inp=document.getElementById("blScore"),out=document.getElementById("blOut"),t=null,last="";
+  function pick(n){for(var i=B.length-1;i>=0;i--){if(n>=B[i].f)return B[i];}return B[0];}
+  function lit(k){document.querySelectorAll(".bl-belt").forEach(function(c){c.classList.toggle("lit",c.id==="belt-"+k);});}
+  function show(){
+    var v=(inp.value||"").replace(/\D/g,"");
+    if(v!==inp.value)inp.value=v;
+    if(!v){out.innerHTML='<p class="ph">'+"Type a score and your belt shows here."+'</p>';lit("");return;}
+    var n=parseInt(v,10);
+    if(v.length<3||(v.length===3&&n>=100&&n<=160)){out.innerHTML='<p class="ph">'+"Type a score and your belt shows here."+'</p>';lit("");return;}
+    if(n<400||n>1600){out.innerHTML='<p class="ph">'+"SAT scores run from 400 to 1600."+'</p>';lit("");return;}
+    var b=pick(n);
+    out.innerHTML='<div class="bl-res">'+b.svg+'<div><b></b><span></span></div></div><a></a>';
+    out.querySelector("b").textContent=b.name+" belt";
+    out.querySelector("span").textContent="The belt for scores "+b.text+".";
+    var a=out.querySelector("a");a.href="#belt-"+b.k;a.textContent="What "+b.name+" means";
+    lit(b.k);
+    clearTimeout(t);t=setTimeout(function(){if(last!==b.k){last=b.k;if(window.gtag){try{gtag("event","belt_lookup",{belt:b.name});}catch(e){}}}},900);
+  }
+  inp.addEventListener("input",show);
+  var d=document.getElementById("blDiag");
+  if(d)d.addEventListener("click",function(){if(window.gtag){try{gtag("event","diagnostic_click",{place:"belt_ladder"});}catch(e){}}});
+})();
+</script>
 <script src="/belt.js" defer></script>
 </body>
 </html>
