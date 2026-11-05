@@ -25,6 +25,9 @@
   var SIGNED_OUT = 'Your session has ended. Enter your email for a new sign-in link.';
 
   var app = document.getElementById('app');
+  // See The Dojo (/dojo/see/, DOJODEMO): sample.js sets DOJO_SAMPLE before this file. The page then renders that
+  // read-only parent view, with the clock held at the sample's day, and never calls the API or touches a session.
+  var SAMPLE = window.DOJO_SAMPLE || null;
 
   /* ---------------------------------------------------------------- helpers */
 
@@ -56,7 +59,7 @@
   function short(d) { return MON[d.getUTCMonth()] + ' ' + d.getUTCDate(); }
   function long(d) { return MONTH[d.getUTCMonth()] + ' ' + d.getUTCDate(); }
   function weekday(d) { return DAY[d.getUTCDay()]; }
-  function todayET() { return day(new Intl.DateTimeFormat('en-CA', { timeZone: TZ, year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date())); }
+  function todayET() { if (SAMPLE && SAMPLE.today) return day(SAMPLE.today); return day(new Intl.DateTimeFormat('en-CA', { timeZone: TZ, year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date())); }
   function daysUntil(d) { return Math.round((d - todayET()) / 86400000); }
   function range(a, b) { return a.getUTCMonth() === b.getUTCMonth() ? short(a) + ' to ' + b.getUTCDate() : short(a) + ' to ' + short(b); }
   function finalWindow(test) { return { from: addDays(test, -12), to: addDays(test, -10) }; } // last full practice test 10 to 12 days out
@@ -209,7 +212,7 @@
     signInScreen("You're signed out.");
   }
 
-  function outButton() { return el('button', { type: 'button', class: 'out', text: 'Sign out', on: { click: signOut } }); }
+  function outButton() { if (SAMPLE) return null; return el('button', { type: 'button', class: 'out', text: 'Sign out', on: { click: signOut } }); }
 
   function beltState(d) {
     var order = (d.belt && d.belt.order) || [];
@@ -581,7 +584,11 @@
     return [
       el('header', { class: 'top floor' }, [
         el('div', { class: 'bar' }, [el('div', { class: 'brand' }, [wordmark(), brandline()]), outButton()]),
-        nav
+        nav,
+        SAMPLE ? el('div', { class: 'sample' }, [
+          el('span', { class: 'tag', text: 'Sample family' }),
+          el('p', null, ['Every family gets this board. ', el('a', { href: 'https://scoresamurai.com/diagnostic/', text: 'Start with the free Diagnostic.' })])
+        ]) : null
       ]),
       el('main', { class: 'board' }, [
         el('section', { class: 'phero' }, [
@@ -632,6 +639,7 @@
   /* ---------------------------------------------------------------- start */
 
   function start() {
+    if (SAMPLE) { document.title = 'See The Dojo | Score Samurai'; return show(parentBoard(SAMPLE.family), 'parent sample'); }
     var m = /(?:^#|&)t=([^&]*)/.exec(location.hash || '');
     if (!m) return load();
     var token = m[1];
@@ -647,6 +655,6 @@
   }
 
   // A sign-in link opened in a tab that already shows this page changes only the fragment; handle it too.
-  window.addEventListener('hashchange', function () { if (/(?:^#|&)t=/.test(location.hash)) start(); });
+  if (!SAMPLE) window.addEventListener('hashchange', function () { if (/(?:^#|&)t=/.test(location.hash)) start(); });
   start();
 })();
