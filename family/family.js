@@ -14,6 +14,7 @@
   var CONTACT = 'senseijay@scoresamurai.com';
   var TZ = 'America/New_York';
   var WARRIOR = 'warrior-dojo.webp';
+  var CARD_WARRIOR = '../strike/warrior-strike.webp'; // the share card's Warrior: the Daily Strike strike pose (WALLFIX)
   // Belt colours from the Nov 4 design. Which belts exist, and their floors, come from the engine through the API.
   var BELT_COLOR = { White: '#f8f3e7', Yellow: '#e2b93b', Green: '#2f8f4e', Blue: '#1f4e9c', Brown: '#6b3f23', Black: '#1f1512' };
   var SIGNIN_BELTS = ['White', 'Green', 'Blue', 'Brown', 'Black']; // the engine's BELT_ORDER, for the sign-in screen before any data loads
@@ -258,7 +259,7 @@
     var btn = el('button', { type: 'button', class: 'share', text: 'Share', disabled: true, 'aria-label': 'Share ' + W.pick(d).belt + ' Belt card' });
     var wrap = el('div', { class: 'shr' }, [btn, note]);
     var ready = null;
-    W.make(d, WARRIOR).then(function (p) {
+    W.make(d, CARD_WARRIOR).then(function (p) {
       if (!p) { wrap.hidden = true; return; }
       ready = p; btn.disabled = false;
     }).catch(function () { wrap.hidden = true; });
