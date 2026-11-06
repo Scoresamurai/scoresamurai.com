@@ -91,6 +91,8 @@ new MutationObserver(scan).observe(document.documentElement, { childList: true, 
 .steps i{display:block;height:4px;flex:1;background:var(--line);border-radius:2px}
 .steps i.on{background:var(--gold)}
 .hidden{display:none}
+.blk{gap:16px}.blk h3{font-size:20px}.roleline{margin:0}
+.promise{margin:0;font-size:16px;line-height:1.5;color:var(--ink);padding:12px 14px;background:#FBF6EA;border-left:3px solid var(--gold);border-radius:6px}
 .field.role{border:0;margin:0;padding:0;min-width:0}
 .field.role legend{font-size:14px;font-weight:600;color:var(--ink);padding:0;margin-bottom:6px}
 .role .opts{display:flex;flex-wrap:wrap;gap:8px}
@@ -112,32 +114,23 @@ footer .fine{display:flex;flex-direction:column;gap:6px;max-width:440px}
     <div class="stack" style="gap:12px">
       <div class="eyebrow">The Diagnostic</div>
       <h1 style="font-size:clamp(30px,4vw,42px)">One form. Back within 24 hours.</h1>
-      <p class="body">One short form. Within 24 hours you get it in writing. Where the score stands, where it needs to be, and what to fix first.</p>
     </div>
 
     <form id="dx" novalidate class="stack" style="gap:16px">
       <div class="steps" aria-hidden="true"><span id="stepLabel">Step 1 of 3</span><i class="on"></i><i></i><i></i></div>
 
-      <!-- SCREEN 1: the student -->
+      <!-- SCREEN 1: three questions (DIAGFORM, Nov 6 2026). Your name, your email, the test. The rest comes after. -->
       <div class="screen" data-screen="1">
-        <fieldset class="field role" id="fRole"><legend>Who&rsquo;s filling this in?</legend><div class="opts"><label><input type="radio" name="role" value="student" required> I&rsquo;m the student</label><label><input type="radio" name="role" value="parent"> I&rsquo;m a parent</label></div><span class="errmsg">Pick one.</span></fieldset>
-        <h2 style="font-size:24px">About you</h2>
-        <div class="row2">
-          <div class="field"><label for="first">First name</label><input id="first" name="student_first" autocomplete="given-name" required><span class="errmsg">Needed.</span></div>
-          <div class="field"><label for="last">Last name</label><input id="last" name="student_last" autocomplete="family-name" required><span class="errmsg">Needed.</span></div>
-        </div>
-        <div class="field"><label for="semail">Your email</label><input id="semail" name="student_email" type="email" autocomplete="email" required><span class="errmsg">A working email address.</span></div>
-        <div class="row2">
-          <div class="field"><label for="grade">Current grade</label><select id="grade" name="grade" required><option value="">Choose</option><option>9th</option><option>10th</option><option>11th</option><option>12th</option><option>Other</option></select><span class="errmsg">Needed.</span></div>
-          <div class="field"><label for="school">Your school</label><input id="school" name="school" required><span class="errmsg">Needed.</span></div>
-        </div>
+        <p class="promise" id="promise">Start with three questions. Sensei Jay reads every one himself and sends the Diagnostic in writing within 24 hours.</p>
+        <div class="field"><label for="meFirst">Your first name</label><input id="meFirst" type="text" autocomplete="given-name" autocapitalize="words" enterkeyhint="next" required><span class="errmsg">Needed.</span></div>
+        <div class="field"><label for="meEmail">Your email</label><input id="meEmail" type="email" inputmode="email" autocomplete="email" spellcheck="false" enterkeyhint="next" aria-describedby="meEmailHint" required><span class="hint" id="meEmailHint">The Diagnostic comes here.</span><span class="errmsg">A working email address.</span></div>
+        <div class="field"><label for="testdate">Which SAT do you want to be your last?</label><select id="testdate" name="target_test_date" required><option value="">Choose</option><option value="November 7, 2026">November 7, 2026</option><option value="December 5, 2026">December 5, 2026</option><option value="March 6, 2027">March 6, 2027</option><option value="May 1, 2027">May 1, 2027</option><option value="June 5, 2027">June 5, 2027</option><option value="Not sure yet">Not sure yet</option></select><span class="errmsg">Pick one, or Not sure yet.</span></div>
         <div style="display:flex;justify-content:flex-end"><button type="button" class="btn" data-next>Next</button></div>
       </div>
 
       <!-- SCREEN 2: the test -->
       <div class="screen hidden" data-screen="2">
         <h2 style="font-size:24px">The test</h2>
-        <div class="field"><label for="testdate">Which SAT do you want to be your last?</label><select id="testdate" name="target_test_date" required><option value="">Choose</option><option value="November 7, 2026">November 7, 2026</option><option value="December 5, 2026">December 5, 2026</option><option value="March 6, 2027">March 6, 2027</option><option value="May 1, 2027">May 1, 2027</option><option value="June 5, 2027">June 5, 2027</option><option value="Not sure yet">Not sure yet</option></select><span class="errmsg">Pick one, or Not sure yet.</span></div>
         <div class="field"><label for="recent">Most recent SAT or PSAT score</label><input id="recent" name="recent_score" placeholder="Enter N/A if not yet taken" required><span class="errmsg">A score, or N/A.</span></div>
         <div class="row2">
           <div class="field"><label for="math">Math section score</label><input id="math" name="math_score" placeholder="or N/A" required><span class="errmsg">A score, or N/A.</span></div>
@@ -164,17 +157,33 @@ footer .fine{display:flex;flex-direction:column;gap:6px;max-width:440px}
         <div style="display:flex;justify-content:space-between"><button type="button" class="btn btn-ghost" data-back>Back</button><button type="button" class="btn" data-next>Next</button></div>
       </div>
 
-      <!-- SCREEN 3: the parent -->
+      <!-- SCREEN 3: who it is for. The student's and a parent's details; the "you" fields already given on screen 1 stay hidden and are filled from it. -->
       <div class="screen hidden" data-screen="3">
-        <h2 style="font-size:24px">A parent to copy</h2>
-        <p class="muted">The Diagnostic goes to both of you. The weekly updates go to the parent if you enroll.</p>
-        <div class="row2">
-          <div class="field"><label for="pfirst">Parent first name</label><input id="pfirst" name="parent_first" autocomplete="section-parent given-name" required><span class="errmsg">Needed.</span></div>
-          <div class="field"><label for="plast">Parent last name</label><input id="plast" name="parent_last" autocomplete="section-parent family-name" required><span class="errmsg">Needed.</span></div>
+        <h2 style="font-size:24px">Who it&rsquo;s for</h2>
+        <fieldset class="field role" id="fRole"><legend>Who&rsquo;s filling this in?</legend><div class="opts"><label><input type="radio" name="role" value="student" required> I&rsquo;m the student</label><label><input type="radio" name="role" value="parent"> I&rsquo;m a parent</label></div><span class="errmsg">Pick one.</span></fieldset>
+        <p class="muted roleline">The Diagnostic goes to the student and a parent. The weekly updates go to the parent if you enroll.</p>
+        <div id="sBlock" class="stack blk hidden">
+          <h3 data-h-student="About you" data-h-parent="About the student">About you</h3>
+          <div class="row2">
+            <div class="field" data-me="student"><label for="first">First name</label><input id="first" name="student_first" autocomplete="given-name" required><span class="errmsg">Needed.</span></div>
+            <div class="field"><label for="last">Last name</label><input id="last" name="student_last" autocomplete="family-name" required><span class="errmsg">Needed.</span></div>
+          </div>
+          <div class="field" data-me="student"><label for="semail">Your email</label><input id="semail" name="student_email" type="email" autocomplete="email" required><span class="errmsg">A working email address.</span></div>
+          <div class="row2">
+            <div class="field"><label for="grade">Current grade</label><select id="grade" name="grade" required><option value="">Choose</option><option>9th</option><option>10th</option><option>11th</option><option>12th</option><option>Other</option></select><span class="errmsg">Needed.</span></div>
+            <div class="field"><label for="school">Your school</label><input id="school" name="school" required><span class="errmsg">Needed.</span></div>
+          </div>
         </div>
-        <div class="row2">
-          <div class="field"><label for="pemail">Parent email</label><input id="pemail" name="parent_email" type="email" autocomplete="section-parent email" required><span class="errmsg">A working email address.</span></div>
-          <div class="field"><label for="pphone">Parent phone</label><input id="pphone" name="parent_phone" type="tel" autocomplete="section-parent tel" required><span class="errmsg">Needed.</span></div>
+        <div id="pBlock" class="stack blk hidden">
+          <h3 data-h-student="A parent to copy" data-h-parent="About you">A parent to copy</h3>
+          <div class="row2">
+            <div class="field" data-me="parent"><label for="pfirst">Parent first name</label><input id="pfirst" name="parent_first" autocomplete="section-parent given-name" required><span class="errmsg">Needed.</span></div>
+            <div class="field"><label for="plast">Parent last name</label><input id="plast" name="parent_last" autocomplete="section-parent family-name" required><span class="errmsg">Needed.</span></div>
+          </div>
+          <div class="row2">
+            <div class="field" data-me="parent"><label for="pemail">Parent email</label><input id="pemail" name="parent_email" type="email" autocomplete="section-parent email" required><span class="errmsg">A working email address.</span></div>
+            <div class="field"><label for="pphone">Parent phone</label><input id="pphone" name="parent_phone" type="tel" autocomplete="section-parent tel" required><span class="errmsg">Needed.</span></div>
+          </div>
         </div>
         <input type="text" name="website" tabindex="-1" autocomplete="off" class="sr" aria-hidden="true">
         <div style="display:flex;justify-content:space-between;align-items:center;gap:12px"><button type="button" class="btn btn-ghost" data-back>Back</button><button type="submit" class="btn" id="submit">Send me my Diagnostic</button></div>

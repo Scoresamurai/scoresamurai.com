@@ -1,4 +1,7 @@
-/* Score Samurai: the three-screen Diagnostic form. Seventeen fields, same as the TutorBird intake,
+/* Score Samurai: the three-screen Diagnostic form. DIAGFORM, Nov 6 2026: screen 1 is three questions (your first name,
+   your email, the test date); who is filling it in and the student's and parent's details move to screen 3. Same field
+   names in the post, same GA4 events (diagnostic_step on screens 2 and 3, diagnostic_submit on ok:true).
+   Seventeen fields, same as the TutorBird intake,
    posted to the Apps Script endpoint (apps-script/Code.gs). Set ENDPOINT before deploy.
    ENGINE2, Nov 4 2026 (INTAKE-SPEC.md): an optional practice-test block on screen 2. The miss fields and the
    screenshot upload show only for a Bluebook practice test; screenshots are scaled to 1600 px on the long side
@@ -26,6 +29,7 @@
   function valid(n) {
     var ok = true;
     screens[n].querySelectorAll("[required]").forEach(function (f) {
+      if (f.closest(".hidden")) return; // a field the screen is not showing (DIAGFORM)
       var field = f.closest(".field");
       var good = f.type === "radio" ? !!form.querySelector('input[name="' + f.name + '"]:checked') : f.value.trim() !== "" && (f.type !== "email" || /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(f.value.trim()));
       field.classList.toggle("err", !good);
@@ -42,8 +46,12 @@
     f.addEventListener("input", function () { f.closest(".field") && f.closest(".field").classList.remove("err"); });
   });
 
-  /* Who's filling this in: a parent sees the student's fields labelled as the student's, and the browser stops offering the parent's own details there. */
-  var roleLabels = { first: "Student’s first name", last: "Student’s last name", semail: "Student’s email", school: "Student’s school" };
+  /* Who's filling this in (screen 3 since DIAGFORM, Nov 6 2026). Screen 1 asks only "your" first name and email; the
+     role decides whether they are the student's or the parent's, so that pair is hidden on screen 3 and copied in on
+     submit. A parent sees the student's fields labelled as the student's, and the browser stops offering the parent's
+     own details there. */
+  var roleLabels = { first: "Student’s first name", last: "Student’s last name", semail: "Student’s email", school: "Student’s school", plast: "Your last name", pphone: "Your phone" };
+  var sBlock = document.getElementById("sBlock"), pBlock = document.getElementById("pBlock");
   form.querySelectorAll('input[name="role"]').forEach(function (r) {
     r.addEventListener("change", function () {
       var parent = form.role.value === "parent";
@@ -52,13 +60,25 @@
         if (!inp || !lab) return;
         if (!lab.hasAttribute("data-own")) lab.setAttribute("data-own", lab.textContent);
         lab.textContent = parent ? roleLabels[id] : lab.getAttribute("data-own");
+        if (id === "plast" || id === "pphone") return;
         if (!inp.hasAttribute("data-ac")) inp.setAttribute("data-ac", inp.getAttribute("autocomplete") || "");
         inp.setAttribute("autocomplete", parent ? "off" : inp.getAttribute("data-ac"));
       });
-      var h = screens[0].querySelector("h2,h3");
-      if (h) { if (!h.hasAttribute("data-own")) h.setAttribute("data-own", h.textContent); h.textContent = parent ? "About the student" : h.getAttribute("data-own"); }
+      [sBlock, pBlock].forEach(function (b) {
+        if (!b) return;
+        b.classList.remove("hidden");
+        var h = b.querySelector("h3"); if (h) h.textContent = h.getAttribute(parent ? "data-h-parent" : "data-h-student");
+      });
+      form.querySelectorAll("[data-me]").forEach(function (f) { f.classList.toggle("hidden", f.getAttribute("data-me") === (parent ? "parent" : "student")); });
     });
   });
+  /* Screen 1's two answers into the role's own fields, so the post carries the same field names as before. */
+  function copyMe() {
+    var meFirst = document.getElementById("meFirst"), meEmail = document.getElementById("meEmail");
+    var parent = form.role.value === "parent";
+    document.getElementById(parent ? "pfirst" : "first").value = meFirst.value.trim();
+    document.getElementById(parent ? "pemail" : "semail").value = meEmail.value.trim();
+  }
   /* The practice-test block: fields 19 to 23 appear only when field 18 names a Bluebook practice test. */
   var ptest = document.getElementById("ptest"), missBlock = document.getElementById("missBlock");
   function bluebook() { return !!ptest && /^Practice Test \d+$/.test(ptest.value); }
@@ -120,11 +140,13 @@
     if (form.website.value) return; // honeypot
     var btn = document.getElementById("submit");
     var status = document.getElementById("status");
+    if (shotsIn && shotsIn.files.length > MAX_SHOTS && bluebook()) {
+      /* Checked before the button locks: it used to stay on "Sending" with nothing sent (DIAGFORM). */
+      show(1, false); document.getElementById("fShots").classList.add("err"); shotsIn.focus(); return;
+    }
+    copyMe();
     btn.disabled = true; btn.textContent = "Sending";
     status.textContent = "";
-    if (shotsIn && shotsIn.files.length > MAX_SHOTS && bluebook()) {
-      document.getElementById("fShots").classList.add("err"); shotsIn.focus(); return;
-    }
     var data = {};
     new FormData(form).forEach(function (v, k) { if (typeof v === "string") data[k] = v.trim(); });
     if (!bluebook()) ["missed_rw_m1", "missed_rw_m2", "missed_math_m1", "missed_math_m2"].forEach(function (k) { delete data[k]; });
@@ -158,6 +180,6 @@
   });
 
   show(0, false);
-  var firstField = form.querySelector('input[name="role"]');
+  var firstField = document.getElementById("meFirst");
   if (firstField) { try { firstField.focus({ preventScroll: true }); } catch (e) {} }
 })();
