@@ -131,7 +131,7 @@
       el('div', { class: 'gate-body' }, [
         el('div', { class: 'gate-pitch' }, [
           el('h2', null, ['Enter', el('br'), 'The Dojo.']),
-          el('p', { text: 'Sessions, belt, Roadmap, the Friday update and billing. One place, built from the Diagnostic and rewritten as belts are earned.' }),
+          el('p', { text: 'Sessions, belt, Roadmap, the Friday update and billing. The Dojo, built from the Diagnostic and rewritten as belts are earned.' }),
           chips
         ]),
         el('div', { class: 'card' }, cardKids),
