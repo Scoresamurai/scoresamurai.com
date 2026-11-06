@@ -133,7 +133,7 @@
       el('div', { class: 'gate-body' }, [
         el('div', { class: 'gate-pitch' }, [
           el('h2', null, ['Enter', el('br'), 'The Dojo.']),
-          el('p', { text: 'Sessions, belt, Roadmap, the Friday update and billing. One board, built from the Diagnostic and rewritten as belts are earned.' }),
+          el('p', { text: 'Sessions, belt, Roadmap, the Friday update and billing. One place, built from the Diagnostic and rewritten as belts are earned.' }),
           chips
         ]),
         el('div', { class: 'card' }, cardKids),
@@ -587,7 +587,7 @@
         nav,
         SAMPLE ? el('div', { class: 'sample' }, [
           el('span', { class: 'tag', text: 'Sample family' }),
-          el('p', null, ['Every family gets this board. ', el('a', { href: 'https://scoresamurai.com/diagnostic/', text: 'Start with the free Diagnostic.' })])
+          el('p', null, ['Every family gets The Dojo. ', el('a', { href: 'https://scoresamurai.com/diagnostic/', text: 'Start with the free Diagnostic.' })])
         ]) : null
       ]),
       el('main', { class: 'board' }, [
