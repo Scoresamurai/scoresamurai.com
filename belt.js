@@ -46,7 +46,7 @@
       box.appendChild(b);
     });
     el("next").disabled = picks[i] === undefined;
-    el("next").textContent = i === Q.length - 1 ? "See my belt" : "Next";
+    el("next").textContent = i === Q.length - 1 ? "See my result" : "Next";
     el("back").style.visibility = i === 0 ? "hidden" : "visible";
   }
 
@@ -64,16 +64,19 @@
     var single = Object.keys(misses).map(Number).filter(function (t) { return firing.indexOf(t) < 0; });
     var correct = Q.filter(function (q, j) { return picks[j] === q.k; }).length;
 
-    var belt, color, border, summary;
+    var belt, color = "#2E6B3A", border = "#1F4A28", summary;
+    // Oct 28 2026 bands: the belt comes from the score (the box at the top of the page). These traps are Green's work.
+    var GREEN = " These are Green's traps. Green is the belt for scores 1100 to 1250. Your belt comes from your score: type it in the box up top.";
+    var WORDS = ["", "One", "Two", "Three", "Four", "Five"];
     if (firing.length === 0 && correct === Q.length) {
-      belt = "A clean run. Green is in sight."; color = "#3F7A3E"; border = "#3F7A3E";
-      summary = "Ten for ten. None of the five Trap Map traps caught you today. That is a strong start, and it is not a belt yet. The points you are losing on a real test are in the timed patterns, which is Blue's work, and only a full set of misses can name them.";
+      belt = "A clean run on Green's traps.";
+      summary = "Ten for ten. None of these traps caught you today." + GREEN + " Above Green, the points go to the clock and the hard module.";
     } else if (firing.length === 0) {
-      belt = "White, close to Green"; color = "#F3ECDD"; border = "#C9BFA8";
-      summary = correct + " of ten. No trap fired twice, which is the bar, but " + (Q.length - correct) + (Q.length - correct === 1 ? " miss" : " misses") + " in one sitting is a habit waiting to be named. Green comes when the first set of moves on your Roadmap stops costing points across two practice tests.";
+      belt = "No trap fired twice";
+      summary = correct + " of ten. No trap fired twice, which is the bar, but " + (Q.length - correct) + (Q.length - correct === 1 ? " miss" : " misses") + " in one sitting is a habit waiting to be named." + GREEN;
     } else {
-      belt = "White"; color = "#F3ECDD"; border = "#C9BFA8";
-      summary = correct + " of ten. " + (firing.length === 1 ? "One trap" : firing.length + " traps") + " fired the way the test is built to make " + (firing.length === 1 ? "it" : "them") + " fire. Every student starts here. A belt moves when a set of moves on your Roadmap stops costing points on real practice tests.";
+      belt = firing.length === 1 ? "A Green trap is still catching you" : "Green traps are still catching you";
+      summary = correct + " of ten. " + (firing.length === 1 ? "One trap" : firing.length === 5 ? "Every trap in this check" : WORDS[firing.length] + " traps") + " fired the way the test is built to make " + (firing.length === 1 || firing.length === 5 ? "it" : "them") + " fire." + GREEN;
     }
     el("rbelt").textContent = belt;
     el("rline").style.background = color; el("rline").style.borderColor = border;
@@ -94,7 +97,7 @@
     }
     el("quiz").classList.add("hidden");
     el("result").classList.remove("hidden");
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    var ck = document.getElementById("check"); if (ck && ck.scrollIntoView) { ck.scrollIntoView({ behavior: "smooth", block: "start" }); } else { window.scrollTo({ top: 0, behavior: "smooth" }); }
     if (window.gtag) { try { gtag("event", "belt_result", { correct: correct, traps: firing.join(",") }); } catch (e) {} }
   }
 
