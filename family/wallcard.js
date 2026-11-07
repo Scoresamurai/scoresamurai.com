@@ -2,6 +2,7 @@
  * The Wall share card (WALLCARD, Nov 5 2026). A 1080 x 1350 PNG drawn in the browser, the way the Daily Strike card is:
  * the dojo floor, the Warrior, the belt earned with its date, the student's first name only, the brand line, the
  * wordmark with its belt line, scoresamurai.com. Never a score, never a parent name, never a Codex name.
+ * The Warrior is the strike pose from the Daily Strike card (WALLFIX).
  * The PNG is built before the tap, so the share sheet opens inside the tap on a phone. On a desktop the image is
  * copied; where copying images isn't allowed it is saved instead.
  * GA4: wall_share {method, view, belt}. gtag loads on scoresamurai.com only, on the first share, with no page view.
@@ -11,6 +12,7 @@
   'use strict';
 
   var W = 1080, H = 1350;
+  var GRID = 48, GRID_A = 0.07;
   var GA = 'G-LYZRWG13P3';
   var MONTH = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   var BELT = {
@@ -82,12 +84,18 @@
     ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath();
   }
   function floor(ctx) {
-    ctx.fillStyle = '#6e0d12'; ctx.fillRect(0, 0, W, H);
-    var g = ctx.createRadialGradient(W / 2, H * 0.45, 0, W / 2, H * 0.45, H * 0.62);
-    g.addColorStop(0, 'rgba(160,30,36,0.9)'); g.addColorStop(1, 'rgba(92,10,14,1)');
-    ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
-    ctx.fillStyle = 'rgba(0,0,0,0.10)'; for (var x = 0; x < W; x += 24) ctx.fillRect(x, 0, 2, H);
-    ctx.fillStyle = 'rgba(0,0,0,0.08)'; for (var y = 0; y < H; y += 24) ctx.fillRect(0, y, W, 2);
+    // the floor's glow as flat rings rather than a smooth gradient: canvas dithers gradients, and the noise
+    // made the PNG three times the size. 28 rings of about 2 colour levels each read as one smooth glow.
+    var R = H * 0.62, N = 28, a = [92, 10, 14], b = [151, 28, 34];
+    ctx.fillStyle = 'rgb(' + a.join(',') + ')'; ctx.fillRect(0, 0, W, H);
+    for (var i = 0; i < N; i++) {
+      var t = i / (N - 1);
+      ctx.fillStyle = 'rgb(' + a.map(function (v, j) { return Math.round(v + (b[j] - v) * t); }).join(',') + ')';
+      ctx.beginPath(); ctx.arc(W / 2, H * 0.45, R * (1 - t) + 1, 0, Math.PI * 2); ctx.fill();
+    }
+    // the mat grid, lighter than the page's so the PNG stays small (WALLFIX): a line every GRID px
+    ctx.fillStyle = 'rgba(0,0,0,' + GRID_A + ')'; for (var x = 0; x < W; x += GRID) ctx.fillRect(x, 0, 2, H);
+    for (var y = 0; y < H; y += GRID) ctx.fillRect(0, y, W, 2);
     ctx.strokeStyle = 'rgba(201,162,74,0.55)'; ctx.lineWidth = 2; ctx.strokeRect(36, 36, W - 72, H - 72);
     ctx.strokeStyle = 'rgba(201,162,74,0.25)'; ctx.strokeRect(50, 50, W - 100, H - 100);
   }
@@ -118,9 +126,10 @@
     var ww = spaced(ctx, 'SCORE SAMURAI', W / 2, 132, 7);
     ctx.fillStyle = GOLD; ctx.fillRect(W / 2 - ww / 2, 152, ww, 4);
     // the Warrior
-    var wh = 500, wwid = Math.round(warrior.width * wh / warrior.height);
+    // the Warrior in the strike pose, the same figure as the Daily Strike card
+    var wh = 540, wwid = Math.round(warrior.width * wh / warrior.height);
     ctx.save(); ctx.shadowColor = 'rgba(0,0,0,0.5)'; ctx.shadowBlur = 40; ctx.shadowOffsetY = 26;
-    ctx.drawImage(warrior, W / 2 - wwid / 2, 200, wwid, wh); ctx.restore();
+    ctx.drawImage(warrior, W / 2 - wwid / 2, 186, wwid, wh); ctx.restore();
     // the belt
     belt(ctx, card.belt, W / 2, 792);
     // the belt name, the date, the first name
