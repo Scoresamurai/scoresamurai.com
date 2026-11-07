@@ -124,6 +124,11 @@ main.board{max-width:1120px;margin:0 auto;padding:18px 16px 28px;display:flex;fl
 .belt.ahead .s{opacity:.8}
 .wall .ft{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12px;color:var(--goldtext)}
 .wall .ft b{color:var(--cream)}
+.wall .shr{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.wall .share{background:var(--gold);color:#1c0406;border:0;border-radius:6px;min-height:44px;padding:0 18px;font-weight:700;font-size:14px;cursor:pointer}
+.wall .share:hover{background:#a8822f}
+.wall .share[disabled]{opacity:.55;cursor:default}
+.wall .shr .note{font-size:13px;color:var(--goldtext)}
 
 /* three cards */
 .trio{display:grid;grid-template-columns:1fr;gap:14px}
