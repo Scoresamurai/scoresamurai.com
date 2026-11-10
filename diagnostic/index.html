@@ -18,7 +18,8 @@
 <meta property="og:image:alt" content="Score Samurai">
 <meta name="twitter:card" content="summary_large_image">
 <!-- Google tag (gtag.js) -->
-<script>window.addEventListener("load",function(){var s=document.createElement("script");s.async=true;s.src="https://www.googletagmanager.com/gtag/js?id=G-LYZRWG13P3";document.head.appendChild(s);});</script>
+<!-- DIAGPAGE, Nov 9 2026: gtag.js starts at DOMContentLoaded, not window load. Window load waited on the Calendly iframe, so a visitor who left in the first seconds was never counted. -->
+<script>(function(){function go(){var s=document.createElement("script");s.async=true;s.src="https://www.googletagmanager.com/gtag/js?id=G-LYZRWG13P3";document.head.appendChild(s);}if(document.readyState!=="loading")go();else document.addEventListener("DOMContentLoaded",go);})();</script>
 <script>
  window.dataLayer = window.dataLayer || [];
  function gtag(){dataLayer.push(arguments);}
@@ -37,8 +38,22 @@ if (typeof window.gtag === 'function') window.gtag('event', name, params || {});
 document.addEventListener('click', function (e) {
 var t = e.target && e.target.closest ? e.target.closest('.js-tb') : null;
 if (!t) return;
+dxOpened = true;
 ev('diagnostic_open', { link_text: (t.textContent || '').trim().slice(0, 100), page_path: location.pathname });
 }, true);
+/* diagnostic_open on this page (DIAGPAGE, Nov 9 2026). Ads land here, where the form is already open and no .js-tb button exists,
+   so the event read 0 while form_start counted starters. It now fires once per page view on the visitor's first tap or key
+   inside the form. The load-time focus on the first field is not a tap, so it does not count. */
+var dxOpened = false;
+function dxOpen(e) {
+if (dxOpened || !e.isTrusted) return;
+var f = e.target && e.target.closest ? e.target.closest('#dx') : null;
+if (!f) return;
+dxOpened = true;
+ev('diagnostic_open', { link_text: 'form', page_path: location.pathname, method: 'inline_form' });
+}
+document.addEventListener('pointerdown', dxOpen, true);
+document.addEventListener('keydown', dxOpen, true);
 /* trapmap_signup. Verified live on Sep 22 2026: on a successful Kit submit the form's contents are replaced and the email input disappears. That is the signal. */
 function watch(form) {
 if (form.__ssWatched) return;
@@ -103,6 +118,7 @@ new MutationObserver(scan).observe(document.documentElement, { childList: true, 
 .calbox{display:flex;flex-direction:column;gap:14px;margin-top:28px}
 .calbox h2{font-size:24px}
 footer .fine{display:flex;flex-direction:column;gap:6px;max-width:440px}
+.privline a{display:inline-flex;align-items:center;min-height:44px;padding:0 4px}
 </style>
 </head>
 <body>
@@ -203,10 +219,10 @@ footer .fine{display:flex;flex-direction:column;gap:6px;max-width:440px}
     <div class="calbox" id="calbox">
       <h2>Want to talk it through?</h2>
       <p class="body">Optional: book a free 15-minute Zoom with Sensei Jay below, a parent on. Your written Diagnostic arrives within 24 hours either way, whether or not you book.</p>
-      <iframe id="cal" class="cal" title="Optional: book a free 15-minute Zoom with Sensei Jay" loading="lazy" src="https://calendly.com/senseijay-scoresamurai/dojo-diagnostic?embed_domain=scoresamurai.com&amp;embed_type=Inline&amp;hide_gdpr_banner=1"></iframe>
+      <iframe id="cal" class="cal" title="Optional: book a free 15-minute Zoom with Sensei Jay" loading="lazy" data-src="https://calendly.com/senseijay-scoresamurai/dojo-diagnostic?embed_domain=scoresamurai.com&amp;embed_type=Inline&amp;hide_gdpr_banner=1"></iframe>
     </div>
 
-    <p class="muted" style="text-align:center">Your information is used to prepare the Diagnostic and for nothing else. <a href="/privacy/">Privacy</a></p>
+    <p class="muted privline" style="text-align:center">Your information is used to prepare the Diagnostic and for nothing else. <a href="/privacy/">Privacy</a></p>
   </div>
 </section>
 </main>
@@ -253,7 +269,7 @@ footer.sf .sf-cb{margin:8px 0 0;color:#B3A796;font-size:13px;max-width:44em}
     <div class="sf-col sf-c1">
       <a class="sf-brand" href="/" aria-label="Score Samurai, home"><span class="sf-wm" aria-hidden="true"><b>SCORE SAMURAI</b><i></i></span></a>
       <p class="sf-tag">The SAT is a discipline. Master it in The Dojo.</p>
-      <a class="sf-btn js-tb" href="/#diagnostic">Get Your Free Diagnostic</a>
+      <a class="sf-btn js-tb" href="#dx">Get Your Free Diagnostic</a>
       <a href="mailto:senseijay@scoresamurai.com">senseijay@scoresamurai.com</a>
     </div>
     <nav class="sf-col" aria-label="Score Samurai">
