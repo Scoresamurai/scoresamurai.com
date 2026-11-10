@@ -129,7 +129,8 @@ footer .fine{display:flex;flex-direction:column;gap:6px;max-width:440px}
   <div class="wrap form stack" style="gap:20px">
     <div class="stack" style="gap:12px">
       <div class="eyebrow">The Diagnostic</div>
-      <h1 style="font-size:clamp(30px,4vw,42px)">One form. Back within 24 hours.</h1>
+      <h1 style="font-size:clamp(30px,4vw,42px)">A free written SAT Diagnostic</h1>
+      <p class="body" style="margin:0">One-on-one with Sensei Jay, The SAT Sensei: we find where your points are going, close them in order, and send a written note home every week.</p>
     </div>
 
     <form id="dx" novalidate class="stack" style="gap:16px">
@@ -147,10 +148,10 @@ footer .fine{display:flex;flex-direction:column;gap:6px;max-width:440px}
       <!-- SCREEN 2: the test -->
       <div class="screen hidden" data-screen="2">
         <h2 style="font-size:24px">The test</h2>
-        <div class="field"><label for="recent">Most recent SAT or PSAT score</label><input id="recent" name="recent_score" placeholder="Enter N/A if not yet taken" required><span class="errmsg">A score, or N/A.</span></div>
+        <div class="field"><label for="recent">Most recent SAT or PSAT score <span class="hint">(optional)</span></label><input id="recent" name="recent_score" inputmode="numeric"></div>
         <div class="row2">
-          <div class="field"><label for="math">Math section score</label><input id="math" name="math_score" placeholder="or N/A" required><span class="errmsg">A score, or N/A.</span></div>
-          <div class="field"><label for="rw">Reading and Writing section score</label><input id="rw" name="rw_score" placeholder="or N/A" required><span class="errmsg">A score, or N/A.</span></div>
+          <div class="field"><label for="math">Math section score <span class="hint">(optional)</span></label><input id="math" name="math_score" inputmode="numeric"></div>
+          <div class="field"><label for="rw">Reading and Writing section score <span class="hint">(optional)</span></label><input id="rw" name="rw_score" inputmode="numeric"></div>
         </div>
         <!-- Optional practice-test block (ENGINE2, Nov 4 2026, INTAKE-SPEC.md fields 18 to 23). Fields 19 to 23 show only for a Bluebook practice test. -->
         <div class="field"><label for="ptest">Which Bluebook practice test was it? <span class="hint">(optional)</span></label><select id="ptest" name="practice_test"><option value="">Choose</option><option>Practice Test 4</option><option>Practice Test 5</option><option>Practice Test 6</option><option>Practice Test 7</option><option>Practice Test 8</option><option>Practice Test 9</option><option>Practice Test 10</option><option>Practice Test 11</option><option>An official SAT or PSAT</option><option>Another test</option><option>I haven&rsquo;t taken one yet</option></select></div>
@@ -166,7 +167,7 @@ footer .fine{display:flex;flex-direction:column;gap:6px;max-width:440px}
           </div>
           <div class="field" id="fShots"><label for="shots">Or upload screenshots of the review screen</label><input id="shots" name="review_shots" type="file" accept="image/*" multiple aria-describedby="shotsHint"><span class="hint" id="shotsHint">Up to 4 images.</span><span class="errmsg" id="shotsErr">Up to 4 images, please.</span></div>
         </div>
-        <div class="field"><label for="target">Target SAT score</label><input id="target" name="target_score" required><span class="errmsg">The number you are aiming at.</span></div>
+        <div class="field"><label for="target">Target SAT score <span class="hint">(optional)</span></label><input id="target" name="target_score" inputmode="numeric"></div>
         <div class="field"><label for="colleges">Top target colleges <span class="hint">(up to 3, optional)</span></label><textarea id="colleges" name="target_colleges"></textarea></div>
         <div class="field"><label for="frustration">Biggest frustration with SAT prep</label><textarea id="frustration" name="frustration" required></textarea><span class="errmsg">One line is enough.</span></div>
         <div class="field"><label for="heard">How did you hear about us?</label><select id="heard" name="heard" required><option value="">Choose</option><option>TikTok</option><option>Instagram</option><option>Facebook</option><option>Pinterest</option><option>Reddit</option><option>Quora or College Confidential</option><option>Google search</option><option>A local newsletter or newspaper</option><option>A town Instagram page</option><option>A school parent group or PTO</option><option>A counselor or consultant</option><option>A friend or family member</option><option>Other</option></select><span class="errmsg">Needed.</span></div>
@@ -198,7 +199,7 @@ footer .fine{display:flex;flex-direction:column;gap:6px;max-width:440px}
           </div>
           <div class="row2">
             <div class="field" data-me="parent"><label for="pemail">Parent email</label><input id="pemail" name="parent_email" type="email" autocomplete="section-parent email" required><span class="errmsg">A working email address.</span></div>
-            <div class="field"><label for="pphone">Parent phone</label><input id="pphone" name="parent_phone" type="tel" autocomplete="section-parent tel" required><span class="errmsg">Needed.</span></div>
+            <div class="field"><label for="pphone">Parent phone <span class="hint">(optional)</span></label><input id="pphone" name="parent_phone" type="tel" autocomplete="section-parent tel"></div>
           </div>
         </div>
         <input type="text" name="website" tabindex="-1" autocomplete="off" class="sr" aria-hidden="true">
