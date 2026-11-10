@@ -55,7 +55,7 @@
      role decides whether they are the student's or the parent's, so that pair is hidden on screen 3 and copied in on
      submit. A parent sees the student's fields labelled as the student's, and the browser stops offering the parent's
      own details there. */
-  var roleLabels = { first: "Student’s first name", last: "Student’s last name", semail: "Student’s email", school: "Student’s school", plast: "Your last name", pphone: "Your phone" };
+  var roleLabels = { first: "Student’s first name", last: "Student’s last name", semail: "Student’s email", school: "Student’s school", plast: "Your last name", pphone: "Your phone (optional)" };
   var sBlock = document.getElementById("sBlock"), pBlock = document.getElementById("pBlock");
   form.querySelectorAll('input[name="role"]').forEach(function (r) {
     r.addEventListener("change", function () {
