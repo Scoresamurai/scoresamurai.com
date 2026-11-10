@@ -55,7 +55,7 @@
      role decides whether they are the student's or the parent's, so that pair is hidden on screen 3 and copied in on
      submit. A parent sees the student's fields labelled as the student's, and the browser stops offering the parent's
      own details there. */
-  var roleLabels = { first: "Student’s first name", last: "Student’s last name", semail: "Student’s email", school: "Student’s school", plast: "Your last name", pphone: "Your phone" };
+  var roleLabels = { first: "Student’s first name", last: "Student’s last name", semail: "Student’s email", school: "Student’s school", plast: "Your last name", pphone: "Your phone (optional)" };
   var sBlock = document.getElementById("sBlock"), pBlock = document.getElementById("pBlock");
   form.querySelectorAll('input[name="role"]').forEach(function (r) {
     r.addEventListener("change", function () {
@@ -90,6 +90,23 @@
   if (ptest && missBlock) {
     ptest.addEventListener("change", function () { missBlock.classList.toggle("hidden", !bluebook()); });
   }
+  /* PAGEGO, Nov 9 2026: "No score yet" beside the total score. Ticking it clears and disables the total, Math and Reading
+     and Writing scores (and the practice-test block, since there is no test to read), and lets the form go on. The post
+     then carries recent_score "none", so the intake email reads "recent_score: none" and "Engine-ready: no". */
+  var noScore = document.getElementById("noscore");
+  function noScoreSet() {
+    var on = !!(noScore && noScore.checked);
+    ["recent", "math", "rw", "ptest"].forEach(function (id) {
+      var f = document.getElementById(id); if (!f) return;
+      if (on) f.value = "";
+      f.disabled = on;
+      if (id === "recent") f.required = !on;
+      var fld = f.closest(".field"); if (fld) fld.classList.remove("err");
+    });
+    if (on && missBlock) missBlock.classList.add("hidden");
+  }
+  if (noScore) noScore.addEventListener("change", noScoreSet);
+
   var MAX_SHOTS = 4, LONG_SIDE = 1600, MAX_SHOT_BYTES = 6 * 1024 * 1024;
   var shotsIn = document.getElementById("shots");
   if (shotsIn) shotsIn.addEventListener("change", function () {
@@ -157,6 +174,7 @@
     if (!bluebook()) ["missed_rw_m1", "missed_rw_m2", "missed_math_m1", "missed_math_m2"].forEach(function (k) { delete data[k]; });
     if (!data.practice_test) delete data.practice_test;
     ["missed_rw_m1", "missed_rw_m2", "missed_math_m1", "missed_math_m2"].forEach(function (k) { if (data[k] === "") delete data[k]; });
+    if (noScore && noScore.checked) { data.recent_score = "none"; ["math_score", "rw_score", "practice_test"].forEach(function (k) { delete data[k]; }); }
     data.page = location.href; data.submitted_at = new Date().toISOString();
     var attr = window.ssAttr ? window.ssAttr() : {};
     Object.keys(attr).forEach(function (k) { data[k] = attr[k]; });
