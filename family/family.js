@@ -9,7 +9,7 @@
 (function () {
   'use strict';
 
-  var API = 'https://script.google.com/macros/s/AKfycbxEGoKdBf3azMyoa5kMxrXKTV8m0nMrCI3Vt_lzU_lH3IGe5yPDh1Wuhjx-LtzHtH2f/exec';
+  var API = 'https://script.google.com/macros/s/AKfycbwxTt83a8UyDDjwoBpXzX3sKGfdfAsU9xoTngUYSU8wBmrwm9WB7ovJ2mQIOWZ08AQU/exec';
   var KEY = 'ss_family_v1';
   var CONTACT = 'senseijay@scoresamurai.com';
   var TZ = 'America/New_York';
