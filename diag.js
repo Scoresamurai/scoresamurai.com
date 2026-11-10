@@ -23,7 +23,12 @@
     var first = screens[n].querySelector("input,select,textarea");
     if (first) first.focus({ preventScroll: true });
     window.scrollTo({ top: form.offsetTop - 80, behavior: "smooth" });
-    if (window.gtag) { try { gtag("event", "diagnostic_step", { step: n + 1 }); } catch (e) {} }
+    if (window.gtag) { try {
+      gtag("event", "diagnostic_step", { step: n + 1 });
+      /* DIAGPAGE, Nov 9 2026: "step" is not a registered GA4 dimension, so step 2 and step 3 could not be told apart.
+         One named event per screen splits them in the standard Events report with no Admin change. */
+      gtag("event", "diagnostic_step_" + (n + 1));
+    } catch (e) {} }
   }
 
   function valid(n) {
@@ -178,6 +183,23 @@
         status.textContent = "That didn't go through. Try again, or email senseijay@scoresamurai.com and we'll take it from there.";
       });
   });
+
+  /* DIAGPAGE, Nov 9 2026: the optional Calendly booking under the form no longer loads with the page. It loads on the
+     visitor's first scroll, tap or key, when the box is already on screen, 4 s after the page is ready, or on a
+     successful submit (above), whichever comes first. Its iframe was the heaviest thing on the page and held the load
+     event for about 2 s. Same box, same place, same words. */
+  var calEl = document.getElementById("cal");
+  if (calEl && !calEl.getAttribute("src") && calEl.getAttribute("data-src")) {
+    var calEvents = ["scroll", "pointerdown", "keydown", "touchstart"];
+    var calLoad = function () {
+      if (!calEl.getAttribute("src")) calEl.setAttribute("src", calEl.getAttribute("data-src"));
+      calEvents.forEach(function (t) { window.removeEventListener(t, calLoad, true); });
+    };
+    calEvents.forEach(function (t) { window.addEventListener(t, calLoad, { capture: true, passive: true }); });
+    var calBox = calEl.getBoundingClientRect();
+    if (calBox.top < window.innerHeight) calLoad();
+    setTimeout(calLoad, 4000);
+  }
 
   show(0, false);
   var firstField = document.getElementById("meFirst");
