@@ -148,10 +148,35 @@ footer .foot-nav a{color:var(--cream);text-decoration:none;min-height:44px;displ
 </style>
 </head>
 <body>
-<header class="hdr">
-  <div class="wrap">
-    <a class="brand" href="/">Score Samurai</a>
-  </div>
+<header class="sh" id="site-header">
+<style>
+/* One header on every page (LANDING, Nov 10 2026): the Warrior and the wordmark, four links from 900 px, and the Diagnostic button. Self-contained like the footer. */
+@font-face{font-family:"Playfair Display SC";font-weight:400;font-display:swap;src:url(/fonts/playfair-display-sc-400.woff2) format("woff2")}
+@font-face{font-family:"DM Sans";font-weight:400 700;font-display:swap;src:url(/fonts/dm-sans-400-700.woff2) format("woff2")}
+header.sh{position:sticky;top:0;z-index:30;background:rgba(243,236,221,.96);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid #E3D8C2;font-family:"DM Sans",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;font-size:16px;line-height:1.4;margin:0}
+header.sh *{box-sizing:border-box}
+header.sh .sh-in{max-width:1120px;width:calc(100% - 32px);margin:0 auto;height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+header.sh a{text-decoration:none}
+header.sh .sh-brand{display:inline-flex;align-items:center;gap:10px;min-height:44px;color:#141110;font-family:"Playfair Display SC","Playfair Display",Georgia,serif;font-size:19px;letter-spacing:.06em;white-space:nowrap}
+header.sh .sh-brand img{width:36px;height:36px;display:block;border-radius:50%}
+header.sh .sh-nav{display:none}
+header.sh .sh-btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 16px;border-radius:8px;background:#7A0B10;color:#fff;font-weight:600;font-size:15px;white-space:nowrap}
+header.sh .sh-btn:hover{background:#5A070B}
+header.sh a:focus-visible{outline:3px solid #C9A24A;outline-offset:2px}
+@media(max-width:359px){header.sh .sh-brand span{font-size:16px}header.sh .sh-btn{padding:0 12px;font-size:14px}}
+@media(min-width:900px){
+  header.sh .sh-in{height:72px;width:calc(100% - 48px)}
+  header.sh .sh-nav{display:flex;align-items:center;gap:4px;margin-left:auto}
+  header.sh .sh-nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 12px;color:#2B2622;font-size:15px}
+  header.sh .sh-nav a:hover{color:#7A0B10;text-decoration:underline;text-decoration-color:#C9A24A}
+}
+@media print{header.sh{position:static}}
+</style>
+<div class="sh-in">
+  <a class="sh-brand" href="/" aria-label="Score Samurai, home"><img src="/warrior.png" alt="" width="36" height="36"><span>Score Samurai</span></a>
+  <nav class="sh-nav" aria-label="Site"><a href="/#how">How it works</a><a href="/#plans">Plans</a><a href="/dojo/">The Dojo</a><a href="/#faq">Questions</a></nav>
+  <a class="sh-btn js-tb" href="/diagnostic/">Free Diagnostic</a>
+</div>
 </header>
 <main id="top">
 
