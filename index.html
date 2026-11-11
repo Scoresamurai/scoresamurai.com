@@ -1,3 +1,7 @@
+---
+# CACHETAG, Nov 10 2026: this front matter lets the GitHub Pages build fill in the commit for the diag.js version tag below,
+# so every release loads the new form script instead of a cached old one. It is removed from the page when the site builds.
+---
 <!doctype html>
 <html lang="en">
 <head>
@@ -899,6 +903,6 @@ footer.sf .sf-cb{margin:8px 0 0;color:#B3A796;font-size:13px;max-width:44em}
     io.observe(document.getElementById('herobtn'));io.observe(document.getElementById('diagnostic'));}
 })();
 </script>
-<script src="/diag.js" defer></script>
+<script src="/diag.js?v={{ site.github.build_revision }}" defer></script>
 </body>
 </html>
