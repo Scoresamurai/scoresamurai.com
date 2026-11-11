@@ -99,6 +99,25 @@
     el("result").classList.remove("hidden");
     var ck = document.getElementById("check"); if (ck && ck.scrollIntoView) { ck.scrollIntoView({ behavior: "smooth", block: "start" }); } else { window.scrollTo({ top: 0, behavior: "smooth" }); }
     if (window.gtag) { try { gtag("event", "belt_result", { correct: correct, traps: firing.join(",") }); } catch (e) {} }
+    sendToIntake(belt, correct, firing);
+  }
+
+  /* STARTREAD, Nov 10 2026: only for someone who sent the Diagnostic form with "No score yet" in this browser in the last
+     14 days (diag.js leaves ss_belt_intake). The result goes to the intake script, which puts it on that request.
+     Anyone else sends nothing. */
+  var INTAKE = "https://script.google.com/macros/s/AKfycbwNXGTg_7VgI6U7ejrx6dM9QeX8ObhIZ7br0v9_R0IL8U0SfCiPjL6Mcpcv-fjUFgpdrg/exec";
+  function sendToIntake(belt, correct, firing) {
+    var m = null;
+    try { m = JSON.parse(localStorage.getItem("ss_belt_intake") || "null"); } catch (e) { m = null; }
+    if (!m || !m.email || !m.at || Date.now() - m.at > 14 * 86400 * 1000) return;
+    var body = { source: "belt", email: m.email, belt: belt, correct: correct, traps: firing.join(","),
+      answers: Q.map(function (q, j) { return { q: j + 1, pick: picks[j] == null ? "-" : LET[picks[j]], right: picks[j] === q.k }; }) };
+    try {
+      fetch(INTAKE, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(body) })
+        .then(function (r) { return r.json(); })
+        .then(function (j) { if (j && j.ok === true) { try { localStorage.removeItem("ss_belt_intake"); } catch (e) {} } })
+        .catch(function () {});
+    } catch (e) {}
   }
 
   el("next").addEventListener("click", function () { if (i < Q.length - 1) { i++; render(); } else { finish(); } });
