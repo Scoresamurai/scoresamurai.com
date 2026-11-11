@@ -167,19 +167,21 @@ new MutationObserver(scan).observe(document.documentElement, { childList: true, 
    what comes back, Maya's Dojo, the work behind it, what happens next and four questions, on the maroon Dojo floor
    of /belt/ and /dojo/see/. The form's own styles live in /dx.css, shared with home. */
 .dx-sec{padding:32px 0 56px}
-.dx-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:20px;grid-template-areas:"intro" "form" "priv" "proof" "cal"}
-.dx-grid.sent{grid-template-areas:"intro" "form" "priv" "cal" "proof"}
+.dx-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:20px;grid-template-areas:"intro" "form" "phone" "priv" "proof" "cal"}
+.dx-grid.sent{grid-template-areas:"intro" "form" "phone" "priv" "cal" "proof"}
 .dx-grid > .dxwrap{display:contents}
 .dx-intro{grid-area:intro;max-width:640px}
 .dx-intro h1{font-size:clamp(30px,4vw,42px)}
 .dx-grid #dx,.dx-grid #done{grid-area:form;max-width:640px;width:100%}
 .dx-grid .privline{grid-area:priv;max-width:640px}
+.dx-grid .phoneline{grid-area:phone;margin-bottom:-12px}
+.dxwrap .phoneline a{display:inline-block;min-height:0;padding:11px 0;margin:-11px 0;color:var(--dx-maroon);text-decoration:underline;white-space:nowrap}
 .dx-grid .calbox{grid-area:cal;max-width:640px;margin-top:8px}
 .dx-proof{grid-area:proof;position:relative;color:#F2EBDB;border-radius:14px;padding:36px 22px 30px;display:flex;flex-direction:column;gap:40px;margin:12px -20px 0;border-radius:0}
 @media(min-width:600px){.dx-proof{margin:12px 0 0;border-radius:14px;padding:44px 36px 36px}}
 @media(min-width:1024px){
-  .dx-grid{grid-template-columns:minmax(0,600px) minmax(0,1fr);column-gap:48px;grid-template-rows:auto auto auto 1fr;grid-template-areas:"intro proof" "form proof" "priv proof" "cal proof"}
-  .dx-grid.sent{grid-template-areas:"intro proof" "form proof" "priv proof" "cal proof"}
+  .dx-grid{grid-template-columns:minmax(0,600px) minmax(0,1fr);column-gap:48px;grid-template-rows:auto auto auto auto 1fr;grid-template-areas:"intro proof" "form proof" "phone proof" "priv proof" "cal proof"}
+  .dx-grid.sent{grid-template-areas:"intro proof" "form proof" "phone proof" "priv proof" "cal proof"}
   .dx-proof{margin:0;align-self:start}
 }
 .dojo-floor{background-color:#6e0d12;background-image:repeating-linear-gradient(90deg,rgba(0,0,0,.10) 0 1px,transparent 1px 12px),repeating-linear-gradient(0deg,rgba(0,0,0,.08) 0 1px,transparent 1px 12px),radial-gradient(ellipse 70% 60% at 50% 45%,rgba(160,30,36,.9) 0%,rgba(92,10,14,1) 100%)}
@@ -350,6 +352,7 @@ header.sh a:focus-visible{outline:3px solid #C9A24A;outline-offset:2px}
       <a class="dx-btn dx-ghost" id="dxHome" href="/" style="align-self:flex-start">Back to the site</a>
     </div>
 
+    <p class="muted privline phoneline">Prefer to call? <a class="dx-tel" href="tel:+13328956575">(332) 895-6575</a>. Answered day or night by the Dojo&rsquo;s AI assistant. Sensei Jay writes every Diagnostic himself.</p>
     <p class="muted privline">Your information is used to prepare the Diagnostic and for nothing else. <a href="/privacy/">Privacy</a></p>
 
     <div class="calbox" id="calbox">
@@ -484,6 +487,7 @@ footer.sf details summary::after{content:"+";font-size:20px;color:#C9A24A;letter
 footer.sf details[open] summary::after{content:"\2212"}
 footer.sf .sf-bar{margin-top:32px;padding-top:16px;border-top:1px solid rgba(242,235,219,.18);display:flex;flex-wrap:wrap;align-items:center;gap:0 10px;color:#D9CDB8;font-size:14px}
 footer.sf .sf-dot{color:#8C7F72}
+footer.sf .sf-ai{margin:-6px 0 0;color:#B3A796;font-size:13px;line-height:1.4}
 footer.sf .sf-cb{margin:8px 0 0;color:#B3A796;font-size:13px;max-width:44em}
 @media(min-width:900px){
   footer.sf{padding:72px 0 48px}
@@ -501,6 +505,8 @@ footer.sf .sf-cb{margin:8px 0 0;color:#B3A796;font-size:13px;max-width:44em}
       <p class="sf-tag">The SAT is a discipline. Master it in The Dojo.</p>
       <a class="sf-btn js-tb" href="#dx">Get Your Free Diagnostic</a>
       <a href="mailto:senseijay@scoresamurai.com">senseijay@scoresamurai.com</a>
+      <a class="sf-tel" href="tel:+13328956575">Call (332) 895-6575</a>
+      <span class="sf-ai">Answered day or night by the Dojo&rsquo;s AI assistant.</span>
     </div>
     <nav class="sf-col" aria-label="Score Samurai">
       <p class="sf-h">Score Samurai</p>
@@ -520,6 +526,7 @@ footer.sf .sf-cb{margin:8px 0 0;color:#B3A796;font-size:13px;max-width:44em}
 </div>
 <script>(function(){var d=document.getElementById('sfRead');if(!d||!window.matchMedia)return;var m=window.matchMedia('(min-width:900px)');function s(){if(m.matches)d.open=true;}s();if(m.addEventListener)m.addEventListener('change',s);})();</script>
 <script>(function(){var K=["utm_source","utm_medium","utm_campaign","utm_content","utm_term","gclid","fbclid"];function cur(){var q=new URLSearchParams(location.search),o={},n=0;K.forEach(function(k){var v=q.get(k);if(v){o[k]=v.slice(0,200);n++;}});return n?o:null;}try{var c=cur();if(c&&!localStorage.getItem("ss_attr")){c.first_page=location.pathname;c.first_at=new Date().toISOString();localStorage.setItem("ss_attr",JSON.stringify(c));}}catch(e){}try{var rh=document.referrer?new URL(document.referrer).hostname.replace(/^www\./,""):"";if(rh&&rh.indexOf("scoresamurai.com")<0&&!sessionStorage.getItem("ss_ref"))sessionStorage.setItem("ss_ref",rh.slice(0,80));}catch(e){}window.ssAttr=function(){var s=null,o={};try{s=JSON.parse(localStorage.getItem("ss_attr")||"null");}catch(e){}var c=cur()||{};K.forEach(function(k){var v=(s&&s[k])||c[k];if(v)o[k]=v;});if(!o.utm_source){try{var r=sessionStorage.getItem("ss_ref");if(r){o.utm_source="ref:"+r;o.utm_medium="referral";}}catch(e){}}return o;};})();</script>
+<script>/* PHONESITE, Nov 11 2026: phone_click on every tap of the phone number, through the gtag already on the page. */document.addEventListener("click",function(e){var a=e.target&&e.target.closest?e.target.closest('a[href^="tel:"]'):null;if(!a)return;if(typeof window.gtag==="function")window.gtag("event","phone_click",{page_path:location.pathname,link_text:(a.textContent||"").trim().slice(0,60)});},true);</script>
 </footer>
 <script src="/diag.js?v={{ site.github.build_revision }}" defer></script>
 </body>

@@ -108,6 +108,7 @@ header.sh a:focus-visible{outline:3px solid #C9A24A;outline-offset:2px}
       <p class="body">If you name a Bluebook practice test, the form can also take the questions you missed. You can upload screenshots of the review screen too. We keep them in our Google Drive and use them only to write your Diagnostic.</p>
       <p class="body">If you pick &ldquo;No score yet,&rdquo; the form can also ask your math class this year and whether you have taken a PSAT. Both are optional. If you take the Belt Check on the same device after sending the form, your answers to its ten questions go to Sensei Jay with your request, so he can write your Diagnostic from them. Anyone else who takes the Belt Check sends us nothing.</p>
       <p class="body">The form also asks for a parent&#39;s name, email and phone number. That way a parent gets a copy of the Diagnostic and the weekly updates.</p>
+      <p class="body">Calls to (332) 895-6575 are answered by an AI assistant. Each call is recorded and transcribed so Sensei Jay can read the request. We use the details to prepare the Diagnostic and for nothing else.</p>
       <p class="body">The quiz collects your answers and any email addresses you enter. When you book the optional call, we collect your name, your email and the answers you give when you schedule. During tutoring, we keep session notes on what was covered and how it went.</p>
       <p class="body">If you sign up for The Daily Strike, Kit keeps your email address to send it. You confirm from your inbox first, and every email has a one-click unsubscribe.</p>
       <p class="body">The Score Lab works in your browser and saves nothing there. If you ask for your scorecard by email, we keep your email and the scorecard. The scorecard holds your module counts, estimated range, ticked patterns, any college you picked and any PSAT check. A first name is optional.</p>
@@ -173,6 +174,7 @@ footer.sf details summary::after{content:"+";font-size:20px;color:#C9A24A;letter
 footer.sf details[open] summary::after{content:"\2212"}
 footer.sf .sf-bar{margin-top:32px;padding-top:16px;border-top:1px solid rgba(242,235,219,.18);display:flex;flex-wrap:wrap;align-items:center;gap:0 10px;color:#D9CDB8;font-size:14px}
 footer.sf .sf-dot{color:#8C7F72}
+footer.sf .sf-ai{margin:-6px 0 0;color:#B3A796;font-size:13px;line-height:1.4}
 footer.sf .sf-cb{margin:8px 0 0;color:#B3A796;font-size:13px;max-width:44em}
 @media(min-width:900px){
   footer.sf{padding:72px 0 48px}
@@ -190,6 +192,8 @@ footer.sf .sf-cb{margin:8px 0 0;color:#B3A796;font-size:13px;max-width:44em}
       <p class="sf-tag">The SAT is a discipline. Master it in The Dojo.</p>
       <a class="sf-btn js-tb" href="/diagnostic/">Get Your Free Diagnostic</a>
       <a href="mailto:senseijay@scoresamurai.com">senseijay@scoresamurai.com</a>
+      <a class="sf-tel" href="tel:+13328956575">Call (332) 895-6575</a>
+      <span class="sf-ai">Answered day or night by the Dojo&rsquo;s AI assistant.</span>
     </div>
     <nav class="sf-col" aria-label="Score Samurai">
       <p class="sf-h">Score Samurai</p>
@@ -209,6 +213,7 @@ footer.sf .sf-cb{margin:8px 0 0;color:#B3A796;font-size:13px;max-width:44em}
 </div>
 <script>(function(){var d=document.getElementById('sfRead');if(!d||!window.matchMedia)return;var m=window.matchMedia('(min-width:900px)');function s(){if(m.matches)d.open=true;}s();if(m.addEventListener)m.addEventListener('change',s);})();</script>
 <script>(function(){var K=["utm_source","utm_medium","utm_campaign","utm_content","utm_term","gclid","fbclid"];function cur(){var q=new URLSearchParams(location.search),o={},n=0;K.forEach(function(k){var v=q.get(k);if(v){o[k]=v.slice(0,200);n++;}});return n?o:null;}try{var c=cur();if(c&&!localStorage.getItem("ss_attr")){c.first_page=location.pathname;c.first_at=new Date().toISOString();localStorage.setItem("ss_attr",JSON.stringify(c));}}catch(e){}window.ssAttr=function(){var s=null,o={};try{s=JSON.parse(localStorage.getItem("ss_attr")||"null");}catch(e){}var c=cur()||{};K.forEach(function(k){var v=(s&&s[k])||c[k];if(v)o[k]=v;});return o;};})();</script>
+<script>/* PHONESITE, Nov 11 2026: phone_click on every tap of the phone number, through the gtag already on the page. */document.addEventListener("click",function(e){var a=e.target&&e.target.closest?e.target.closest('a[href^="tel:"]'):null;if(!a)return;if(typeof window.gtag==="function")window.gtag("event","phone_click",{page_path:location.pathname,link_text:(a.textContent||"").trim().slice(0,60)});},true);</script>
 </footer>
 </body>
 </html>
