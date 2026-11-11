@@ -7,7 +7,10 @@
    ENGINE2, Nov 4 2026 (INTAKE-SPEC.md): an optional practice-test block on screen 2. The miss fields and the
    screenshot upload show only for a Bluebook practice test; screenshots are scaled to 1600 px on the long side
    and sent in a "shots" array inside the same text/plain POST.
-   /diagnostic/?for=parent starts the role on "I'm a parent". */
+   /diagnostic/?for=parent starts the role on "I'm a parent".
+   PHONEFIELD, Nov 11 2026: on the parent path only, the parent phone field becomes "Best number (optional)" with a
+   helper line, a light check (if filled, at least 10 digits) and is also posted as "phone". The student path is
+   unchanged and posts no "phone". diagnostic_submit carries has_phone yes or no. */
 (function () {
   var ENDPOINT = "https://script.google.com/macros/s/AKfycbwNXGTg_7VgI6U7ejrx6dM9QeX8ObhIZ7br0v9_R0IL8U0SfCiPjL6Mcpcv-fjUFgpdrg/exec";
   var KEY = "ss_dx";
@@ -44,6 +47,13 @@
       if (field) field.classList.toggle("err", !good);
       if (!good && ok) { ok = false; try { f.focus(); } catch (e) {} }
     });
+    /* PHONEFIELD: the parent's best number is optional; if filled it needs at least 10 digits. */
+    var ph = screens[n].querySelector("#pphone");
+    if (ph && roleVal() === "parent") {
+      var v = ph.value.trim(), phGood = v === "" || v.replace(/\D/g, "").length >= 10, pf = ph.closest(".field");
+      if (pf) pf.classList.toggle("err", !phGood);
+      if (!phGood && ok) { ok = false; try { ph.focus(); } catch (e) {} }
+    }
     return ok;
   }
 
@@ -64,7 +74,7 @@
 
   /* Who's filling this in (screen 1). On screen 3 the role sets the labels, the block headings and which block comes
      first: a parent sees "About you" (their own details) first and the student's fields labelled as the student's. */
-  var roleLabels = { first: "Student’s first name", last: "Student’s last name", semail: "Student’s email", school: "Student’s school", pfirst: "Your first name", plast: "Your last name", pemail: "Your email", pphone: "Your phone (optional)" };
+  var roleLabels = { first: "Student’s first name", last: "Student’s last name", semail: "Student’s email", school: "Student’s school", pfirst: "Your first name", plast: "Your last name", pemail: "Your email", pphone: "Best number <span class=\"hint\">(optional)</span>" };
   var ownAc = { first: 1, last: 1, semail: 1 };
   var sBlock = document.getElementById("sBlock"), pBlock = document.getElementById("pBlock"), who = document.getElementById("dxWho");
   function roleVal() { var r = form.querySelector('input[name="role"]:checked'); return r ? r.value : ""; }
@@ -74,7 +84,7 @@
       var inp = document.getElementById(id), lab = form.querySelector('label[for="' + id + '"]');
       if (!inp || !lab) return;
       if (!lab.hasAttribute("data-own")) lab.setAttribute("data-own", lab.innerHTML);
-      if (parent) lab.textContent = roleLabels[id]; else lab.innerHTML = lab.getAttribute("data-own");
+      if (parent) { if (id === "pphone") lab.innerHTML = roleLabels[id]; else lab.textContent = roleLabels[id]; } else lab.innerHTML = lab.getAttribute("data-own");
       if (!ownAc[id]) return;
       if (!inp.hasAttribute("data-ac")) inp.setAttribute("data-ac", inp.getAttribute("autocomplete") || "");
       inp.setAttribute("autocomplete", parent ? "off" : inp.getAttribute("data-ac"));
@@ -83,6 +93,12 @@
       if (!b) return;
       var h = b.querySelector("h3"); if (h) h.textContent = h.getAttribute(parent ? "data-h-parent" : "data-h-student");
     });
+    var ph = document.getElementById("pphone"), phHelp = document.getElementById("pphoneHelp");
+    if (phHelp) phHelp.classList.toggle("hidden", !parent);
+    if (ph) {
+      if (parent && phHelp) ph.setAttribute("aria-describedby", "pphoneHelp"); else ph.removeAttribute("aria-describedby");
+      if (!parent) { var pf = ph.closest(".field"); if (pf) pf.classList.remove("err"); }
+    }
     if (who && sBlock && pBlock) {
       if (parent && who.firstElementChild !== pBlock) who.insertBefore(pBlock, sBlock);
       if (!parent && who.firstElementChild !== sBlock) who.insertBefore(sBlock, pBlock);
@@ -225,6 +241,7 @@
     if (noScore && noScore.checked) { data.recent_score = "none"; ["math_score", "rw_score", "practice_test"].forEach(function (k) { delete data[k]; }); }
     if (!(noScore && noScore.checked)) { delete data.math_class; delete data.psat_taken; }
     ["math_class", "psat_taken"].forEach(function (k) { if (!data[k]) delete data[k]; });
+    if (roleVal() === "parent" && data.parent_phone) data.phone = data.parent_phone;
     data.page = location.href; data.submitted_at = new Date().toISOString();
     var attr = window.ssAttr ? window.ssAttr() : {};
     Object.keys(attr).forEach(function (k) { data[k] = attr[k]; });
@@ -253,7 +270,7 @@
         if (location.pathname === "/") { var hb = document.getElementById("dxHome"); if (hb) hb.classList.add("hidden"); }
         window.scrollTo({ top: top(done), behavior: "smooth" });
         try { done.focus({ preventScroll: true }); } catch (e) {}
-        ev("diagnostic_submit", { source: data.heard || "" });
+        ev("diagnostic_submit", { source: data.heard || "", has_phone: data.phone ? "yes" : "no" });
       })
       .catch(function () {
         btn.disabled = false; btn.textContent = "Send me my Diagnostic";
