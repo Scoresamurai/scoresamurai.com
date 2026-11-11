@@ -162,6 +162,11 @@ footer .fine{display:flex;flex-direction:column;gap:6px;max-width:440px}
       <div class="screen hidden" data-screen="2">
         <h2 style="font-size:24px">The test</h2>
         <div class="field" id="fRecent"><label for="recent">Most recent SAT or PSAT score</label><div class="scorerow"><input id="recent" name="recent_score" inputmode="numeric" required><label class="noscore"><input type="checkbox" id="noscore"> No score yet</label></div><span class="errmsg">A score, or No score yet.</span></div>
+        <!-- STARTREAD, Nov 10 2026: two optional one-tap questions, shown only when "No score yet" is ticked. -->
+        <div id="nsBlock" class="stack hidden" style="gap:16px">
+          <fieldset class="field role" id="fMathClass"><legend>Math class this year <span class="hint">(optional)</span></legend><div class="opts"><label><input type="radio" name="math_class" value="Algebra 1"> Algebra 1</label><label><input type="radio" name="math_class" value="Geometry"> Geometry</label><label><input type="radio" name="math_class" value="Algebra 2"> Algebra 2</label><label><input type="radio" name="math_class" value="Precalculus"> Precalculus</label><label><input type="radio" name="math_class" value="Calculus or higher"> Calculus or higher</label><label><input type="radio" name="math_class" value="Other"> Other</label></div></fieldset>
+          <fieldset class="field role" id="fPsat"><legend>Taken a PSAT? <span class="hint">(optional)</span></legend><div class="opts"><label><input type="radio" name="psat_taken" value="Yes"> Yes</label><label><input type="radio" name="psat_taken" value="No"> No</label><label><input type="radio" name="psat_taken" value="Not sure"> Not sure</label></div></fieldset>
+        </div>
         <div class="row2">
           <div class="field"><label for="math">Math section score <span class="hint">(optional)</span></label><input id="math" name="math_score" inputmode="numeric"></div>
           <div class="field"><label for="rw">Reading and Writing section score <span class="hint">(optional)</span></label><input id="rw" name="rw_score" inputmode="numeric"></div>
@@ -227,6 +232,7 @@ footer .fine{display:flex;flex-direction:column;gap:6px;max-width:440px}
       <p class="body">Sensei Jay reads every one personally and writes back within 24 hours. If you have a recent Bluebook practice test, reply to the confirmation email with a screenshot of the results page.</p>
       <p class="body">Look for &ldquo;Your Diagnostic is on its way&rdquo; in your inbox, and check spam if it is not there.</p>
       <p class="body">Want to talk it through? The optional 15-minute Zoom with Sensei Jay is right below, a parent on. Your written Diagnostic arrives within 24 hours either way.</p>
+      <a class="btn hidden" id="beltBtn" href="/belt/#check" style="align-self:flex-start">Belt Check: ten questions, no clock</a>
       <a class="btn btn-ghost" href="/" style="align-self:flex-start">Back to the site</a>
     </div>
 
