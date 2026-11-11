@@ -104,6 +104,12 @@
       var fld = f.closest(".field"); if (fld) fld.classList.remove("err");
     });
     if (on && missBlock) missBlock.classList.add("hidden");
+    /* STARTREAD, Nov 10 2026: the two optional no-score questions show only with "No score yet". */
+    var ns = document.getElementById("nsBlock");
+    if (ns) {
+      ns.classList.toggle("hidden", !on);
+      if (!on) ns.querySelectorAll("input[type=radio]").forEach(function (r) { r.checked = false; });
+    }
   }
   if (noScore) noScore.addEventListener("change", noScoreSet);
 
@@ -175,6 +181,8 @@
     if (!data.practice_test) delete data.practice_test;
     ["missed_rw_m1", "missed_rw_m2", "missed_math_m1", "missed_math_m2"].forEach(function (k) { if (data[k] === "") delete data[k]; });
     if (noScore && noScore.checked) { data.recent_score = "none"; ["math_score", "rw_score", "practice_test"].forEach(function (k) { delete data[k]; }); }
+    if (!(noScore && noScore.checked)) { delete data.math_class; delete data.psat_taken; }
+    ["math_class", "psat_taken"].forEach(function (k) { if (!data[k]) delete data[k]; });
     data.page = location.href; data.submitted_at = new Date().toISOString();
     var attr = window.ssAttr ? window.ssAttr() : {};
     Object.keys(attr).forEach(function (k) { data[k] = attr[k]; });
@@ -193,6 +201,12 @@
         var book = document.getElementById("bookLine"); if (book) book.classList.add("hidden");
         document.querySelector(".steps").classList.add("hidden");
         document.getElementById("done").classList.remove("hidden");
+        /* STARTREAD, Nov 10 2026: after a no-score submit, one button to the Belt Check. This browser remembers the address
+           for 14 days so a finished Belt Check can reach Sensei with this request (belt.js). Nothing is kept otherwise. */
+        if (data.recent_score === "none") {
+          try { localStorage.setItem("ss_belt_intake", JSON.stringify({ email: data.student_email, at: Date.now() })); } catch (e) {}
+          var bb = document.getElementById("beltBtn"); if (bb) bb.classList.remove("hidden");
+        }
         window.scrollTo({ top: 0, behavior: "smooth" });
         if (window.gtag) { try { gtag("event", "diagnostic_submit", { source: data.heard || "" }); } catch (e) {} }
       })
