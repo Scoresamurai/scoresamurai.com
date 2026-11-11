@@ -189,7 +189,7 @@
       .then(function (j) {
         if (!j || j.ok !== true) throw new Error("not ok");
         form.classList.add("hidden");
-        var cal = document.getElementById("cal"); if (cal && !cal.getAttribute("src")) cal.setAttribute("src", cal.getAttribute("data-src"));
+        if (window.ssCalStart) window.ssCalStart();
         var book = document.getElementById("bookLine"); if (book) book.classList.add("hidden");
         document.querySelector(".steps").classList.add("hidden");
         document.getElementById("done").classList.remove("hidden");
@@ -202,22 +202,7 @@
       });
   });
 
-  /* DIAGPAGE, Nov 9 2026: the optional Calendly booking under the form no longer loads with the page. It loads on the
-     visitor's first scroll, tap or key, when the box is already on screen, 4 s after the page is ready, or on a
-     successful submit (above), whichever comes first. Its iframe was the heaviest thing on the page and held the load
-     event for about 2 s. Same box, same place, same words. */
-  var calEl = document.getElementById("cal");
-  if (calEl && !calEl.getAttribute("src") && calEl.getAttribute("data-src")) {
-    var calEvents = ["scroll", "pointerdown", "keydown", "touchstart"];
-    var calLoad = function () {
-      if (!calEl.getAttribute("src")) calEl.setAttribute("src", calEl.getAttribute("data-src"));
-      calEvents.forEach(function (t) { window.removeEventListener(t, calLoad, true); });
-    };
-    calEvents.forEach(function (t) { window.addEventListener(t, calLoad, { capture: true, passive: true }); });
-    var calBox = calEl.getBoundingClientRect();
-    if (calBox.top < window.innerHeight) calLoad();
-    setTimeout(calLoad, 4000);
-  }
+  /* CALFAST, Nov 10 2026: the Calendly loader moved into the page, right under the box (diagnostic/index.html). */
 
   show(0, false);
   var firstField = document.getElementById("meFirst");

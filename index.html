@@ -6,6 +6,8 @@
 <title>Score Samurai | One-on-one SAT tutoring with Sensei Jay, nationwide over Zoom</title>
 <meta name="description" content="Be done with the SAT, on a date you choose. One-on-one SAT tutoring with Sensei Jay, The SAT Sensei, over Zoom. Start with the free Diagnostic, written and back within 24 hours.">
 <link rel="canonical" href="https://scoresamurai.com/">
+<link rel="preconnect" href="https://calendly.com">
+<link rel="preconnect" href="https://assets.calendly.com">
 <link rel="icon" href="/warrior.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Score Samurai">
@@ -398,6 +400,12 @@ section[id]{scroll-margin-top:72px}
 [hidden]{display:none!important}
 .calbox{display:flex;flex-direction:column;gap:var(--s2);max-width:44em;margin-top:var(--s5)}
 .calbox h3{color:var(--white)}
+.calwrap{position:relative;height:700px;border-radius:8px;background:var(--cream);overflow:hidden}
+.calwrap .cal{position:absolute;inset:0;height:100%;opacity:0;transition:opacity .35s ease}
+.calwrap.ready .cal{opacity:1}
+.calmsg{position:absolute;inset:0;margin:0;display:flex;align-items:center;justify-content:center;padding:0 24px;text-align:center;font-family:var(--body);font-size:var(--t0);line-height:1.5;color:var(--ink-soft)}
+.calmsg a{display:inline-flex;align-items:center;min-height:44px;color:var(--maroon);text-decoration:underline}
+@media (prefers-reduced-motion:reduce){.calwrap .cal{transition:none}}
 
 .done:focus{outline:none}
 .disc{font-size:var(--t-1);color:var(--ink-soft);max-width:var(--measure)}
@@ -638,7 +646,38 @@ footer.sf .sf-btn{display:none}
   <div class="calbox" id="calbox">
     <h3>Want to talk it through?</h3>
     <p>Optional: book a free 15-minute Zoom with Sensei Jay below, a parent on. Your written Diagnostic arrives within 24 hours either way, whether or not you book.</p>
-    <iframe id="cal" class="cal" title="Optional: book a free 15-minute Zoom with Sensei Jay" loading="lazy" src="https://calendly.com/senseijay-scoresamurai/dojo-diagnostic?embed_domain=scoresamurai.com&amp;embed_type=Inline&amp;hide_gdpr_banner=1"></iframe>
+    <div class="calwrap" id="calwrap">
+      <p class="calmsg" id="calmsg">Loading Sensei Jay's calendar</p>
+      <iframe id="cal" class="cal" title="Optional: book a free 15-minute Zoom with Sensei Jay" data-src="https://calendly.com/senseijay-scoresamurai/dojo-diagnostic?embed_domain=scoresamurai.com&amp;embed_type=Inline&amp;hide_gdpr_banner=1&amp;hide_event_type_details=1"></iframe>
+    </div>
+    <script>
+    /* CALFAST, Nov 10 2026: the Calendly box starts right after the window load event (idle callback or 300 ms, whichever
+       comes first), or on a scroll, tap or key, when the box is already on screen, or on submit. Nothing starts before load,
+       so the load event never waits on Calendly. Until the iframe loads, the box shows a cream panel with one line; if it has
+       not loaded after 10 s, the line becomes a plain link to the same calendar. */
+    (function(){
+      var f=document.getElementById('cal'),w=document.getElementById('calwrap'),m=document.getElementById('calmsg');
+      if(!f||!w||!m)return;
+      var url=f.getAttribute('data-src'),on=false,want=false,ev=['scroll','pointerdown','keydown','touchstart'];
+      f.addEventListener('load',function(){if(!f.getAttribute('src'))return;if(w.className.indexOf('ready')<0)w.className+=' ready';try{performance.mark('cal-load')}catch(e){}});
+      function go(){
+        if(on)return;
+        if(document.readyState!=='complete'){want=true;return}
+        on=true;ev.forEach(function(t){window.removeEventListener(t,go,true)});
+        if(!f.getAttribute('src'))f.setAttribute('src',url);
+        try{performance.mark('cal-start')}catch(e){}
+        setTimeout(function(){if(w.className.indexOf('ready')>=0)return;var a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener';a.textContent='Open the calendar in a new tab';m.textContent='';m.appendChild(a)},10000);
+      }
+      window.ssCalStart=go;
+      ev.forEach(function(t){window.addEventListener(t,go,{capture:true,passive:true})});
+      function after(){
+        if(want||f.getBoundingClientRect().top<window.innerHeight){go();return}
+        if('requestIdleCallback' in window)requestIdleCallback(go);
+        setTimeout(go,300);
+      }
+      if(document.readyState==='complete')setTimeout(after,0);else window.addEventListener('load',function(){setTimeout(after,0)});
+    })();
+    </script>
   </div>
 </div></section>
 </main>
@@ -773,7 +812,7 @@ footer.sf .sf-cb{margin:8px 0 0;color:#B3A796;font-size:13px;max-width:44em}
       .then(function(j){
         if(!j||j.ok!==true)throw new Error('not ok');
         form.hidden=true;
-        var cal=document.getElementById('cal');if(cal&&!cal.getAttribute('src'))cal.setAttribute('src',cal.getAttribute('data-src'));
+        if(window.ssCalStart)window.ssCalStart();
         var d=document.getElementById('done');d.hidden=false;d.scrollIntoView({block:'start'});try{d.focus({preventScroll:true})}catch(x){}
         try{localStorage.removeItem(KEY)}catch(x){}
         if(window.gtag){try{gtag('event','diagnostic_submit',{source:data.heard||''})}catch(x){}}
