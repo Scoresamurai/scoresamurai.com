@@ -1,3 +1,7 @@
+---
+# CACHETAG, Nov 10 2026: this front matter lets the GitHub Pages build fill in the commit for the diag.js version tag below,
+# so every release loads the new form script instead of a cached old one. It is removed from the page when the site builds.
+---
 <!doctype html>
 <html lang="en">
 <head>
@@ -517,6 +521,6 @@ footer.sf .sf-cb{margin:8px 0 0;color:#B3A796;font-size:13px;max-width:44em}
 <script>(function(){var d=document.getElementById('sfRead');if(!d||!window.matchMedia)return;var m=window.matchMedia('(min-width:900px)');function s(){if(m.matches)d.open=true;}s();if(m.addEventListener)m.addEventListener('change',s);})();</script>
 <script>(function(){var K=["utm_source","utm_medium","utm_campaign","utm_content","utm_term","gclid","fbclid"];function cur(){var q=new URLSearchParams(location.search),o={},n=0;K.forEach(function(k){var v=q.get(k);if(v){o[k]=v.slice(0,200);n++;}});return n?o:null;}try{var c=cur();if(c&&!localStorage.getItem("ss_attr")){c.first_page=location.pathname;c.first_at=new Date().toISOString();localStorage.setItem("ss_attr",JSON.stringify(c));}}catch(e){}try{var rh=document.referrer?new URL(document.referrer).hostname.replace(/^www\./,""):"";if(rh&&rh.indexOf("scoresamurai.com")<0&&!sessionStorage.getItem("ss_ref"))sessionStorage.setItem("ss_ref",rh.slice(0,80));}catch(e){}window.ssAttr=function(){var s=null,o={};try{s=JSON.parse(localStorage.getItem("ss_attr")||"null");}catch(e){}var c=cur()||{};K.forEach(function(k){var v=(s&&s[k])||c[k];if(v)o[k]=v;});if(!o.utm_source){try{var r=sessionStorage.getItem("ss_ref");if(r){o.utm_source="ref:"+r;o.utm_medium="referral";}}catch(e){}}return o;};})();</script>
 </footer>
-<script src="/diag.js" defer></script>
+<script src="/diag.js?v={{ site.github.build_revision }}" defer></script>
 </body>
 </html>
