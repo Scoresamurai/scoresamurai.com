@@ -6,6 +6,8 @@
 <title>The Diagnostic | Score Samurai</title>
 <meta name="description" content="One form. Within 24 hours you get a written Diagnostic: where your points are going, the moves costing you the most, and what to fix first.">
 <link rel="canonical" href="https://scoresamurai.com/diagnostic/">
+<link rel="preconnect" href="https://calendly.com">
+<link rel="preconnect" href="https://assets.calendly.com">
 <link rel="icon" href="/warrior.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Score Samurai">
@@ -117,6 +119,12 @@ new MutationObserver(scan).observe(document.documentElement, { childList: true, 
 .cal{display:block;width:100%;height:700px;border:0;border-radius:8px;background:#fff}
 .calbox{display:flex;flex-direction:column;gap:14px;margin-top:28px}
 .calbox h2{font-size:24px}
+.calwrap{position:relative;height:700px;border-radius:8px;background:#FBF6EA;overflow:hidden}
+.calwrap .cal{position:absolute;inset:0;height:100%;opacity:0;transition:opacity .35s ease}
+.calwrap.ready .cal{opacity:1}
+.calmsg{position:absolute;inset:0;margin:0;display:flex;align-items:center;justify-content:center;padding:0 24px;text-align:center;font-size:17px;line-height:1.5;color:var(--muted)}
+.calmsg a{display:inline-flex;align-items:center;min-height:44px;color:var(--maroon);text-decoration:underline}
+@media (prefers-reduced-motion:reduce){.calwrap .cal{transition:none}}
 footer .fine{display:flex;flex-direction:column;gap:6px;max-width:440px}
 .privline a{display:inline-flex;align-items:center;min-height:44px;padding:0 4px}
 .scorerow{display:flex;gap:10px;align-items:center}.scorerow input#recent{flex:1;min-width:0}
@@ -225,7 +233,38 @@ footer .fine{display:flex;flex-direction:column;gap:6px;max-width:440px}
     <div class="calbox" id="calbox">
       <h2>Want to talk it through?</h2>
       <p class="body">Optional: book a free 15-minute Zoom with Sensei Jay below, a parent on. Your written Diagnostic arrives within 24 hours either way, whether or not you book.</p>
-      <iframe id="cal" class="cal" title="Optional: book a free 15-minute Zoom with Sensei Jay" loading="lazy" data-src="https://calendly.com/senseijay-scoresamurai/dojo-diagnostic?embed_domain=scoresamurai.com&amp;embed_type=Inline&amp;hide_gdpr_banner=1"></iframe>
+      <div class="calwrap" id="calwrap">
+        <p class="calmsg" id="calmsg">Loading Sensei Jay's calendar</p>
+        <iframe id="cal" class="cal" title="Optional: book a free 15-minute Zoom with Sensei Jay" data-src="https://calendly.com/senseijay-scoresamurai/dojo-diagnostic?embed_domain=scoresamurai.com&amp;embed_type=Inline&amp;hide_gdpr_banner=1&amp;hide_event_type_details=1"></iframe>
+      </div>
+      <script>
+      /* CALFAST, Nov 10 2026: the Calendly box starts right after the window load event (idle callback or 300 ms, whichever
+         comes first), or on a scroll, tap or key, when the box is already on screen, or on submit. Nothing starts before load,
+         so the load event never waits on Calendly. Until the iframe loads, the box shows a cream panel with one line; if it has
+         not loaded after 10 s, the line becomes a plain link to the same calendar. */
+      (function(){
+        var f=document.getElementById('cal'),w=document.getElementById('calwrap'),m=document.getElementById('calmsg');
+        if(!f||!w||!m)return;
+        var url=f.getAttribute('data-src'),on=false,want=false,ev=['scroll','pointerdown','keydown','touchstart'];
+        f.addEventListener('load',function(){if(!f.getAttribute('src'))return;if(w.className.indexOf('ready')<0)w.className+=' ready';try{performance.mark('cal-load')}catch(e){}});
+        function go(){
+          if(on)return;
+          if(document.readyState!=='complete'){want=true;return}
+          on=true;ev.forEach(function(t){window.removeEventListener(t,go,true)});
+          if(!f.getAttribute('src'))f.setAttribute('src',url);
+          try{performance.mark('cal-start')}catch(e){}
+          setTimeout(function(){if(w.className.indexOf('ready')>=0)return;var a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener';a.textContent='Open the calendar in a new tab';m.textContent='';m.appendChild(a)},10000);
+        }
+        window.ssCalStart=go;
+        ev.forEach(function(t){window.addEventListener(t,go,{capture:true,passive:true})});
+        function after(){
+          if(want||f.getBoundingClientRect().top<window.innerHeight){go();return}
+          if('requestIdleCallback' in window)requestIdleCallback(go);
+          setTimeout(go,300);
+        }
+        if(document.readyState==='complete')setTimeout(after,0);else window.addEventListener('load',function(){setTimeout(after,0)});
+      })();
+      </script>
     </div>
 
     <p class="muted privline" style="text-align:center">Your information is used to prepare the Diagnostic and for nothing else. <a href="/privacy/">Privacy</a></p>
