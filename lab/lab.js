@@ -31,35 +31,36 @@
   var EST = { NJ: "222 to 225", NY: "219 to 223", CT: "219 to 223" };
   var COMMENDED = 208, COMMENDED_EST = "207 to 212";
 
-  /* Station 2: Pattern Codex names and rule lines (Codex, Oct 14 2026). A count shows only where the
+  /* Station 2: the Trap Map names and, for the other moves, a plain description (LANDFIX, Nov 10 2026: no Codex names
+     on public pages), with the rule lines (Codex, Oct 14 2026). A count shows only where the
      Bluebook Question Index gives one across the eight official practice tests (Tests 4 to 11). */
   var TRAPS = {
     rw: [
-      { n: 3, name: "Name the Relationship", tick: "Transitions: the word fit the sentence, not the link between the sentences.",
+      { n: 3, name: "Picking a transition before naming the link", tick: "Transitions: the word fit the sentence, not the link between the sentences.",
         rule: "Say out loud what connects these two things. Then pick the rule that matches what you just said. Never pick first and justify after." },
       { n: 29, name: "Can Each Half Stand Alone", tick: "Punctuation between two halves: commas, semicolons, periods.", count: 58,
         rule: "Test each half alone: can it stand as its own sentence? If both can, you need a period, a semicolon, or a comma plus a conjunction. Never a lone comma. Never nothing. And ‘however’ is a stop sign, not a bridge." },
-      { n: 24, name: "Same Mechanism, Not Same Topic", tick: "Support or weaken a claim: the answer was on topic but missed the point.",
+      { n: 24, name: "An answer on the right topic that misses the claim", tick: "Support or weaken a claim: the answer was on topic but missed the point.",
         rule: "Find the exact mechanism the claim names. Then find the answer that speaks to that exact mechanism. Same topic isn’t the same thing." },
-      { n: 27, name: "Cover the Word", tick: "Words in context: I picked the word that sounded smartest.",
+      { n: 27, name: "Choosing the word that sounds smartest", tick: "Words in context: I picked the word that sounded smartest.",
         rule: "Cover the blank. Read the sentence. Say your own word out loud. Then find the choice that matches your word, not the one that sounds smartest." },
       { n: 2, name: "The Answer to a Different Question", tick: "Evidence and notes: the answer was true, but it answered something else.",
         rule: "Go back and read what they actually asked for. Not what the passage is about: what the question wants. Those are different things." }
     ],
     m: [
-      { n: 6, name: "Name It Before You Solve It", tick: "Word problems: the algebra was fine, the setup was wrong.",
+      { n: 6, name: "Starting the algebra before naming each quantity", tick: "Word problems: the algebra was fine, the setup was wrong.",
         rule: "Before you touch any algebra, name each thing in words. Whose numbers are whose. Then translate one phrase at a time.",
         des: "Desmos: by hand for the setup. Desmos runs the math, it does not translate the words." },
-      { n: 14, name: "Count the Crossings", tick: "Systems: how many solutions, or where two graphs meet.", count: 10,
+      { n: 14, name: "Solving a system the graphs already answer", tick: "Systems: how many solutions, or where two graphs meet.", count: 10,
         rule: "Solutions are where the graphs touch. Count the intersections. A line can cut a parabola twice, never three times.",
         des: "Desmos: Technique 2. Type both equations and count the intersections." },
-      { n: 19, name: "Which Denominator", tick: "Tables and probability: I divided by the wrong total.",
+      { n: 19, name: "Dividing by the wrong total", tick: "Tables and probability: I divided by the wrong total.",
         rule: "Before you divide, find your denominator. ‘Of the [subgroup]’ means the subgroup is the bottom. Plain ‘probability’ means the grand total. Read which one they said.",
         des: "Desmos: by hand, Desmos adds nothing here." },
-      { n: 12, name: "The Shape on Sight", tick: "Quadratics and factoring: I did it the long way and slipped.",
+      { n: 12, name: "Working the long way past a shape you know", tick: "Quadratics and factoring: I did it the long way and slipped.",
         rule: "Look at the shape before you start working. Perfect square, difference of squares, vertex form: if you recognize it, you’re already done.",
         des: "Desmos: answers given, graph them and look for the overlap. An answer you have to build, by hand." },
-      { n: 45, name: "Sine and Cosine Trade Places", tick: "Right triangles: sine and cosine questions.",
+      { n: 45, name: "Missing that sine and cosine swap between the two sharp angles", tick: "Right triangles: sine and cosine questions.",
         rule: "In a right triangle, the sine of one sharp angle is the cosine of the other. The two sharp angles add to 90, so the ratio you were given is the ratio you are being asked for.",
         des: "Desmos: by hand, Desmos adds nothing here." }
     ]

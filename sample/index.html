@@ -120,10 +120,35 @@ footer .foot-nav a{color:var(--cream);text-decoration:none;min-height:44px;displ
 </style>
 </head>
 <body>
-<header class="hdr">
-  <div class="wrap">
-    <a class="brand" href="/">Score Samurai</a>
-  </div>
+<header class="sh" id="site-header">
+<style>
+/* One header on every page (LANDING, Nov 10 2026): the Warrior and the wordmark, four links from 900 px, and the Diagnostic button. Self-contained like the footer. */
+@font-face{font-family:"Playfair Display SC";font-weight:400;font-display:swap;src:url(/fonts/playfair-display-sc-400.woff2) format("woff2")}
+@font-face{font-family:"DM Sans";font-weight:400 700;font-display:swap;src:url(/fonts/dm-sans-400-700.woff2) format("woff2")}
+header.sh{position:sticky;top:0;z-index:30;background:rgba(243,236,221,.96);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid #E3D8C2;font-family:"DM Sans",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;font-size:16px;line-height:1.4;margin:0}
+header.sh *{box-sizing:border-box}
+header.sh .sh-in{max-width:1120px;width:calc(100% - 32px);margin:0 auto;height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+header.sh a{text-decoration:none}
+header.sh .sh-brand{display:inline-flex;align-items:center;gap:10px;min-height:44px;color:#141110;font-family:"Playfair Display SC","Playfair Display",Georgia,serif;font-size:19px;letter-spacing:.06em;white-space:nowrap}
+header.sh .sh-brand img{width:36px;height:36px;display:block;border-radius:50%}
+header.sh .sh-nav{display:none}
+header.sh .sh-btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 16px;border-radius:8px;background:#7A0B10;color:#fff;font-weight:600;font-size:15px;white-space:nowrap}
+header.sh .sh-btn:hover{background:#5A070B}
+header.sh a:focus-visible{outline:3px solid #C9A24A;outline-offset:2px}
+@media(max-width:359px){header.sh .sh-brand span{font-size:16px}header.sh .sh-btn{padding:0 12px;font-size:14px}}
+@media(min-width:900px){
+  header.sh .sh-in{height:72px;width:calc(100% - 48px)}
+  header.sh .sh-nav{display:flex;align-items:center;gap:4px;margin-left:auto}
+  header.sh .sh-nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 12px;color:#2B2622;font-size:15px}
+  header.sh .sh-nav a:hover{color:#7A0B10;text-decoration:underline;text-decoration-color:#C9A24A}
+}
+@media print{header.sh{position:static}}
+</style>
+<div class="sh-in">
+  <a class="sh-brand" href="/" aria-label="Score Samurai, home"><img src="/warrior.png" alt="" width="36" height="36"><span>Score Samurai</span></a>
+  <nav class="sh-nav" aria-label="Site"><a href="/#how">How it works</a><a href="/#plans">Plans</a><a href="/dojo/">The Dojo</a><a href="/#faq">Questions</a></nav>
+  <a class="sh-btn js-tb" href="/diagnostic/">Free Diagnostic</a>
+</div>
 </header>
 <main id="top">
   <section class="top">
@@ -166,10 +191,10 @@ footer .foot-nav a{color:var(--cream);text-decoration:none;min-height:44px;displ
       <div class="doc">
         <h3>Maya's Roadmap. Belt: Green. Next: Blue.</h3>
         <p class="soft">Built from Maya's own misses, in the order they cost points. Rewritten each time a belt is earned.</p>
-        <ol><li><span class='k'>The Half-Finished Move</span> (Math, then Reading and Writing). The rule: you picked the right move, so finish it. Desmos: by hand, Desmos adds nothing here.</li><li><span class='k'>The Answer to a Different Question</span> (Reading and Writing). The rule: read what they asked for, not what the passage is about.</li><li><span class='k'>The Answer to a Different Question</span> (Math). The rule: before you pick, reread what they asked you to find. Desmos: by hand, Desmos adds nothing here.</li><li><span class='k'>Can Each Half Stand Alone</span> (Reading and Writing). The rule: if both halves are full sentences, a comma alone can't join them.</li><li><span class='k'>The Region Has to Be Checked, Not Eyeballed</span> (Math). The rule: test a point in the inequality. Never judge the picture by eye. Desmos: type each choice and compare its shading to the picture.</li><li><span class='k'>The Familiar Meaning Ambush</span> (Reading and Writing). The rule: the first meaning that comes to mind is often not the one being tested.</li><li><span class='k'>Divide the Whole House</span> (Math). The rule: if one term gets divided, every term on both sides does. Desmos: by hand is quicker. To check, graph the original and each choice and keep the one that shades the same.</li><li><span class='k'>The Extreme Answer</span> (Reading and Writing). The rule: if the choice says always, never or proves and the text hedges, cross it out.</li></ol>
+        <ol><li><span class='k'>The Half-Finished Move</span> (Math, then Reading and Writing). The rule: you picked the right move, so finish it. Desmos: by hand, Desmos adds nothing here.</li><li><span class='k'>The Answer to a Different Question</span> (Reading and Writing). The rule: read what they asked for, not what the passage is about.</li><li><span class='k'>The Answer to a Different Question</span> (Math). The rule: before you pick, reread what they asked you to find. Desmos: by hand, Desmos adds nothing here.</li><li><span class='k'>Can Each Half Stand Alone</span> (Reading and Writing). The rule: if both halves are full sentences, a comma alone can't join them.</li><li><span class='k'>The Region Has to Be Checked, Not Eyeballed</span> (Math). The rule: test a point in the inequality. Never judge the picture by eye. Desmos: type each choice and compare its shading to the picture.</li><li><span class='k'>The Familiar Meaning Ambush</span> (Reading and Writing). The rule: the first meaning that comes to mind is often not the one being tested.</li><li><span class='k'>Dividing one term and not the rest</span> (Math). The rule: if one term gets divided, every term on both sides does. Desmos: by hand is quicker. To check, graph the original and each choice and keep the one that shades the same.</li><li><span class='k'>The answer that says more than the text</span> (Reading and Writing). The rule: if the choice says always, never or proves and the text hedges, cross it out.</li></ol>
         <h3>Foundations, White belt</h3>
         <p class="soft">Moves from earlier belts that still cost Maya points on this test. They are worked in alongside the Green work.</p>
-        <ul><li><span class='k'>The Shape on Sight</span> (Math). The rule: check the shape of the expression before you start working. Desmos: when four expressions are offered, graph them and see which one sits on top of the original. When the answer has to be built, by hand.</li><li><span class='k'>Name the Relationship</span> (Math). The rule: say what connects the two things, then pick the rule that matches. Desmos: by hand, Desmos adds nothing here.</li><li><span class='k'>Name the Relationship</span> (Reading and Writing). The rule: say what connects the two sentences, then pick the word that matches.</li><li><span class='k'>Cover the Word</span> (Reading and Writing). The rule: cover the choices, say your own word, then match it.</li><li><span class='k'>The Goal Line</span> (Reading and Writing). The rule: read the goal line first and last, then pick the choice that does that job.</li><li><span class='k'>Trace the Referent</span> (Reading and Writing). The rule: find the noun the words attach to before you choose.</li><li><span class='k'>Trace One Row</span> (Reading and Writing). The rule: finger on the row. Trace it across, start to finish.</li></ul>
+        <ul><li><span class='k'>Working the long way past a shape you know</span> (Math). The rule: check the shape of the expression before you start working. Desmos: when four expressions are offered, graph them and see which one sits on top of the original. When the answer has to be built, by hand.</li><li><span class='k'>Picking a rule before naming the link</span> (Math). The rule: say what connects the two things, then pick the rule that matches. Desmos: by hand, Desmos adds nothing here.</li><li><span class='k'>Picking a transition before naming the link</span> (Reading and Writing). The rule: say what connects the two sentences, then pick the word that matches.</li><li><span class='k'>Choosing the word that sounds smartest</span> (Reading and Writing). The rule: cover the choices, say your own word, then match it.</li><li><span class='k'>A choice that misses the goal the notes set</span> (Reading and Writing). The rule: read the goal line first and last, then pick the choice that does that job.</li><li><span class='k'>Losing track of what a word refers to</span> (Reading and Writing). The rule: find the noun the words attach to before you choose.</li><li><span class='k'>Reading across the wrong row of a table</span> (Reading and Writing). The rule: finger on the row. Trace it across, start to finish.</li></ul>
         <p>Blue belt: earned when these moves stop costing points across two practice tests.</p>
         <p>Every session ends on the Ghost Round: a fresh question Maya has to win alone.</p>
       </div>
@@ -246,7 +271,7 @@ footer.sf .sf-cb{margin:8px 0 0;color:#B3A796;font-size:13px;max-width:44em}
     <div class="sf-col sf-c1">
       <a class="sf-brand" href="/" aria-label="Score Samurai, home"><span class="sf-wm" aria-hidden="true"><b>SCORE SAMURAI</b><i></i></span></a>
       <p class="sf-tag">The SAT is a discipline. Master it in The Dojo.</p>
-      <a class="sf-btn js-tb" href="/#diagnostic">Get Your Free Diagnostic</a>
+      <a class="sf-btn js-tb" href="/diagnostic/">Get Your Free Diagnostic</a>
       <a href="mailto:senseijay@scoresamurai.com">senseijay@scoresamurai.com</a>
     </div>
     <nav class="sf-col" aria-label="Score Samurai">

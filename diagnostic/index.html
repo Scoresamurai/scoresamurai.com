@@ -89,84 +89,196 @@ new MutationObserver(scan).observe(document.documentElement, { childList: true, 
 <link rel="preload" href="/fonts/playfair-display-sc-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/dm-sans-400-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/site.css">
+<style>/* The Diagnostic form styles, the same block as on home (LANDING) */
+/* The Diagnostic form, one copy for home and /diagnostic/ (LANDING, Nov 10 2026). Everything is scoped under .dxwrap so
+   the home page's own .field, .screen, .steps and .btn rules never reach it. */
+.dxwrap{--dx-maroon:#7A0B10;--dx-maroon-dark:#5A070B;--dx-gold:#C9A24A;--dx-ink:#141110;--dx-soft:#2B2622;--dx-muted:#5C544C;--dx-line:#E3D8C2;--dx-edge:#C9BFA8;display:flex;flex-direction:column;gap:20px;color:var(--dx-ink);font-family:"DM Sans",system-ui,-apple-system,sans-serif;font-size:16px;line-height:1.6;text-align:left}
+.dxwrap *{box-sizing:border-box}
+.dxwrap h2,.dxwrap h3{font-family:"Playfair Display",Georgia,serif;font-weight:600;line-height:1.15;margin:0;color:var(--dx-ink)}
+.dxwrap p{margin:0}
+.dxwrap .hidden{display:none!important}
+.dxwrap .sr{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.dxwrap .dxf{display:flex;flex-direction:column;gap:16px;margin:0}
+.dxwrap .dx-prog{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;font-size:13px;color:var(--dx-muted)}
+.dxwrap .dx-prog i{display:block;height:4px;flex:1 1 40px;background:var(--dx-line);border-radius:2px}
+.dxwrap .dx-prog i.on{background:var(--dx-gold)}
+.dxwrap .dx-saved{flex-basis:100%;font-size:13px;color:var(--dx-muted)}
+.dxwrap .screen{background:#fff;border:1px solid var(--dx-line);border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:16px}
+@media(min-width:600px){.dxwrap .screen{padding:28px}}
+.dxwrap .screen h2{font-size:24px}
+.dxwrap .field{display:flex;flex-direction:column;gap:6px;margin:0}
+.dxwrap .field label{font-size:14px;font-weight:600;color:var(--dx-ink)}
+.dxwrap .field .hint,.dxwrap .hint{font-size:13px;color:var(--dx-muted);font-weight:400}
+.dxwrap .field input,.dxwrap .field select,.dxwrap .field textarea{height:48px;padding:0 14px;border:1px solid var(--dx-edge);border-radius:8px;font-size:16px;font-family:inherit;background:#fff;color:var(--dx-ink);width:100%;margin:0}
+.dxwrap .field textarea{height:auto;min-height:96px;padding:12px 14px;resize:vertical}
+.dxwrap .field input[type=file]{height:auto;padding:10px 12px}
+.dxwrap .field input:focus,.dxwrap .field select:focus,.dxwrap .field textarea:focus{outline:2px solid var(--dx-gold);outline-offset:1px;border-color:var(--dx-gold)}
+.dxwrap .field.err input,.dxwrap .field.err select,.dxwrap .field.err textarea{border-color:var(--dx-maroon)}
+.dxwrap .errmsg{font-size:13px;color:var(--dx-maroon);display:none}
+.dxwrap .field.err .errmsg{display:block}
+.dxwrap .row2{display:grid;grid-template-columns:1fr;gap:14px}
+@media(min-width:600px){.dxwrap .row2{grid-template-columns:1fr 1fr}}
+.dxwrap .blk{gap:16px}.dxwrap .blk h3{font-size:20px}
+.dxwrap .who{display:flex;flex-direction:column;gap:24px}
+.dxwrap .muted{font-size:14px;line-height:1.55;color:var(--dx-muted)}
+.dxwrap .stack{display:flex;flex-direction:column}
+.dxwrap .promise{margin:0;font-size:16px;line-height:1.5;color:var(--dx-ink);padding:12px 14px;background:#FBF6EA;border-left:3px solid var(--dx-gold);border-radius:6px}
+.dxwrap .field.role{border:0;margin:0;padding:0;min-width:0}
+.dxwrap .field.role legend{font-size:14px;font-weight:600;color:var(--dx-ink);padding:0;margin-bottom:6px}
+.dxwrap .role .opts{display:flex;flex-wrap:wrap;gap:8px}
+.dxwrap .role .opts label{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 12px;border:1px solid var(--dx-edge);border-radius:8px;cursor:pointer;font-size:15px;font-weight:400;background:#fff}
+.dxwrap .role .opts label:has(input:checked){border:2px solid var(--dx-maroon);padding:0 11px}
+.dxwrap .field.role input{height:20px;width:20px;padding:0;margin:0;accent-color:var(--dx-maroon);flex:none}
+.dxwrap .scorerow{display:flex;gap:10px;align-items:center}.dxwrap .scorerow input#recent{flex:1;min-width:0}
+.dxwrap .field .noscore{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 12px;border:1px solid var(--dx-edge);border-radius:8px;cursor:pointer;font-size:15px;font-weight:400;white-space:nowrap;flex:none}
+.dxwrap .field .noscore:has(input:checked){border:2px solid var(--dx-maroon);padding:0 11px}
+.dxwrap .field .noscore input{height:20px;width:20px;padding:0;margin:0;accent-color:var(--dx-maroon);flex:none}
+.dxwrap .field input:disabled,.dxwrap .field select:disabled{background:#F2EEE5;color:var(--dx-muted)}
+.dxwrap .dx-acts{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.dxwrap .dx-acts.end{justify-content:flex-end}
+.dxwrap .dx-btn{display:inline-flex;align-items:center;justify-content:center;width:auto;min-height:52px;padding:0 26px;border-radius:8px;background:var(--dx-maroon);border:1.5px solid var(--dx-maroon);color:#fff;font-family:inherit;font-weight:600;font-size:16px;text-decoration:none;cursor:pointer;text-align:center}
+.dxwrap .dx-btn:hover{background:var(--dx-maroon-dark);border-color:var(--dx-maroon-dark);color:#fff}
+.dxwrap .dx-btn:disabled{opacity:.7;cursor:default}
+.dxwrap .dx-ghost{background:transparent;color:var(--dx-maroon)}
+.dxwrap .dx-ghost:hover{background:var(--dx-maroon);color:#fff}
+.dxwrap .dx-done{gap:14px}
+.dxwrap .dx-done h2{font-size:28px}
+.dxwrap .dx-done .body{font-size:17px;color:var(--dx-soft)}
+.dxwrap .dx-done .eyebrow{font-family:"Playfair Display SC",serif;font-size:12px;letter-spacing:.18em;color:#8C6A1F;text-transform:lowercase}
+.dxwrap .calbox{display:flex;flex-direction:column;gap:14px;margin:8px 0 0}
+.dxwrap .calbox h2{font-size:24px}
+.dxwrap .calbox .body{font-size:17px;color:var(--dx-soft)}
+.dxwrap .cal{display:block;width:100%;height:700px;border:0;border-radius:8px;background:#fff}
+.dxwrap .calwrap{position:relative;height:700px;border-radius:8px;background:#FBF6EA;overflow:hidden}
+.dxwrap .calwrap .cal{position:absolute;inset:0;height:100%;opacity:0;transition:opacity .35s ease}
+.dxwrap .calwrap.ready .cal{opacity:1}
+.dxwrap .calmsg{position:absolute;inset:0;margin:0;display:flex;align-items:center;justify-content:center;padding:0 24px;text-align:center;font-size:17px;line-height:1.5;color:var(--dx-muted)}
+.dxwrap .calmsg a{display:inline-flex;align-items:center;min-height:44px;color:var(--dx-maroon);text-decoration:underline}
+@media (prefers-reduced-motion:reduce){.dxwrap .calwrap .cal{transition:none}}
+.dxwrap .privline{text-align:center}
+.dxwrap .privline a{display:inline-flex;align-items:center;min-height:44px;padding:0 4px;color:var(--dx-maroon)}
+</style>
 <style>
-.form{max-width:640px;margin:0 auto}
-.screen{background:#fff;border:1px solid var(--line);border-radius:14px;padding:28px;display:flex;flex-direction:column;gap:16px}
-.field{display:flex;flex-direction:column;gap:6px}
-.field label{font-size:14px;font-weight:600;color:var(--ink)}
-.field .hint{font-size:13px;color:var(--muted)}
-.field input,.field select,.field textarea{height:48px;padding:0 14px;border:1px solid #C9BFA8;border-radius:8px;font-size:16px;font-family:inherit;background:#fff;color:var(--ink);width:100%}
-.field textarea{height:auto;min-height:96px;padding:12px 14px;resize:vertical}
-.field input[type=file]{height:auto;padding:10px 12px}
-.field input:focus,.field select:focus,.field textarea:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:var(--gold)}
-.field.err input,.field.err select,.field.err textarea{border-color:var(--maroon)}
-.errmsg{font-size:13px;color:var(--maroon);display:none}
-.field.err .errmsg{display:block}
-.row2{display:grid;grid-template-columns:1fr;gap:14px}
-@media(min-width:600px){.row2{grid-template-columns:1fr 1fr}}
-.steps{display:flex;gap:8px;align-items:center;font-size:13px;color:var(--muted)}
-.steps i{display:block;height:4px;flex:1;background:var(--line);border-radius:2px}
-.steps i.on{background:var(--gold)}
-.hidden{display:none}
-.blk{gap:16px}.blk h3{font-size:20px}.roleline{margin:0}
-.promise{margin:0;font-size:16px;line-height:1.5;color:var(--ink);padding:12px 14px;background:#FBF6EA;border-left:3px solid var(--gold);border-radius:6px}
-.field.role{border:0;margin:0;padding:0;min-width:0}
-.field.role legend{font-size:14px;font-weight:600;color:var(--ink);padding:0;margin-bottom:6px}
-.role .opts{display:flex;flex-wrap:wrap;gap:8px}
-.role .opts label{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 12px;border:1px solid #C9BFA8;border-radius:8px;cursor:pointer;font-size:15px;font-weight:400}
-.role .opts label:has(input:checked){border:2px solid var(--maroon);padding:0 11px}
-.field.role input{height:20px;width:20px;padding:0;margin:0;accent-color:var(--maroon);flex:none}
-.cal{display:block;width:100%;height:700px;border:0;border-radius:8px;background:#fff}
-.calbox{display:flex;flex-direction:column;gap:14px;margin-top:28px}
-.calbox h2{font-size:24px}
-.calwrap{position:relative;height:700px;border-radius:8px;background:#FBF6EA;overflow:hidden}
-.calwrap .cal{position:absolute;inset:0;height:100%;opacity:0;transition:opacity .35s ease}
-.calwrap.ready .cal{opacity:1}
-.calmsg{position:absolute;inset:0;margin:0;display:flex;align-items:center;justify-content:center;padding:0 24px;text-align:center;font-size:17px;line-height:1.5;color:var(--muted)}
-.calmsg a{display:inline-flex;align-items:center;min-height:44px;color:var(--maroon);text-decoration:underline}
-@media (prefers-reduced-motion:reduce){.calwrap .cal{transition:none}}
+/* /diagnostic/ as a landing page (LANDING, Nov 10 2026): the form first; under it on a phone, beside it from 1024 px,
+   what comes back, Maya's Dojo, the work behind it, what happens next and four questions, on the maroon Dojo floor
+   of /belt/ and /dojo/see/. The form's own styles live in /dx.css, shared with home. */
+.dx-sec{padding:32px 0 56px}
+.dx-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:20px;grid-template-areas:"intro" "form" "priv" "proof" "cal"}
+.dx-grid.sent{grid-template-areas:"intro" "form" "priv" "cal" "proof"}
+.dx-grid > .dxwrap{display:contents}
+.dx-intro{grid-area:intro;max-width:640px}
+.dx-intro h1{font-size:clamp(30px,4vw,42px)}
+.dx-grid #dx,.dx-grid #done{grid-area:form;max-width:640px;width:100%}
+.dx-grid .privline{grid-area:priv;max-width:640px}
+.dx-grid .calbox{grid-area:cal;max-width:640px;margin-top:8px}
+.dx-proof{grid-area:proof;position:relative;color:#F2EBDB;border-radius:14px;padding:36px 22px 30px;display:flex;flex-direction:column;gap:40px;margin:12px -20px 0;border-radius:0}
+@media(min-width:600px){.dx-proof{margin:12px 0 0;border-radius:14px;padding:44px 36px 36px}}
+@media(min-width:1024px){
+  .dx-grid{grid-template-columns:minmax(0,600px) minmax(0,1fr);column-gap:48px;grid-template-rows:auto auto auto 1fr;grid-template-areas:"intro proof" "form proof" "priv proof" "cal proof"}
+  .dx-grid.sent{grid-template-areas:"intro proof" "form proof" "priv proof" "cal proof"}
+  .dx-proof{margin:0;align-self:start}
+}
+.dojo-floor{background-color:#6e0d12;background-image:repeating-linear-gradient(90deg,rgba(0,0,0,.10) 0 1px,transparent 1px 12px),repeating-linear-gradient(0deg,rgba(0,0,0,.08) 0 1px,transparent 1px 12px),radial-gradient(ellipse 70% 60% at 50% 45%,rgba(160,30,36,.9) 0%,rgba(92,10,14,1) 100%)}
+.dx-frame{position:absolute;inset:10px;border:1px solid rgba(201,162,74,.55);pointer-events:none;border-radius:inherit}
+.dx-frame:before{content:"";position:absolute;inset:6px;border:1px solid rgba(201,162,74,.25);border-radius:inherit}
+.dx-band{position:relative;z-index:1;padding:0;display:flex;flex-direction:column;gap:14px}
+.dx-band h2{color:#F8F3E7;font-size:clamp(26px,3vw,32px)}
+.dx-proof .eyebrow{color:#C9A24A}
+.dx-note{font-size:14px;line-height:1.5;color:#E9D9B6}
+.dx-note a,.dx-proof .a a{color:#F8F3E7;text-decoration:underline;text-decoration-color:#C9A24A;display:inline-flex;align-items:center;min-height:44px}
+.dx-doc{background:#F8F3E7;color:#1F1512;border-radius:10px;border-top:4px solid #C9A24A;box-shadow:0 24px 48px rgba(0,0,0,.35);padding:22px 20px;display:flex;flex-direction:column;gap:10px;font-size:15px;line-height:1.55}
+.dx-doc h3{font-size:19px;color:#1F1512;margin-top:8px}
+.dx-doc ul,.dx-doc ol{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:6px}
+.dx-doc .facts{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:0}
+.dx-doc .facts dt{color:#5C544C}
+.dx-doc .facts dd{margin:0}
+.dx-doc .k{font-weight:700}
+.dx-tag{font-family:"Playfair Display SC",serif;font-size:13px;letter-spacing:.14em;color:#7A0B10}
+.dx-shot{display:block;max-width:390px;width:100%;border-radius:12px;overflow:hidden;border:1px solid rgba(201,162,74,.6);box-shadow:0 24px 48px rgba(0,0,0,.35);background:#efe7d6}
+.dx-shot img{display:block;width:100%;height:auto}
+.dx-cred{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.dx-cred li{position:relative;padding-left:22px;font-family:"Playfair Display",Georgia,serif;font-size:20px;line-height:1.3;color:#F8F3E7}
+.dx-cred li:before{content:"";position:absolute;left:0;top:.6em;width:10px;height:2px;background:#C9A24A}
+.dx-time{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:16px;border-left:2px solid rgba(201,162,74,.6);padding-left:18px}
+.dx-time li{display:flex;flex-direction:column;gap:2px;font-size:16px;line-height:1.55;color:#F2EBDB}
+.dx-time .t{font-family:"Playfair Display SC",serif;letter-spacing:.12em;font-size:13px;color:#C9A24A}
+.dx-faq{display:flex;flex-direction:column}
+.dx-faq details{border-top:1px solid rgba(242,235,219,.22)}
+.dx-faq details:last-child{border-bottom:1px solid rgba(242,235,219,.22)}
+.dx-faq summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:52px;padding:8px 0;font-weight:600;font-size:17px;color:#F8F3E7}
+.dx-faq summary::-webkit-details-marker{display:none}
+.dx-faq summary::after{content:"+";font-size:22px;color:#C9A24A;flex:none}
+.dx-faq details[open] summary::after{content:"\2212"}
+.dx-faq summary:focus-visible{outline:3px solid #C9A24A;outline-offset:2px}
+.dx-faq .a{padding:0 0 16px;color:#E9D9B6;font-size:16px;line-height:1.6}
 footer .fine{display:flex;flex-direction:column;gap:6px;max-width:440px}
-.privline a{display:inline-flex;align-items:center;min-height:44px;padding:0 4px}
-.scorerow{display:flex;gap:10px;align-items:center}.scorerow input#recent{flex:1;min-width:0}
-.field .noscore{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 12px;border:1px solid #C9BFA8;border-radius:8px;cursor:pointer;font-size:15px;font-weight:400;white-space:nowrap;flex:none}
-.field .noscore:has(input:checked){border:2px solid var(--maroon);padding:0 11px}
-.field .noscore input{height:20px;width:20px;padding:0;margin:0;accent-color:var(--maroon);flex:none}
-.field input:disabled,.field select:disabled{background:#F2EEE5;color:var(--muted)}
 </style>
 </head>
 <body>
-<header class="hdr"><div class="wrap"><a class="brand" href="/"><img src="/warrior.png" alt=""><span>Score Samurai</span></a></div></header>
+<header class="sh" id="site-header">
+<style>
+/* One header on every page (LANDING, Nov 10 2026): the Warrior and the wordmark, four links from 900 px, and the Diagnostic button. Self-contained like the footer. */
+@font-face{font-family:"Playfair Display SC";font-weight:400;font-display:swap;src:url(/fonts/playfair-display-sc-400.woff2) format("woff2")}
+@font-face{font-family:"DM Sans";font-weight:400 700;font-display:swap;src:url(/fonts/dm-sans-400-700.woff2) format("woff2")}
+header.sh{position:sticky;top:0;z-index:30;background:rgba(243,236,221,.96);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid #E3D8C2;font-family:"DM Sans",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;font-size:16px;line-height:1.4;margin:0}
+header.sh *{box-sizing:border-box}
+header.sh .sh-in{max-width:1120px;width:calc(100% - 32px);margin:0 auto;height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+header.sh a{text-decoration:none}
+header.sh .sh-brand{display:inline-flex;align-items:center;gap:10px;min-height:44px;color:#141110;font-family:"Playfair Display SC","Playfair Display",Georgia,serif;font-size:19px;letter-spacing:.06em;white-space:nowrap}
+header.sh .sh-brand img{width:36px;height:36px;display:block;border-radius:50%}
+header.sh .sh-nav{display:none}
+header.sh .sh-btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 16px;border-radius:8px;background:#7A0B10;color:#fff;font-weight:600;font-size:15px;white-space:nowrap}
+header.sh .sh-btn:hover{background:#5A070B}
+header.sh a:focus-visible{outline:3px solid #C9A24A;outline-offset:2px}
+@media(max-width:359px){header.sh .sh-brand span{font-size:16px}header.sh .sh-btn{padding:0 12px;font-size:14px}}
+@media(min-width:900px){
+  header.sh .sh-in{height:72px;width:calc(100% - 48px)}
+  header.sh .sh-nav{display:flex;align-items:center;gap:4px;margin-left:auto}
+  header.sh .sh-nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 12px;color:#2B2622;font-size:15px}
+  header.sh .sh-nav a:hover{color:#7A0B10;text-decoration:underline;text-decoration-color:#C9A24A}
+}
+@media print{header.sh{position:static}}
+</style>
+<div class="sh-in">
+  <a class="sh-brand" href="/" aria-label="Score Samurai, home"><img src="/warrior.png" alt="" width="36" height="36"><span>Score Samurai</span></a>
+  <nav class="sh-nav" aria-label="Site"><a href="/#how">How it works</a><a href="/#plans">Plans</a><a href="/dojo/">The Dojo</a><a href="/#faq">Questions</a></nav>
+  <a class="sh-btn js-tb" href="#dx">Free Diagnostic</a>
+</div>
+</header>
 
 <main>
-<section>
-  <div class="wrap form stack" style="gap:20px">
-    <div class="stack" style="gap:12px">
+<section class="dx-sec">
+  <div class="dx-grid wrap">
+    <div class="dx-intro stack" style="gap:12px">
       <div class="eyebrow">The Diagnostic</div>
-      <h1 style="font-size:clamp(30px,4vw,42px)">A free written SAT Diagnostic</h1>
-      <p class="body" style="margin:0">One-on-one with Sensei Jay, The SAT Sensei: we find where your points are going, close them in order, and send a written note home every week.</p>
+      <h1 id="dxH1">A free written SAT Diagnostic</h1>
+      <p class="body" id="dxLine">One-on-one with Sensei Jay, The SAT Sensei: we find where your points are going, close them in order, and send a written note home every week.</p>
+      <script>/* /diagnostic/?for=parent: the parent headline and line (Library), set before first paint so nothing shifts. */
+      (function(){if(!/(^|[?&])for=parent(&|$)/.test(location.search))return;var h=document.getElementById("dxH1"),l=document.getElementById("dxLine");if(h)h.textContent="The SAT counts again. Know where you stand.";if(l)l.textContent="A written Diagnostic showing exactly where the points are going. A plan built backward from the date you want to be done. Every session taught by Sensei Jay himself. A note home every week, so nobody has to ask.";document.documentElement.setAttribute("data-for","parent");})();</script>
     </div>
 
-    <form id="dx" novalidate class="stack" style="gap:16px">
-      <div class="steps" aria-hidden="true"><span id="stepLabel">Step 1 of 3</span><i class="on"></i><i></i><i></i></div>
+  <div class="dxwrap" id="dxwrap">
+    <form id="dx" class="dxf" novalidate>
+      <div class="dx-prog"><span id="stepLabel">Step 1 of 3</span><i class="on" aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i><span class="dx-saved" id="dxSaved" aria-live="polite">Answers save as you go</span></div>
 
-      <!-- SCREEN 1: three questions (DIAGFORM, Nov 6 2026). Your name, your email, the test. The rest comes after. -->
+      <!-- SCREEN 1 (LANDING, Nov 10 2026): taps only. Who is filling this in, grade, test date, and a score or No score yet. -->
       <div class="screen" data-screen="1">
-        <p class="promise" id="promise">Start with three questions. Sensei Jay reads every one himself and sends the Diagnostic in writing within 24 hours.</p>
-        <div class="field"><label for="meFirst">Your first name</label><input id="meFirst" type="text" autocomplete="given-name" autocapitalize="words" enterkeyhint="next" required><span class="errmsg">Needed.</span></div>
-        <div class="field"><label for="meEmail">Your email</label><input id="meEmail" type="email" inputmode="email" autocomplete="email" spellcheck="false" enterkeyhint="next" aria-describedby="meEmailHint" required><span class="hint" id="meEmailHint">The Diagnostic comes here.</span><span class="errmsg">A working email address.</span></div>
+        <p class="promise" id="promise">Sensei Jay reads every one himself and sends the Diagnostic in writing within 24 hours.</p>
+        <fieldset class="field role" id="fRole"><legend>Who&rsquo;s filling this in?</legend><div class="opts"><label><input type="radio" name="role" value="student" required> I&rsquo;m the student</label><label><input type="radio" name="role" value="parent"> I&rsquo;m a parent</label></div><span class="errmsg">Pick one.</span></fieldset>
+        <fieldset class="field role" id="fGrade"><legend>Current grade</legend><div class="opts"><label><input type="radio" name="grade" value="9th" required> 9th</label><label><input type="radio" name="grade" value="10th"> 10th</label><label><input type="radio" name="grade" value="11th"> 11th</label><label><input type="radio" name="grade" value="12th"> 12th</label><label><input type="radio" name="grade" value="Other"> Other</label></div><span class="errmsg">Pick a grade.</span></fieldset>
         <div class="field"><label for="testdate">Which SAT do you want to be your last?</label><select id="testdate" name="target_test_date" required><option value="">Choose</option><option value="December 5, 2026">December 5, 2026</option><option value="March 6, 2027">March 6, 2027</option><option value="May 1, 2027">May 1, 2027</option><option value="June 5, 2027">June 5, 2027</option><option value="Not sure yet">Not sure yet</option></select><span class="errmsg">Pick one, or Not sure yet.</span></div>
-        <div style="display:flex;justify-content:flex-end"><button type="button" class="btn" data-next>Next</button></div>
-      </div>
-
-      <!-- SCREEN 2: the test -->
-      <div class="screen hidden" data-screen="2">
-        <h2 style="font-size:24px">The test</h2>
-        <div class="field" id="fRecent"><label for="recent">Most recent SAT or PSAT score</label><div class="scorerow"><input id="recent" name="recent_score" inputmode="numeric" required><label class="noscore"><input type="checkbox" id="noscore"> No score yet</label></div><span class="errmsg">A score, or No score yet.</span></div>
+        <div class="field" id="fRecent"><label for="recent">Most recent SAT or PSAT score</label><div class="scorerow"><input id="recent" name="recent_score" inputmode="numeric" autocomplete="off" required><label class="noscore"><input type="checkbox" id="noscore"> No score yet</label></div><span class="errmsg">A score, or No score yet.</span></div>
         <!-- STARTREAD, Nov 10 2026: two optional one-tap questions, shown only when "No score yet" is ticked. -->
         <div id="nsBlock" class="stack hidden" style="gap:16px">
           <fieldset class="field role" id="fMathClass"><legend>Math class this year <span class="hint">(optional)</span></legend><div class="opts"><label><input type="radio" name="math_class" value="Algebra 1"> Algebra 1</label><label><input type="radio" name="math_class" value="Geometry"> Geometry</label><label><input type="radio" name="math_class" value="Algebra 2"> Algebra 2</label><label><input type="radio" name="math_class" value="Precalculus"> Precalculus</label><label><input type="radio" name="math_class" value="Calculus or higher"> Calculus or higher</label><label><input type="radio" name="math_class" value="Other"> Other</label></div></fieldset>
           <fieldset class="field role" id="fPsat"><legend>Taken a PSAT? <span class="hint">(optional)</span></legend><div class="opts"><label><input type="radio" name="psat_taken" value="Yes"> Yes</label><label><input type="radio" name="psat_taken" value="No"> No</label><label><input type="radio" name="psat_taken" value="Not sure"> Not sure</label></div></fieldset>
         </div>
+        <div class="dx-acts end"><button type="button" class="dx-btn" data-next>Next</button></div>
+      </div>
+
+      <!-- SCREEN 2: the scores and the frustration -->
+      <div class="screen hidden" data-screen="2">
+        <h2>The test</h2>
         <div class="row2">
           <div class="field"><label for="math">Math section score <span class="hint">(optional)</span></label><input id="math" name="math_score" inputmode="numeric"></div>
           <div class="field"><label for="rw">Reading and Writing section score <span class="hint">(optional)</span></label><input id="rw" name="rw_score" inputmode="numeric"></div>
@@ -174,7 +286,7 @@ footer .fine{display:flex;flex-direction:column;gap:6px;max-width:440px}
         <!-- Optional practice-test block (ENGINE2, Nov 4 2026, INTAKE-SPEC.md fields 18 to 23). Fields 19 to 23 show only for a Bluebook practice test. -->
         <div class="field"><label for="ptest">Which Bluebook practice test was it? <span class="hint">(optional)</span></label><select id="ptest" name="practice_test"><option value="">Choose</option><option>Practice Test 4</option><option>Practice Test 5</option><option>Practice Test 6</option><option>Practice Test 7</option><option>Practice Test 8</option><option>Practice Test 9</option><option>Practice Test 10</option><option>Practice Test 11</option><option>An official SAT or PSAT</option><option>Another test</option><option>I haven&rsquo;t taken one yet</option></select></div>
         <div id="missBlock" class="stack hidden" style="gap:16px">
-          <p class="hint" id="missHint" style="margin:0;font-size:13px;color:var(--muted)">The numbers Bluebook shows, like 3, 9, 14. Add the right answer if you can, like 3B.</p>
+          <p class="hint" id="missHint">The numbers Bluebook shows, like 3, 9, 14. Add the right answer if you can, like 3B.</p>
           <div class="row2">
             <div class="field"><label for="mrw1">Reading and Writing, Module 1: the questions you missed</label><input id="mrw1" name="missed_rw_m1" aria-describedby="missHint" autocomplete="off"></div>
             <div class="field"><label for="mrw2">Reading and Writing, Module 2: the questions you missed</label><input id="mrw2" name="missed_rw_m2" aria-describedby="missHint" autocomplete="off"></div>
@@ -189,52 +301,52 @@ footer .fine{display:flex;flex-direction:column;gap:6px;max-width:440px}
         <div class="field"><label for="colleges">Top target colleges <span class="hint">(up to 3, optional)</span></label><textarea id="colleges" name="target_colleges"></textarea></div>
         <div class="field"><label for="frustration">Biggest frustration with SAT prep</label><textarea id="frustration" name="frustration" required></textarea><span class="errmsg">One line is enough.</span></div>
         <div class="field"><label for="heard">How did you hear about us?</label><select id="heard" name="heard" required><option value="">Choose</option><option>TikTok</option><option>Instagram</option><option>Facebook</option><option>Pinterest</option><option>Reddit</option><option>Quora or College Confidential</option><option>Google search</option><option>A local newsletter or newspaper</option><option>A town Instagram page</option><option>A school parent group or PTO</option><option>A counselor or consultant</option><option>A friend or family member</option><option>Other</option></select><span class="errmsg">Needed.</span></div>
-        <div style="display:flex;justify-content:space-between"><button type="button" class="btn btn-ghost" data-back>Back</button><button type="button" class="btn" data-next>Next</button></div>
+        <div class="dx-acts"><button type="button" class="dx-btn dx-ghost" data-back>Back</button><button type="button" class="dx-btn" data-next>Next</button></div>
       </div>
 
-      <!-- SCREEN 3: who it is for. The student's and a parent's details; the "you" fields already given on screen 1 stay hidden and are filled from it. -->
+      <!-- SCREEN 3: names and emails, last. The role picked on screen 1 sets the labels and which block comes first. -->
       <div class="screen hidden" data-screen="3">
-        <h2 style="font-size:24px">Who it&rsquo;s for</h2>
-        <fieldset class="field role" id="fRole"><legend>Who&rsquo;s filling this in?</legend><div class="opts"><label><input type="radio" name="role" value="student" required> I&rsquo;m the student</label><label><input type="radio" name="role" value="parent"> I&rsquo;m a parent</label></div><span class="errmsg">Pick one.</span></fieldset>
-        <p class="muted roleline">The Diagnostic goes to the student and a parent. The weekly updates go to the parent if you enroll.</p>
-        <div id="sBlock" class="stack blk hidden">
-          <h3 data-h-student="About you" data-h-parent="About the student">About you</h3>
-          <div class="row2">
-            <div class="field" data-me="student"><label for="first">First name</label><input id="first" name="student_first" autocomplete="given-name" required><span class="errmsg">Needed.</span></div>
-            <div class="field"><label for="last">Last name</label><input id="last" name="student_last" autocomplete="family-name" required><span class="errmsg">Needed.</span></div>
-          </div>
-          <div class="field" data-me="student"><label for="semail">Your email</label><input id="semail" name="student_email" type="email" autocomplete="email" required><span class="errmsg">A working email address.</span></div>
-          <div class="row2">
-            <div class="field"><label for="grade">Current grade</label><select id="grade" name="grade" required><option value="">Choose</option><option>9th</option><option>10th</option><option>11th</option><option>12th</option><option>Other</option></select><span class="errmsg">Needed.</span></div>
+        <h2>Where should the Diagnostic go?</h2>
+        <p class="muted">The Diagnostic goes to the student and a parent. The weekly updates go to the parent if you enroll.</p>
+        <div class="who" id="dxWho">
+          <div id="sBlock" class="stack blk">
+            <h3 data-h-student="About you" data-h-parent="About the student">About you</h3>
+            <div class="row2">
+              <div class="field"><label for="first">First name</label><input id="first" name="student_first" autocomplete="given-name" autocapitalize="words" required><span class="errmsg">Needed.</span></div>
+              <div class="field"><label for="last">Last name</label><input id="last" name="student_last" autocomplete="family-name" autocapitalize="words" required><span class="errmsg">Needed.</span></div>
+            </div>
+            <div class="field"><label for="semail">Your email</label><input id="semail" name="student_email" type="email" inputmode="email" autocomplete="email" spellcheck="false" required><span class="errmsg">A working email address.</span></div>
             <div class="field"><label for="school">Your school</label><input id="school" name="school" required><span class="errmsg">Needed.</span></div>
           </div>
-        </div>
-        <div id="pBlock" class="stack blk hidden">
-          <h3 data-h-student="A parent to copy" data-h-parent="About you">A parent to copy</h3>
-          <div class="row2">
-            <div class="field" data-me="parent"><label for="pfirst">Parent first name</label><input id="pfirst" name="parent_first" autocomplete="section-parent given-name" required><span class="errmsg">Needed.</span></div>
-            <div class="field"><label for="plast">Parent last name</label><input id="plast" name="parent_last" autocomplete="section-parent family-name" required><span class="errmsg">Needed.</span></div>
-          </div>
-          <div class="row2">
-            <div class="field" data-me="parent"><label for="pemail">Parent email</label><input id="pemail" name="parent_email" type="email" autocomplete="section-parent email" required><span class="errmsg">A working email address.</span></div>
-            <div class="field"><label for="pphone">Parent phone <span class="hint">(optional)</span></label><input id="pphone" name="parent_phone" type="tel" autocomplete="section-parent tel"></div>
+          <div id="pBlock" class="stack blk">
+            <h3 data-h-student="A parent to copy" data-h-parent="About you">A parent to copy</h3>
+            <div class="row2">
+              <div class="field"><label for="pfirst">Parent first name</label><input id="pfirst" name="parent_first" autocomplete="section-parent given-name" autocapitalize="words" required><span class="errmsg">Needed.</span></div>
+              <div class="field"><label for="plast">Parent last name</label><input id="plast" name="parent_last" autocomplete="section-parent family-name" autocapitalize="words" required><span class="errmsg">Needed.</span></div>
+            </div>
+            <div class="row2">
+              <div class="field"><label for="pemail">Parent email</label><input id="pemail" name="parent_email" type="email" inputmode="email" autocomplete="section-parent email" spellcheck="false" required><span class="errmsg">A working email address.</span></div>
+              <div class="field"><label for="pphone">Parent phone <span class="hint">(optional)</span></label><input id="pphone" name="parent_phone" type="tel" autocomplete="section-parent tel"></div>
+            </div>
           </div>
         </div>
         <input type="text" name="website" tabindex="-1" autocomplete="off" class="sr" aria-hidden="true">
-        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px"><button type="button" class="btn btn-ghost" data-back>Back</button><button type="submit" class="btn" id="submit">Send me my Diagnostic</button></div>
+        <div class="dx-acts"><button type="button" class="dx-btn dx-ghost" data-back>Back</button><button type="submit" class="dx-btn" id="submit">Send me my Diagnostic</button></div>
         <p class="muted" id="status" aria-live="polite"></p>
       </div>
     </form>
 
-    <div id="done" class="screen hidden" style="gap:14px">
+    <div id="done" class="screen dx-done hidden" tabindex="-1">
       <div class="eyebrow">Sent</div>
-      <h2 style="font-size:28px">The Diagnostic is on its way.</h2>
+      <h2>The Diagnostic is on its way.</h2>
       <p class="body">Sensei Jay reads every one personally and writes back within 24 hours. If you have a recent Bluebook practice test, reply to the confirmation email with a screenshot of the results page.</p>
       <p class="body">Look for &ldquo;Your Diagnostic is on its way&rdquo; in your inbox, and check spam if it is not there.</p>
       <p class="body">Want to talk it through? The optional 15-minute Zoom with Sensei Jay is right below, a parent on. Your written Diagnostic arrives within 24 hours either way.</p>
-      <a class="btn hidden" id="beltBtn" href="/belt/#check" style="align-self:flex-start">Belt Check: ten questions, no clock</a>
-      <a class="btn btn-ghost" href="/" style="align-self:flex-start">Back to the site</a>
+      <a class="dx-btn hidden" id="beltBtn" href="/belt/#check" style="align-self:flex-start">Belt Check: ten questions, no clock</a>
+      <a class="dx-btn dx-ghost" id="dxHome" href="/" style="align-self:flex-start">Back to the site</a>
     </div>
+
+    <p class="muted privline">Your information is used to prepare the Diagnostic and for nothing else. <a href="/privacy/">Privacy</a></p>
 
     <div class="calbox" id="calbox">
       <h2>Want to talk it through?</h2>
@@ -273,7 +385,70 @@ footer .fine{display:flex;flex-direction:column;gap:6px;max-width:440px}
       </script>
     </div>
 
-    <p class="muted privline" style="text-align:center">Your information is used to prepare the Diagnostic and for nothing else. <a href="/privacy/">Privacy</a></p>
+  </div>
+
+    <aside class="dx-proof dojo-floor" aria-label="What the Diagnostic looks like">
+      <div class="dx-frame" aria-hidden="true"></div>
+
+      <section class="dx-band" aria-labelledby="pf-back">
+        <h2 id="pf-back">This is what comes back</h2>
+        <div class="dx-doc">
+          <p class="dx-tag">The Diagnostic (sample)</p>
+          <dl class="facts">
+            <dt>Student</dt><dd>Maya R., grade 11</dd>
+            <dt>Practice score</dt><dd>1180 on a Bluebook practice test (Math 590, Reading and Writing 590)</dd>
+            <dt>Next SAT</dt><dd>March 2027</dd>
+            <dt>Belt</dt><dd>Green, placed by the Diagnostic</dd>
+          </dl>
+          <h3>Where the points went</h3>
+          <p><span class="k">Math:</span> 19 questions missed.</p>
+          <ul><li>The Half-Finished Move: 5</li><li>The Region Has to Be Checked, Not Eyeballed: 2</li><li>Foundations (White belt moves and things not yet learned): 8</li><li>Other: 4</li></ul>
+          <p><span class="k">Reading and Writing:</span> 20 questions missed.</p>
+          <ul><li>The Answer to a Different Question: 5</li><li>Can Each Half Stand Alone: 4</li><li>Foundations (White belt moves): 10</li><li>Other: 1</li></ul>
+          <p><span class="k">What it means:</span> Three Green moves cost Maya the most, and they lead the plan. Foundations holds the White belt moves and the things not yet learned, worked in alongside the Green work. Each move has a rule, and a rule carries over to every test after this one.</p>
+          <h3>The three moves costing the most</h3>
+          <ol><li><span class="k">The Half-Finished Move</span> (Math, 5 misses). The right method, stopped one step early. The wrong answer is the student's own unfinished work, which is why it looks right.</li><li><span class="k">The Answer to a Different Question</span> (Reading and Writing, 5 misses). Maya reads the passage, then picks something true that the question never asked. It is the most common Reading and Writing move at this score.</li><li><span class="k">Can Each Half Stand Alone</span> (Reading and Writing, 4 misses). Two full sentences joined by a comma alone. Each half could stand on its own, so the comma can't hold them.</li></ol>
+        </div>
+        <p class="dx-note">Sample for illustration. Maya is not a real student. <a href="/sample/">See the full sample</a></p>
+      </section>
+
+      <section class="dx-band" aria-labelledby="pf-gets">
+        <h2 id="pf-gets">This is what a family gets</h2>
+        <a class="dx-shot" href="/dojo/see/"><img src="/diagnostic/maya-dojo.webp" width="780" height="1400" alt="Maya's Dojo, the sample family page: the belt she holds, the belts earned and the belts ahead." loading="lazy" decoding="async"></a>
+        <p class="dx-note">Sample for illustration. Maya is not a real student. <a href="/dojo/see/">See The Dojo</a></p>
+      </section>
+
+      <section class="dx-band" aria-labelledby="pf-work">
+        <div class="eyebrow" id="pf-work">The work behind it</div>
+        <ul class="dx-cred">
+          <li>Close to a decade with this test</li>
+          <li>1,168 real SAT questions catalogued, one at a time</li>
+          <li>Every session taught by Sensei Jay himself</li>
+          <li>Students from private and independent schools nationwide</li>
+        </ul>
+      </section>
+
+      <section class="dx-band" aria-labelledby="pf-next">
+        <h2 id="pf-next">What happens next</h2>
+        <ol class="dx-time">
+          <li><span class="t">Minute 0</span><span>The form lands with Sensei Jay. A confirmation goes to the student and the parent. If you want to talk it through, an optional 15-minute Zoom can be booked on the same screen.</span></li>
+          <li><span class="t">Within 24 hours</span><span>The written Diagnostic arrives: where the score stands, where it needs to be, what to fix first, and the plan and price in writing.</span></li>
+          <li><span class="t">Optional call</span><span>If you want to talk it through, a free 15-minute Zoom with Sensei Jay, a parent on. Not required; plenty of families go straight from the written Diagnostic to Session 1.</span></li>
+          <li><span class="t">Session 1</span><span>The first trap comes off the Roadmap. The first written update follows that week.</span></li>
+        </ol>
+      </section>
+
+      <section class="dx-band" aria-labelledby="pf-faq">
+        <div class="eyebrow">Questions</div>
+        <h2 id="pf-faq">Frequently asked.</h2>
+        <div class="dx-faq">
+          <details><summary>What does it cost?</summary><div class="a"><p>The plan sets the number of sessions, and the free Diagnostic sets the plan. The price comes in writing with the Diagnostic, before you decide anything.</p></div></details>
+          <details><summary>Do you guarantee a score?</summary><div class="a"><p>No. Guarantees in test prep come with pages of conditions, and a score depends on the student doing the work between sessions. What is promised is this: a written Diagnostic before you pay, the same teacher in every session, and a written update every week so you can see for yourself whether the traps are closing.</p></div></details>
+          <details><summary>Is there a call?</summary><div class="a"><p>Only if you want one. You can book a free 15-minute Zoom with Sensei Jay, a parent on, when you submit the form or after the written Diagnostic arrives. He walks through the Diagnostic and the plan. No pitch deck. It is optional; the written Diagnostic has everything a family needs to decide.</p></div></details>
+          <details><summary>What happens to our information?</summary><div class="a"><p>It is used to prepare the Diagnostic and for nothing else. No list, no resale. <a href="/privacy/">Privacy</a></p></div></details>
+        </div>
+      </section>
+    </aside>
   </div>
 </section>
 </main>
