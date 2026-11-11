@@ -4,12 +4,13 @@
  * The clock is held at the design's day (Nov 4 2026) so every count matches the design.
  * Belt order and floors are the engine's (Code.gs BELT_ORDER and BELT_FLOOR).
  * LANDFIX, Nov 10 2026: Maya's numbers match the sample Diagnostic on /sample/ (1180, Math 590, Reading and Writing 590, Green).
+ * PAGEGO, Nov 10 2026: test date March 6, 2027, as on /sample/; Roadmap moves are plain descriptions (no Codex names on public pages).
  */
 window.DOJO_SAMPLE = {
   today: '2026-11-04',
   family: {
     ok: true, role: 'parent', viewer: 'Sample', student: 'Maya',
-    plan: { name: 'Build', sessions: 9, started: '2026-11-03', startedLabel: 'November 3', testDate: '2026-12-05', testDateLabel: 'December 5', topUps: 1 },
+    plan: { name: 'Build', sessions: 9, started: '2026-11-03', startedLabel: 'November 3', testDate: '2027-03-06', testDateLabel: 'March 6', topUps: 1 },
     belt: {
       current: 'Green', placed: 'Green', score: 1180, next: 'Blue', nextFloor: 1250,
       order: ['White', 'Green', 'Blue', 'Brown', 'Black'],
@@ -27,9 +28,9 @@ window.DOJO_SAMPLE = {
     next: [{ start: '2026-11-09T21:00:00.000Z', minutes: 50 }],
     zoom: '',
     roadmap: [
-      { order: 1, section: 'Reading and Writing', move: "What's Left Standing", description: 'A ruled-out answer coming back in new words. Was costing about 30 points.', status: 'Closed', note: '', struck: '2026-11-04', checked: '2026-11-13', getsBelt: 'Blue' },
-      { order: 2, section: 'Math', move: 'What the Slopes Are Doing', description: 'A system solved when the slopes already answered it. Desmos, Technique 2. Costing about 20 points.', status: 'Working', note: '', struck: '', checked: '', getsBelt: 'Blue' },
-      { order: 3, section: 'Reading and Writing', move: 'The Tense Frame', description: 'A verb that sounds fine but breaks the time frame. Costing about 20 points.', status: 'Next', note: '', struck: '', checked: '', getsBelt: '' }
+      { order: 1, section: 'Reading and Writing', move: 'Falling for a ruled-out answer in new words', description: 'A ruled-out answer coming back in new words. Was costing about 30 points.', status: 'Closed', note: '', struck: '2026-11-04', checked: '2026-11-13', getsBelt: 'Blue' },
+      { order: 2, section: 'Math', move: 'Solving a system the slopes already answer', description: 'A system solved when the slopes already answered it. Desmos, Technique 2. Costing about 20 points.', status: 'Working', note: '', struck: '', checked: '', getsBelt: 'Blue' },
+      { order: 3, section: 'Reading and Writing', move: 'Missing a verb that breaks the time frame', description: 'A verb that sounds fine but breaks the time frame. Costing about 20 points.', status: 'Next', note: '', struck: '', checked: '', getsBelt: '' }
     ],
     roadmapLink: '',
     updates: [{
