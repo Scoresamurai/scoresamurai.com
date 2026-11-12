@@ -10,7 +10,10 @@
    /diagnostic/?for=parent starts the role on "I'm a parent".
    PHONEFIELD, Nov 11 2026: on the parent path only, the parent phone field becomes "Best number (optional)" with a
    helper line, a light check (if filled, at least 10 digits) and is also posted as "phone". The student path is
-   unchanged and posts no "phone". diagnostic_submit carries has_phone yes or no. */
+   unchanged and posts no "phone". diagnostic_submit carries has_phone yes or no.
+   LISTBOX, Nov 12 2026: the student path no longer shows or posts a parent phone. The parent path adds an unticked
+   "Send me one SAT trap a week by email." box on screen 3, posted as weekly_email "yes" when ticked and "" otherwise
+   (always "" on the student path). The box is never saved or restored, so it is never pre-ticked. */
 (function () {
   var ENDPOINT = "https://script.google.com/macros/s/AKfycbwNXGTg_7VgI6U7ejrx6dM9QeX8ObhIZ7br0v9_R0IL8U0SfCiPjL6Mcpcv-fjUFgpdrg/exec";
   var KEY = "ss_dx";
@@ -93,6 +96,10 @@
       if (!b) return;
       var h = b.querySelector("h3"); if (h) h.textContent = h.getAttribute(parent ? "data-h-parent" : "data-h-student");
     });
+    var fPhone = document.getElementById("fPhone"), fWeekly = document.getElementById("fWeekly"), wk = document.getElementById("weekly");
+    if (fPhone) fPhone.classList.toggle("hidden", !parent);
+    if (fWeekly) fWeekly.classList.toggle("hidden", !parent);
+    if (wk && !parent) wk.checked = false;
     var ph = document.getElementById("pphone"), phHelp = document.getElementById("pphoneHelp");
     if (phHelp) phHelp.classList.toggle("hidden", !parent);
     if (ph) {
@@ -140,7 +147,7 @@
     try {
       var o = {};
       form.querySelectorAll("input[name],select[name],textarea[name]").forEach(function (f) {
-        if (f.type === "file" || f.name === "website") return;
+        if (f.type === "file" || f.type === "checkbox" || f.name === "website") return;
         if (f.type === "radio") { if (f.checked) o[f.name] = f.value; return; }
         o[f.name] = f.value;
       });
@@ -159,7 +166,7 @@
         if (k === "_noscore" || !/^[a-z_0-9]+$/.test(k)) return;
         form.querySelectorAll('[name="' + k + '"]').forEach(function (f) {
           if (f.type === "radio") f.checked = f.value === o[k];
-          else if (f.type !== "file") f.value = o[k] == null ? "" : String(o[k]);
+          else if (f.type !== "file" && f.type !== "checkbox") f.value = o[k] == null ? "" : String(o[k]);
         });
       });
       if (noScore && o._noscore) noScore.checked = true;
@@ -242,6 +249,9 @@
     if (!(noScore && noScore.checked)) { delete data.math_class; delete data.psat_taken; }
     ["math_class", "psat_taken"].forEach(function (k) { if (!data[k]) delete data[k]; });
     if (roleVal() === "parent" && data.parent_phone) data.phone = data.parent_phone;
+    if (roleVal() !== "parent") delete data.parent_phone;
+    var wkIn = document.getElementById("weekly");
+    data.weekly_email = roleVal() === "parent" && wkIn && wkIn.checked ? "yes" : "";
     data.page = location.href; data.submitted_at = new Date().toISOString();
     var attr = window.ssAttr ? window.ssAttr() : {};
     Object.keys(attr).forEach(function (k) { data[k] = attr[k]; });

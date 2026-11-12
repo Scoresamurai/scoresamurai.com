@@ -137,6 +137,11 @@ new MutationObserver(scan).observe(document.documentElement, { childList: true, 
 .dxwrap .field .noscore{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 12px;border:1px solid var(--dx-edge);border-radius:8px;cursor:pointer;font-size:15px;font-weight:400;white-space:nowrap;flex:none}
 .dxwrap .field .noscore:has(input:checked){border:2px solid var(--dx-maroon);padding:0 11px}
 .dxwrap .field .noscore input{height:20px;width:20px;padding:0;margin:0;accent-color:var(--dx-maroon);flex:none}
+/* LISTBOX, Nov 12 2026: the weekly email opt-in, parent path only, never pre-ticked. */
+.dxwrap .field .wkbox{display:flex;align-items:flex-start;gap:10px;min-height:44px;padding:10px 0 0;cursor:pointer;font-size:15px;font-weight:400;line-height:1.4}
+.dxwrap .field .wkbox input{height:22px;width:22px;padding:0;margin:0;accent-color:var(--dx-maroon);flex:none}
+.dxwrap .field .wkhelp{padding-left:32px}
+.dxwrap .row2:has(> #fPhone.hidden){grid-template-columns:1fr}
 .dxwrap .field input:disabled,.dxwrap .field select:disabled{background:#F2EEE5;color:var(--dx-muted)}
 .dxwrap .dx-acts{display:flex;justify-content:space-between;align-items:center;gap:12px}
 .dxwrap .dx-acts.end{justify-content:flex-end}
@@ -332,10 +337,11 @@ header.sh a:focus-visible{outline:3px solid #C9A24A;outline-offset:2px}
             </div>
             <div class="row2">
               <div class="field"><label for="pemail">Parent email</label><input id="pemail" name="parent_email" type="email" inputmode="email" autocomplete="section-parent email" spellcheck="false" required><span class="errmsg">A working email address.</span></div>
-              <div class="field"><label for="pphone">Parent phone <span class="hint">(optional)</span></label><input id="pphone" name="parent_phone" type="tel" autocomplete="section-parent tel"><span class="hint hidden" id="pphoneHelp">I may call once, this evening or tomorrow morning, to ask a question or two. No texts, no list.</span><span class="errmsg">A full number, area code first.</span></div>
+              <div class="field" id="fPhone"><label for="pphone">Parent phone <span class="hint">(optional)</span></label><input id="pphone" name="parent_phone" type="tel" autocomplete="section-parent tel"><span class="hint hidden" id="pphoneHelp">I may call once, this evening or tomorrow morning, to ask a question or two. No texts, no list.</span><span class="errmsg">A full number, area code first.</span></div>
             </div>
           </div>
         </div>
+        <div class="field hidden" id="fWeekly"><label class="wkbox" for="weekly"><input type="checkbox" id="weekly" name="weekly_email" value="yes" aria-describedby="weeklyHelp">Send me one SAT trap a week by email.</label><span class="hint wkhelp" id="weeklyHelp">One short email a week. Unsubscribe any time.</span></div>
         <input type="text" name="website" tabindex="-1" autocomplete="off" class="sr" aria-hidden="true">
         <div class="dx-acts"><button type="button" class="dx-btn dx-ghost" data-back>Back</button><button type="submit" class="dx-btn" id="submit">Send me my Diagnostic</button></div>
         <p class="muted" id="status" aria-live="polite"></p>
