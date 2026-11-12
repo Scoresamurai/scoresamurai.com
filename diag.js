@@ -13,8 +13,14 @@
    unchanged and posts no "phone". diagnostic_submit carries has_phone yes or no.
    LISTBOX, Nov 12 2026: the student path no longer shows or posts a parent phone. The parent path adds an unticked
    "Send me one SAT trap a week by email." box on screen 3, posted as weekly_email "yes" when ticked and "" otherwise
-   (always "" on the student path). The box is never saved or restored, so it is never pre-ticked. */
+   (always "" on the student path). The box is never saved or restored, so it is never pre-ticked.
+   LISTSITE, Nov 12 2026: the box also shows on the student path when the grade is 9th to 12th. When it is ticked, this
+   browser posts the email and first name to Kit itself, the way the Daily Strike page does (no key): the parent's to
+   form 10179072 (The Dojo Letter), the student's to form 10179185 (The Dojo Letter (students)). Kit's answer goes in
+   kit_browser: "sent" when Kit says success, "unclear: <what Kit said>" otherwise, blank when unticked. The Diagnostic
+   is sent whatever Kit answers; the wait for Kit runs alongside the screenshot step and is capped at 2.5 s. */
 (function () {
+  var KIT_PARENT = "10179072", KIT_STUDENT = "10179185", KIT_WAIT = 2500, kitDone = {};
   var ENDPOINT = "https://script.google.com/macros/s/AKfycbwNXGTg_7VgI6U7ejrx6dM9QeX8ObhIZ7br0v9_R0IL8U0SfCiPjL6Mcpcv-fjUFgpdrg/exec";
   var KEY = "ss_dx";
   var form = document.getElementById("dx");
@@ -98,8 +104,7 @@
     });
     var fPhone = document.getElementById("fPhone"), fWeekly = document.getElementById("fWeekly"), wk = document.getElementById("weekly");
     if (fPhone) fPhone.classList.toggle("hidden", !parent);
-    if (fWeekly) fWeekly.classList.toggle("hidden", !parent);
-    if (wk && !parent) wk.checked = false;
+    weeklySet();
     var ph = document.getElementById("pphone"), phHelp = document.getElementById("pphoneHelp");
     if (phHelp) phHelp.classList.toggle("hidden", !parent);
     if (ph) {
@@ -111,7 +116,39 @@
       if (!parent && who.firstElementChild !== sBlock) who.insertBefore(sBlock, pBlock);
     }
   }
-  form.querySelectorAll('input[name="role"]').forEach(function (r) { r.addEventListener("change", applyRole); });
+  form.querySelectorAll('input[name="role"]').forEach(function (r) {
+    r.addEventListener("change", function () { var w = document.getElementById("weekly"); if (w) w.checked = false; applyRole(); });
+  });
+  /* LISTSITE: the weekly box shows for a parent, or for a student in 9th to 12th grade. Hidden means unticked. */
+  function weeklyShow() {
+    var g = form.querySelector('input[name="grade"]:checked');
+    return roleVal() === "parent" || (roleVal() === "student" && !!g && /^(9th|10th|11th|12th)$/.test(g.value));
+  }
+  function weeklySet() {
+    var fW = document.getElementById("fWeekly"), w = document.getElementById("weekly");
+    if (!fW) return;
+    var on = weeklyShow();
+    fW.classList.toggle("hidden", !on);
+    if (!on && w) w.checked = false;
+  }
+  form.querySelectorAll('input[name="grade"]').forEach(function (r) { r.addEventListener("change", weeklySet); });
+  /* LISTSITE: one post to Kit from this browser. It never throws; it always settles to a kit_browser value. */
+  function kitPost(formId, email, first) {
+    var fd = new FormData();
+    fd.append("email_address", email);
+    if (first) fd.append("fields[first_name]", first);
+    return fetch("https://app.kit.com/forms/" + formId + "/subscriptions", { method: "POST", headers: { Accept: "application/json" }, body: fd })
+      .then(function (r) {
+        return r.text().then(function (t) {
+          var st = ""; try { st = (JSON.parse(t) || {}).status || ""; } catch (e) {}
+          return st === "success" ? "sent" : "unclear: " + (st || "HTTP " + r.status);
+        });
+      }, function (e) { return "unclear: " + ((e && e.message) || "no answer"); })
+      .catch(function () { return "unclear: no answer"; });
+  }
+  function kitWithin(p, ms) {
+    return Promise.race([p, new Promise(function (res) { setTimeout(function () { res("unclear: no answer within " + ms / 1000 + " s"); }, ms); })]);
+  }
 
   /* The practice-test block: fields 19 to 23 appear only when field 18 names a Bluebook practice test. */
   var ptest = document.getElementById("ptest"), missBlock = document.getElementById("missBlock");
@@ -250,15 +287,26 @@
     ["math_class", "psat_taken"].forEach(function (k) { if (!data[k]) delete data[k]; });
     if (roleVal() === "parent" && data.parent_phone) data.phone = data.parent_phone;
     if (roleVal() !== "parent") delete data.parent_phone;
-    var wkIn = document.getElementById("weekly");
-    data.weekly_email = roleVal() === "parent" && wkIn && wkIn.checked ? "yes" : "";
+    var wkIn = document.getElementById("weekly"), wantKit = !!(wkIn && wkIn.checked && weeklyShow());
+    data.weekly_email = wantKit ? "yes" : "";
+    data.kit_browser = "";
+    var kitP = Promise.resolve("");
+    if (wantKit) {
+      var asParent = roleVal() === "parent";
+      var kEmail = (asParent ? data.parent_email : data.student_email) || "", kFirst = (asParent ? data.parent_first : data.student_first) || "";
+      var kForm = asParent ? KIT_PARENT : KIT_STUDENT, kKey = kForm + "|" + kEmail.toLowerCase();
+      kitP = kitDone[kKey] ? Promise.resolve(kitDone[kKey])
+        : kitWithin(kitPost(kForm, kEmail, kFirst), KIT_WAIT).then(function (v) { if (v === "sent") kitDone[kKey] = v; return v; });
+    }
     data.page = location.href; data.submitted_at = new Date().toISOString();
     var attr = window.ssAttr ? window.ssAttr() : {};
     Object.keys(attr).forEach(function (k) { data[k] = attr[k]; });
 
     /* The reply is read: "Sent" and the GA4 submit event happen only when the script answers ok:true. */
-    readShots()
-      .then(function (shots) {
+    Promise.all([readShots(), kitP])
+      .then(function (both) {
+        var shots = both[0];
+        if (wantKit) data.kit_browser = both[1];
         if (shots.length) data.shots = shots;
         return fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(data) });
       })
