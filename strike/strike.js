@@ -698,5 +698,6 @@
   $("diagLink").addEventListener("click", function () { ev("strike_diagnostic_click", { strike_day: dayNum, place: "footer" }); });
   $("mvdiag").addEventListener("click", function () { ev("strike_diagnostic_click", { strike_day: dayNum, place: "read" }); });
 
-  fetch("strike-bank.json", { credentials: "same-origin" }).then(function (r) { return r.json(); }).then(start).catch(function () { $("empty").hidden = false; tick(); });
+  fetch("strike-bank.json", { credentials: "same-origin" }).then(function (r) { return r.json(); }).then(start).catch(function () { $("empty").hidden = false; tick(); })
+    .then(function () { document.documentElement.classList.remove("sk-wait"); }); /* SITEFIX2: show the footer lines once the question is in */
 })();
