@@ -25,11 +25,11 @@
     1500: 97, 1510: 98, 1520: 98, 1530: 99, 1540: 99, 1550: 99 };
 
   /* PSAT/NMSQT. Selection Index = (2 x Reading and Writing + Math) / 10 (College Board).
-     Class of 2027 cutoffs and the class of 2028 estimates: Compass Prep, updated Sept 22 2026, read Oct 14 2026. */
+     Class of 2027 cutoffs and the class of 2028 estimates: Compass Prep, updated Nov 6 2026, read Nov 13 2026 (SITEFIX2). */
   var STATES = { NJ: "New Jersey", NY: "New York", CT: "Connecticut" };
   var CUT = { NJ: 223, NY: 220, CT: 220 };
-  var EST = { NJ: "222 to 225", NY: "219 to 223", CT: "219 to 223" };
-  var COMMENDED = 208, COMMENDED_EST = "207 to 212";
+  var EST = { NJ: "222 to 224", NY: "219 to 222", CT: "219 to 222" };
+  var COMMENDED = 208, COMMENDED_EST = "207 to 211";
 
   /* Station 2: the Trap Map names and, for the other moves, a plain description (LANDFIX, Nov 10 2026: no Codex names
      on public pages), with the rule lines (Codex, Oct 14 2026). A count shows only where the
@@ -229,7 +229,7 @@
       else if (rw + both <= 760 && m + both <= 760) msg += " Closing it takes about " + both + " more points in each section.";
     }
     $("psat-text").textContent = msg;
-    $("psat-est").textContent = "Estimates for the October 2026 PSAT, not final: " + nm + " " + EST[k] + ", Commended " + COMMENDED_EST + ".";
+    $("psat-est").textContent = "Compass Prep estimates for the October 2026 PSAT, Nov 6 2026, not final: " + nm + " " + EST[k] + ", Commended " + COMMENDED_EST + ".";
   }
 
   function scorecard() {
