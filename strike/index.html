@@ -213,10 +213,15 @@ sup{font-size:.68em;line-height:0;vertical-align:.42em}
   .pre .mail:not([hidden]) + .foot{border-radius:0 0 12px 12px}
 }
 @media(prefers-reduced-motion:reduce){.settle{animation:none}.bar{transition:none}.choice{transition:none}}
+/* SITEFIX2, Nov 13 2026: no jump while the day's question loads. The tiles are drawn in the page, and the footer
+   lines and the empty question sheet stay invisible (their space still kept) until the question is in, so nothing
+   on screen moves when it lands. */
+.sk-wait #sheet,.sk-wait .foot,.sk-wait .legal{visibility:hidden}
 </style>
+<script>document.documentElement.classList.add("sk-wait");setTimeout(function(){document.documentElement.classList.remove("sk-wait");},8000);</script>
 </head>
 <body>
-<header class="bar on-maroon" id="bar" aria-hidden="true"><div class="in"><a href="#top" tabindex="-1">Daily Strike</a><span class="board" id="mini"></span></div></header>
+<header class="bar on-maroon" id="bar" aria-hidden="true"><div class="in"><a href="#top" tabindex="-1">Daily Strike</a><span class="board" id="mini"><span class="s"></span><span class="s"></span><span class="s"></span><span class="s"></span></span></div></header>
 <main id="top">
   <div class="stage">
     <section class="hero on-maroon" id="hero" aria-labelledby="h1">
@@ -233,7 +238,7 @@ sup{font-size:.68em;line-height:0;vertical-align:.42em}
           <h2 class="rtitle" id="rtitle" hidden></h2>
           <p class="bline" id="bline" hidden>The SAT is a discipline. Master it in The Dojo.</p>
           <p class="rline" id="rline" hidden></p>
-          <div class="board" id="board" role="img" aria-label="Four empty tiles, one for each pick"></div>
+          <div class="board" id="board" role="img" aria-label="Four empty tiles, one for each pick"><span class="s"></span><span class="s"></span><span class="s"></span><span class="s"></span></div>
           <p class="me" id="me" hidden></p>
           <p class="tally" id="tally" hidden></p>
           <div class="share" id="sharewrap" hidden><button type="button" class="btn" id="shareBtn">Share</button><button type="button" class="lnk" id="copyBtn">Copy result</button><span class="shared" id="shared" role="status" aria-live="polite"></span></div>

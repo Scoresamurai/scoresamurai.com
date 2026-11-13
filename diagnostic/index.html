@@ -266,6 +266,8 @@ header.sh a:focus-visible{outline:3px solid #C9A24A;outline-offset:2px}
       <p class="body" id="dxLine">One-on-one with Sensei Jay, The SAT Sensei: we find where your points are going, close them in order, and send a written note home every week.</p>
       <script>/* /diagnostic/?for=parent: the parent headline and line (Library), set before first paint so nothing shifts. */
       (function(){if(!/(^|[?&])for=parent(&|$)/.test(location.search))return;var h=document.getElementById("dxH1"),l=document.getElementById("dxLine");if(h)h.textContent="The SAT counts again. Know where you stand.";if(l)l.textContent="A written Diagnostic showing exactly where the points are going. A plan built backward from the date you want to be done. Every session taught by Sensei Jay himself. A note home every week, so nobody has to ask.";document.documentElement.setAttribute("data-for","parent");})();</script>
+      <script>/* SITEFIX2, Nov 13 2026: visitors from the Spectator ad (utm_source=spectator) get the ad's promise as the line under the headline, set before first paint. Everyone else sees the page as before. */
+      (function(){if(!/(^|[?&])utm_source=spectator(&|$)/i.test(location.search))return;var l=document.getElementById("dxLine");if(l)l.textContent="Your weak spots, in writing, within 24 hours.";})();</script>
     </div>
 
   <div class="dxwrap" id="dxwrap">
