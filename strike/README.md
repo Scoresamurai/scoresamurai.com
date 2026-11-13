@@ -7,7 +7,7 @@ One SAT question per Eastern calendar date, the same for everyone, no account. B
 - strike.js: day keying, local state, the board and its tile flip, the result card, share (text plus square PNG), measurement.
 - strike-moves.json: one plain line per tile family id (s01 to s48): the move, then the fix. Loaded only when a result shows, for the private read. No Codex name.
 - og-strike.png: the link preview, 1200 by 630: the Warrior in his strike pose, "Daily Strike", a board, scoresamurai.com/strike.
-- strike-bank.json: Room 4's launch bank (STRIKEBANK, Oct 28 2026), 60 days from Fri Nov 6 2026 (Day 60 is Mon Jan 4 2027), wired in whole, with Sensei's ten approved line rewrites and neutral label ids (STRIKEPREP, Oct 28 2026). Its source is Content / Daily Strike / strike-bank.json.
+- strike-bank.json: Room 4's launch bank (STRIKEBANK, Oct 28 2026), 60 days from Fri Nov 6 2026 (Day 60 is Mon Jan 4 2027), wired in whole, with Sensei's ten approved line rewrites and neutral label ids (STRIKEPREP, Oct 28 2026). Days 61 to 80 (Tue Jan 5 to Sun Jan 24 2027) were added Nov 13 2026 (STRIKELIVE): twenty VERIFIED Original Problem Bank questions, alternating sections, with Room 8's audit fixes; Days 1 to 60 are unchanged. Its source is Content / Daily Strike / strike-bank.json.
 - warrior-guard-400.webp, warrior-guard-600.webp: the ready pose for the hero (Brand v3 / Warrior repair Oct 13 / warrior-guard-repaired.png, resized down, chosen by srcset so it is never enlarged).
 - warrior-strike-400.webp, warrior-strike-600.webp: the strike pose for the hero after the strike, the same way.
 - warrior-strike.webp: the strike pose at 778 by 800 for the share image (warrior-strike-repaired.png, resized).

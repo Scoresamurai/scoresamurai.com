@@ -1,7 +1,7 @@
 {
- "version": "strikebank-2026-10-28-strikeprep",
+ "version": "strikebank-2026-11-13-strikelive",
  "start": "2026-11-06",
- "note": "Daily Strike launch bank, 60 questions, Day 1 = Fri Nov 6 2026 (moved from Tue Nov 17 by STRIKENOW, Nov 5 2026; eight same-section day swaps by STRIKESWAP, Nov 5 2026, so no day runs within 14 days of another public use of its question), Math and Reading and Writing alternating. Every question VERIFIED in the Original Problem Bank (standing rule 3, STRIKEBANK Oct 28 2026); live-page solve pending. Label ids are neutral (s01 to s48) and only pick a tile colour; the master file maps them to the Codex and is not for the site.",
+ "note": "Daily Strike launch bank, 60 questions, Day 1 = Fri Nov 6 2026 (moved from Tue Nov 17 by STRIKENOW, Nov 5 2026; eight same-section day swaps by STRIKESWAP, Nov 5 2026, so no day runs within 14 days of another public use of its question), Math and Reading and Writing alternating. Every question VERIFIED in the Original Problem Bank (standing rule 3, STRIKEBANK Oct 28 2026); live-page solve pending. Label ids are neutral (s01 to s48) and only pick a tile colour; the master file maps them to the Codex and is not for the site. STRIKELIVE (Nov 13 2026): Days 61 to 80, Tue Jan 5 to Sun Jan 24 2027, twenty VERIFIED Original Problem Bank questions (SS-PWM1113-01 to 10, SS-PWRW-01 to 10).",
  "labels": {
   "s01": {
    "tile": "yellow"
@@ -1860,6 +1860,568 @@
    ],
    "explain": "“A few commuters still had complaints, though” is a full sentence, and so is the part about the first boat. “Though” belongs with the complaints. A semicolon then separates the two sentences.",
    "desmos": ""
+  },
+  {
+   "id": "SS-PWM1113-02",
+   "section": "Math",
+   "passage": "3x − 2y = 7; kx − 4y = 9. In the system of equations above, k is a constant. For what value of k does the system have no solution?",
+   "stem": "",
+   "choices": [
+    "−6",
+    "3",
+    "6",
+    "12"
+   ],
+   "key": 2,
+   "labels": [
+    "s09",
+    "s02",
+    null,
+    "s02"
+   ],
+   "reads": [
+    "That flips the slope. No solution needs the same slope, not the opposite one.",
+    "Kept the 3 but missed that −2y became −4y. The 3 has to double too.",
+    null,
+    "Scaled the 3 by 4 instead of by 2. The y-term only doubled."
+   ],
+   "explain": "No solution means parallel lines: the same slope with different intercepts. The y-term doubled from −2y to −4y, so k doubles 3 to make 6. Then 6x − 4y would have to equal both 14 and 9, which is impossible.",
+   "desmos": "Desmos play: Technique 4. Type 3x − 2y = 7 and kx − 4y = 9, add a slider for k and drag it until the lines run parallel. At k = 6 they never meet.",
+   "structured": {
+    "display": [
+     "3x − 2y = 7",
+     "kx − 4y = 9"
+    ]
+   }
+  },
+  {
+   "id": "SS-PWRW-03",
+   "section": "Reading and Writing",
+   "passage": "In 2021, the town of Millbrook began offering homeowners a rebate for replacing grass lawns with native shrubs and wildflowers. By 2024, about 600 households had made the switch, and the town's summer water use was 11 percent lower than it had been in 2020. Some residents said they missed having open grass for children to play on, and town planner Dana Whitcombe cautioned that a few unusually rainy summers may also have played a part. Still, she called the early numbers encouraging and said the town would keep tracking water use for several more years.",
+   "stem": "Which choice best states the main idea of the text?",
+   "choices": [
+    "Millbrook's lawn-replacement program proved that grass lawns are the main cause of the town's water shortages.",
+    "Native shrubs and wildflowers always use less water than grass, so every town should pay homeowners to replace their lawns.",
+    "Many Millbrook residents turned against the lawn-replacement program because it took away open space for children.",
+    "Early results suggest that Millbrook's lawn-replacement program helped reduce water use, though the town planner wants more years of data."
+   ],
+   "key": 3,
+   "labels": [
+    "s03",
+    "s03",
+    "s48",
+    null
+   ],
+   "reads": [
+    "Proved and main cause go too far. The planner says rain may also have helped.",
+    "Always and every town go far beyond one town's results.",
+    "Some residents missed the grass. That isn't many turning against the program.",
+    null
+   ],
+   "explain": "Water use fell 11 percent, but the planner says rainy summers may have helped and wants more years of data. The main idea needs both parts: an early drop and a call for more data.",
+   "desmos": ""
+  },
+  {
+   "id": "SS-PWM1113-03",
+   "section": "Math",
+   "passage": "Which of the following is the solution set of the inequality −4(x − 2) ≥ 2x + 20 ?",
+   "stem": "",
+   "choices": [
+    "x ≤ −2",
+    "x ≥ −2",
+    "x ≥ −14/3",
+    "x ≤ 2"
+   ],
+   "key": 0,
+   "labels": [
+    null,
+    "s01",
+    "s09",
+    "s09"
+   ],
+   "reads": [
+    null,
+    "Divided by −6 but kept ≥. Dividing by a negative flips the sign.",
+    "Wrote −4(x − 2) as −4x − 8 and kept ≥. It's +8, and dividing by −6 flips the sign.",
+    "Flipped the sign but got 12 ÷ (−6) wrong. It's −2, not 2."
+   ],
+   "explain": "Distribute: −4x + 8 ≥ 2x + 20. Take 2x and 8 from both sides to get −6x ≥ 12. Dividing by −6 flips the sign, so x ≤ −2.",
+   "desmos": "Desmos play: Technique 5. Type −4(x − 2) ≥ 2x + 20. The shading sits left of the solid line at x = −2, so x ≤ −2."
+  },
+  {
+   "id": "SS-PWRW-01",
+   "section": "Reading and Writing",
+   "passage": "In 1975, the Brandt family paid about $200 for a small painting by Ruth Abeyta, an artist few collectors knew at the time. As Abeyta's reputation grew, the painting appreciated steadily: each time it was appraised, the figure was higher than the time before, and in 2022 an auction house valued it at more than $90,000.",
+   "stem": "As used in the text, what does the word \"appreciated\" most nearly mean?",
+   "choices": [
+    "was admired",
+    "was thanked",
+    "rose in value",
+    "was understood"
+   ],
+   "key": 2,
+   "labels": [
+    "s33",
+    "s17",
+    null,
+    "s17"
+   ],
+   "reads": [
+    "Her reputation grew, but the colon says what appreciated means: the price went up each time.",
+    "That's the everyday meaning, like saying thanks. A painting can't be thanked.",
+    null,
+    "Appreciate can mean understand, but nothing here is about understanding the painting."
+   ],
+   "explain": "The colon explains the word: each appraisal came in higher than the last, and the painting bought for about $200 was valued at more than $90,000. It went up in price, so rose in value is the meaning here.",
+   "desmos": ""
+  },
+  {
+   "id": "SS-PWM1113-01",
+   "section": "Math",
+   "passage": "A bike rental shop charges a flat fee of $15 plus $6 for each hour a bike is rented. Mara paid a total of $57 for one rental. For how many hours did Mara rent the bike?",
+   "stem": "",
+   "choices": [
+    "7",
+    "9.5",
+    "12",
+    "42"
+   ],
+   "key": 0,
+   "labels": [
+    null,
+    "s28",
+    "s09",
+    "s12"
+   ],
+   "reads": [
+    null,
+    "Divided $57 by 6 and left out the $15 fee. Take the fee off first.",
+    "Added the $15 fee instead of taking it off. The fee is already inside the $57.",
+    "That's the $42 spent on hours. Divide by $6 to get the hours."
+   ],
+   "explain": "Take the $15 fee off the total first: 57 − 15 = 42 dollars went to hours. At $6 an hour, 42 ÷ 6 = 7 hours.",
+   "desmos": "By hand, Desmos adds nothing here. Two steps: take off the fee, then divide by the rate."
+  },
+  {
+   "id": "SS-PWRW-02",
+   "section": "Reading and Writing",
+   "passage": "Many people assume that honeybees find flowers mainly by their color. Entomologist Rosa Delgado set out to test that idea. In a meadow, she placed two kinds of paper flowers: bright blue ones with no scent and plain gray ones, each carrying a drop of lavender oil. Over three weeks, bees landed on the scented gray flowers nearly four times as often as on the bright blue ones.",
+   "stem": "Which choice best describes the overall structure of the text?",
+   "choices": [
+    "It describes an experiment in detail and then explains why other researchers questioned its method.",
+    "It compares two researchers' explanations of how bees choose flowers and argues that one is stronger.",
+    "It presents a common belief, describes a test of that belief, and reports a result that runs against it.",
+    "It presents a common belief, describes a test of that belief, and reports a result that confirms it."
+   ],
+   "key": 2,
+   "labels": [
+    "s27",
+    "s27",
+    null,
+    "s25"
+   ],
+   "reads": [
+    "No other researchers show up, and no one questions the method.",
+    "There's one researcher, and she runs a test. Nobody argues one view is stronger.",
+    null,
+    "The bees chose the plain gray scented flowers about four to one. That cuts against the color idea."
+   ],
+   "explain": "The text opens with a common belief: bees go mainly by color. Delgado tests it. The bright blue flowers lost to the plain gray scented ones, so the result runs against the belief.",
+   "desmos": ""
+  },
+  {
+   "id": "SS-PWM1113-08",
+   "section": "Math",
+   "passage": "Which expression is equivalent to (2x³)⁴ / (4x⁵), where x ≠ 0 ?",
+   "stem": "",
+   "choices": [
+    "4x⁷",
+    "2x⁷",
+    "(1/2)x⁷",
+    "4x²"
+   ],
+   "key": 0,
+   "labels": [
+    null,
+    "s39",
+    "s12",
+    "s39"
+   ],
+   "reads": [
+    null,
+    "Read 2⁴ as 2 × 4 = 8. It's 2 × 2 × 2 × 2 = 16.",
+    "Raised x³ to the 4th but left the 2 alone. The power hits the 2 too.",
+    "Added 3 + 4 for the power. A power of a power multiplies, so x³ to the 4th is x¹²."
+   ],
+   "explain": "The 4th power hits both the 2 and the x³, so (2x³)⁴ = 16x¹². Then divide: 16 ÷ 4 = 4 and x¹² ÷ x⁵ = x⁷. The answer is 4x⁷.",
+   "desmos": "Desmos play: four choices are given, so graph y = (2x³)⁴/(4x⁵) and each choice. Only 4x⁷ sits right on top of it."
+  },
+  {
+   "id": "SS-PWRW-05",
+   "section": "Reading and Writing",
+   "passage": "At a 3,000-year-old village site high in a mountain range, archaeologists found a storage pit holding thousands of charred barley grains. The grains could have been grown in the fields around the village, or they could have been carried in from somewhere else. Every plant takes up chemical traces from the soil it grows in, and when the team tested the grains, the traces did not match the soils near the village. Instead, they closely matched the soils of a river valley about 150 kilometers away. These findings suggest that ______",
+   "stem": "Which choice most logically completes the text?",
+   "choices": [
+    "the villagers most likely raised the barley on land around their homes.",
+    "the people of the village most likely did not eat barley.",
+    "the barley found at the village was most likely grown elsewhere and brought there.",
+    "the river valley was most likely settled long after the mountain village."
+   ],
+   "key": 2,
+   "labels": [
+    "s25",
+    "s27",
+    null,
+    "s27"
+   ],
+   "reads": [
+    "The soil test ruled out the fields near the village. This is that option in new words.",
+    "Thousands of stored grains point to people using barley, not avoiding it.",
+    null,
+    "Nothing in the text says when either place was settled."
+   ],
+   "explain": "The text gives two options: grown nearby or carried in. The traces don't match the village soil but do match a valley 150 kilometers away. That leaves one answer: the barley was grown there and brought in.",
+   "desmos": ""
+  },
+  {
+   "id": "SS-PWM1113-05",
+   "section": "Math",
+   "passage": "The function g is defined by g(x) = −2(x − 4)² + 18. What is the maximum value of g(x)?",
+   "stem": "",
+   "choices": [
+    "−14",
+    "−2",
+    "4",
+    "18"
+   ],
+   "key": 3,
+   "labels": [
+    "s05",
+    "s13",
+    "s12",
+    null
+   ],
+   "reads": [
+    "That's g(0). Putting in 0 gives a value, not the highest one.",
+    "That's the −2 in front. It makes the graph open down. It isn't the height.",
+    "That's where the top is, at x = 4. The question asks how high it goes.",
+    null
+   ],
+   "explain": "The squared part is never negative, so −2(x − 4)² is at most 0. That makes 18 the highest value g can reach, at x = 4.",
+   "desmos": "Desmos play: Technique 3. Type g(x) = −2(x − 4)² + 18 and tap the marked top point, (4, 18). Read the y-value. The 4 on screen is choice C."
+  },
+  {
+   "id": "SS-PWRW-04",
+   "section": "Reading and Writing",
+   "passage": "The ridge-tailed sand lizard, a small reptile of the American Southwest, cannot make its own body heat and must warm up or cool down using its surroundings. Biologist Tomás Rivera has noticed that individual lizards change color over the course of a day. Because darker skin absorbs more sunlight than lighter skin does, Rivera hypothesizes that these color changes help the lizards control their body temperature.",
+   "stem": "Which finding, if true, would most directly support Rivera's hypothesis?",
+   "choices": [
+    "Individual lizards are darkest in the cool early morning and gradually turn lighter as the air heats up toward midday.",
+    "Lizards that live on pale sand tend to be lighter overall than lizards of the same species that live on dark volcanic rock.",
+    "Male lizards develop bright blue patches on their bellies during the spring breeding season.",
+    "During the hottest hours of the afternoon, the lizards spend more time in the shade of rocks than in open sand."
+   ],
+   "key": 0,
+   "labels": [
+    null,
+    "s31",
+    "s31",
+    "s31"
+   ],
+   "reads": [
+    null,
+    "That's about lizards matching their ground, not one lizard changing color through the day.",
+    "That color change is for breeding season. It says nothing about body heat.",
+    "Shade is a way to cool off, but it's behavior. The claim is about color."
+   ],
+   "explain": "Dark skin soaks up more sun. If color changes help with heat, a lizard should be dark when it's cool and turn lighter as it heats up. A shows exactly that pattern over one day.",
+   "desmos": ""
+  },
+  {
+   "id": "SS-PWM1113-07",
+   "section": "Math",
+   "passage": "x² + bx − 24 = 0. In the equation above, b is a constant. If x = −8 is one solution to the equation, what is the other solution?",
+   "stem": "",
+   "choices": [
+    "−3",
+    "3",
+    "5",
+    "16"
+   ],
+   "key": 1,
+   "labels": [
+    "s09",
+    null,
+    "s12",
+    "s05"
+   ],
+   "reads": [
+    "Right idea, wrong sign. −24 ÷ (−8) is positive 3.",
+    null,
+    "That's b. Finding b is only the first step.",
+    "Took 8 from 24, the two numbers on screen. They don't combine that way."
+   ],
+   "explain": "Put x = −8 in: 64 − 8b − 24 = 0, so b = 5. That gives (x + 8)(x − 3) = 0, so the other solution is 3. Faster: the solutions multiply to −24, and −24 ÷ (−8) = 3.",
+   "desmos": "Desmos play: Technique 9. Once b = 5, type y = x² + 5x − 24 and read the other x-intercept, 3. By hand is faster: the two solutions multiply to −24, so the other one is 3.",
+   "structured": {
+    "display": [
+     "x² + bx − 24 = 0"
+    ]
+   }
+  },
+  {
+   "id": "SS-PWRW-08",
+   "section": "Reading and Writing",
+   "passage": "The volunteers who planted the first rows of squash and beans at the Fenwick Community Garden in the spring of ______ harvested more than 900 pounds of vegetables for local food pantries by the end of that year.",
+   "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+   "choices": [
+    "2023 had",
+    "2023, had",
+    "2023; had",
+    "2023: had"
+   ],
+   "key": 0,
+   "labels": [
+    null,
+    "s23",
+    "s23",
+    "s11"
+   ],
+   "reads": [
+    null,
+    "A comma here splits the subject from its verb, had harvested.",
+    "A semicolon needs a full sentence on each side. The words before it aren't one.",
+    "A colon needs a full sentence before it, and nothing after it is a list."
+   ],
+   "explain": "Everything from The volunteers to 2023 is one long subject, and its verb is had harvested. No punctuation goes between a subject and its verb, so no mark is right.",
+   "desmos": ""
+  },
+  {
+   "id": "SS-PWM1113-06",
+   "section": "Math",
+   "passage": "A laptop is worth $1,250 when it is bought. Its value decreases by 20% of its value from the previous year each year. What is the value of the laptop, in dollars, 3 years after it is bought?",
+   "stem": "",
+   "choices": [
+    "500",
+    "640",
+    "800",
+    "1,000"
+   ],
+   "key": 1,
+   "labels": [
+    "s32",
+    null,
+    "s12",
+    "s12"
+   ],
+   "reads": [
+    "Took $250 off every year. Each 20% comes off the new, lower value.",
+    null,
+    "That's the value after two years. The question asks about three.",
+    "That's the value after one year. Two more drops to go."
+   ],
+   "explain": "Each year the laptop keeps 80% of the year before: 1,250 × 0.8 = 1,000, then 800, then 640. That's 1,250 × 0.8³ = 640 after 3 years.",
+   "desmos": "Desmos play: Technique 4. Type 1250(0.8)^3 and read 640. Or type y = 1250(0.8)^x and tap the graph at x = 3. By hand is just as fast."
+  },
+  {
+   "id": "SS-PWRW-06",
+   "section": "Reading and Writing",
+   "passage": "For decades, the Tessaly River flooded the town of Corlett nearly every ______ 1958, engineers finished a dam upstream, and serious floods have been rare ever since.",
+   "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+   "choices": [
+    "spring. In",
+    "spring, in",
+    "spring in",
+    "spring, then in"
+   ],
+   "key": 0,
+   "labels": [
+    null,
+    "s08",
+    "s08",
+    "s08"
+   ],
+   "reads": [
+    null,
+    "Both halves are full sentences. A comma alone can't join them.",
+    "With no mark, the two sentences run together and 1958 looks tied to the flooding.",
+    "Then isn't a joining word like and or but, so this is still two sentences on one comma."
+   ],
+   "explain": "Each half is a full sentence: the river flooded nearly every spring, and in 1958 engineers finished a dam. Two full sentences need a period, a semicolon, or a comma with and, but or so.",
+   "desmos": ""
+  },
+  {
+   "id": "SS-PWM1113-10",
+   "section": "Math",
+   "passage": "Triangle PQR is similar to triangle STU, where side PQ corresponds to side ST. The length of PQ is 6 centimeters and the length of ST is 15 centimeters. The area of triangle PQR is 20 square centimeters. What is the area, in square centimeters, of triangle STU?",
+   "stem": "",
+   "choices": [
+    "8",
+    "50",
+    "125",
+    "312.5"
+   ],
+   "key": 2,
+   "labels": [
+    "s43",
+    "s43",
+    null,
+    "s43"
+   ],
+   "reads": [
+    "Divided by 2.5. STU is the bigger triangle, and area grows by the square.",
+    "Multiplied the area by 2.5. Sides grow by 2.5, but area grows by 2.5 × 2.5.",
+    null,
+    "Cubed the scale factor. That's for volume. Area uses the square."
+   ],
+   "explain": "The sides grow by 15 ÷ 6 = 2.5. Area grows by the square of that, 2.5 × 2.5 = 6.25. So the area of STU is 20 × 6.25 = 125.",
+   "desmos": "By hand, Desmos adds nothing here. One ratio, squared, times 20."
+  },
+  {
+   "id": "SS-PWRW-07",
+   "section": "Reading and Writing",
+   "passage": "A recording of the folk songs that Irina Sokol's grandmothers sang in their village in the 1930s, rediscovered in a university storage room in 2018, ______ musicians a rare chance to hear how those songs once sounded.",
+   "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+   "choices": [
+    "have given",
+    "has given",
+    "give",
+    "were giving"
+   ],
+   "key": 1,
+   "labels": [
+    "s14",
+    null,
+    "s14",
+    "s14"
+   ],
+   "reads": [
+    "Have goes with a plural subject. The subject is recording, which is singular.",
+    null,
+    "Give is the plural form. The subject is one recording.",
+    "Were is plural too. One recording has given."
+   ],
+   "explain": "Strip out the extra words and the sentence reads: A recording has given musicians a rare chance. Recording is singular, so it takes has, not have, give or were.",
+   "desmos": ""
+  },
+  {
+   "id": "SS-PWM1113-09",
+   "section": "Math",
+   "passage": "A service club has 30 juniors and 20 seniors. The juniors volunteered a mean of 12 hours each last month, and the seniors volunteered a mean of 17 hours each. What was the mean number of hours volunteered last month for all 50 members of the club?",
+   "stem": "",
+   "choices": [
+    "14",
+    "14.5",
+    "15",
+    "700"
+   ],
+   "key": 0,
+   "labels": [
+    null,
+    "s44",
+    "s44",
+    "s12"
+   ],
+   "reads": [
+    null,
+    "Averaged 12 and 17 as if the groups were the same size. There are more juniors.",
+    "Gave the bigger group the bigger mean. The 30 juniors averaged 12.",
+    "That's the total hours. Divide by the 50 members."
+   ],
+   "explain": "Find the total: 30 × 12 = 360 and 20 × 17 = 340, so 700 hours. Spread over 50 members, 700 ÷ 50 = 14. The mean sits closer to 12 because there are more juniors.",
+   "desmos": "By hand, Desmos adds nothing here. Two products and one division."
+  },
+  {
+   "id": "SS-PWRW-09",
+   "section": "Reading and Writing",
+   "passage": "The first handheld cell phones sold to the public, in 1983, weighed nearly two pounds and could run for only about half an hour of calls before the battery died. ______ many phones sold today weigh less than half a pound and can last a full day between charges.",
+   "stem": "Which choice completes the text with the most logical transition?",
+   "choices": [
+    "Still,",
+    "Similarly,",
+    "For example,",
+    "By contrast,"
+   ],
+   "key": 3,
+   "labels": [
+    "s07",
+    "s07",
+    "s07",
+    null
+   ],
+   "reads": [
+    "Still means despite that. Today's light phones aren't in spite of the old heavy ones.",
+    "The two sentences describe opposite phones, not similar ones.",
+    "The first sentence isn't a general point that the second one gives an example of.",
+    null
+   ],
+   "explain": "The 1983 phones were heavy and died in half an hour. Phones today are light and last all day. Old against new, with opposite traits, is a contrast, so By contrast fits.",
+   "desmos": ""
+  },
+  {
+   "id": "SS-PWM1113-04",
+   "section": "Math",
+   "passage": "The equation T = 68 + 2.5m gives the temperature T, in degrees Fahrenheit, of the water in a kettle m minutes after the kettle is turned on, for 0 ≤ m ≤ 12. By how many degrees Fahrenheit does the temperature of the water increase from minute 4 to minute 10?",
+   "stem": "",
+   "choices": [
+    "15",
+    "25",
+    "78",
+    "93"
+   ],
+   "key": 0,
+   "labels": [
+    null,
+    "s05",
+    "s05",
+    "s05"
+   ],
+   "reads": [
+    null,
+    "Multiplied 2.5 by 10. That's the rise over the first 10 minutes, not minute 4 to minute 10.",
+    "That's the temperature at minute 4. The question asks how much it went up.",
+    "That's the temperature at minute 10, not how much it went up."
+   ],
+   "explain": "The water gains 2.5 degrees each minute. Minute 4 to minute 10 is 6 minutes, so it rises 2.5 × 6 = 15 degrees. Check: 93 − 78 = 15.",
+   "desmos": "By hand, Desmos adds nothing here. It's one rate times one span of minutes."
+  },
+  {
+   "id": "SS-PWRW-10",
+   "section": "Reading and Writing",
+   "passage": "While researching a topic, a student has taken the following notes: • Ines Kovacs is an engineer who designs bridges for people on foot and on bicycles. • In 2020, she designed the Halden Footbridge in the city of Tormund. • The bridge is 85 meters long. • Its beams are made of fiber-reinforced plastic. • Fiber-reinforced plastic beams weigh about half as much as steel beams of the same strength. The student wants to emphasize an advantage of the material used in the Halden Footbridge.",
+   "stem": "Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+   "choices": [
+    "In 2020, engineer Ines Kovacs designed the Halden Footbridge, an 85-meter bridge in the city of Tormund.",
+    "The Halden Footbridge's beams are made of fiber-reinforced plastic, which weighs about half as much as steel of the same strength.",
+    "Ines Kovacs, an engineer who designs bridges for people on foot and on bicycles, designed a footbridge in Tormund.",
+    "The 85-meter Halden Footbridge in Tormund has beams made of fiber-reinforced plastic."
+   ],
+   "key": 1,
+   "labels": [
+    "s21",
+    null,
+    "s21",
+    "s21"
+   ],
+   "reads": [
+    "It never mentions the material, so it can't show an advantage.",
+    null,
+    "This is about the engineer, not the material.",
+    "It names the material but never says why it's better."
+   ],
+   "explain": "The goal has two parts: name the material and give an advantage. Only B does both: fiber-reinforced plastic weighs about half as much as steel of the same strength.",
+   "desmos": "",
+   "structured": {
+    "notes_intro": "While researching a topic, a student has taken the following notes:",
+    "notes": [
+     "Ines Kovacs is an engineer who designs bridges for people on foot and on bicycles.",
+     "In 2020, she designed the Halden Footbridge in the city of Tormund.",
+     "The bridge is 85 meters long.",
+     "Its beams are made of fiber-reinforced plastic.",
+     "Fiber-reinforced plastic beams weigh about half as much as steel beams of the same strength."
+    ],
+    "passage_body": "The student wants to emphasize an advantage of the material used in the Halden Footbridge."
+   }
   }
  ]
 }
