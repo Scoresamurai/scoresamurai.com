@@ -19,6 +19,9 @@
    form 10179072 (The Dojo Letter), the student's to form 10179185 (The Dojo Letter (students)). Kit's answer goes in
    kit_browser: "sent" when Kit says success, "unclear: <what Kit said>" otherwise, blank when unticked. The Diagnostic
    is sent whatever Kit answers; the wait for Kit runs alongside the screenshot step and is capped at 2.5 s. */
+/* SITEFIX2, Nov 13 2026: the "Which SAT do you want to be your last?" list drops each test date once that day is
+   over (New York time) and keeps the rest in date order, so the next test is always first. A saved answer for a
+   dropped date is cleared, so the visitor picks again. */
 (function () {
   var KIT_PARENT = "10179072", KIT_STUDENT = "10179185", KIT_WAIT = 2500, kitDone = {};
   var ENDPOINT = "https://script.google.com/macros/s/AKfycbwNXGTg_7VgI6U7ejrx6dM9QeX8ObhIZ7br0v9_R0IL8U0SfCiPjL6Mcpcv-fjUFgpdrg/exec";
@@ -29,6 +32,24 @@
   var screens = Array.prototype.slice.call(form.querySelectorAll("[data-screen]"));
   var bars = form.querySelectorAll(".dx-prog i");
   var cur = 0;
+  var testSel = document.getElementById("testdate");
+  (function pruneTestDates() {
+    if (!testSel) return;
+    var MON = { January: 1, February: 2, March: 3, April: 4, May: 5, June: 6, July: 7, August: 8, September: 9, October: 10, November: 11, December: 12 };
+    function pad(n) { return (n < 10 ? "0" : "") + n; }
+    var now = new Date(), today;
+    try { today = new Intl.DateTimeFormat("en-CA", { timeZone: "America/New_York", year: "numeric", month: "2-digit", day: "2-digit" }).format(now); } catch (e) {}
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(today || "")) today = now.getFullYear() + "-" + pad(now.getMonth() + 1) + "-" + pad(now.getDate());
+    var dated = [], tail = null;
+    Array.prototype.slice.call(testSel.options).forEach(function (o) {
+      var m = /^([A-Z][a-z]+) (\d{1,2}), (\d{4})$/.exec(o.value);
+      if (!m || !MON[m[1]]) { if (o.value) tail = tail || o; return; }
+      var d = m[3] + "-" + pad(MON[m[1]]) + "-" + pad(+m[2]);
+      if (d < today) testSel.removeChild(o); else dated.push({ d: d, o: o });
+    });
+    dated.sort(function (x, y) { return x.d < y.d ? -1 : x.d > y.d ? 1 : 0; });
+    dated.forEach(function (x) { testSel.insertBefore(x.o, tail); });
+  })();
 
   function ev(name, params) { if (window.gtag) { try { gtag("event", name, params || {}); } catch (e) {} } }
   function top(el) { return el.getBoundingClientRect().top + (window.pageYOffset || document.documentElement.scrollTop) - 80; }
@@ -210,6 +231,7 @@
       restored = true;
     }
   } catch (e) {}
+  if (testSel && testSel.selectedIndex < 0) testSel.value = "";
   if (!roleVal() && /(^|[?&])for=parent(&|$)/.test(location.search)) {
     var pr = form.querySelector('input[name="role"][value="parent"]'); if (pr) pr.checked = true;
   }
